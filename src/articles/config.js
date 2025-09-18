@@ -5,14 +5,17 @@ const config = {
     metadata: {
         requiredFields: ['title', 'excerpt', 'content', 'date', 'category', 'tags'],
         categories: [
-            'Deep Learning',
-            'Programming', 
-            'NLP',
+            'Programming',
+            'Web Development', 
             'Data Science',
-            'Web Development',
+            'Machine Learning',
+            'Deep Learning',
+            'NLP',
             'AI Research',
             'Competition',
-            'Study Notes'
+            'Study Notes',
+            'DevOps',
+            'Tutorial'
         ],
         defaultReadTime: '3分',
         defaultFeatured: false

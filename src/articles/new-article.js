@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const config = require('./config.js');
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -30,12 +31,39 @@ function getTodayDate() {
     return new Date().toISOString().split('T')[0];
 }
 
+function displayCategories() {
+    console.log('\n📂 利用可能なカテゴリ:');
+    config.metadata.categories.forEach((cat, index) => {
+        console.log(`  ${index + 1}. ${cat}`);
+    });
+    console.log('');
+}
+
 async function main() {
     console.log('📝 新しい記事を作成します\n');
 
     try {
         const title = await question('記事タイトル: ');
-        const category = await question('カテゴリ (Programming/Deep Learning/Data Science/etc): ');
+        
+        displayCategories();
+        const categoryInput = await question('カテゴリを選択してください (番号 または カテゴリ名): ');
+        
+        let category;
+        if (/^\d+$/.test(categoryInput)) {
+            const categoryIndex = parseInt(categoryInput) - 1;
+            if (categoryIndex >= 0 && categoryIndex < config.metadata.categories.length) {
+                category = config.metadata.categories[categoryIndex];
+            } else {
+                throw new Error('無効な番号です');
+            }
+        } else {
+            if (config.metadata.categories.includes(categoryInput)) {
+                category = categoryInput;
+            } else {
+                throw new Error(`カテゴリ "${categoryInput}" は存在しません。利用可能なカテゴリから選択してください。`);
+            }
+        }
+        
         const tags = await question('タグ (カンマ区切り): ');
         const excerpt = await question('記事の要約: ');
         const readTime = await question('読了時間 (例: 5分): ') || '5分';
