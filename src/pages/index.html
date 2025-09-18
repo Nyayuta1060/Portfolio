@@ -3,9 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nyayuta | Portfolio</title>
+    <meta name="description" content="Nyayuta's Portfolio">
+        <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    
+    <!-- パーティクル背景 -->
+    <div id="particles-container"></div>
+
+    <!-- ナビゲーション -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">
+                    <span class="bracket">&lt;</span>Portfolio<span class="bracket">/&gt;</span>
+                </span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#news" class="nav-link">News</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="greeting">Hello, I'm</span>
+                    <span class="name">
+                        <span class="typing-animation" data-text="Nyayuta"></span>
+                    </span>
+                </h1>
+                <p class="hero-subtitle">
+                    大阪公立大学工業高等専門学校<br>
+                    知能情報コース/2年生
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('news')">
+                        <i class="fas fa-newspaper"></i>
+                        Latest News
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </button>
+                </div>
+                
+                <!-- ヒーローセクション内のソーシャルリンク -->
+                <div class="hero-social">
+                    <a href="https://github.com/Nyayuta1060" class="hero-social-link" target="_blank" rel="noopener noreferrer" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://twitter.com/your-twitter-handle" class="hero-social-link" target="_blank" rel="noopener noreferrer" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-animation">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span class="btn-red"></span>
+                                <span class="btn-yellow"></span>
+                                <span class="btn-green"></span>
+                            </div>
+                            <span class="terminal-title">neural_network.py</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="code-line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
+                            <div class="code-line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div>
+                            <div class="code-line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</div>
+                            <div class="code-line"></div>
+                            <div class="code-line"><span class="keyword">class</span> <span class="class-name">NeuralNetwork</span>:</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="function">__init__</span>(self, layers):</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.model = tf.keras.Sequential()</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> layer <span class="keyword">in</span> layers:</div>
+                            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.model.add(layer)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Aboutセクション -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">01.</span>
+                About Me
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        知能情報コースでAIや機械学習といった最新技術を学び、
+                        実践的なスキルを身につけています。
+                    </p>
+                    <p class="about-description">
+                        ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。
+                    </p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Years of Learning</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スキルセクション -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">02.</span>
+                Technical Skills
+            </h2>
+            <div class="skills-content">
+                <p class="skills-description">
+                    私が習得している技術スタック
+                </p>
+                <div class="skills-grid">
+                    <!-- Frontend -->
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/html.png" alt="HTML" loading="lazy">
+                        </div>
+                        <div class="skill-name">HTML</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/css.png" alt="CSS" loading="lazy">
+                        </div>
+                        <div class="skill-name">CSS</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/javascript.png" alt="JavaScript" loading="lazy">
+                        </div>
+                        <div class="skill-name">JavaScript</div>
+                    </div>
+                    
+                    <!-- Backend -->
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/nodejs.png" alt="Node.js" loading="lazy">
+                        </div>
+                        <div class="skill-name">Node.js</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/elixir.png" alt="Elixir" loading="lazy">
+                        </div>
+                        <div class="skill-name">Elixir</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/python.png" alt="Python" loading="lazy">
+                        </div>
+                        <div class="skill-name">Python</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/cpp.png" alt="C++" loading="lazy">
+                        </div>
+                        <div class="skill-name">C++</div>
+                    </div>
+                    
+                    <!-- AI/ML -->
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/pytorch.png" alt="PyTorch" loading="lazy">
+                        </div>
+                        <div class="skill-name">PyTorch</div>
+                    </div>
+                    
+                    <!-- Tools -->
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/docker.png" alt="Docker" loading="lazy">
+                        </div>
+                        <div class="skill-name">Docker</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-image">
+                            <img src="../assets/git.png" alt="Git" loading="lazy">
+                        </div>
+                        <div class="skill-name">Git</div>
+                    </div>
+                </div>
+                
+                <!-- 追加の技術カテゴリ情報 -->
+                <div class="tech-categories">
+                    <div class="tech-category">
+                        <i class="fas fa-code"></i>
+                        <span>Frontend & Backend Development</span>
+                    </div>
+                    <div class="tech-category">
+                        <i class="fas fa-brain"></i>
+                        <span>Machine Learning & AI</span>
+                    </div>
+                    <div class="tech-category">
+                        <i class="fas fa-database"></i>
+                        <span>Data Science & Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュースセクション -->
+    <section id="news" class="news">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">03.</span>
+                Latest News & Updates
+            </h2>
+            <div class="news-content">
+                <p class="news-description">
+                    最新の学習成果、プロジェクトの進捗、技術的な発見などをお知らせします。<br>
+                    すべての記事は専用のNewsページでご覧いただけます。
+                </p>
+                
+                <!-- 最新3つの記事を動的に表示 -->
+                <div class="news-grid" id="latest-news-home">
+                    <!-- JavaScriptで動的に生成されます -->
+                </div>
+                
+                <div class="news-link-section">
+                    <h3>More News & Updates</h3>
+                    <p>過去の記事やより詳細な内容については、専用のNewsページをご覧ください。</p>
+                    <div class="news-actions">
+                        <a href="./news.html" class="btn btn-primary">
+                            <i class="fas fa-newspaper"></i>
+                            View All News
+                        </a>
+                        <a href="./projects.html" class="btn btn-secondary">
+                            <i class="fas fa-code"></i>
+                            View Projects
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンタクトセクション -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">04.</span>
+                Get In Touch
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>
+                        お気軽にご連絡ください。
+                    </p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-details">
+                                <h4>学校用メール</h4>
+                                <a href="mailto:rp24149r@st.omu.ac.jp">rp24149r@st.omu.ac.jp</a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-envelope-open"></i>
+                            <div class="contact-details">
+                                <h4>個人用メール</h4>
+                                <a href="mailto:nyayuta.works@gmail.com">nyayuta.works@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/Nyayuta1060" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://twitter.com/Nyayuta0717" class="social-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Nyayuta Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+        <script src="../scripts/news-data.js"></script>
+    <script src="../scripts/main.js"></script>
 </body>
 </html>
