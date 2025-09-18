@@ -640,6 +640,128 @@ section {
     color: var(--primary-color);
 }
 
+/* 技術別カラーリング */
+.skill-card[data-tech="html"] .skill-image {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+}
+
+.skill-card[data-tech="css"] .skill-image {
+    background: linear-gradient(135deg, #1572b6, #33a9dc);
+}
+
+.skill-card[data-tech="javascript"] .skill-image {
+    background: linear-gradient(135deg, #f7df1e, #ffda44);
+}
+
+/* React removed from current tech stack */
+
+.skill-card[data-tech="nodejs"] .skill-image {
+    background: linear-gradient(135deg, #8cc84b, #a4d65e);
+}
+
+.skill-card[data-tech="elixir"] .skill-image {
+    background: linear-gradient(135deg, #4b275f, #6b46c1);
+}
+
+.skill-card[data-tech="python"] .skill-image {
+    background: linear-gradient(135deg, #3776ab, #4b8bbe);
+}
+
+.skill-card[data-tech="cpp"] .skill-image {
+    background: linear-gradient(135deg, #00599c, #0066cc);
+}
+
+.skill-card[data-tech="pytorch"] .skill-image {
+    background: linear-gradient(135deg, #ee4c2c, #ff6b45);
+}
+
+.skill-card[data-tech="docker"] .skill-image {
+    background: linear-gradient(135deg, #2496ed, #4da7e8);
+}
+
+.skill-card[data-tech="git"] .skill-image {
+    background: linear-gradient(135deg, #f05032, #ff6347);
+}
+
+/* ホバー時の強調効果 */
+.skill-card:hover[data-tech="html"] {
+    box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+    border-color: #ff6b35;
+}
+
+.skill-card:hover[data-tech="css"] {
+    box-shadow: 0 15px 35px rgba(21, 114, 182, 0.3);
+    border-color: #1572b6;
+}
+
+.skill-card:hover[data-tech="javascript"] {
+    box-shadow: 0 15px 35px rgba(247, 223, 30, 0.3);
+    border-color: #f7df1e;
+}
+
+/* React hover effect removed */
+
+.skill-card:hover[data-tech="nodejs"] {
+    box-shadow: 0 15px 35px rgba(140, 200, 75, 0.3);
+    border-color: #8cc84b;
+}
+
+.skill-card:hover[data-tech="elixir"] {
+    box-shadow: 0 15px 35px rgba(75, 39, 95, 0.3);
+    border-color: #4b275f;
+}
+
+.skill-card:hover[data-tech="python"] {
+    box-shadow: 0 15px 35px rgba(55, 118, 171, 0.3);
+    border-color: #3776ab;
+}
+
+.skill-card:hover[data-tech="cpp"] {
+    box-shadow: 0 15px 35px rgba(0, 89, 156, 0.3);
+    border-color: #00599c;
+}
+
+.skill-card:hover[data-tech="pytorch"] {
+    box-shadow: 0 15px 35px rgba(238, 76, 44, 0.3);
+    border-color: #ee4c2c;
+}
+
+.skill-card:hover[data-tech="docker"] {
+    box-shadow: 0 15px 35px rgba(36, 150, 237, 0.3);
+    border-color: #2496ed;
+}
+
+.skill-card:hover[data-tech="git"] {
+    box-shadow: 0 15px 35px rgba(240, 80, 50, 0.3);
+    border-color: #f05032;
+}
+
+/* フォールバック: 画像が読み込めない場合 */
+.skill-image img {
+    background-color: transparent;
+}
+
+.skill-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 画像が黒い場合の対処: より明るい背景とコントラスト */
+.skill-card .skill-image {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.skill-card:hover .skill-image {
+    box-shadow: 0 8px 20px rgba(100, 255, 218, 0.3), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
 /* Removed scroll-left animation as it's no longer needed */
 
 .tech-categories {
