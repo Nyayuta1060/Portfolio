@@ -7,7 +7,7 @@
 ## 主な特徴
 
 - ✅ **シンプル**: 複雑な設定不要、Markdownで記事を書くだけ
-- ✅ **自動変換**: Markdown → HTML自動変換でブラウザ表示対応  
+- ✅ **自動変換**: Markdown → HTML自動変換でブラウザ表示対応
 - ✅ **統合設定**: config.jsで一元管理（カテゴリ、デフォルト値）
 - ✅ **インタラクティブ**: 記事作成時の対話式入力
 - ✅ **最適化**: 重複削除とパフォーマンス向上
@@ -123,7 +123,7 @@ node src/articles/publish.js
 #### 方法2: 手動公開
 
 ```bash
-node src/articles/build-news.js  # ⭐重要: データ生成を忘れずに！
+node src/articles/build-news.js
 git add src/articles/data/*.md src/scripts/news-data.js
 git commit -m "新記事: タイトル"
 git push origin main
@@ -138,7 +138,7 @@ git push origin main
 ### カテゴリ一覧（config.jsから自動取得）
 
 - Deep Learning
-- Programming  
+- Programming
 - NLP
 - Data Science
 - Web Development
@@ -223,10 +223,3 @@ Markdownファイル作成 → Front Matter解析 → HTML変換 → JSONデー�
 3. **データ統合**: config.jsからの設定値統合
 4. **ソート・最適化**: 日付順ソートと出力最適化
 
-## 最新の改善点（v2.0）
-
-- 🔧 **config.js統合**: 設定の一元管理実現
-- 🗑️ **重複削除**: 不要ファイル・関数の削除
-- ⚡ **パフォーマンス向上**: データ生成の最適化
-- 📱 **HTML自動変換**: Markdown表示問題の解決
-- 🎯 **Portfolio-PageGenerator廃止**: シンプルな単一システム化
