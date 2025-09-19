@@ -2,15 +2,7 @@
 
 ## 概要
 
-このシステムは、Markdownファイルでブログ記事を管理し、自動でポートフォリオサイト用のJSONデータを生成します。Portfolio-PageGeneratorを廃止し、シンプルで効率的なMarkdownベースの記事管理を実現しました。
-
-## 主な特徴
-
-- ✅ **シンプル**: 複雑な設定不要、Markdownで記事を書くだけ
-- ✅ **自動変換**: Markdown → HTML自動変換でブラウザ表示対応
-- ✅ **統合設定**: config.jsで一元管理（カテゴリ、デフォルト値）
-- ✅ **インタラクティブ**: 記事作成時の対話式入力
-- ✅ **最適化**: 重複削除とパフォーマンス向上
+このシステムは、Markdownファイルでブログ記事を管理し、自動でポートフォリオサイト用のJSONデータを生成します。
 
 ## ディレクトリ構造
 
@@ -38,7 +30,6 @@ src/scripts/
 ### 1. 新記事作成
 
 ```bash
-cd /home/nyayuta/workspace/Portfolio
 node src/articles/new-article.js
 ```
 
@@ -107,44 +98,12 @@ node src/articles/build-news.js
 - `contentHtml`: HTML変換版（ブラウザ表示用）
 - ヘルパー関数群（検索、フィルタリング、日付フォーマットなど）
 
-### 4. 公開
-
-#### 方法1: 自動公開スクリプト（推奨）
-
-```bash
-node src/articles/publish.js
-```
-
-このスクリプトが以下を自動実行：
-- データ生成（`build-news.js`）
-- 変更ファイルのステージング
-- インタラクティブなコミット・プッシュ
-
-#### 方法2: 手動公開
-
-```bash
-node src/articles/build-news.js
-git add src/articles/data/*.md src/scripts/news-data.js
-git commit -m "新記事: タイトル"
-git push origin main
-```
 
 **注意**: `news-data.js`をpushし忘れると記事が表示されません！
 
 ## 設定管理（config.js）
 
 カテゴリやデフォルト値は `config.js` で一元管理されています：
-
-### カテゴリ一覧（config.jsから自動取得）
-
-- Deep Learning
-- Programming
-- NLP
-- Data Science
-- Web Development
-- AI Research
-- Competition
-- Study Notes
 
 ### デフォルト設定
 
