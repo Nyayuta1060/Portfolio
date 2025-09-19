@@ -25,6 +25,7 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#news" class="nav-link">News</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -118,6 +119,24 @@
                     <p class="about-description">
                         ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。
                     </p>
+                    
+                    <!-- 経歴セクション -->
+                    <div class="career-section">
+                        <h3 class="career-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            経歴
+                        </h3>
+                        <div class="career-timeline">
+                            <div class="career-item">
+                                <div class="career-date">2024.04</div>
+                                <div class="career-content">
+                                    <h4 class="career-event">大阪公立大学工業高等専門学校 入学</h4>
+                                    <p class="career-description">高専に入学し、専門知識を学び始める。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="stats">
                         <div class="stat-item">
                             <div class="stat-number">6+</div>
@@ -148,73 +167,77 @@
                 <p class="skills-description">
                     私が習得している技術スタック
                 </p>
-                <div class="skills-grid">
-                    <!-- Frontend -->
-                    <div class="skill-card" data-tech="html">
-                        <div class="skill-image">
-                            <img src="src/assets/html.png" alt="HTML" loading="lazy">
+                
+                <!-- スクロール可能なスキル一列表示 -->
+                <div class="skills-scroll-container">
+                    <div class="skills-row">
+                        <!-- Frontend -->
+                        <div class="skill-card" data-tech="html">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/html.png" alt="HTML" loading="lazy">
+                            </div>
+                            <div class="skill-name">HTML</div>
                         </div>
-                        <div class="skill-name">HTML</div>
-                    </div>
-                    <div class="skill-card" data-tech="css">
-                        <div class="skill-image">
-                            <img src="src/assets/css.png" alt="CSS" loading="lazy">
+                        <div class="skill-card" data-tech="css">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/css.png" alt="CSS" loading="lazy">
+                            </div>
+                            <div class="skill-name">CSS</div>
                         </div>
-                        <div class="skill-name">CSS</div>
-                    </div>
-                    <div class="skill-card" data-tech="javascript">
-                        <div class="skill-image">
-                            <img src="src/assets/javascript.png" alt="JavaScript" loading="lazy">
+                        <div class="skill-card" data-tech="javascript">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/javascript.png" alt="JavaScript" loading="lazy">
+                            </div>
+                            <div class="skill-name">JavaScript</div>
                         </div>
-                        <div class="skill-name">JavaScript</div>
-                    </div>
-                    
-                    <!-- Backend -->
-                    <div class="skill-card" data-tech="nodejs">
-                        <div class="skill-image">
-                            <img src="src/assets/nodejs.png" alt="Node.js" loading="lazy">
+                        
+                        <!-- Backend -->
+                        <div class="skill-card" data-tech="nodejs">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/nodejs.png" alt="Node.js" loading="lazy">
+                            </div>
+                            <div class="skill-name">Node.js</div>
                         </div>
-                        <div class="skill-name">Node.js</div>
-                    </div>
-                    <div class="skill-card" data-tech="elixir">
-                        <div class="skill-image">
-                            <img src="src/assets/elixir.png" alt="Elixir" loading="lazy">
+                        <div class="skill-card" data-tech="elixir">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/elixir.png" alt="Elixir" loading="lazy">
+                            </div>
+                            <div class="skill-name">Elixir</div>
                         </div>
-                        <div class="skill-name">Elixir</div>
-                    </div>
-                    <div class="skill-card" data-tech="python">
-                        <div class="skill-image">
-                            <img src="src/assets/python.png" alt="Python" loading="lazy">
+                        <div class="skill-card" data-tech="python">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/python.png" alt="Python" loading="lazy">
+                            </div>
+                            <div class="skill-name">Python</div>
                         </div>
-                        <div class="skill-name">Python</div>
-                    </div>
-                    <div class="skill-card" data-tech="cpp">
-                        <div class="skill-image">
-                            <img src="src/assets/cpp.png" alt="C++" loading="lazy">
+                        <div class="skill-card" data-tech="cpp">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/cpp.png" alt="C++" loading="lazy">
+                            </div>
+                            <div class="skill-name">C++</div>
                         </div>
-                        <div class="skill-name">C++</div>
-                    </div>
-                    
-                    <!-- AI/ML -->
-                    <div class="skill-card" data-tech="pytorch">
-                        <div class="skill-image">
-                            <img src="src/assets/pytorch.png" alt="PyTorch" loading="lazy">
+                        
+                        <!-- AI/ML -->
+                        <div class="skill-card" data-tech="pytorch">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/pytorch.png" alt="PyTorch" loading="lazy">
+                            </div>
+                            <div class="skill-name">PyTorch</div>
                         </div>
-                        <div class="skill-name">PyTorch</div>
-                    </div>
-                    
-                    <!-- Tools -->
-                    <div class="skill-card" data-tech="docker">
-                        <div class="skill-image">
-                            <img src="src/assets/docker.png" alt="Docker" loading="lazy">
+                        
+                        <!-- Tools -->
+                        <div class="skill-card" data-tech="docker">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/docker.png" alt="Docker" loading="lazy">
+                            </div>
+                            <div class="skill-name">Docker</div>
                         </div>
-                        <div class="skill-name">Docker</div>
-                    </div>
-                    <div class="skill-card" data-tech="git">
-                        <div class="skill-image">
-                            <img src="src/assets/git.png" alt="Git" loading="lazy">
+                        <div class="skill-card" data-tech="git">
+                            <div class="skill-image">
+                                <img src="src/assets/skillstocks/git.png" alt="Git" loading="lazy">
+                            </div>
+                            <div class="skill-name">Git</div>
                         </div>
-                        <div class="skill-name">Git</div>
                     </div>
                 </div>
                 
@@ -237,11 +260,96 @@
         </div>
     </section>
 
+    <!-- プロジェクトセクション -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">03.</span>
+                My Projects
+            </h2>
+            <div class="projects-content">
+                <p class="projects-description">
+                    私が取り組んできたプロジェクトの一覧
+                </p>
+                
+                <!-- スクロール可能なプロジェクト一列表示 -->
+                <div class="projects-scroll-container">
+                    <div class="projects-row">
+                        <!-- プロジェクト1 -->
+                        <a href="https://github.com/Nyayuta1060/Portfolio" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="Portfolio WebsiteのGitHubリポジトリを開く">
+                            <div class="project-card" data-project="portfolio">
+                                <div class="project-image">
+                                    <!-- 将来的に画像を追加する場合: <img src="src/assets/projects/portfolio.png" alt="Portfolio Website" loading="lazy"> -->
+                                    <div class="project-placeholder">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3 class="project-title">Portfolio Website</h3>
+                                    <p class="project-description">HTML/CSS/JavaScriptで作成したポートフォリオサイト</p>
+                                    <div class="project-tech-tags">
+                                        <span class="tech-tag">HTML</span>
+                                        <span class="tech-tag">CSS</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                    </div>
+                                </div>
+                                <div class="project-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>View Project</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- プロジェクト2 -->
+                        <a href="https://github.com/Team-Nullpo/NullTasker" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="NullTaskerのGitHubリポジトリを開く">
+                            <div class="project-card" data-project="robot-control">
+                                <div class="project-image">
+                                    <img src="src/assets/projects/NullTasker.png" alt="NullTasker" loading="lazy">
+                                </div>
+                                <div class="project-info">
+                                    <h3 class="project-title">NullTasker</h3>
+                                    <p class="project-description">学生向けのオープンソースタスク管理ツール</p>
+                                    <div class="project-tech-tags">
+                                        <span class="tech-tag">HTML</span>
+                                        <span class="tech-tag">CSS</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                        <span class="tech-tag">Node.js</span>
+                                    </div>
+                                </div>
+                                <div class="project-overlay">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>View Project</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- 新しいプロジェクトを追加する際のプレースホルダー -->
+                        <div class="project-card add-project" data-project="add-new">
+                            <div class="project-image">
+                                <div class="project-placeholder add-placeholder">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="project-info">
+                                <h3 class="project-title">New Project</h3>
+                                <p class="project-description">新しいプロジェクトを追加予定</p>
+                            </div>
+                            <div class="project-overlay coming-soon">
+                                <i class="fas fa-clock"></i>
+                                <span>Coming Soon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ニュースセクション -->
     <section id="news" class="news">
         <div class="container">
             <h2 class="section-title">
-                <span class="title-number">03.</span>
+                <span class="title-number">04.</span>
                 Latest News & Updates
             </h2>
             <div class="news-content">
@@ -273,7 +381,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">
-                <span class="title-number">04.</span>
+                <span class="title-number">05.</span>
                 Get In Touch
             </h2>
             <div class="contact-content">

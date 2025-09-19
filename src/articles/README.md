@@ -2,7 +2,7 @@
 
 ## 概要
 
-このシステムは、Markdownファイルでブログ記事を管理し、自動でポートフォリオサイト用のJSONデータを生成します。
+このシステムは、Markdownファイルでブログ記事を管理し、自動でポートフォリオサイト用のJavaScriptデータファイルを生成します。
 
 ## ディレクトリ構造
 
@@ -22,7 +22,7 @@ src/articles/
 
 ```
 src/scripts/
-└── news-data.js        # 自動生成されるJSONデータ
+└── news-data.js        # 自動生成されるJavaScriptデータファイル
 ```
 
 ## 使用方法
@@ -83,7 +83,7 @@ function example() {
 
 ### 3. データ生成
 
-記事を書き終えたら、以下のコマンドでJSONデータを生成：
+記事を書き終えたら、以下のコマンドでJavaScriptデータファイルを生成：
 
 ```bash
 node src/articles/build-news.js
@@ -163,7 +163,7 @@ node src/articles/build-news.js
 ### 処理フロー
 
 ```
-Markdownファイル作成 → Front Matter解析 → HTML変換 → JSONデータ生成 → Webサイト表示
+Markdownファイル作成 → Front Matter解析 → HTML変換 → JavaScriptデータ生成 → Webサイト表示
 ```
 
 ### ファイルの役割
@@ -172,13 +172,14 @@ Markdownファイル作成 → Front Matter解析 → HTML変換 → JSONデー�
 |---------|------|------|
 | `config.js` | 設定管理 | カテゴリ、デフォルト値の一元管理 |
 | `new-article.js` | 記事作成 | インタラクティブな記事ファイル生成 |
-| `build-news.js` | データ生成 | Markdown→JSON変換とHTML生成 |
-| `news-data.js` | 出力データ | ブラウザで使用する記事データ |
+| `build-news.js` | データ生成 | Markdown→JavaScript変換とHTML生成 |
+| `news-data.js` | 出力データ | ブラウザで使用するJavaScript記事データ |
 
 ### データ変換プロセス
 
 1. **Front Matter解析**: YAML形式メタデータの抽出
 2. **Markdown→HTML変換**: ブラウザ表示用の変換処理
 3. **データ統合**: config.jsからの設定値統合
-4. **ソート・最適化**: 日付順ソートと出力最適化
+4. **JavaScript出力**: ブラウザ・Node.js両対応のデータファイル生成
+5. **ソート・最適化**: 日付順ソートと出力最適化
 
