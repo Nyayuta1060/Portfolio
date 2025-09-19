@@ -546,7 +546,7 @@ function createHomeNewsCard(article) {
             ${tagsHTML}
         </div>
         <div class="news-action">
-            <a href="./news.html" class="read-more-link">
+            <a href="src/pages/news.html" class="read-more-link">
                 <i class="fas fa-arrow-right"></i> 続きを読む
             </a>
         </div>
