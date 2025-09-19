@@ -629,17 +629,19 @@ section {
 /* Skills Scroll Layout */
 .skills-scroll-container {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: auto !important;
     margin: 2rem 0;
     padding: 1rem 0;
     -webkit-overflow-scrolling: touch;
+    display: block !important;
 }
 
 .skills-row {
-    display: flex;
+    display: flex !important;
     gap: 1.5rem;
     min-width: max-content;
     padding: 0 2rem;
+    flex-direction: row !important;
 }
 
 .skills-scroll-container::-webkit-scrollbar {
@@ -917,17 +919,19 @@ section {
 /* Projects Scroll Layout */
 .projects-scroll-container {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: auto !important;
     margin: 2rem 0;
     padding: 1rem 0;
     -webkit-overflow-scrolling: touch;
+    display: block !important;
 }
 
 .projects-row {
-    display: flex;
+    display: flex !important;
     gap: 2rem;
     min-width: max-content;
     padding: 0 2rem;
+    flex-direction: row !important;
 }
 
 .projects-scroll-container::-webkit-scrollbar {
