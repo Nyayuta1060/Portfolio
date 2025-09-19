@@ -1,0 +1,273 @@
+/* ========== レスポンシブデザイン ========== */
+
+/* タブレット (1024px以下) */
+@media (max-width: 1024px) {
+    .hero-content,
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+    
+    .name {
+        font-size: 3rem;
+    }
+    
+    .stats {
+        justify-content: center;
+    }
+    
+    /* Career section responsive */
+    .career-timeline {
+        padding-left: 1.5rem;
+    }
+    
+    .career-item {
+        padding-left: 1.5rem;
+    }
+    
+    .project-card.featured {
+        grid-column: span 1;
+    }
+    
+    .project-card.featured .project-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* モバイル (768px以下) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--secondary-bg);
+        width: 100%;
+        text-align: center;
+        transition: var(--transition-smooth);
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        border-top: 1px solid var(--border-color);
+        padding: 2rem 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .name {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 200px;
+        justify-content: center;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Skills & Projects mobile adjustments */
+    .skills-row,
+    .projects-row {
+        padding: 0 1rem;
+    }
+    
+    .skill-card {
+        width: 120px;
+        min-width: 120px;
+        padding: 1rem;
+    }
+    
+    .project-card {
+        width: 250px;
+        min-width: 250px;
+        padding: 1.2rem;
+    }
+    
+    .project-overlay {
+        opacity: 0.9;
+    }
+    
+    .project-overlay span {
+        font-size: 1rem;
+    }
+    
+    .project-image {
+        height: 120px;
+    }
+    
+    .tech-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Career section mobile */
+    .career-title {
+        font-size: 1.3rem;
+    }
+    
+    .career-timeline {
+        padding-left: 1rem;
+    }
+    
+    .career-timeline::before {
+        left: 0.5rem;
+    }
+    
+    .career-item {
+        padding-left: 1.2rem;
+    }
+    
+    .career-item::before {
+        left: -0.3rem;
+        width: 10px;
+        height: 10px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+    }
+    
+    .skill-card {
+        padding: 1.2rem;
+    }
+    
+    .skill-image {
+        width: 56px;
+        height: 56px;
+        padding: 10px;
+    }
+    
+    .skill-name {
+        font-size: 0.9rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tech-orbit {
+        width: 250px;
+        height: 250px;
+    }
+    
+    /* プロジェクト・ニュースページ */
+    .projects-header,
+    .news-header {
+        padding: 10rem 0 4rem;
+    }
+    
+    .page-title {
+        font-size: 3rem;
+    }
+    
+    .page-description {
+        font-size: 1.1rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* ニュースページモバイル */
+    .blog-stats {
+        gap: 2rem;
+        flex-direction: column;
+    }
+    
+    .category-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 200px;
+    }
+    
+    .news-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .news-meta {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+    
+    .modal-header {
+        padding: 1.5rem;
+    }
+    
+    .modal-body {
+        padding: 1.5rem;
+    }
+    
+    .article-title {
+        font-size: 1.5rem;
+    }
+    
+    .article-content {
+        font-size: 1rem;
+    }
+    
+    .news-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* 小画面モバイル (480px以下) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero {
+        padding: 0 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .name {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .terminal-body {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
+}

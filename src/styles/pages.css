@@ -1,0 +1,607 @@
+/* ========== 専用ページスタイル ========== */
+
+/* プロジェクトページ */
+.projects-header {
+    padding: 12rem 0 6rem;
+    text-align: center;
+    background: var(--gradient-bg);
+}
+
+.page-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+}
+
+.title-accent {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-description {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.featured-projects {
+    padding: 6rem 0;
+}
+
+.academic-projects {
+    padding: 6rem 0;
+    background: var(--secondary-bg);
+}
+
+.personal-projects {
+    padding: 6rem 0;
+}
+
+.project-card.featured {
+    grid-column: span 2;
+}
+
+.project-card.featured .project-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.project-status {
+    background: var(--gradient-secondary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.project-features h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.project-features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.project-features li {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.project-features li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+}
+
+.projects-link-section {
+    text-align: center;
+    padding: 3rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.projects-link-section h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.projects-link-section p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* ========== Newsページ専用スタイル ========== */
+
+/* News ヘッダー */
+.news-header {
+    padding: 12rem 0 6rem;
+    text-align: center;
+    background: var(--gradient-bg);
+}
+
+.blog-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 4rem;
+}
+
+.blog-stats .stat-item {
+    text-align: center;
+}
+
+.blog-stats .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+}
+
+.blog-stats .stat-label {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+/* フィルター */
+.news-filters {
+    padding: 3rem 0;
+    background: var(--secondary-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-controls {
+    text-align: center;
+}
+
+.filter-controls h3 {
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    font-size: 1.3rem;
+}
+
+.category-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* 最新記事セクション */
+.latest-news {
+    padding: 6rem 0;
+}
+
+/* 検索 */
+.search-container {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* ニュースカード拡張 */
+.news-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.news-category {
+    background: var(--accent-bg);
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.featured-badge {
+    background: var(--gradient-secondary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.news-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.read-time {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.read-more-btn {
+    background: var(--gradient-primary);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: var(--transition-bounce);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.read-more-btn:hover {
+    transform: translateX(5px) scale(1.05);
+}
+
+/* 記事モーダル */
+.article-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.article-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--secondary-bg);
+}
+
+.article-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.article-date,
+.article-category,
+.read-time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.article-category {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.modal-close:hover {
+    background: var(--accent-bg);
+    color: var(--primary-color);
+}
+
+.modal-body {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(90vh - 120px);
+}
+
+.article-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.article-content {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.article-content h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+    font-weight: 600;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+.article-content ul,
+.article-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-tags {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 結果なし */
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-muted);
+}
+
+.no-results i {
+    font-size: 3rem;
+    color: var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+/* News link section (for index page) */
+.news-link-section {
+    text-align: center;
+    padding: 3rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    margin-top: 3rem;
+}
+
+.news-link-section h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.news-link-section p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.news-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* スキルカード技術別カラーリング */
+.skill-card[data-tech="html"] .skill-image {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+}
+
+.skill-card[data-tech="css"] .skill-image {
+    background: linear-gradient(135deg, #1572b6, #33a9dc);
+}
+
+.skill-card[data-tech="javascript"] .skill-image {
+    background: linear-gradient(135deg, #f7df1e, #ffda44);
+}
+
+.skill-card[data-tech="nodejs"] .skill-image {
+    background: linear-gradient(135deg, #8cc84b, #a4d65e);
+}
+
+.skill-card[data-tech="elixir"] .skill-image {
+    background: linear-gradient(135deg, #4b275f, #6b46c1);
+}
+
+.skill-card[data-tech="python"] .skill-image {
+    background: linear-gradient(135deg, #3776ab, #4b8bbe);
+}
+
+.skill-card[data-tech="cpp"] .skill-image {
+    background: linear-gradient(135deg, #00599c, #0066cc);
+}
+
+.skill-card[data-tech="pytorch"] .skill-image {
+    background: linear-gradient(135deg, #ee4c2c, #ff6b45);
+}
+
+.skill-card[data-tech="docker"] .skill-image {
+    background: linear-gradient(135deg, #2496ed, #4da7e8);
+}
+
+.skill-card[data-tech="git"] .skill-image {
+    background: linear-gradient(135deg, #f05032, #ff6347);
+}
+
+/* ホバー時の強調効果 */
+.skill-card:hover[data-tech="html"] {
+    box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+    border-color: #ff6b35;
+}
+
+.skill-card:hover[data-tech="css"] {
+    box-shadow: 0 15px 35px rgba(21, 114, 182, 0.3);
+    border-color: #1572b6;
+}
+
+.skill-card:hover[data-tech="javascript"] {
+    box-shadow: 0 15px 35px rgba(247, 223, 30, 0.3);
+    border-color: #f7df1e;
+}
+
+.skill-card:hover[data-tech="nodejs"] {
+    box-shadow: 0 15px 35px rgba(140, 200, 75, 0.3);
+    border-color: #8cc84b;
+}
+
+.skill-card:hover[data-tech="elixir"] {
+    box-shadow: 0 15px 35px rgba(75, 39, 95, 0.3);
+    border-color: #4b275f;
+}
+
+.skill-card:hover[data-tech="python"] {
+    box-shadow: 0 15px 35px rgba(55, 118, 171, 0.3);
+    border-color: #3776ab;
+}
+
+.skill-card:hover[data-tech="cpp"] {
+    box-shadow: 0 15px 35px rgba(0, 89, 156, 0.3);
+    border-color: #00599c;
+}
+
+.skill-card:hover[data-tech="pytorch"] {
+    box-shadow: 0 15px 35px rgba(238, 76, 44, 0.3);
+    border-color: #ee4c2c;
+}
+
+.skill-card:hover[data-tech="docker"] {
+    box-shadow: 0 15px 35px rgba(36, 150, 237, 0.3);
+    border-color: #2496ed;
+}
+
+.skill-card:hover[data-tech="git"] {
+    box-shadow: 0 15px 35px rgba(240, 80, 50, 0.3);
+    border-color: #f05032;
+}
+
+/* プロジェクトカード特殊スタイル */
+.add-project .project-placeholder {
+    background: linear-gradient(135deg, var(--border-color), var(--secondary-bg));
+    color: var(--text-muted);
+    border: 2px dashed var(--border-color);
+}
+
+.add-project:hover .project-placeholder {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
+    color: white;
+    gap: 0.5rem;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-overlay i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-overlay span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-overlay.coming-soon {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--primary-color);
+}
+
+.add-project:hover .project-overlay.coming-soon {
+    opacity: 1;
+}
+
+/* 画像フォールバック */
+.skill-image img {
+    background-color: transparent;
+}
+
+.skill-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-card .skill-image {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.skill-card:hover .skill-image {
+    box-shadow: 0 8px 20px rgba(100, 255, 218, 0.3), inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
