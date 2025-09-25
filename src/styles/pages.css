@@ -454,6 +454,10 @@
     background: linear-gradient(135deg, #4b275f, #6b46c1);
 }
 
+.skill-card[data-tech="phoenix"] .skill-image {
+    background: linear-gradient(135deg, #fd4f00, #ff6b2b);
+}
+
 .skill-card[data-tech="python"] .skill-image {
     background: linear-gradient(135deg, #3776ab, #4b8bbe);
 }
@@ -466,12 +470,32 @@
     background: linear-gradient(135deg, #ee4c2c, #ff6b45);
 }
 
+.skill-card[data-tech="numpy"] .skill-image {
+    background: linear-gradient(135deg, #013243, #4dabcf);
+}
+
+.skill-card[data-tech="pandas"] .skill-image {
+    background: linear-gradient(135deg, #150458, #e70488);
+}
+
+.skill-card[data-tech="opencv"] .skill-image {
+    background: linear-gradient(135deg, #5aa700, #7bc143);
+}
+
 .skill-card[data-tech="docker"] .skill-image {
     background: linear-gradient(135deg, #2496ed, #4da7e8);
 }
 
 .skill-card[data-tech="git"] .skill-image {
     background: linear-gradient(135deg, #f05032, #ff6347);
+}
+
+.skill-card[data-tech="github"] .skill-image {
+    background: linear-gradient(135deg, #24292e, #586069);
+}
+
+.skill-card[data-tech="gitlab"] .skill-image {
+    background: linear-gradient(135deg, #fc6d26, #fca326);
 }
 
 /* ホバー時の強調効果 */
@@ -500,6 +524,11 @@
     border-color: #4b275f;
 }
 
+.skill-card:hover[data-tech="phoenix"] {
+    box-shadow: 0 15px 35px rgba(253, 79, 0, 0.3);
+    border-color: #fd4f00;
+}
+
 .skill-card:hover[data-tech="python"] {
     box-shadow: 0 15px 35px rgba(55, 118, 171, 0.3);
     border-color: #3776ab;
@@ -515,6 +544,21 @@
     border-color: #ee4c2c;
 }
 
+.skill-card:hover[data-tech="numpy"] {
+    box-shadow: 0 15px 35px rgba(77, 171, 207, 0.3);
+    border-color: #4dabcf;
+}
+
+.skill-card:hover[data-tech="pandas"] {
+    box-shadow: 0 15px 35px rgba(231, 4, 136, 0.3);
+    border-color: #e70488;
+}
+
+.skill-card:hover[data-tech="opencv"] {
+    box-shadow: 0 15px 35px rgba(90, 167, 0, 0.3);
+    border-color: #5aa700;
+}
+
 .skill-card:hover[data-tech="docker"] {
     box-shadow: 0 15px 35px rgba(36, 150, 237, 0.3);
     border-color: #2496ed;
@@ -523,6 +567,16 @@
 .skill-card:hover[data-tech="git"] {
     box-shadow: 0 15px 35px rgba(240, 80, 50, 0.3);
     border-color: #f05032;
+}
+
+.skill-card:hover[data-tech="github"] {
+    box-shadow: 0 15px 35px rgba(36, 41, 46, 0.3);
+    border-color: #24292e;
+}
+
+.skill-card:hover[data-tech="gitlab"] {
+    box-shadow: 0 15px 35px rgba(252, 109, 38, 0.3);
+    border-color: #fc6d26;
 }
 
 /* プロジェクトカード特殊スタイル */
