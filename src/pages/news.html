@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News & Blog | Nyayuta's Portfolio</title>
@@ -11,132 +11,132 @@
     <link rel="stylesheet" href="../styles/layout.css">
     <link rel="stylesheet" href="../styles/pages.css">
     <link rel="stylesheet" href="../styles/responsive.css">
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+  </head>
+  <body>
     <!-- パーティクル背景 -->
     <div id="particles-container"></div>
 
     <!-- ナビゲーション -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="./../../index.html" style="text-decoration: none;">
-                    <span class="logo-text">
-                        <span class="bracket">&lt;</span>News<span class="bracket">/&gt;</span>
-                    </span>
-                </a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#latest" class="nav-link">Latest</a></li>
-                <li><a href="#archive" class="nav-link">Archive</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="./../../index.html" style="text-decoration: none;">
+            <span class="logo-text">
+              <span class="bracket">&lt;</span>News<span class="bracket">/&gt;</span>
+            </span>
+          </a>
         </div>
+        <ul class="nav-menu">
+          <li><a href="#latest" class="nav-link">Latest</a></li>
+          <li><a href="#archive" class="nav-link">Archive</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
     </nav>
 
     <!-- ヘッダーセクション -->
     <section class="news-header">
-        <div class="container">
-            <h1 class="page-title">
-                <span class="title-accent">News &</span>
-                Blog
-            </h1>
-            <p class="page-description">
-                学習の軌跡、技術的発見、プロジェクトの進捗を記録するブログです。<br>
-                AI・機械学習・データサイエンスの学習過程を共有しています。
-            </p>
-            
-            <!-- 統計情報 -->
-            <div class="blog-stats">
-                <div class="stat-item">
-                    <div class="stat-number" id="total-posts">0</div>
-                    <div class="stat-label">Total Posts</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="this-month">0</div>
-                    <div class="stat-label">This Month</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="total-categories">0</div>
-                    <div class="stat-label">Categories</div>
-                </div>
-            </div>
+      <div class="container">
+        <h1 class="page-title">
+          <span class="title-accent">News &</span>
+          Blog
+        </h1>
+        <p class="page-description">
+          学習の軌跡、技術的発見、プロジェクトの進捗を記録するブログです。<br>
+          AI・機械学習・データサイエンスの学習過程を共有しています。
+        </p>
+
+        <!-- 統計情報 -->
+        <div class="blog-stats">
+          <div class="stat-item">
+            <div class="stat-number" id="total-posts">0</div>
+            <div class="stat-label">Total Posts</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="this-month">0</div>
+            <div class="stat-label">This Month</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="total-categories">0</div>
+            <div class="stat-label">Categories</div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- フィルターセクション -->
     <section class="news-filters">
-        <div class="container">
-            <div class="filter-controls">
-                <h3>Filter by Category</h3>
-                <div class="category-filters" id="category-filters">
-                    <button class="filter-btn active" data-category="all">All</button>
-                    <!-- カテゴリボタンはJavaScriptで動的に生成 -->
-                </div>
-            </div>
+      <div class="container">
+        <div class="filter-controls">
+          <h3>Filter by Category</h3>
+          <div class="category-filters" id="category-filters">
+            <button class="filter-btn active" data-category="all">All</button>
+            <!-- カテゴリボタンはJavaScriptで動的に生成 -->
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- 最新記事セクション -->
     <section id="latest" class="latest-news">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">01.</span>
-                Latest Posts
-            </h2>
-            <div id="latest-posts" class="news-grid">
-                <!-- 最新記事がJavaScriptで動的に生成されます -->
-            </div>
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-number">01.</span>
+          Latest Posts
+        </h2>
+        <div id="latest-posts" class="news-grid">
+          <!-- 最新記事がJavaScriptで動的に生成されます -->
         </div>
+      </div>
     </section>
 
     <!-- アーカイブセクション -->
     <section id="archive" class="news-archive">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">02.</span>
-                Archive
-            </h2>
-            
-            <!-- 検索ボックス -->
-            <div class="search-container">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="search-input" placeholder="記事を検索...">
-                </div>
-            </div>
-            
-            <!-- 記事一覧 -->
-            <div id="news-archive" class="news-grid">
-                <!-- 全記事がJavaScriptで動的に生成されます -->
-            </div>
-            
-            <!-- ページネーション -->
-            <div class="pagination" id="pagination">
-                <!-- ページネーションはJavaScriptで動的に生成 -->
-            </div>
+      <div class="container">
+        <h2 class="section-title">
+          <span class="title-number">02.</span>
+          Archive
+        </h2>
+
+        <!-- 検索ボックス -->
+        <div class="search-container">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="記事を検索...">
+          </div>
         </div>
+
+        <!-- 記事一覧 -->
+        <div id="news-archive" class="news-grid">
+          <!-- 全記事がJavaScriptで動的に生成されます -->
+        </div>
+
+        <!-- ページネーション -->
+        <div class="pagination" id="pagination">
+          <!-- ページネーションはJavaScriptで動的に生成 -->
+        </div>
+      </div>
     </section>
 
     <!-- フッター -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Nyayuta Portfolio. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="../../index.html">Home</a>
-                    <a href="#latest">Latest Posts</a>
-                    <a href="../../index.html#contact">Contact</a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2025 Nyayuta Portfolio. All rights reserved.</p>
+          <div class="footer-links">
+            <a href="../../index.html">Home</a>
+            <a href="#latest">Latest Posts</a>
+            <a href="../../index.html#contact">Contact</a>
+          </div>
         </div>
+      </div>
     </footer>
 
     <!-- JavaScript Files (in proper order) -->
@@ -147,5 +147,5 @@
     <script src="../scripts/components.js"></script>
     <script src="../scripts/app.js"></script>
     <script src="../scripts/news.js"></script>
-</body>
+  </body>
 </html>
