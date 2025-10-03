@@ -5,7 +5,7 @@ category: "Programming"
 tags: ["Hackathon", "HTML", "CSS", "JavaScript", "Project"]
 author: "Nyayuta"
 excerpt: "ハッカソンの活動として、学生5人でタスク管理ツールを作成中です。"
-readTime: "10分"
+readTime: "5分"
 featured: false
 ---
 
