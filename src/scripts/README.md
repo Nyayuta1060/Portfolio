@@ -53,50 +53,23 @@
 - **内容**:
   - `initializeFormHandling()` - フォーム処理
   - `showNotification()` - 通知システム
-  - `initializeHomeNews()` - ホームページニュース表示
-  - `createHomeNewsCard()` - ニュースカード生成
 - **依存関係**: なし
-
-### Data Files
-
-#### `news-data.js`
-- **役割**: ニュース記事データ
-- **内容**:
-  - `newsData` - 記事データ配列
-  - `getLatestArticles()` - 最新記事取得
-  - `formatDate()` - 日付フォーマット
-- **依存関係**: なし
-
-#### `news.js`
-- **役割**: ニュースページ専用機能
-- **内容**:
-  - 記事フィルタリング
-  - 検索機能
-  - ページネーション
-  - モーダル表示
-- **依存関係**: news-data.js
 
 ## 読み込み順序
 
 HTMLファイルでのスクリプト読み込み順序は以下の通りです：
 
 ```html
-<!-- 1. データファイル -->
-<script src="./src/scripts/news-data.js"></script>
-
-<!-- 2. ユーティリティ -->
+<!-- 1. ユーティリティ -->
 <script src="./src/scripts/utils.js"></script>
 
-<!-- 3. 機能モジュール -->
+<!-- 2. 機能モジュール -->
 <script src="./src/scripts/navigation.js"></script>
 <script src="./src/scripts/animations.js"></script>
 <script src="./src/scripts/components.js"></script>
 
-<!-- 4. 初期化 -->
+<!-- 3. 初期化 -->
 <script src="./src/scripts/app.js"></script>
-
-<!-- 5. ページ専用（必要に応じて） -->
-<script src="./src/scripts/news.js"></script>
 ```
 
 ## 機能の追加方法

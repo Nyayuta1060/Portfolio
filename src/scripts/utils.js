@@ -119,26 +119,7 @@ function initializeLazyImages() {
         outline-offset: 2px;
       }
 
-      .read-more-link {
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 500;
-        transition: var(--transition-smooth);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
 
-      .read-more-link:hover {
-        color: var(--secondary-color);
-        transform: translateX(5px);
-      }
-
-      .news-action {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border-color);
-      }
       `;
       document.head.appendChild(style);
     }

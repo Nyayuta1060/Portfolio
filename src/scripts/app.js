@@ -13,7 +13,6 @@ function initializeApp() {
   initializeSkillBars();
   initializeFormHandling();
   initializeLazyLoading();
-  initializeHomeNews();
 
   // ユーティリティ機能を初期化
   initializeLazyImages();

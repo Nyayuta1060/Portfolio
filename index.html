@@ -32,7 +32,6 @@
           <li><a href="#about" class="nav-link">About</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#news" class="nav-link">News</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
         <div class="hamburger">
@@ -58,9 +57,9 @@
             知能情報コース/2年生
           </p>
           <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="scrollToSection('news')">
-              <i class="fas fa-newspaper"></i>
-              Latest News
+            <button class="btn btn-primary" onclick="scrollToSection('projects')">
+              <i class="fas fa-folder-open"></i>
+              View Projects
             </button>
             <button class="btn btn-secondary" onclick="scrollToSection('contact')">
               <i class="fas fa-envelope"></i>
@@ -442,45 +441,13 @@
           </div>
         </section>
 
-        <!-- ニュースセクション -->
-        <section id="news" class="news">
-          <div class="container">
-            <h2 class="section-title">
-              <span class="title-number">04.</span>
-              Latest News & Updates
-            </h2>
-            <div class="news-content">
-              <p class="news-description">
-                最新の学習成果、プロジェクトの進捗、技術的な発見などをお知らせします。<br>
-                すべての記事は専用のNewsページでご覧いただけます。
-              </p>
-
-              <!-- 最新3つの記事を動的に表示 -->
-              <div class="news-grid" id="latest-news-home">
-                <!-- JavaScriptで動的に生成されます -->
-              </div>
-
-              <div class="news-link-section">
-                <h3>More News & Updates</h3>
-                <p>過去の記事やより詳細な内容については、専用のNewsページをご覧ください。</p>
-                <div class="news-actions">
-                  <a href="./src/pages/news.html" class="btn btn-primary">
-                    <i class="fas fa-newspaper"></i>
-                    View All News
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <!-- コンタクトセクション -->
         <section id="contact" class="contact">
           <div class="container">
             <div class="contact-content">
               <div class="contact-info">
                 <h2 class="section-title">
-                  <span class="title-number">05.</span>
+                  <span class="title-number">04.</span>
                   Contact
                 </h2>
                 <p>
@@ -528,7 +495,6 @@
         </footer>
 
         <!-- JavaScript Files (in proper order) -->
-        <script src="./src/scripts/news-data.js"></script>
         <script src="./src/scripts/utils.js"></script>
         <script src="./src/scripts/navigation.js"></script>
         <script src="./src/scripts/animations.js"></script>
