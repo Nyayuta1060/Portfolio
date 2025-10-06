@@ -635,46 +635,84 @@ section {
               margin-bottom: 4rem;
             }
 
-            .projects-scroll-container {
-              width: 100%;
-              overflow-x: auto !important;
-              margin: 2rem 0;
-              padding: 1rem 0;
-              -webkit-overflow-scrolling: touch;
-              display: block !important;
-            }
-
-            .projects-row {
-              display: flex !important;
+            /* プロジェクトグリッド */
+            .projects-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
               gap: 2rem;
-              min-width: max-content;
-              padding: 0 2rem;
-              flex-direction: row !important;
-            }
-
-            .projects-scroll-container::-webkit-scrollbar {
-              height: 8px;
-            }
-
-            .projects-scroll-container::-webkit-scrollbar-track {
-              background: var(--secondary-bg);
-              border-radius: 10px;
-            }
-
-            .projects-scroll-container::-webkit-scrollbar-thumb {
-              background: var(--primary-color);
-              border-radius: 10px;
-            }
-
-            .projects-scroll-container::-webkit-scrollbar-thumb:hover {
-              background: var(--accent-color);
+              margin: 3rem 0;
             }
 
             .project-card-link {
               text-decoration: none;
               color: inherit;
-              flex: 0 0 auto;
               display: block;
+              height: 100%;
+            }
+
+            .project-card {
+              background: var(--secondary-bg);
+              border-radius: 20px;
+              overflow: hidden;
+              border: 1px solid var(--border-color);
+              transition: all 0.3s ease;
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              position: relative;
+            }
+
+            .project-card:hover {
+              transform: translateY(-8px);
+              box-shadow: 0 20px 40px rgba(100, 255, 218, 0.2);
+              border-color: var(--primary-color);
+            }
+
+            .project-card.featured {
+              grid-column: span 2;
+              grid-row: span 2;
+            }
+
+            .project-badge {
+              position: absolute;
+              top: 1rem;
+              right: 1rem;
+              background: var(--gradient-primary);
+              color: var(--background);
+              padding: 0.4rem 1rem;
+              border-radius: 20px;
+              font-size: 0.8rem;
+              font-weight: 700;
+              z-index: 10;
+              box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+            }
+
+            .project-links {
+              padding: 1rem 1.5rem;
+              border-top: 1px solid var(--border-color);
+              display: flex;
+              gap: 1rem;
+              justify-content: center;
+              margin-top: auto;
+            }
+
+            .project-link-btn {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              padding: 0.6rem 1.2rem;
+              background: var(--accent-bg);
+              border-radius: 10px;
+              font-size: 0.9rem;
+              font-weight: 600;
+              color: var(--primary-color);
+              transition: all 0.3s ease;
+            }
+
+            .project-link-btn:hover {
+              background: var(--primary-color);
+              color: var(--background);
+              transform: scale(1.05);
             }
 
             /* ニュースセクション */

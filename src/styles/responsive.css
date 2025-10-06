@@ -133,26 +133,22 @@
     padding: 1rem;
   }
 
-  .projects-row {
-    padding: 0 1rem;
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .project-card {
-    width: 250px;
-    min-width: 250px;
-    padding: 1.2rem;
+  .project-card.featured {
+    grid-column: span 1;
+    grid-row: span 1;
   }
 
-  .project-overlay {
-    opacity: 0.9;
+  .project-card.featured .project-image {
+    height: 200px;
   }
 
-  .project-overlay span {
-    font-size: 1rem;
-  }
-
-  .project-image {
-    height: 120px;
+  .project-card.featured .project-title {
+    font-size: 1.4rem;
   }
 
   .tech-categories {
@@ -329,6 +325,14 @@
   .filter-btn i {
     margin-right: 0.5rem;
   }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+  }
 }
 
 /* デスクトップ (1024px以上) */
@@ -340,5 +344,14 @@
 
   .skill-category-section {
     margin-bottom: 5rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .project-card.featured {
+    grid-column: span 2;
+    grid-row: span 2;
   }
 }

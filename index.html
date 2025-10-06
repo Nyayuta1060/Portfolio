@@ -361,6 +361,18 @@
                       </div>
                       <div class="skill-name">GitLab</div>
                     </div>
+                    <div class="skill-card" data-tech="vscode" data-category="tools">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/vscode.png" alt="VS Code" loading="lazy">
+                      </div>
+                      <div class="skill-name">VS Code</div>
+                    </div>
+                    <div class="skill-card" data-tech="visualstudio" data-category="tools">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/visualstudio.png" alt="Visual Studio" loading="lazy">
+                      </div>
+                      <div class="skill-name">Visual Studio</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -380,95 +392,94 @@
                 私が取り組んできたプロジェクトの一覧
               </p>
 
-              <!-- スクロール可能なプロジェクト一列表示 -->
-              <div class="projects-scroll-container">
-                <div class="projects-row">
-                  <!-- プロジェクト1 -->
-                  <a href="https://github.com/Nyayuta1060/Portfolio" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="Portfolio WebsiteのGitHubリポジトリを開く">
-                    <div class="project-card" data-project="portfolio">
-                      <div class="project-image">
-                        <!-- 将来的に画像を追加する場合: <img src="./src/assets/projects/portfolio.png" alt="Portfolio Website" loading="lazy"> -->
-                        <div class="project-placeholder">
-                          <i class="fas fa-globe"></i>
-                        </div>
-                      </div>
-                      <div class="project-info">
-                        <h3 class="project-title">Portfolio Website</h3>
-                        <p class="project-description">HTML/CSS/JavaScriptで作成したポートフォリオサイト(本サイト)</p>
-                        <div class="project-tech-tags">
-                          <span class="tech-tag">HTML</span>
-                          <span class="tech-tag">CSS</span>
-                          <span class="tech-tag">JavaScript</span>
-                        </div>
-                      </div>
-                      <div class="project-overlay">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View Project</span>
-                      </div>
-                    </div>
-                  </a>
-
-                  <!-- プロジェクト2 -->
-                  <a href="https://github.com/Team-Nullpo/NullTasker" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="NullTaskerのGitHubリポジトリを開く">
-                    <div class="project-card" data-project="robot-control">
-                      <div class="project-image">
-                        <img src="./src/assets/projects/NullTasker.png" alt="NullTasker" loading="lazy">
-                      </div>
-                      <div class="project-info">
-                        <h3 class="project-title">NullTasker</h3>
-                        <p class="project-description">学生向けのオープンソースタスク管理ツール</p>
-                        <div class="project-tech-tags">
-                          <span class="tech-tag">HTML</span>
-                          <span class="tech-tag">CSS</span>
-                          <span class="tech-tag">JavaScript</span>
-                          <span class="tech-tag">Node.js</span>
-                        </div>
-                      </div>
-                      <div class="project-overlay">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View Project</span>
-                      </div>
-                    </div>
-                  </a>
-
-                  <!-- プロジェクト3 -->
-                  <a href="https://github.com/Nyayuta1060/PyTranslater" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="PyTranslaterのGitHubリポジトリを開く">
-                    <div class="project-card" data-project="PytTranslater">
-                      <div class="project-image">
-                        <!-- 将来的に画像を追加する場合: <img src="./src/assets/projects/PyTranslater.png" alt="PyTranslater" loading="lazy"> -->
-                        <div class="project-placeholder">
-                          <i class="fa-solid fa-language"></i>
-                        </div>
-                      </div>
-                      <div class="project-info">
-                        <h3 class="project-title">PyTranslater</h3>
-                        <p class="project-description">Pythonで実装した翻訳ツール</p>
-                        <div class="project-tech-tags">
-                          <span class="tech-tag">Python</span>
-                        </div>
-                      </div>
-                      <div class="project-overlay">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>View Project</span>
-                      </div>
-                    </div>
-                  </a>
-
-                  <!-- 新しいプロジェクトを追加する際のプレースホルダー -->
-                  <div class="project-card add-project" data-project="add-new">
+              <!-- プロジェクトグリッド表示 -->
+              <div class="projects-grid">
+                <!-- プロジェクト1 -->
+                <a href="https://github.com/Nyayuta1060/Portfolio" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="Portfolio WebsiteのGitHubリポジトリを開く">
+                  <div class="project-card" data-project="portfolio">
                     <div class="project-image">
-                      <div class="project-placeholder add-placeholder">
-                        <i class="fas fa-plus"></i>
+                      <div class="project-placeholder">
+                        <i class="fas fa-globe"></i>
                       </div>
                     </div>
                     <div class="project-info">
-                      <h3 class="project-title">New Project</h3>
-                      <p class="project-description">新しいプロジェクトを追加予定</p>
+                      <h3 class="project-title">Portfolio Website</h3>
+                      <p class="project-description">HTML/CSS/JavaScriptで作成したポートフォリオサイト(本サイト)</p>
+                      <div class="project-tech-tags">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                      </div>
                     </div>
-                    <div class="project-overlay coming-soon">
-                      <i class="fas fa-clock"></i>
-                      <span>Coming Soon</span>
+                    <div class="project-links">
+                      <span class="project-link-btn">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                      </span>
                     </div>
+                  </div>
+                </a>
+
+                <!-- プロジェクト2 -->
+                <a href="https://github.com/Team-Nullpo/NullTasker" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="NullTaskerのGitHubリポジトリを開く">
+                  <div class="project-card featured" data-project="nulltasker">
+                    <div class="project-image">
+                      <img src="./src/assets/projects/NullTasker.png" alt="NullTasker" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                      <div class="project-badge">Featured</div>
+                      <h3 class="project-title">NullTasker</h3>
+                      <p class="project-description">学生向けのオープンソースタスク管理ツール。直感的なUIで、授業・課題・テストを効率的に管理できます。</p>
+                      <div class="project-tech-tags">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Node.js</span>
+                      </div>
+                    </div>
+                    <div class="project-links">
+                      <span class="project-link-btn">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                      </span>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- プロジェクト3 -->
+                <a href="https://github.com/Nyayuta1060/PyTranslater" class="project-card-link" target="_blank" rel="noopener noreferrer" aria-label="PyTranslaterのGitHubリポジトリを開く">
+                  <div class="project-card" data-project="pytranslater">
+                    <div class="project-image">
+                      <div class="project-placeholder">
+                        <i class="fa-solid fa-language"></i>
+                      </div>
+                    </div>
+                    <div class="project-info">
+                      <h3 class="project-title">PyTranslater</h3>
+                      <p class="project-description">Pythonで実装した翻訳ツール</p>
+                      <div class="project-tech-tags">
+                        <span class="tech-tag">Python</span>
+                      </div>
+                    </div>
+                    <div class="project-links">
+                      <span class="project-link-btn">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                      </span>
+                    </div>
+                  </div>
+                </a>
+
+                <!-- 新しいプロジェクト追加予定 -->
+                <div class="project-card add-project">
+                  <div class="project-image">
+                    <div class="project-placeholder add-placeholder">
+                      <i class="fas fa-plus"></i>
+                    </div>
+                  </div>
+                  <div class="project-info">
+                    <h3 class="project-title">More Projects Coming Soon</h3>
+                    <p class="project-description">新しいプロジェクトを計画中...</p>
                   </div>
                 </div>
               </div>

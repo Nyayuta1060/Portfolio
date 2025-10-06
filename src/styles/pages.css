@@ -498,6 +498,14 @@
   background: linear-gradient(135deg, #fc6d26, #fca326);
 }
 
+.skill-card[data-tech="vscode"] .skill-image {
+  background: linear-gradient(135deg, #007acc, #00a4ef);
+}
+
+.skill-card[data-tech="visualstudio"] .skill-image {
+  background: linear-gradient(135deg, #68217a, #9b4f96);
+}
+
 /* ホバー時の強調効果 */
 .skill-card:hover[data-tech="html"] {
   box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
@@ -577,6 +585,16 @@
 .skill-card:hover[data-tech="gitlab"] {
   box-shadow: 0 15px 35px rgba(252, 109, 38, 0.3);
   border-color: #fc6d26;
+}
+
+.skill-card:hover[data-tech="vscode"] {
+  box-shadow: 0 15px 35px rgba(0, 122, 204, 0.3);
+  border-color: #007acc;
+}
+
+.skill-card:hover[data-tech="visualstudio"] {
+  box-shadow: 0 15px 35px rgba(104, 33, 122, 0.3);
+  border-color: #68217a;
 }
 
 /* プロジェクトカード特殊スタイル */
