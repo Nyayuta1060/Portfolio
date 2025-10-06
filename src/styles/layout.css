@@ -126,7 +126,8 @@ section {
 }
 
 .hero-text {
-  animation: slideInLeft 1s ease-out;
+  animation: slideInLeft 1s ease-out forwards;
+  opacity: 0;
 }
 
 .greeting {
@@ -291,7 +292,19 @@ section {
 }
 
 .hero-visual {
-  animation: slideInRight 1s ease-out;
+  animation: slideInRight 1s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* スクロールインジケーター */

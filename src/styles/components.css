@@ -38,6 +38,12 @@
   justify-content: center;
 }
 
+/* コードアニメーション */
+.code-animation {
+  width: 100%;
+  max-width: 500px;
+}
+
 /* ターミナル */
 .terminal {
   background: var(--secondary-bg);
