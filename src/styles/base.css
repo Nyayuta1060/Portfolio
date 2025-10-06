@@ -78,24 +78,15 @@ body {
       66% { transform: translateY(-10px) rotate(-1deg); }
       }
 
-      @keyframes blink {
-        0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
-          }
-
-          @keyframes typeWriter {
-            to { opacity: 1; }
+      @keyframes scrollBounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+          40% { transform: translateY(-10px) rotate(45deg); }
+            60% { transform: translateY(-5px) rotate(45deg); }
             }
 
-            @keyframes scrollBounce {
-              0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
-                40% { transform: translateY(-10px) rotate(45deg); }
-                  60% { transform: translateY(-5px) rotate(45deg); }
-                  }
-
-                  @keyframes orbit {
-                    from { transform: translate(-30px, -150px) rotate(0deg) translate(150px) rotate(0deg); }
-                      to { transform: translate(-30px, -150px) rotate(360deg) translate(150px) rotate(-360deg); }
+            @keyframes orbit {
+              from { transform: translate(-30px, -150px) rotate(0deg) translate(150px) rotate(0deg); }
+                to { transform: translate(-30px, -150px) rotate(360deg) translate(150px) rotate(-360deg); }
                       }
 
                       @keyframes slideInLeft {

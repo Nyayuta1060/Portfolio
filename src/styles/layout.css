@@ -135,6 +135,8 @@ section {
   color: var(--primary-color);
   margin-bottom: 1rem;
   font-family: var(--font-mono);
+  animation: fadeInDown 0.6s ease-out forwards;
+  opacity: 0;
 }
 
 .name {
@@ -147,11 +149,53 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+  animation: nameSlideIn 0.8s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.3s;
 }
 
-.typing-animation::after {
-  content: '|';
-  animation: blink 1s infinite;
+.name::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  animation: underlineExpand 0.8s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes nameSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes underlineExpand {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-subtitle {
@@ -159,11 +203,28 @@ section {
   color: var(--text-secondary);
   margin-bottom: 3rem;
   line-height: 1.6;
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.7s;
 }
 
 .hero-social {
@@ -171,6 +232,9 @@ section {
   gap: 1rem;
   margin-top: 2rem;
   justify-content: center;
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.9s;
 }
 
 .hero-social-link {

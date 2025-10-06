@@ -8,7 +8,6 @@ function initializeApp() {
   // 各機能を初期化
   initializeNavigation();
   initializeScrollEffects();
-  initializeTypingAnimation();
   initializeParticles();
   initializeSkillBars();
   initializeFormHandling();

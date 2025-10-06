@@ -42,52 +42,19 @@ function initializeScrollEffects() {
       });
     }
 
-    // ========== タイピングアニメーション ==========
-    function initializeTypingAnimation() {
-      const typingElement = document.querySelector('.typing-animation');
-      if (!typingElement) return;
+    // ========== パーティクル背景 ==========
+    function initializeParticles() {
+      const container = document.getElementById('particles-container');
+      if (!container) return;
 
-      const textToType = typingElement.getAttribute('data-text');
-      const typingSpeed = 100;
-      const erasingSpeed = 50;
-      const delayBetweenTexts = 2000;
+      const particleCount = 50;
+      const particles = [];
 
-      let charIndex = 0;
-      let isErasing = false;
-
-      function typeText() {
-        if (!isErasing && charIndex < textToType.length) {
-          typingElement.textContent += textToType.charAt(charIndex);
-          charIndex++;
-          setTimeout(typeText, typingSpeed);
-          } else if (isErasing && charIndex > 0) {
-            typingElement.textContent = textToType.substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(typeText, erasingSpeed);
-            } else {
-              isErasing = !isErasing;
-              if (!isErasing) charIndex = 0;
-              setTimeout(typeText, delayBetweenTexts);
-            }
-          }
-
-          // アニメーション開始
-          setTimeout(typeText, 1000);
-        }
-
-        // ========== パーティクル背景 ==========
-        function initializeParticles() {
-          const container = document.getElementById('particles-container');
-          if (!container) return;
-
-          const particleCount = 50;
-          const particles = [];
-
-          class Particle {
-            constructor() {
-              this.x = Math.random() * window.innerWidth;
-              this.y = Math.random() * window.innerHeight;
-              this.size = Math.random() * 3 + 1;
+      class Particle {
+        constructor() {
+          this.x = Math.random() * window.innerWidth;
+          this.y = Math.random() * window.innerHeight;
+          this.size = Math.random() * 3 + 1;
               this.speedX = Math.random() * 2 - 1;
               this.speedY = Math.random() * 2 - 1;
               this.opacity = Math.random() * 0.5 + 0.2;
