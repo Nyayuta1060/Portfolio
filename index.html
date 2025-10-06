@@ -204,129 +204,166 @@
                 私が習得している技術スタック
               </p>
 
-              <!-- スクロール可能なスキル一列表示 -->
-              <div class="skills-scroll-container">
-                <div class="skills-row">
-                  <!-- Frontend -->
-                  <div class="skill-card" data-tech="html">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/html.png" alt="HTML" loading="lazy">
-                    </div>
-                    <div class="skill-name">HTML</div>
-                  </div>
-                  <div class="skill-card" data-tech="css">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/css.png" alt="CSS" loading="lazy">
-                    </div>
-                    <div class="skill-name">CSS</div>
-                  </div>
-                  <div class="skill-card" data-tech="javascript">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/javascript.png" alt="JavaScript" loading="lazy">
-                    </div>
-                    <div class="skill-name">JavaScript</div>
-                  </div>
-
-                  <!-- Backend -->
-                  <div class="skill-card" data-tech="nodejs">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/nodejs.png" alt="Node.js" loading="lazy">
-                    </div>
-                    <div class="skill-name">Node.js</div>
-                  </div>
-                  <div class="skill-card" data-tech="elixir">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/elixir.png" alt="Elixir" loading="lazy">
-                    </div>
-                    <div class="skill-name">Elixir</div>
-                  </div>
-                  <div class="skill-card" data-tech="phoenix">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/phoenix.png" alt="Phoenix" loading="lazy">
-                    </div>
-                    <div class="skill-name">Phoenix</div>
-                  </div>
-                  <div class="skill-card" data-tech="python">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/python.png" alt="Python" loading="lazy">
-                    </div>
-                    <div class="skill-name">Python</div>
-                  </div>
-                  <div class="skill-card" data-tech="cpp">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/cpp.png" alt="C++" loading="lazy">
-                    </div>
-                    <div class="skill-name">C++</div>
-                  </div>
-
-                  <!-- AI/ML -->
-                  <div class="skill-card" data-tech="pytorch">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/pytorch.png" alt="PyTorch" loading="lazy">
-                    </div>
-                    <div class="skill-name">PyTorch</div>
-                  </div>
-                  <div class="skill-card" data-tech="numpy">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/numpy.png" alt="NumPy" loading="lazy">
-                    </div>
-                    <div class="skill-name">NumPy</div>
-                  </div>
-                  <div class="skill-card" data-tech="pandas">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/pandas.png" alt="Pandas" loading="lazy">
-                    </div>
-                    <div class="skill-name">Pandas</div>
-                  </div>
-                  <div class="skill-card" data-tech="opencv">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/opencv.png" alt="OpenCV" loading="lazy">
-                    </div>
-                    <div class="skill-name">OpenCV</div>
-                  </div>
-
-                  <!-- Tools -->
-                  <div class="skill-card" data-tech="docker">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/docker.png" alt="Docker" loading="lazy">
-                    </div>
-                    <div class="skill-name">Docker</div>
-                  </div>
-                  <div class="skill-card" data-tech="git">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/git.png" alt="Git" loading="lazy">
-                    </div>
-                    <div class="skill-name">Git</div>
-                  </div>
-                  <div class="skill-card" data-tech="github">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/github.png" alt="GitHub" loading="lazy">
-                    </div>
-                    <div class="skill-name">GitHub</div>
-                  </div>
-
-                  <div class="skill-card" data-tech="gitlab">
-                    <div class="skill-image">
-                      <img src="./src/assets/skillstocks/gitlab.png" alt="GitLab" loading="lazy">
-                    </div>
-                    <div class="skill-name">GitLab</div>
-                  </div>
-                </div>
+              <!-- カテゴリフィルター -->
+              <div class="skills-filter">
+                <button class="filter-btn active" data-category="all">
+                  <i class="fas fa-th"></i>
+                  <span>All</span>
+                </button>
+                <button class="filter-btn" data-category="frontend">
+                  <i class="fas fa-laptop-code"></i>
+                  <span>Frontend</span>
+                </button>
+                <button class="filter-btn" data-category="backend">
+                  <i class="fas fa-server"></i>
+                  <span>Backend</span>
+                </button>
+                <button class="filter-btn" data-category="ai-ml">
+                  <i class="fas fa-brain"></i>
+                  <span>AI/ML</span>
+                </button>
+                <button class="filter-btn" data-category="tools">
+                  <i class="fas fa-tools"></i>
+                  <span>Tools</span>
+                </button>
               </div>
 
-              <!-- 追加の技術カテゴリ情報 -->
-              <div class="tech-categories">
-                <div class="tech-category">
-                  <i class="fas fa-code"></i>
-                  <span>Frontend & Backend Development</span>
+              <!-- スキルグリッド表示 -->
+              <div class="skills-grid-container">
+                <!-- Frontend -->
+                <div class="skill-category-section" data-category="frontend">
+                  <h3 class="category-title">
+                    <i class="fas fa-laptop-code"></i>
+                    Frontend Development
+                  </h3>
+                  <div class="skills-grid">
+                    <div class="skill-card" data-tech="html" data-category="frontend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/html.png" alt="HTML" loading="lazy">
+                      </div>
+                      <div class="skill-name">HTML</div>
+                    </div>
+                    <div class="skill-card" data-tech="css" data-category="frontend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/css.png" alt="CSS" loading="lazy">
+                      </div>
+                      <div class="skill-name">CSS</div>
+                    </div>
+                    <div class="skill-card" data-tech="javascript" data-category="frontend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/javascript.png" alt="JavaScript" loading="lazy">
+                      </div>
+                      <div class="skill-name">JavaScript</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="tech-category">
-                  <i class="fas fa-brain"></i>
-                  <span>Machine Learning & AI</span>
+
+                <!-- Backend -->
+                <div class="skill-category-section" data-category="backend">
+                  <h3 class="category-title">
+                    <i class="fas fa-server"></i>
+                    Backend Development
+                  </h3>
+                  <div class="skills-grid">
+                    <div class="skill-card" data-tech="nodejs" data-category="backend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/nodejs.png" alt="Node.js" loading="lazy">
+                      </div>
+                      <div class="skill-name">Node.js</div>
+                    </div>
+                    <div class="skill-card" data-tech="python" data-category="backend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/python.png" alt="Python" loading="lazy">
+                      </div>
+                      <div class="skill-name">Python</div>
+                    </div>
+                    <div class="skill-card" data-tech="elixir" data-category="backend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/elixir.png" alt="Elixir" loading="lazy">
+                      </div>
+                      <div class="skill-name">Elixir</div>
+                    </div>
+                    <div class="skill-card" data-tech="phoenix" data-category="backend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/phoenix.png" alt="Phoenix" loading="lazy">
+                      </div>
+                      <div class="skill-name">Phoenix</div>
+                    </div>
+                    <div class="skill-card" data-tech="cpp" data-category="backend">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/cpp.png" alt="C++" loading="lazy">
+                      </div>
+                      <div class="skill-name">C++</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="tech-category">
-                  <i class="fas fa-database"></i>
-                  <span>Data Science & Analytics</span>
+
+                <!-- AI/ML -->
+                <div class="skill-category-section" data-category="ai-ml">
+                  <h3 class="category-title">
+                    <i class="fas fa-brain"></i>
+                    AI & Machine Learning
+                  </h3>
+                  <div class="skills-grid">
+                    <div class="skill-card" data-tech="pytorch" data-category="ai-ml">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/pytorch.png" alt="PyTorch" loading="lazy">
+                      </div>
+                      <div class="skill-name">PyTorch</div>
+                    </div>
+                    <div class="skill-card" data-tech="numpy" data-category="ai-ml">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/numpy.png" alt="NumPy" loading="lazy">
+                      </div>
+                      <div class="skill-name">NumPy</div>
+                    </div>
+                    <div class="skill-card" data-tech="pandas" data-category="ai-ml">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/pandas.png" alt="Pandas" loading="lazy">
+                      </div>
+                      <div class="skill-name">Pandas</div>
+                    </div>
+                    <div class="skill-card" data-tech="opencv" data-category="ai-ml">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/opencv.png" alt="OpenCV" loading="lazy">
+                      </div>
+                      <div class="skill-name">OpenCV</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="skill-category-section" data-category="tools">
+                  <h3 class="category-title">
+                    <i class="fas fa-tools"></i>
+                    Development Tools
+                  </h3>
+                  <div class="skills-grid">
+                    <div class="skill-card" data-tech="docker" data-category="tools">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/docker.png" alt="Docker" loading="lazy">
+                      </div>
+                      <div class="skill-name">Docker</div>
+                    </div>
+                    <div class="skill-card" data-tech="git" data-category="tools">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/git.png" alt="Git" loading="lazy">
+                      </div>
+                      <div class="skill-name">Git</div>
+                    </div>
+                    <div class="skill-card" data-tech="github" data-category="tools">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/github.png" alt="GitHub" loading="lazy">
+                      </div>
+                      <div class="skill-name">GitHub</div>
+                    </div>
+                    <div class="skill-card" data-tech="gitlab" data-category="tools">
+                      <div class="skill-image">
+                        <img src="./src/assets/skillstocks/gitlab.png" alt="GitLab" loading="lazy">
+                      </div>
+                      <div class="skill-name">GitLab</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

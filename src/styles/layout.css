@@ -423,42 +423,90 @@ section {
             .skills-description {
               font-size: 1.2rem;
               color: var(--text-secondary);
-              margin-bottom: 4rem;
+              margin-bottom: 3rem;
             }
 
-            .skills-scroll-container {
-              width: 100%;
-              overflow-x: auto !important;
-              margin: 2rem 0;
-              padding: 1rem 0;
-              -webkit-overflow-scrolling: touch;
-              display: block !important;
+            /* スキルフィルター */
+            .skills-filter {
+              display: flex;
+              justify-content: center;
+              gap: 1rem;
+              margin-bottom: 3rem;
+              flex-wrap: wrap;
             }
 
-            .skills-row {
-              display: flex !important;
-              gap: 1.5rem;
-              min-width: max-content;
-              padding: 0 2rem;
-              flex-direction: row !important;
-            }
-
-            .skills-scroll-container::-webkit-scrollbar {
-              height: 8px;
-            }
-
-            .skills-scroll-container::-webkit-scrollbar-track {
+            .filter-btn {
               background: var(--secondary-bg);
-              border-radius: 10px;
+              border: 2px solid var(--border-color);
+              border-radius: 50px;
+              padding: 0.8rem 1.5rem;
+              color: var(--text-secondary);
+              font-size: 0.95rem;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
             }
 
-            .skills-scroll-container::-webkit-scrollbar-thumb {
-              background: var(--primary-color);
-              border-radius: 10px;
+            .filter-btn i {
+              font-size: 1rem;
             }
 
-            .skills-scroll-container::-webkit-scrollbar-thumb:hover {
-              background: var(--accent-color);
+            .filter-btn:hover {
+              border-color: var(--primary-color);
+              color: var(--primary-color);
+              transform: translateY(-2px);
+              box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+            }
+
+            .filter-btn.active {
+              background: var(--gradient-primary);
+              border-color: var(--primary-color);
+              color: var(--background);
+              box-shadow: 0 5px 20px rgba(100, 255, 218, 0.3);
+            }
+
+            /* スキルグリッドコンテナ */
+            .skills-grid-container {
+              width: 100%;
+            }
+
+            .skill-category-section {
+              margin-bottom: 4rem;
+              opacity: 1;
+              transform: translateY(0);
+              transition: all 0.5s ease;
+            }
+
+            .skill-category-section.hidden {
+              display: none;
+            }
+
+            .category-title {
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: var(--primary-color);
+              margin-bottom: 2rem;
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+              padding-bottom: 1rem;
+              border-bottom: 2px solid var(--border-color);
+            }
+
+            .category-title i {
+              font-size: 1.3rem;
+              color: var(--secondary-color);
+            }
+
+            /* スキルグリッド */
+            .skills-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+              gap: 2rem;
+              padding: 1rem 0;
             }
 
             .tech-categories {

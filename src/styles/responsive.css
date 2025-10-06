@@ -84,15 +84,34 @@
   }
 
   /* Skills & Projects mobile adjustments */
-  .skills-row,
-  .projects-row {
-    padding: 0 1rem;
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .filter-btn span {
+    display: none;
+  }
+
+  .filter-btn i {
+    margin: 0;
+  }
+
+  .category-title {
+    font-size: 1.2rem;
   }
 
   .skill-card {
-    width: 120px;
-    min-width: 120px;
     padding: 1rem;
+  }
+
+  .projects-row {
+    padding: 0 1rem;
   }
 
   .project-card {
@@ -138,26 +157,6 @@
     left: -0.3rem;
     width: 10px;
     height: 10px;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem 0;
-  }
-
-  .skill-card {
-    padding: 1.2rem;
-  }
-
-  .skill-image {
-    width: 56px;
-    height: 56px;
-    padding: 10px;
-  }
-
-  .skill-name {
-    font-size: 0.9rem;
   }
 
   .projects-grid {
@@ -269,5 +268,46 @@
   .terminal-body {
     padding: 1rem;
     font-size: 0.8rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .category-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* タブレット (768px以上) */
+@media (min-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .filter-btn span {
+    display: inline;
+  }
+
+  .filter-btn i {
+    margin-right: 0.5rem;
+  }
+}
+
+/* デスクトップ (1024px以上) */
+@media (min-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-category-section {
+    margin-bottom: 5rem;
   }
 }

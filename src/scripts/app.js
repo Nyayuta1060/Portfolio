@@ -13,6 +13,7 @@ function initializeApp() {
   initializeSkillBars();
   initializeFormHandling();
   initializeLazyLoading();
+  initializeSkillsFilter();
 
   // ユーティリティ機能を初期化
   initializeLazyImages();

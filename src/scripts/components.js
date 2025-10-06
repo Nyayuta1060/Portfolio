@@ -86,3 +86,50 @@ function initializeFormHandling() {
               }, 3000);
             }
 
+// ========== スキルフィルター機能 ==========
+function initializeSkillsFilter() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const categorySections = document.querySelectorAll('.skill-category-section');
+
+  if (filterBtns.length === 0) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const category = this.getAttribute('data-category');
+
+      // アクティブなボタンを更新
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      // カテゴリセクションをフィルタリング
+      if (category === 'all') {
+        categorySections.forEach(section => {
+          section.classList.remove('hidden');
+          // フェードインアニメーション
+          setTimeout(() => {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+          }, 50);
+        });
+      } else {
+        categorySections.forEach(section => {
+          const sectionCategory = section.getAttribute('data-category');
+          if (sectionCategory === category) {
+            section.classList.remove('hidden');
+            setTimeout(() => {
+              section.style.opacity = '1';
+              section.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              section.classList.add('hidden');
+            }, 300);
+          }
+        });
+      }
+    });
+  });
+}
+
