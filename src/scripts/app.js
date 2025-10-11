@@ -1,47 +1,138 @@
 // ========== メイン初期化ファイル ==========
-document.addEventListener('DOMContentLoaded', function() {
-  // 初期化
-  initializeApp();
+import { 
+  debounce, 
+  throttle, 
+  initializeLazyImages, 
+  preloadCriticalResources, 
+  initializeAccessibility,
+  initializePWA,
+  addAnimationStyles,
+  logError 
+} from './utils.js';
+import { initializeNavigation } from './navigation.js';
+import { 
+  initializeScrollEffects, 
+  initializeParticles, 
+  initializeLazyLoading 
+} from './animations.js';
+import { 
+  initializeFormHandling, 
+  initializeSkillsFilter 
+} from './components.js';
+
+/**
+ * アプリケーション設定
+ */
+const APP_CONFIG = {
+  DEBOUNCE_DELAY: 250,
+  THROTTLE_DELAY: 16 // 60fps
+};
+
+/**
+ * DOMContentLoaded時の初期化
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    initializeApp();
+    console.log('🚀 Portfolio初期化成功!');
+  } catch (error) {
+    logError('App Initialization', error);
+  }
 });
 
+/**
+ * アプリケーションの初期化
+ */
 function initializeApp() {
-  // 各機能を初期化
+  // コア機能を初期化
+  initializeCoreFeatures();
+  
+  // ユーティリティ機能を初期化
+  initializeUtilityFeatures();
+  
+  // イベントリスナーを設定
+  setupEventListeners();
+}
+
+/**
+ * コア機能を初期化
+ */
+function initializeCoreFeatures() {
   initializeNavigation();
   initializeScrollEffects();
   initializeParticles();
-  initializeSkillBars();
+  initializeSkillsFilter();
   initializeFormHandling();
   initializeLazyLoading();
-  initializeSkillsFilter();
+}
 
-  // ユーティリティ機能を初期化
+/**
+ * ユーティリティ機能を初期化
+ */
+function initializeUtilityFeatures() {
   initializeLazyImages();
   preloadCriticalResources();
   initializeAccessibility();
   initializePWA();
   addAnimationStyles();
-
-  // イベントリスナーを設定
-  setupEventListeners();
 }
 
-// ========== イベントリスナー ==========
+/**
+ * グローバルイベントリスナーを設定
+ */
 function setupEventListeners() {
-  // リサイズイベントの最適化
-  window.addEventListener('resize', debounce(function() {
-    // リサイズ時の処理
-    const canvas = document.querySelector('#particles-container canvas');
-    if (canvas) {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    }, 250));
+  setupResizeHandler();
+  setupScrollHandler();
+}
 
-    // スクロールイベントの最適化
-    window.addEventListener('scroll', throttle(function() {
-      // スクロール時の軽量処理のみ
-      }, 16)); // 60fps
-    }
+/**
+ * リサイズハンドラーをセットアップ
+ */
+function setupResizeHandler() {
+  window.addEventListener('resize', debounce(() => {
+    handleResize();
+  }, APP_CONFIG.DEBOUNCE_DELAY));
+}
 
-    // ========== 初期化完了 ==========
-    console.log('🚀 Portfolio initialized successfully!');
+/**
+ * スクロールハンドラーをセットアップ
+ */
+function setupScrollHandler() {
+  window.addEventListener('scroll', throttle(() => {
+    handleScroll();
+  }, APP_CONFIG.THROTTLE_DELAY));
+}
+
+/**
+ * ウィンドウリサイズを処理
+ */
+function handleResize() {
+  const canvas = document.querySelector('#particles-container canvas');
+  if (canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+}
+
+/**
+ * スクロールを処理
+ */
+function handleScroll() {
+  // 必要に応じて軽量な処理を追加
+  // 現在は主にnavigation.jsとanimations.jsで処理
+}
+
+/**
+ * スムーズスクロールのグローバル関数(後方互換性のため)
+ * @param {string} sectionId - スクロール先のセクションID
+ */
+window.scrollToSection = function(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (section) {
+    const offsetTop = section.offsetTop - 80;
+    window.scrollTo({
+      top: offsetTop,
+      behavior: 'smooth'
+    });
+  }
+};
