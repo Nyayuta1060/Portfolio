@@ -3,8 +3,22 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nyayuta's Portfolio - 大阪公立大学工業高等専門学校 知能情報コース 2年生のポートフォリオサイト">
+    <meta name="keywords" content="Portfolio, Web Developer, AI, Machine Learning, Python, JavaScript">
+    <meta name="author" content="Nyayuta">
+    
+    <!-- Open Graph / SNS共有用 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nyayuta | Portfolio">
+    <meta property="og:description" content="大阪公立大学工業高等専門学校 知能情報コース 2年生のポートフォリオサイト">
+    
     <title>Nyayuta | Portfolio</title>
-    <meta name="description" content="Nyayuta's Portfolio">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
     <!-- CSS Files (in proper order) -->
     <link rel="stylesheet" href="./src/styles/base.css">
     <link rel="stylesheet" href="./src/styles/components.css">
@@ -12,8 +26,9 @@
     <link rel="stylesheet" href="./src/styles/pages.css">
     <link rel="stylesheet" href="./src/styles/responsive.css">
 
+    <!-- External Resources -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
   </head>
   <body>
     <!-- パーティクル背景 -->
@@ -429,7 +444,7 @@
                     <div class="project-info">
                       <div class="project-badge">Featured</div>
                       <h3 class="project-title">NullTasker</h3>
-                      <p class="project-description">学生向けのオープンソースタスク管理ツール。直感的なUIで、授業・課題・テストを効率的に管理できます。</p>
+                      <p class="project-description">学生向けのオープンソースタスク管理ツール</p>
                       <div class="project-tech-tags">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
@@ -565,11 +580,7 @@
           </div>
         </footer>
 
-        <!-- JavaScript Files (in proper order) -->
-        <script src="./src/scripts/utils.js"></script>
-        <script src="./src/scripts/navigation.js"></script>
-        <script src="./src/scripts/animations.js"></script>
-        <script src="./src/scripts/components.js"></script>
-        <script src="./src/scripts/app.js"></script>
+        <!-- JavaScript Files (ES6 Modules) -->
+        <script type="module" src="./src/scripts/app.js"></script>
       </body>
     </html>
