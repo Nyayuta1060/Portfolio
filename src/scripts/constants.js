@@ -6,10 +6,7 @@ export const ANIMATION_CONFIG = {
   THROTTLE_DELAY: 16, // 60fps
   PARTICLE_COUNT: 50,
   PARTICLE_CONNECTION_DISTANCE: 100,
-  SKILL_BAR_ANIMATION_DELAY: 200,
-  NOTIFICATION_DURATION: 3000,
-  NOTIFICATION_ANIMATION_DELAY: 100,
-  FORM_SUBMIT_DELAY: 2000
+  SKILL_BAR_ANIMATION_DELAY: 200
 };
 
 // Intersection Observer設定
@@ -60,29 +57,6 @@ export const SELECTORS = {
   LAZY_ELEMENTS: '[data-src]',
   ABOUT_CONTENT: '.about-content',
   CONTACT_CONTENT: '.contact-content'
-};
-
-// 通知タイプ
-export const NOTIFICATION_TYPES = {
-  INFO: 'info',
-  SUCCESS: 'success',
-  ERROR: 'error'
-};
-
-// 通知メッセージ
-export const NOTIFICATION_MESSAGES = {
-  FORM_SENDING: 'メッセージを送信しています...',
-  FORM_SUCCESS: 'メッセージが正常に送信されました！',
-  FORM_ERROR: 'メッセージの送信に失敗しました。もう一度お試しください。'
-};
-
-// クラス名
-export const CLASS_NAMES = {
-  ACTIVE: 'active',
-  FOCUSED: 'focused',
-  FADE_IN: 'fade-in',
-  HIDDEN: 'hidden',
-  KEYBOARD_NAV: 'keyboard-navigation'
 };
 
 // 属性名

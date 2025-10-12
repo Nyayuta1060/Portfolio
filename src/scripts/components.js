@@ -1,60 +1,15 @@
 // ========== コンポーネント機能 ==========
-import { getElement, getElements, addEventListeners, logError } from './utils.js';
+import { getElements, addEventListeners } from './utils.js';
 
-const CONFIG = {
-  NOTIFICATION_DURATION: 3000,
-  NOTIFICATION_ANIMATION_DELAY: 100,
-  FORM_SUBMIT_DELAY: 2000
-};
-
-const NOTIFICATION_TYPES = {
-  INFO: 'info',
-  SUCCESS: 'success',
-  ERROR: 'error'
-};
-
-const MESSAGES = {
-  FORM_SENDING: 'メッセージを送信しています...',
-  FORM_SUCCESS: 'メッセージが正常に送信されました！',
-  FORM_ERROR: 'メッセージの送信に失敗しました。もう一度お試しください。'
-};
-
-// ========== フォーム処理 ==========
+// ========== 入力フォーカス効果 ==========
 
 /**
- * フォーム処理を初期化
+ * 入力フィールドのフォーカス効果を初期化
+ * GitHub Pagesではフォーム送信機能は使用不可のため、
+ * 視覚的なフィードバックのみ提供
  */
 export function initializeFormHandling() {
-  const form = getElement('.form');
-  if (!form) return;
-
-  form.addEventListener('submit', handleFormSubmit);
   setupInputFocusEffects();
-}
-
-/**
- * フォーム送信を処理
- * @param {Event} e - イベントオブジェクト
- */
-async function handleFormSubmit(e) {
-  e.preventDefault();
-
-  const form = e.target;
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData);
-
-  try {
-    showNotification(MESSAGES.FORM_SENDING, NOTIFICATION_TYPES.INFO);
-
-    // フォーム送信のシミュレーション
-    await new Promise(resolve => setTimeout(resolve, CONFIG.FORM_SUBMIT_DELAY));
-    
-    showNotification(MESSAGES.FORM_SUCCESS, NOTIFICATION_TYPES.SUCCESS);
-    form.reset();
-  } catch (error) {
-    logError('Form Submission', error);
-    showNotification(MESSAGES.FORM_ERROR, NOTIFICATION_TYPES.ERROR);
-  }
 }
 
 /**
@@ -74,93 +29,6 @@ function setupInputFocusEffects() {
       }
     });
   });
-}
-
-// ========== 通知システム ==========
-
-/**
- * 通知を表示
- * @param {string} message - 通知メッセージ
- * @param {string} type - 通知タイプ (info, success, error)
- */
-export function showNotification(message, type = NOTIFICATION_TYPES.INFO) {
-  // 既存の通知を削除
-  const existingNotification = getElement('.notification');
-  if (existingNotification) {
-    existingNotification.remove();
-  }
-
-  // 新しい通知を作成
-  const notification = createNotificationElement(message, type);
-  document.body.appendChild(notification);
-
-  // アニメーション
-  animateNotification(notification);
-}
-
-/**
- * 通知要素を作成
- * @param {string} message - 通知メッセージ
- * @param {string} type - 通知タイプ
- * @returns {HTMLElement} 通知要素
- */
-function createNotificationElement(message, type) {
-  const notification = document.createElement('div');
-  notification.className = `notification notification-${type}`;
-  notification.textContent = message;
-
-  const borderColor = getNotificationBorderColor(type);
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 1rem 2rem;
-    background: var(--card-bg);
-    border: 2px solid ${borderColor};
-    border-radius: 10px;
-    color: var(--text-primary);
-    z-index: 10000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    backdrop-filter: blur(10px);
-  `;
-
-  return notification;
-}
-
-/**
- * 通知タイプに応じたボーダーカラーを取得
- * @param {string} type - 通知タイプ
- * @returns {string} カラーコード
- */
-function getNotificationBorderColor(type) {
-  switch (type) {
-    case NOTIFICATION_TYPES.SUCCESS:
-      return '#27ca3f';
-    case NOTIFICATION_TYPES.ERROR:
-      return '#ff5f56';
-    default:
-      return 'var(--primary-color)';
-  }
-}
-
-/**
- * 通知をアニメーション
- * @param {HTMLElement} notification - 通知要素
- */
-function animateNotification(notification) {
-  // 表示アニメーション
-  setTimeout(() => {
-    notification.style.transform = 'translateX(0)';
-  }, CONFIG.NOTIFICATION_ANIMATION_DELAY);
-
-  // 自動削除
-  setTimeout(() => {
-    notification.style.transform = 'translateX(100%)';
-    setTimeout(() => {
-      notification.remove();
-    }, 300);
-  }, CONFIG.NOTIFICATION_DURATION);
 }
 
 // ========== スキルフィルター機能 ==========

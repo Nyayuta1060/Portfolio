@@ -177,25 +177,6 @@ function respectReducedMotion() {
   }
 }
 
-// ========== PWA サポート ==========
-
-/**
- * Progressive Web App機能を初期化
- */
-export function initializePWA() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
-          console.log('ServiceWorker登録成功:', registration.scope);
-        })
-        .catch(error => {
-          console.log('ServiceWorker登録失敗:', error);
-        });
-    });
-  }
-}
-
 // ========== DOM操作ユーティリティ ==========
 
 /**

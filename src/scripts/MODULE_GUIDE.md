@@ -87,7 +87,6 @@ setTimeout(() => {}, ANIMATION_CONFIG.DEBOUNCE_DELAY);
 - `initializeLazyImages()`: 画像の遅延読み込み
 - `preloadCriticalResources()`: 重要なリソースをプリロード
 - `initializeAccessibility()`: アクセシビリティ機能
-- `initializePWA()`: PWA 機能
 - `addAnimationStyles()`: アニメーションスタイルを追加
 
 #### エラーハンドリング
@@ -190,31 +189,32 @@ UI コンポーネントとインタラクション機能を提供します。
 
 **主な機能:**
 
-- フォーム送信処理
-- 通知システム
+- 入力フィールドのフォーカス効果
 - スキルフィルター
-- `initializeFormHandling()` - フォーム処理
-- `showNotification()` - 通知システム
-- `initializeSkillsFilter()` - スキルフィルター
 
 **エクスポート関数:**
 
-- `initializeFormHandling()`: フォーム処理の初期化
+- `initializeFormHandling()`: フォーム入力フィールドのフォーカス効果を初期化
 - `initializeSkillsFilter()`: スキルフィルターの初期化
-- `showNotification(message, type)`: 通知を表示
+
+**注意事項:**
+
+- GitHub Pages では実際のフォーム送信機能は使用不可
+- 連絡先はメールリンクを使用
 
 **依存関係**: utils.js
 
 **使用例:**
 
 ```javascript
-import { initializeFormHandling, showNotification } from "./components.js";
+import {
+  initializeFormHandling,
+  initializeSkillsFilter,
+} from "./components.js";
 
 // 初期化
 initializeFormHandling();
-
-// 通知表示
-showNotification("保存しました！", "success");
+initializeSkillsFilter();
 ```
 
 ---

@@ -5,7 +5,6 @@ import {
   initializeLazyImages, 
   preloadCriticalResources, 
   initializeAccessibility,
-  initializePWA,
   addAnimationStyles,
   logError 
 } from './utils.js';
@@ -73,7 +72,6 @@ function initializeUtilityFeatures() {
   initializeLazyImages();
   preloadCriticalResources();
   initializeAccessibility();
-  initializePWA();
   addAnimationStyles();
 }
 
