@@ -97,7 +97,7 @@ export const PROJECT_DETAILS = {
     featured: false,
     period: '2024年10月〜現在',
     role: '個人開発',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Github API'],
     image: {
       type: 'icon',
       icon: 'fas fa-globe'
