@@ -1,5 +1,35 @@
 // ========== 定数定義 ==========
 
+// スキルデータのインポート
+export { 
+  SKILL_DETAILS,
+  SKILL_LEVELS,
+  FREQUENCY,
+  CATEGORIES,
+  getSkillCategory,
+  groupSkillsByCategory,
+  hasSkill,
+  getAllSkillIds,
+  getSkillCount
+} from './skillsData.js';
+
+// プロジェクトデータのインポート
+export {
+  PROJECT_DETAILS,
+  PROJECT_STATUS,
+  PROJECT_TYPE,
+  getProjectDetails,
+  getFeaturedProjects,
+  getProjectsByStatus,
+  getProjectsByType,
+  getProjectsByTechnology,
+  hasProject,
+  getAllProjectIds,
+  getProjectCount,
+  getAllProjects,
+  getSortedProjects
+} from './projectsData.js';
+
 // アニメーション設定
 export const ANIMATION_CONFIG = {
   DEBOUNCE_DELAY: 250,
@@ -44,6 +74,8 @@ export const SELECTORS = {
   CATEGORY_SECTIONS: '.skill-category-section',
   SKILL_BARS: '.skill-progress',
   SKILL_CATEGORY: '.skill-category',
+  SKILL_CARDS: '.skill-card',
+  SKILL_MODAL: '#skill-modal',
   
   // プロジェクト
   PROJECT_CARDS: '.project-card',
@@ -64,5 +96,7 @@ export const ATTRIBUTES = {
   DATA_CATEGORY: 'data-category',
   DATA_PROGRESS: 'data-progress',
   DATA_SRC: 'data-src',
+  DATA_TECH: 'data-tech',
+  DATA_PROJECT: 'data-project',
   HREF: 'href'
 };

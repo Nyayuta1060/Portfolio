@@ -257,6 +257,41 @@
     flex-direction: column;
     align-items: center;
   }
+
+  /* スキルモーダルモバイル */
+  .skill-modal-content {
+    width: 95%;
+    padding: 2rem 1.5rem;
+    max-height: 90vh;
+  }
+
+  .skill-modal-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .skill-modal-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .skill-modal-title-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .skill-modal-meta {
+    justify-content: center;
+  }
+
+  .skill-detail-section {
+    padding: 1.2rem;
+  }
+
+  .skill-modal-close {
+    top: 1rem;
+    right: 1rem;
+  }
 }
 
 /* 小画面モバイル (480px以下) */
@@ -308,6 +343,33 @@
 
   .category-title {
     font-size: 1.1rem;
+  }
+
+  /* スキルモーダル小画面 */
+  .skill-modal-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .skill-modal-title-section h3 {
+    font-size: 1.3rem;
+  }
+
+  .skill-modal-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .skill-detail-section {
+    padding: 1rem;
+  }
+
+  .skill-detail-section h4 {
+    font-size: 1rem;
+  }
+
+  .skill-modal-link {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
