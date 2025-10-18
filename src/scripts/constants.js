@@ -13,6 +13,23 @@ export {
   getSkillCount
 } from './skillsData.js';
 
+// プロジェクトデータのインポート
+export {
+  PROJECT_DETAILS,
+  PROJECT_STATUS,
+  PROJECT_TYPE,
+  getProjectDetails,
+  getFeaturedProjects,
+  getProjectsByStatus,
+  getProjectsByType,
+  getProjectsByTechnology,
+  hasProject,
+  getAllProjectIds,
+  getProjectCount,
+  getAllProjects,
+  getSortedProjects
+} from './projectsData.js';
+
 // アニメーション設定
 export const ANIMATION_CONFIG = {
   DEBOUNCE_DELAY: 250,
@@ -80,5 +97,6 @@ export const ATTRIBUTES = {
   DATA_PROGRESS: 'data-progress',
   DATA_SRC: 'data-src',
   DATA_TECH: 'data-tech',
+  DATA_PROJECT: 'data-project',
   HREF: 'href'
 };

@@ -7,11 +7,11 @@
 - [スキルの追加方法](#スキルの追加方法)
 - [データ構造の説明](#データ構造の説明)
 - [画像の追加](#画像の追加)
-- [HTMLへの追加](#htmlへの追加)
+- [HTML への追加](#htmlへの追加)
 
 ## 🚀 スキルの追加方法
 
-### ステップ1: スキルデータを追加
+### ステップ 1: スキルデータを追加
 
 `src/scripts/skillsData.js` ファイルを開き、`SKILL_DETAILS` オブジェクトに新しいスキルを追加します。
 
@@ -32,21 +32,22 @@ react: {
 }
 ```
 
-### ステップ2: スキル画像を追加
+### ステップ 2: スキル画像を追加
 
-`src/assets/skillstocks/` ディレクトリに、スキルIDと同じ名前の画像ファイルを配置します。
+`src/assets/skillstocks/` ディレクトリに、スキル ID と同じ名前の画像ファイルを配置します。
 
 ```
 src/assets/skillstocks/react.png
 ```
 
 **画像の要件:**
-- ファイル名: スキルIDと同じ (例: `react.png`)
+
+- ファイル名: スキル ID と同じ (例: `react.png`)
 - 推奨サイズ: 128x128 ピクセル以上
 - 形式: PNG または SVG
 - 背景: 透過推奨
 
-### ステップ3: HTMLにカードを追加
+### ステップ 3: HTML にカードを追加
 
 `index.html` のスキルセクションに、新しいスキルカードを追加します。
 
@@ -54,14 +55,15 @@ src/assets/skillstocks/react.png
 <!-- 適切なカテゴリセクション内に追加 -->
 <div class="skill-card" data-tech="react" data-category="frontend">
   <div class="skill-image">
-    <img src="./src/assets/skillstocks/react.png" alt="React" loading="lazy">
+    <img src="./src/assets/skillstocks/react.png" alt="React" loading="lazy" />
   </div>
   <div class="skill-name">React</div>
 </div>
 ```
 
 **重要なポイント:**
-- `data-tech` 属性: `skillsData.js` のスキルIDと一致させる
+
+- `data-tech` 属性: `skillsData.js` のスキル ID と一致させる
 - `data-category` 属性: スキルのカテゴリと一致させる
 - 正しいカテゴリセクション内に配置する
 
@@ -70,31 +72,31 @@ src/assets/skillstocks/react.png
 ### スキルレベル (SKILL_LEVELS)
 
 ```javascript
-BEGINNER     // 初級: 学習中、基本的な使い方を理解
-INTERMEDIATE // 中級: 実務で使用できる、基本は問題なし
-ADVANCED     // 上級: 高度な機能も使いこなせる、他人に教えられる
-EXPERT       // エキスパート: 深い理解、最適化や設計ができる
+BEGINNER; // 初級: 学習中、基本的な使い方を理解
+INTERMEDIATE; // 中級: 実務で使用できる、基本は問題なし
+ADVANCED; // 上級: 高度な機能も使いこなせる、他人に教えられる
+EXPERT; // エキスパート: 深い理解、最適化や設計ができる
 ```
 
 ### 使用頻度 (FREQUENCY)
 
 ```javascript
-DAILY        // 毎日
-WEEKLY_5_7   // 週5-7回
-WEEKLY_3_5   // 週3-5回
-WEEKLY_2_4   // 週2-4回
-WEEKLY_1_2   // 週1-2回
-MONTHLY      // 月2-4回
-RARELY       // 稀に使用
+DAILY; // 毎日
+WEEKLY_5_7; // 週5-7回
+WEEKLY_3_5; // 週3-5回
+WEEKLY_2_4; // 週2-4回
+WEEKLY_1_2; // 週1-2回
+MONTHLY; // 月2-4回
+RARELY; // 稀に使用
 ```
 
 ### カテゴリ (CATEGORIES)
 
 ```javascript
-FRONTEND     // フロントエンド開発
-BACKEND      // バックエンド開発
-AI_ML        // AI/機械学習
-TOOLS        // 開発ツール
+FRONTEND; // フロントエンド開発
+BACKEND; // バックエンド開発
+AI_ML; // AI/機械学習
+TOOLS; // 開発ツール
 ```
 
 ## 🖼️ 画像の追加
@@ -109,15 +111,17 @@ TOOLS        // 開発ツール
 ### 画像の最適化
 
 画像サイズを小さくするために、以下のツールを使用できます:
+
 - **TinyPNG**: https://tinypng.com/
 - **Squoosh**: https://squoosh.app/
 - **ImageOptim**: https://imageoptim.com/
 
-## 📝 HTMLカード追加の詳細
+## 📝 HTML カード追加の詳細
 
 スキルカードは以下のカテゴリセクションに追加します:
 
 ### Frontend Development
+
 ```html
 <div class="skill-category-section" data-category="frontend">
   <h3 class="category-title">
@@ -131,6 +135,7 @@ TOOLS        // 開発ツール
 ```
 
 ### Backend Development
+
 ```html
 <div class="skill-category-section" data-category="backend">
   <h3 class="category-title">
@@ -144,6 +149,7 @@ TOOLS        // 開発ツール
 ```
 
 ### AI & Machine Learning
+
 ```html
 <div class="skill-category-section" data-category="ai-ml">
   <h3 class="category-title">
@@ -157,6 +163,7 @@ TOOLS        // 開発ツール
 ```
 
 ### Development Tools
+
 ```html
 <div class="skill-category-section" data-category="tools">
   <h3 class="category-title">
@@ -176,7 +183,7 @@ TOOLS        // 開発ツール
 - [ ] `skillsData.js` にスキルデータを追加
 - [ ] スキル画像を `src/assets/skillstocks/` に配置
 - [ ] `index.html` の適切なカテゴリセクションにカードを追加
-- [ ] `data-tech` 属性がスキルIDと一致
+- [ ] `data-tech` 属性がスキル ID と一致
 - [ ] `data-category` 属性がカテゴリと一致
 - [ ] 画像パスが正しい
 - [ ] ブラウザで表示を確認
@@ -188,33 +195,36 @@ TOOLS        // 開発ツール
 
 ```javascript
 // スキルが存在するかチェック
-hasSkill('react')  // true/false
+hasSkill("react"); // true/false
 
 // スキルのカテゴリを取得
-getSkillCategory('react')  // 'frontend'
+getSkillCategory("react"); // 'frontend'
 
 // カテゴリ別にスキルをグループ化
-groupSkillsByCategory()  // { frontend: [...], backend: [...], ... }
+groupSkillsByCategory(); // { frontend: [...], backend: [...], ... }
 
 // 全スキルIDを取得
-getAllSkillIds()  // ['html', 'css', 'javascript', ...]
+getAllSkillIds(); // ['html', 'css', 'javascript', ...]
 
 // スキル数を取得
-getSkillCount()  // 18
+getSkillCount(); // 18
 ```
 
 ## 🔧 トラブルシューティング
 
 ### モーダルが表示されない
-- `data-tech` 属性が `skillsData.js` のスキルIDと完全に一致しているか確認
+
+- `data-tech` 属性が `skillsData.js` のスキル ID と完全に一致しているか確認
 - ブラウザのコンソールでエラーがないか確認
 
 ### 画像が表示されない
+
 - ファイル名が正しいか確認 (大文字小文字に注意)
 - 画像パスが正しいか確認
 - 画像ファイルが正しいディレクトリにあるか確認
 
 ### フィルターが正しく動作しない
+
 - `data-category` 属性が正しいカテゴリ値になっているか確認
 - カードが正しいカテゴリセクション内にあるか確認
 
@@ -224,4 +234,4 @@ getSkillCount()  // 18
 
 ---
 
-**質問やサポートが必要な場合は、GitHubのIssueを作成してください!**
+**質問やサポートが必要な場合は、GitHub の Issue を作成してください!**

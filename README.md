@@ -16,11 +16,14 @@ Portfolio/
 │   │   ├── components.js  # UIコンポーネント
 │   │   ├── constants.js   # 定数定義
 │   │   ├── skillsData.js  # スキルデータ管理
+│   │   ├── projectsData.js # プロジェクトデータ管理
 │   │   ├── animations.js  # アニメーション機能
 │   │   ├── navigation.js  # ナビゲーション機能
 │   │   ├── utils.js       # ユーティリティ関数
 │   │   ├── SKILLS_GUIDE.md # スキル追加ガイド
-│   │   └── SKILL_TEMPLATE.js # スキル追加テンプレート
+│   │   ├── SKILL_TEMPLATE.js # スキル追加テンプレート
+│   │   ├── PROJECTS_GUIDE.md # プロジェクト追加ガイド
+│   │   └── PROJECT_TEMPLATE.js # プロジェクト追加テンプレート
 │   └── styles/            # CSSファイル
 │       ├── base.css       # 基本スタイル
 │       ├── components.css # コンポーネントスタイル
@@ -36,21 +39,39 @@ Portfolio/
 - 🎨 **スキル詳細モーダル**: クリックでスキルの詳細情報を表示
 - 🔍 **スキルフィルター**: カテゴリごとにスキルを絞り込み
 - ⚡ **パーティクルアニメーション**: 背景の動的エフェクト
-- 🌙 **ダークモードデザイン**: 目に優しいUIテーマ
+- 🌙 **ダークモードデザイン**: 目に優しい UI テーマ
 
-## 🚀 スキルの追加方法
+## 🚀 コンテンツの追加方法
+
+### スキルの追加
 
 新しいスキルを追加する手順は、[スキル管理ガイド](src/scripts/SKILLS_GUIDE.md)をご覧ください。
 
-### クイックスタート
+#### クイックスタート
 
 1. **スキルデータを追加**: `src/scripts/skillsData.js`
 2. **画像を配置**: `src/assets/skillstocks/`
-3. **HTMLに追加**: `index.html` の適切なカテゴリセクション
+3. **HTML に追加**: `index.html` の適切なカテゴリセクション
 
 詳細な手順とテンプレートは以下を参照:
+
 - 📖 [SKILLS_GUIDE.md](src/scripts/SKILLS_GUIDE.md) - 詳細なガイド
 - 📝 [SKILL_TEMPLATE.js](src/scripts/SKILL_TEMPLATE.js) - コピー&ペーストできるテンプレート
+
+### プロジェクトの追加
+
+新しいプロジェクトを追加する手順は、[プロジェクト管理ガイド](src/scripts/PROJECTS_GUIDE.md)をご覧ください。
+
+#### クイックスタート
+
+1. **プロジェクトデータを追加**: `src/scripts/projectsData.js`
+2. **画像を配置**: `src/assets/projects/`（画像使用の場合）
+3. **HTML に追加**: `index.html` のプロジェクトセクション
+
+詳細な手順とテンプレートは以下を参照:
+
+- 📖 [PROJECTS_GUIDE.md](src/scripts/PROJECTS_GUIDE.md) - 詳細なガイド
+- 📝 [PROJECT_TEMPLATE.js](src/scripts/PROJECT_TEMPLATE.js) - コピー&ペーストできるテンプレート
 
 ## 🛠️ 技術スタック
 
@@ -83,8 +104,9 @@ php -S localhost:8000
 
 - **モジュール分割**: 機能ごとにファイルを分離
 - **定数管理**: `constants.js` で一元管理
-- **データ駆動**: スキル情報は `skillsData.js` で管理
+- **データ駆動**: スキル情報は `skillsData.js`、プロジェクト情報は `projectsData.js` で管理
 - **再利用可能**: ヘルパー関数を活用
+- **ガイド付き**: 各データタイプに追加ガイドとテンプレートを用意
 
 ## 📄 ライセンス
 

@@ -126,7 +126,7 @@ export const SKILL_DETAILS = {
     category: CATEGORIES.BACKEND,
     level: SKILL_LEVELS.ADVANCED,
     frequency: FREQUENCY.WEEKLY_5_7,
-    usage: 'AI/ML開発、データ分析、自動化スクリプト、ロボット制御',
+    usage: 'AI/ML開発、データ分析、自動化スクリプト',
     experience: '2022年4月〜',
     comment: 'とりあえずPythonを書いておけば何とかなると思いがちな言語。幅広い分野で活用しています。',
     links: {
