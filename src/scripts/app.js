@@ -19,6 +19,7 @@ import {
   initializeSkillsFilter,
   initializeSkillModal
 } from './components.js';
+import { initializeGitHubActivity } from './github.js';
 
 /**
  * アプリケーション設定
@@ -65,6 +66,7 @@ function initializeCoreFeatures() {
   initializeSkillModal();
   initializeFormHandling();
   initializeLazyLoading();
+  initializeGitHubActivity();
 }
 
 /**

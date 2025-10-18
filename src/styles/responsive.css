@@ -371,6 +371,41 @@
     padding: 0.8rem 1rem;
     font-size: 0.9rem;
   }
+
+  /* GitHub Activity - モバイル */
+  .github-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .github-stat-item {
+    padding: 1rem;
+  }
+
+  .github-stat-item i {
+    font-size: 1.5rem;
+  }
+
+  .github-stat-item .stat-number {
+    font-size: 1.3rem;
+  }
+
+  .github-stat-item .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .github-repos-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .github-activity-title {
+    font-size: 1.2rem;
+  }
+
+  .repos-title {
+    font-size: 1.1rem;
+  }
 }
 
 /* タブレット (768px以上) */
@@ -395,6 +430,15 @@
   .project-card.featured {
     grid-column: span 2;
   }
+
+  /* GitHub Activity - タブレット */
+  .github-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .github-repos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* デスクトップ (1024px以上) */
@@ -415,5 +459,10 @@
   .project-card.featured {
     grid-column: span 2;
     grid-row: span 2;
+  }
+
+  /* GitHub Activity - デスクトップ */
+  .github-repos-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
