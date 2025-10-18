@@ -16,7 +16,8 @@ import {
 } from './animations.js';
 import { 
   initializeFormHandling, 
-  initializeSkillsFilter 
+  initializeSkillsFilter,
+  initializeSkillModal
 } from './components.js';
 
 /**
@@ -61,6 +62,7 @@ function initializeCoreFeatures() {
   initializeScrollEffects();
   initializeParticles();
   initializeSkillsFilter();
+  initializeSkillModal();
   initializeFormHandling();
   initializeLazyLoading();
 }
