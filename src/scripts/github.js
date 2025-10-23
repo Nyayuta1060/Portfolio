@@ -88,7 +88,7 @@ export async function fetchUserData() {
 }
 
 /**
- * リポジトリ情報を取得
+ * リポジトリ情報を取得（統計計算用）
  * @returns {Promise<Array>} リポジトリ情報の配列
  */
 export async function fetchRepositories() {
@@ -102,16 +102,11 @@ export async function fetchRepositories() {
       `/users/${GITHUB_CONFIG.USERNAME}/repos?sort=updated&per_page=${GITHUB_CONFIG.MAX_REPOS}`
     );
 
+    // 統計計算に必要な情報のみ取得
     cache.reposData = data.map(repo => ({
-      name: repo.name || '',
-      description: repo.description || '説明なし',
-      url: repo.html_url || '',
       language: repo.language || 'Unknown',
       stars: repo.stargazers_count || 0,
-      forks: repo.forks_count || 0,
-      updatedAt: repo.updated_at || '',
-      createdAt: repo.created_at || '',
-      isPrivate: repo.private || false
+      forks: repo.forks_count || 0
     }));
 
     cache.timestamp = Date.now();
@@ -166,36 +161,6 @@ export function calculateGitHubStats(repos) {
 }
 
 /**
- * 日付を相対的な表現に変換
- * @param {string} dateString - ISO形式の日付文字列
- * @returns {string} 相対的な日付表現
- */
-export function formatRelativeTime(dateString) {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffInSeconds = Math.floor((now - date) / 1000);
-
-  if (diffInSeconds < 60) {
-    return 'たった今';
-  } else if (diffInSeconds < 3600) {
-    const minutes = Math.floor(diffInSeconds / 60);
-    return `${minutes}分前`;
-  } else if (diffInSeconds < 86400) {
-    const hours = Math.floor(diffInSeconds / 3600);
-    return `${hours}時間前`;
-  } else if (diffInSeconds < 2592000) {
-    const days = Math.floor(diffInSeconds / 86400);
-    return `${days}日前`;
-  } else if (diffInSeconds < 31536000) {
-    const months = Math.floor(diffInSeconds / 2592000);
-    return `${months}ヶ月前`;
-  } else {
-    const years = Math.floor(diffInSeconds / 31536000);
-    return `${years}年前`;
-  }
-}
-
-/**
  * GitHubアクティビティセクションを初期化
  */
 export async function initializeGitHubActivity() {
@@ -225,7 +190,7 @@ export async function initializeGitHubActivity() {
     const stats = calculateGitHubStats(repos);
 
     // UIを更新
-    renderGitHubActivity(activityContainer, userData, repos, stats);
+    renderGitHubActivity(activityContainer, userData, stats);
     
     console.log('✅ GitHub activity loaded successfully');
   } catch (error) {
@@ -271,10 +236,9 @@ function showErrorState(container) {
  * GitHubアクティビティをレンダリング
  * @param {HTMLElement} container - コンテナ要素
  * @param {Object} userData - ユーザーデータ
- * @param {Array} repos - リポジトリ配列
  * @param {Object} stats - 統計情報
  */
-function renderGitHubActivity(container, userData, repos, stats) {
+function renderGitHubActivity(container, userData, stats) {
   container.innerHTML = `
     <!-- GitHub統計情報 -->
     <div class="github-stats">
@@ -305,56 +269,6 @@ function renderGitHubActivity(container, userData, repos, stats) {
           <div class="stat-number">${userData.followers}</div>
           <div class="stat-label">Followers</div>
         </div>
-      </div>
-    </div>
-
-    <!-- 最新リポジトリ -->
-    <div class="github-repos-section">
-      <h3 class="repos-title">
-        <i class="fab fa-github"></i>
-        最近更新されたリポジトリ
-      </h3>
-      <div class="github-repos-grid">
-        ${repos.map(repo => `
-          <a href="${repo.url}" 
-             class="github-repo-card" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             aria-label="${repo.name}のGitHubリポジトリを開く">
-            <div class="repo-header">
-              <h4 class="repo-name">
-                <i class="fas fa-book-open"></i>
-                ${repo.name}
-              </h4>
-              <div class="repo-stats">
-                ${repo.stars > 0 ? `
-                  <span class="repo-stat">
-                    <i class="fas fa-star"></i>
-                    ${repo.stars}
-                  </span>
-                ` : ''}
-                ${repo.forks > 0 ? `
-                  <span class="repo-stat">
-                    <i class="fas fa-code-branch"></i>
-                    ${repo.forks}
-                  </span>
-                ` : ''}
-              </div>
-            </div>
-            <p class="repo-description">${repo.description}</p>
-            <div class="repo-footer">
-              ${repo.language ? `
-                <span class="repo-language">
-                  <span class="language-dot" data-language="${repo.language}"></span>
-                  ${repo.language}
-                </span>
-              ` : ''}
-              <span class="repo-updated">
-                更新: ${formatRelativeTime(repo.updatedAt)}
-              </span>
-            </div>
-          </a>
-        `).join('')}
       </div>
     </div>
 
