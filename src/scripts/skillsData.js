@@ -287,7 +287,6 @@ export const SKILL_DETAILS = {
     comment: 'リフレッシュがてら時々githubの代わりに使っています。',
     links: {
       official: 'https://about.gitlab.com/',
-      github: 'https://gitlab.com/gitlab-org/gitlab'
     }
   },
   
