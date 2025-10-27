@@ -83,17 +83,14 @@
     font-size: 2.5rem;
   }
 
+  /* スマートフォンではターミナルを非表示 */
   .hero-visual {
-    display: flex;
-    justify-content: center;
+    display: none;
   }
 
-  .code-animation {
-    max-width: 100%;
-  }
-
-  .terminal {
-    font-size: 0.85rem;
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 
   .hero-buttons {
@@ -329,21 +326,13 @@
     font-size: 2rem;
   }
 
+  /* スマートフォンではターミナルを非表示 */
   .hero-visual {
-    display: flex;
-  }
-
-  .code-animation {
-    max-width: 100%;
+    display: none;
   }
 
   .hero-subtitle {
     font-size: 1.1rem;
-  }
-
-  .terminal-body {
-    padding: 1rem;
-    font-size: 0.8rem;
   }
 
   .skills-grid {
