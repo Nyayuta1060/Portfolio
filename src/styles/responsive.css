@@ -70,6 +70,11 @@
     left: 0;
   }
 
+  /* ヒーローセクション - ヘッダー分の余白を追加 */
+  .hero {
+    padding-top: 80px;
+  }
+
   .section-title {
     font-size: 2.5rem;
   }
@@ -125,8 +130,17 @@
     margin: 0;
   }
 
+  /* スキル分類のタイトルを表示 */
   .category-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    text-align: left;
+  }
+
+  .category-title i {
+    font-size: 1.1rem;
   }
 
   .skill-card {
@@ -301,7 +315,7 @@
   }
 
   .hero {
-    padding: 0 1rem;
+    padding: 80px 1rem 0 1rem;
   }
 
   .section-title {
@@ -342,7 +356,15 @@
   }
 
   .category-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .category-title i {
+    font-size: 1rem;
   }
 
   /* スキルモーダル小画面 */
