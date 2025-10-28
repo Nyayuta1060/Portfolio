@@ -120,11 +120,11 @@
   }
 
   .filter-btn span {
-    display: none;
+    display: inline;
   }
 
   .filter-btn i {
-    margin: 0;
+    margin: 0.5rem;
   }
 
   /* スキル分類のタイトルを表示 */
@@ -139,7 +139,6 @@
   .category-title i {
     font-size: 1.1rem;
   }
-
   .skill-card {
     padding: 1rem;
   }
