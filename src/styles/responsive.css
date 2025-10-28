@@ -352,8 +352,7 @@
   }
 
   .category-title i {
-    font-size: 1rem !important;
-    display: inline-block !important;
+    font-size: 1rem;
   }
 
   /* スキルモーダル小画面 */
