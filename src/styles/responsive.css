@@ -132,8 +132,8 @@
     font-size: 1.1rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.4rem;
-    padding-bottom: 0.8rem;
+    gap: 0.5rem;
+    text-align: left;
   }
 
   .category-title i {
