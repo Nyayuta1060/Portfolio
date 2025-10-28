@@ -627,6 +627,121 @@
   object-fit: contain;
 }
 
+/* スキルモーダルアイコンの技術別背景色 */
+.skill-modal-icon[data-tech="html"] {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border-color: #ff6b35;
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+}
+
+.skill-modal-icon[data-tech="css"] {
+  background: linear-gradient(135deg, #1572b6, #33a9dc);
+  border-color: #1572b6;
+  box-shadow: 0 8px 20px rgba(21, 114, 182, 0.3);
+}
+
+.skill-modal-icon[data-tech="javascript"] {
+  background: linear-gradient(135deg, #f7df1e, #ffda44);
+  border-color: #f7df1e;
+  box-shadow: 0 8px 20px rgba(247, 223, 30, 0.3);
+}
+
+.skill-modal-icon[data-tech="nodejs"] {
+  background: linear-gradient(135deg, #8cc84b, #a4d65e);
+  border-color: #8cc84b;
+  box-shadow: 0 8px 20px rgba(140, 200, 75, 0.3);
+}
+
+.skill-modal-icon[data-tech="elixir"] {
+  background: linear-gradient(135deg, #4b275f, #6b46c1);
+  border-color: #4b275f;
+  box-shadow: 0 8px 20px rgba(75, 39, 95, 0.3);
+}
+
+.skill-modal-icon[data-tech="phoenix"] {
+  background: linear-gradient(135deg, #fd4f00, #ff6b2b);
+  border-color: #fd4f00;
+  box-shadow: 0 8px 20px rgba(253, 79, 0, 0.3);
+}
+
+.skill-modal-icon[data-tech="python"] {
+  background: linear-gradient(135deg, #3776ab, #4b8bbe);
+  border-color: #3776ab;
+  box-shadow: 0 8px 20px rgba(55, 118, 171, 0.3);
+}
+
+.skill-modal-icon[data-tech="cpp"] {
+  background: linear-gradient(135deg, #00599c, #0066cc);
+  border-color: #00599c;
+  box-shadow: 0 8px 20px rgba(0, 89, 156, 0.3);
+}
+
+.skill-modal-icon[data-tech="pytorch"] {
+  background: linear-gradient(135deg, #ee4c2c, #ff6b45);
+  border-color: #ee4c2c;
+  box-shadow: 0 8px 20px rgba(238, 76, 44, 0.3);
+}
+
+.skill-modal-icon[data-tech="numpy"] {
+  background: linear-gradient(135deg, #013243, #4dabcf);
+  border-color: #4dabcf;
+  box-shadow: 0 8px 20px rgba(77, 171, 207, 0.3);
+}
+
+.skill-modal-icon[data-tech="pandas"] {
+  background: linear-gradient(135deg, #150458, #e70488);
+  border-color: #e70488;
+  box-shadow: 0 8px 20px rgba(231, 4, 136, 0.3);
+}
+
+.skill-modal-icon[data-tech="opencv"] {
+  background: linear-gradient(135deg, #5aa700, #7bc143);
+  border-color: #5aa700;
+  box-shadow: 0 8px 20px rgba(90, 167, 0, 0.3);
+}
+
+.skill-modal-icon[data-tech="docker"] {
+  background: linear-gradient(135deg, #2496ed, #4da7e8);
+  border-color: #2496ed;
+  box-shadow: 0 8px 20px rgba(36, 150, 237, 0.3);
+}
+
+.skill-modal-icon[data-tech="git"] {
+  background: linear-gradient(135deg, #f05032, #ff6347);
+  border-color: #f05032;
+  box-shadow: 0 8px 20px rgba(240, 80, 50, 0.3);
+}
+
+.skill-modal-icon[data-tech="github"] {
+  background: linear-gradient(135deg, #24292e, #586069);
+  border-color: #24292e;
+  box-shadow: 0 8px 20px rgba(36, 41, 46, 0.3);
+}
+
+.skill-modal-icon[data-tech="gitlab"] {
+  background: linear-gradient(135deg, #fc6d26, #fca326);
+  border-color: #fc6d26;
+  box-shadow: 0 8px 20px rgba(252, 109, 38, 0.3);
+}
+
+.skill-modal-icon[data-tech="vscode"] {
+  background: linear-gradient(135deg, #007acc, #00a4ef);
+  border-color: #007acc;
+  box-shadow: 0 8px 20px rgba(0, 122, 204, 0.3);
+}
+
+.skill-modal-icon[data-tech="visualstudio"] {
+  background: linear-gradient(135deg, #68217a, #9b4f96);
+  border-color: #68217a;
+  box-shadow: 0 8px 20px rgba(104, 33, 122, 0.3);
+}
+
+.skill-modal-icon[data-tech="zed"] {
+  background: linear-gradient(135deg, #0080ff, #0099ff);
+  border-color: #0080ff;
+  box-shadow: 0 8px 20px rgba(0, 128, 255, 0.3);
+}
+
 .skill-modal-title-section {
   flex: 1;
 }

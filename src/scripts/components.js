@@ -200,6 +200,10 @@ function openSkillModal(techId) {
   if (!modal || !skill) return;
 
   // データを設定
+  const modalIcon = document.querySelector('.skill-modal-icon');
+  if (modalIcon) {
+    modalIcon.setAttribute('data-tech', techId);
+  }
   document.getElementById('modal-skill-icon').src = `./src/assets/skillstocks/${techId}.png`;
   document.getElementById('modal-skill-icon').alt = skill.name;
   document.getElementById('modal-skill-name').textContent = skill.name;
