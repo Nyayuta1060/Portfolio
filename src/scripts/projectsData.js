@@ -37,7 +37,9 @@ export const PROJECT_TYPE = {
  *   status: PROJECT_STATUS.COMPLETED,
  *   featured: false,  // 注目プロジェクトかどうか
  *   period: '開発期間',
- *   role: '担当した役割',
+ *   role: '担当した役割',  // チーム開発の場合のみ指定、個人開発の場合はnull
+ *   developmentType: 'personal',  // 'personal' or 'team'
+ *   teamSize: null,  // チーム開発の場合は人数 (例: 3)、個人開発の場合はnull
  *   technologies: ['HTML', 'CSS', 'JavaScript'],
  *   image: {
  *     type: 'file',  // 'file', 'icon', 'placeholder'
@@ -68,8 +70,10 @@ export const PROJECT_DETAILS = {
     type: PROJECT_TYPE.WEB_APP,
     status: PROJECT_STATUS.IN_PROGRESS,
     featured: true,
-    period: '2024年5月〜現在',
-    role: 'フロントエンド開発、UI設計',
+    period: '2025年5月〜現在',
+    role: 'リードプログラマー',
+    developmentType: 'team',
+    teamSize: 5,
     technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
     image: {
       type: 'file',
@@ -95,8 +99,10 @@ export const PROJECT_DETAILS = {
     type: PROJECT_TYPE.WEB_APP,
     status: PROJECT_STATUS.IN_PROGRESS,
     featured: false,
-    period: '2024年10月〜現在',
-    role: '個人開発',
+    period: '2025年9月〜現在',
+    role: null,
+    developmentType: 'personal',
+    teamSize: null,
     technologies: ['HTML', 'CSS', 'JavaScript', 'Github API'],
     image: {
       type: 'icon',
@@ -104,13 +110,13 @@ export const PROJECT_DETAILS = {
     },
     links: {
       github: 'https://github.com/Nyayuta1060/Portfolio',
-      demo: 'https://nyayuta1060.github.io/Portfolio/',
+      demo: null,
       article: null
     },
     highlights: [
       'レスポンシブデザインの実装',
       'パーティクルアニメーション',
-      'スキル詳細モーダル機能'
+      'モーダル機能'
     ]
   },
 
@@ -118,11 +124,13 @@ export const PROJECT_DETAILS = {
   pytranslater: {
     name: 'PyTranslater',
     description: 'Pythonで実装した翻訳ツール',
-    type: PROJECT_TYPE.CLI_TOOL,
+    type: PROJECT_TYPE.AI_ML,
     status: PROJECT_STATUS.COMPLETED,
     featured: false,
-    period: '2024年6月',
-    role: '個人開発',
+    period: '2025年6月',
+    role: null,
+    developmentType: 'personal',
+    teamSize: null,
     technologies: ['Python'],
     image: {
       type: 'icon',
@@ -134,7 +142,7 @@ export const PROJECT_DETAILS = {
       article: null
     },
     highlights: [
-      'コマンドラインから簡単に翻訳',
+      'GUIで翻訳',
       '複数言語対応',
       'シンプルなUI'
     ]
@@ -147,8 +155,10 @@ export const PROJECT_DETAILS = {
     type: PROJECT_TYPE.AUTOMATION,
     status: PROJECT_STATUS.COMPLETED,
     featured: false,
-    period: '2024年8月',
-    role: '個人開発',
+    period: '2025年10月',
+    role: null,
+    developmentType: 'personal',
+    teamSize: null,
     technologies: ['Python', 'GitHub Actions'],
     image: {
       type: 'icon',
@@ -176,7 +186,9 @@ export const PROJECT_DETAILS = {
   //   status: PROJECT_STATUS.IN_PROGRESS,
   //   featured: false,
   //   period: '2025年1月〜',
-  //   role: '個人開発',
+  //   role: null,  // チーム開発の場合は '担当した役割'、個人開発の場合はnull
+  //   developmentType: 'personal',  // 'personal' or 'team'
+  //   teamSize: null,  // チーム開発の場合は人数、個人開発の場合はnull
   //   technologies: ['React', 'TypeScript', 'Node.js'],
   //   image: {
   //     type: 'file',

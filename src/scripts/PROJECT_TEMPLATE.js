@@ -20,7 +20,9 @@
   status: PROJECT_STATUS.COMPLETED,  // COMPLETED, IN_PROGRESS, ARCHIVED, PLANNING
   featured: false,  // 注目プロジェクトにする場合は true
   period: '年月〜年月',  // 開発期間
-  role: '',  // 担当した役割
+  role: null,  // チーム開発の場合は '担当した役割'、個人開発の場合は null
+  developmentType: 'personal',  // 'personal' or 'team'
+  teamSize: null,  // チーム開発の場合は人数、個人開発の場合は null
   technologies: [],  // 使用技術の配列 ['HTML', 'CSS', 'JavaScript']
   image: {
     type: 'file',  // 'file', 'icon', 'placeholder' から選択
@@ -117,7 +119,7 @@
   </div>
 </a>
 
-// ========== 実例 1: Webアプリケーション（Featured） ==========
+// ========== 実例 1: Webアプリケーション（Featured、チーム開発） ==========
 
 'react-blog': {
   name: 'React Blog',
@@ -127,6 +129,8 @@
   featured: true,
   period: '2024年9月〜2024年12月',
   role: 'フルスタック開発',
+  developmentType: 'team',
+  teamSize: 3,
   technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
   image: {
     type: 'file',
@@ -171,7 +175,7 @@
   </div>
 </a>
 
-// ========== 実例 2: CLIツール（アイコン使用） ==========
+// ========== 実例 2: CLIツール（アイコン使用、個人開発） ==========
 
 'cli-analyzer': {
   name: 'CLI Analyzer',
@@ -180,7 +184,9 @@
   status: PROJECT_STATUS.IN_PROGRESS,
   featured: false,
   period: '2025年1月〜',
-  role: '個人開発',
+  role: null,
+  developmentType: 'personal',
+  teamSize: null,
   technologies: ['Python', 'Click'],
   image: {
     type: 'icon',
@@ -223,7 +229,7 @@
   </div>
 </a>
 
-// ========== 実例 3: ロボット関連 ==========
+// ========== 実例 3: ロボット関連（チーム開発） ==========
 
 'robot-controller': {
   name: 'Robot Controller',
@@ -233,6 +239,8 @@
   featured: false,
   period: '2024年4月〜2024年9月',
   role: '制御システム開発',
+  developmentType: 'team',
+  teamSize: 5,
   technologies: ['Python', 'ROS', 'C++', 'OpenCV'],
   image: {
     type: 'icon',
@@ -250,7 +258,7 @@
   ]
 },
 
-// ========== 実例 4: ゲーム ==========
+// ========== 実例 4: ゲーム（個人開発） ==========
 
 'puzzle-game': {
   name: 'Puzzle Game',
@@ -259,7 +267,9 @@
   status: PROJECT_STATUS.COMPLETED,
   featured: false,
   period: '2024年7月',
-  role: '個人開発',
+  role: null,
+  developmentType: 'personal',
+  teamSize: null,
   technologies: ['JavaScript', 'HTML Canvas', 'CSS'],
   image: {
     type: 'file',

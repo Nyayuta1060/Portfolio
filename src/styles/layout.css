@@ -714,7 +714,7 @@ section {
             /* プロジェクトグリッド */
             .projects-grid {
               display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              grid-template-columns: repeat(3, 1fr);
               gap: 2rem;
               margin: 3rem 0;
             }
@@ -745,8 +745,8 @@ section {
             }
 
             .project-card.featured {
-              grid-column: span 2;
-              grid-row: span 2;
+              grid-column: span 1;
+              grid-row: span 1;
             }
 
             .project-badge {

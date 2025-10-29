@@ -1,6 +1,7 @@
 // ========== コンポーネント機能 ==========
 import { getElements, addEventListeners } from './utils.js';
 import { SKILL_DETAILS } from './constants.js';
+import { initializeProjectModal } from './projectModal.js';
 
 // ========== 入力フォーカス効果 ==========
 
@@ -293,3 +294,6 @@ function getLevelClass(level) {
   };
   return levelMap[level] || 'intermediate';
 }
+
+// ========== プロジェクトモーダル機能をエクスポート ==========
+export { initializeProjectModal };
