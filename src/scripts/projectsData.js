@@ -38,6 +38,8 @@ export const PROJECT_TYPE = {
  *   featured: false,  // 注目プロジェクトかどうか
  *   period: '開発期間',
  *   role: '担当した役割',
+ *   developmentType: 'personal',  // 'personal' or 'team'
+ *   teamSize: null,  // チーム開発の場合は人数 (例: 4)
  *   technologies: ['HTML', 'CSS', 'JavaScript'],
  *   image: {
  *     type: 'file',  // 'file', 'icon', 'placeholder'
@@ -52,7 +54,27 @@ export const PROJECT_TYPE = {
  *   highlights: [
  *     '特徴1',
  *     '特徴2'
- *   ]
+ *   ],
+ *   // モーダル専用フィールド
+ *   modal: {
+ *     detailedDescription: 'プロジェクトの詳細説明（複数段落可）',
+ *     challenges: '技術的な挑戦や工夫した点',
+ *     learned: '学んだことや得られた経験',
+ *     gallery: [
+ *       {
+ *         type: 'image',  // 'image' or 'video'
+ *         src: './src/assets/projects/projectId/screenshot1.png',
+ *         alt: '説明',
+ *         caption: 'キャプション（オプション）'
+ *       },
+ *       {
+ *         type: 'video',
+ *         src: './src/assets/projects/projectId/demo.mp4',
+ *         poster: './src/assets/projects/projectId/poster.png',  // サムネイル
+ *         alt: 'デモ動画'
+ *       }
+ *     ]
+ *   }
  * }
  */
 
@@ -70,6 +92,8 @@ export const PROJECT_DETAILS = {
     featured: true,
     period: '2024年5月〜現在',
     role: 'フロントエンド開発、UI設計',
+    developmentType: 'team',
+    teamSize: 4,
     technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
     image: {
       type: 'file',
@@ -85,7 +109,20 @@ export const PROJECT_DETAILS = {
       '学生の学習効率を向上させるタスク管理システム',
       'チーム開発でのコラボレーション経験',
       'レスポンシブデザインの実装'
-    ]
+    ],
+    modal: {
+      detailedDescription: '学生の学習効率を向上させることを目的とした、オープンソースのタスク管理ツールです。授業、課題、テスト勉強などを効率的に管理できるよう設計されています。チーム4人で開発を進めており、学生が本当に必要とする機能を重視しています。',
+      challenges: 'チーム開発におけるコミュニケーションとGit管理の効率化。レスポンシブデザインの実装では、モバイルファーストのアプローチを採用し、様々なデバイスで快適に使用できるUIを実現しました。',
+      learned: 'チーム開発でのGitワークフロー、コードレビューの重要性、ユーザー目線でのUI/UX設計を実践的に学びました。',
+      gallery: [
+        {
+          type: 'image',
+          src: './src/assets/projects/nulltasker/screenshot1.png',
+          alt: 'NullTasker メイン画面',
+          caption: 'タスク一覧画面'
+        }
+      ]
+    }
   },
 
   // ========== Web Projects ==========
@@ -97,6 +134,8 @@ export const PROJECT_DETAILS = {
     featured: false,
     period: '2024年10月〜現在',
     role: '個人開発',
+    developmentType: 'personal',
+    teamSize: null,
     technologies: ['HTML', 'CSS', 'JavaScript', 'Github API'],
     image: {
       type: 'icon',
@@ -111,7 +150,13 @@ export const PROJECT_DETAILS = {
       'レスポンシブデザインの実装',
       'パーティクルアニメーション',
       'スキル詳細モーダル機能'
-    ]
+    ],
+    modal: {
+      detailedDescription: '自分のスキルとプロジェクトを紹介するために制作したポートフォリオサイトです。HTML/CSS/JavaScriptのみで構築し、フレームワークに頼らずモダンなWebデザインを実現しました。GitHub APIを活用してリポジトリ情報を動的に取得しています。',
+      challenges: 'バニラJavaScriptでのモジュール設計とコンポーネント化。スキル詳細モーダルやパーティクルアニメーションなど、UXを重視した機能実装に注力しました。',
+      learned: 'モダンJavaScriptの設計パターン、アクセシビリティへの配慮、パフォーマンス最適化の手法を実践的に習得しました。',
+      gallery: []
+    }
   },
 
   // ========== CLI Tools ==========
@@ -123,6 +168,8 @@ export const PROJECT_DETAILS = {
     featured: false,
     period: '2024年6月',
     role: '個人開発',
+    developmentType: 'personal',
+    teamSize: null,
     technologies: ['Python'],
     image: {
       type: 'icon',
@@ -137,7 +184,13 @@ export const PROJECT_DETAILS = {
       'コマンドラインから簡単に翻訳',
       '複数言語対応',
       'シンプルなUI'
-    ]
+    ],
+    modal: {
+      detailedDescription: 'コマンドラインから手軽に翻訳できるシンプルなツールです。開発作業中にドキュメントやエラーメッセージを素早く翻訳する目的で作成しました。',
+      challenges: 'CLIツールとしての使いやすさを追求し、直感的なコマンド体系を設計しました。',
+      learned: 'Pythonでのコマンドラインツール開発、引数パース処理、API連携の基礎を学びました。',
+      gallery: []
+    }
   },
 
   // ========== Automation Tools ==========
@@ -149,6 +202,8 @@ export const PROJECT_DETAILS = {
     featured: false,
     period: '2024年8月',
     role: '個人開発',
+    developmentType: 'personal',
+    teamSize: null,
     technologies: ['Python', 'GitHub Actions'],
     image: {
       type: 'icon',
@@ -163,7 +218,13 @@ export const PROJECT_DETAILS = {
       'GitHub Actionsによる自動化',
       'コントリビューション継続の支援',
       'Discord通知機能'
-    ]
+    ],
+    modal: {
+      detailedDescription: 'GitHubのコントリビューションを継続するモチベーションを維持するための自動化ツールです。毎日の活動状況をDiscordに通知し、継続を促します。GitHub Actionsを活用した完全自動化を実現しています。',
+      challenges: 'GitHub Actionsのスケジュール実行とDiscord Webhookの連携。通知内容を工夫し、モチベーション向上につながる情報を提供しました。',
+      learned: 'CI/CDの仕組み、GitHub Actionsの実践的な活用法、外部サービスとのAPI連携を習得しました。',
+      gallery: []
+    }
   },
 
   // ========== ここに新しいプロジェクトを追加 ==========
