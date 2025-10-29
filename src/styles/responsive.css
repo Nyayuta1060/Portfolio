@@ -188,6 +188,10 @@
     height: 10px;
   }
 
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
   .tech-orbit {
     width: 250px;
     height: 250px;
@@ -430,11 +434,11 @@
   }
 
   .projects-grid {
-    grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .project-card.featured {
-    grid-column: span 2;
+    grid-column: span 1;
   }
 
   /* GitHub Activity - タブレット */
@@ -459,12 +463,12 @@
   }
 
   .projects-grid {
-    grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .project-card.featured {
-    grid-column: span 2;
-    grid-row: span 2;
+    grid-column: span 1;
+    grid-row: span 1;
   }
 
   /* GitHub Activity - デスクトップ */
