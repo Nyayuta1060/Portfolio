@@ -17,7 +17,8 @@ import {
 import { 
   initializeFormHandling, 
   initializeSkillsFilter,
-  initializeSkillModal
+  initializeSkillModal,
+  initializeProjectModal
 } from './components.js';
 import { initializeGitHubActivity } from './github.js';
 import { initializeContactProtection } from './contact.js';
@@ -65,6 +66,7 @@ function initializeCoreFeatures() {
   initializeParticles();
   initializeSkillsFilter();
   initializeSkillModal();
+  initializeProjectModal();
   initializeFormHandling();
   initializeLazyLoading();
   initializeGitHubActivity();

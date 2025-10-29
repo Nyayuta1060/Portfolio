@@ -479,33 +479,51 @@
 
 /* ========== Email Protection Responsive ========== */
 
-/* モバイル (768px以下) */
+/* タブレット (768px以下) */
 @media (max-width: 768px) {
   .contact-method {
+    gap: 1.25rem;
+  }
+
+  .contact-method-header {
+    justify-content: center;
+  }
+
+  .contact-method-header i {
+    font-size: 1.75rem;
+  }
+
+  .contact-method-header h4 {
+    font-size: 1.1rem;
+  }
+
+  .contact-email-display {
     flex-direction: column;
-    align-items: center;
     text-align: center;
-    gap: 1rem;
-  }
-
-  .contact-method > i {
-    margin-top: 0;
-  }
-
-  .contact-details {
-    flex-direction: column;
-    align-items: center;
     gap: 0.75rem;
-    width: 100%;
+    padding: 1rem;
   }
 
-  .contact-details h4 {
-    margin: 0 0 0.5rem 0;
+  .email-icon {
+    font-size: 1.25rem;
   }
 
-  .email-copy-btn {
-    margin-left: 0;
-    margin-top: 0.5rem;
+  .contact-details .email-address {
+    font-size: 0.95rem;
+  }
+
+  .email-actions {
+    gap: 0.5rem;
+  }
+
+  .email-action-btn {
+    font-size: 0.9rem;
+    height: 44px;
+    padding: 0 1rem;
+  }
+
+  .email-action-btn i {
+    font-size: 1rem;
   }
 
   .email-tooltip {
@@ -518,20 +536,39 @@
 @media (max-width: 480px) {
   .contact-method {
     padding: 1.5rem;
+    gap: 1rem;
   }
 
-  .contact-method > i {
+  .contact-method-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .contact-method-header i {
     font-size: 1.5rem;
   }
 
-  .contact-details a {
-    font-size: 0.9rem;
-    word-break: break-all;
+  .contact-method-header h4 {
+    font-size: 1rem;
   }
 
-  .email-copy-btn {
-    width: 36px;
-    height: 36px;
+  .contact-details .email-address {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .email-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .email-action-btn {
+    height: 44px;
     font-size: 0.9rem;
+  }
+
+  .email-action-btn span {
+    font-size: 0.85rem;
   }
 }
