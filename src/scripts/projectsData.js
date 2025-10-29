@@ -59,7 +59,6 @@ export const PROJECT_TYPE = {
  *   modal: {
  *     detailedDescription: 'プロジェクトの詳細説明（複数段落可）',
  *     challenges: '技術的な挑戦や工夫した点',
- *     learned: '学んだことや得られた経験',
  *     gallery: [
  *       {
  *         type: 'image',  // 'image' or 'video'
@@ -113,7 +112,6 @@ export const PROJECT_DETAILS = {
     modal: {
       detailedDescription: '学生の学習効率を向上させることを目的とした、オープンソースのタスク管理ツールです。授業、課題、テスト勉強などを効率的に管理できるよう設計されています。チーム4人で開発を進めており、学生が本当に必要とする機能を重視しています。',
       challenges: 'チーム開発におけるコミュニケーションとGit管理の効率化。レスポンシブデザインの実装では、モバイルファーストのアプローチを採用し、様々なデバイスで快適に使用できるUIを実現しました。',
-      learned: 'チーム開発でのGitワークフロー、コードレビューの重要性、ユーザー目線でのUI/UX設計を実践的に学びました。',
       gallery: [
         {
           type: 'image',
@@ -154,7 +152,6 @@ export const PROJECT_DETAILS = {
     modal: {
       detailedDescription: '自分のスキルとプロジェクトを紹介するために制作したポートフォリオサイトです。HTML/CSS/JavaScriptのみで構築し、フレームワークに頼らずモダンなWebデザインを実現しました。GitHub APIを活用してリポジトリ情報を動的に取得しています。',
       challenges: 'バニラJavaScriptでのモジュール設計とコンポーネント化。スキル詳細モーダルやパーティクルアニメーションなど、UXを重視した機能実装に注力しました。',
-      learned: 'モダンJavaScriptの設計パターン、アクセシビリティへの配慮、パフォーマンス最適化の手法を実践的に習得しました。',
       gallery: []
     }
   },
@@ -188,7 +185,6 @@ export const PROJECT_DETAILS = {
     modal: {
       detailedDescription: 'コマンドラインから手軽に翻訳できるシンプルなツールです。開発作業中にドキュメントやエラーメッセージを素早く翻訳する目的で作成しました。',
       challenges: 'CLIツールとしての使いやすさを追求し、直感的なコマンド体系を設計しました。',
-      learned: 'Pythonでのコマンドラインツール開発、引数パース処理、API連携の基礎を学びました。',
       gallery: []
     }
   },
@@ -222,7 +218,6 @@ export const PROJECT_DETAILS = {
     modal: {
       detailedDescription: 'GitHubのコントリビューションを継続するモチベーションを維持するための自動化ツールです。毎日の活動状況をDiscordに通知し、継続を促します。GitHub Actionsを活用した完全自動化を実現しています。',
       challenges: 'GitHub Actionsのスケジュール実行とDiscord Webhookの連携。通知内容を工夫し、モチベーション向上につながる情報を提供しました。',
-      learned: 'CI/CDの仕組み、GitHub Actionsの実践的な活用法、外部サービスとのAPI連携を習得しました。',
       gallery: []
     }
   },

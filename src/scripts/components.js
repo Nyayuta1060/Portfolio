@@ -403,12 +403,6 @@ function createProjectModalElement() {
             <p class="project-modal-text" id="project-modal-challenges"></p>
           </div>
 
-          <!-- 学んだこと -->
-          <div class="project-modal-section" id="project-learned-section" style="display: none;">
-            <h3><i class="fas fa-graduation-cap"></i> 学んだこと</h3>
-            <p class="project-modal-text" id="project-modal-learned"></p>
-          </div>
-
           <!-- リンク -->
           <div class="project-modal-section">
             <h3><i class="fas fa-link"></i> リンク</h3>
@@ -473,15 +467,6 @@ function openProjectModal(projectId) {
       challengesSection.style.display = 'none';
     }
 
-    // 学んだこと
-    const learnedSection = document.getElementById('project-learned-section');
-    if (project.modal.learned) {
-      document.getElementById('project-modal-learned').textContent = project.modal.learned;
-      learnedSection.style.display = 'block';
-    } else {
-      learnedSection.style.display = 'none';
-    }
-
     // ギャラリー
     if (project.modal.gallery && project.modal.gallery.length > 0) {
       setupProjectGallery(project.modal.gallery);
@@ -491,7 +476,6 @@ function openProjectModal(projectId) {
     }
   } else {
     document.getElementById('project-challenges-section').style.display = 'none';
-    document.getElementById('project-learned-section').style.display = 'none';
     document.getElementById('project-modal-gallery').style.display = 'none';
   }
 
