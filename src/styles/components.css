@@ -189,22 +189,22 @@
                                 color: var(--primary-color);
                               }
 
-                              /* プロジェクトカード */
-                              .project-card {
-                                background: var(--card-bg);
-                                border-radius: 20px;
-                                transition: all 0.3s ease;
-                                border: 1px solid var(--border-color);
-                                position: relative;
-                                overflow: hidden;
-                                backdrop-filter: blur(10px);
-                                cursor: pointer;
-                                display: flex;
-                                flex-direction: column;
-                                height: 100%;
-                                min-height: 400px;
-                              }
-
+/* プロジェクトカード */
+.project-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 400px;
+  width: 100%;
+}
                               .project-card::before {
                                 content: '';
                                 position: absolute;

@@ -397,12 +397,6 @@ function createProjectModalElement() {
             <ul class="project-modal-highlights" id="project-modal-highlights"></ul>
           </div>
 
-          <!-- 技術的な挑戦 -->
-          <div class="project-modal-section" id="project-challenges-section" style="display: none;">
-            <h3><i class="fas fa-lightbulb"></i> 技術的な挑戦</h3>
-            <p class="project-modal-text" id="project-modal-challenges"></p>
-          </div>
-
           <!-- リンク -->
           <div class="project-modal-section">
             <h3><i class="fas fa-link"></i> リンク</h3>
@@ -458,15 +452,6 @@ function openProjectModal(projectId) {
 
   // モーダル専用コンテンツ
   if (project.modal) {
-    // 技術的な挑戦
-    const challengesSection = document.getElementById('project-challenges-section');
-    if (project.modal.challenges) {
-      document.getElementById('project-modal-challenges').textContent = project.modal.challenges;
-      challengesSection.style.display = 'block';
-    } else {
-      challengesSection.style.display = 'none';
-    }
-
     // ギャラリー
     if (project.modal.gallery && project.modal.gallery.length > 0) {
       setupProjectGallery(project.modal.gallery);
@@ -475,7 +460,6 @@ function openProjectModal(projectId) {
       document.getElementById('project-modal-gallery').style.display = 'none';
     }
   } else {
-    document.getElementById('project-challenges-section').style.display = 'none';
     document.getElementById('project-modal-gallery').style.display = 'none';
   }
 

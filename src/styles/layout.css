@@ -714,10 +714,13 @@ section {
             /* プロジェクトグリッド */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, 350px);
   gap: 2rem;
   margin-top: 2rem;
-}            .project-card-link {
+  justify-content: start;
+}
+
+.project-card-link {
               text-decoration: none;
               color: inherit;
               display: block;
