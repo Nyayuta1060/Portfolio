@@ -73,7 +73,7 @@ export const PROJECT_DETAILS = {
     period: '2025年5月〜現在',
     role: 'リードプログラマー',
     developmentType: 'team',
-    teamSize: 4,
+    teamSize: 5,
     technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
     image: {
       type: 'file',
@@ -99,7 +99,7 @@ export const PROJECT_DETAILS = {
     type: PROJECT_TYPE.WEB_APP,
     status: PROJECT_STATUS.IN_PROGRESS,
     featured: false,
-    period: '2024年10月〜現在',
+    period: '2025年9月〜現在',
     role: null,
     developmentType: 'personal',
     teamSize: null,
@@ -116,7 +116,7 @@ export const PROJECT_DETAILS = {
     highlights: [
       'レスポンシブデザインの実装',
       'パーティクルアニメーション',
-      'スキル詳細モーダル機能'
+      'モーダル機能'
     ]
   },
 
@@ -124,10 +124,10 @@ export const PROJECT_DETAILS = {
   pytranslater: {
     name: 'PyTranslater',
     description: 'Pythonで実装した翻訳ツール',
-    type: PROJECT_TYPE.CLI_TOOL,
+    type: PROJECT_TYPE.AI_ML,
     status: PROJECT_STATUS.COMPLETED,
     featured: false,
-    period: '2024年6月',
+    period: '2025年6月',
     role: null,
     developmentType: 'personal',
     teamSize: null,
@@ -142,7 +142,7 @@ export const PROJECT_DETAILS = {
       article: null
     },
     highlights: [
-      'コマンドラインから簡単に翻訳',
+      'GUIで翻訳',
       '複数言語対応',
       'シンプルなUI'
     ]
@@ -155,7 +155,7 @@ export const PROJECT_DETAILS = {
     type: PROJECT_TYPE.AUTOMATION,
     status: PROJECT_STATUS.COMPLETED,
     featured: false,
-    period: '2024年8月',
+    period: '2025年10月',
     role: null,
     developmentType: 'personal',
     teamSize: null,
