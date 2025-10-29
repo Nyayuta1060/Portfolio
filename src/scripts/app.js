@@ -17,10 +17,10 @@ import {
 import { 
   initializeFormHandling, 
   initializeSkillsFilter,
-  initializeSkillModal,
-  initializeProjectModal
+  initializeSkillModal
 } from './components.js';
 import { initializeGitHubActivity } from './github.js';
+import { initializeContactProtection } from './contact.js';
 
 /**
  * アプリケーション設定
@@ -65,10 +65,10 @@ function initializeCoreFeatures() {
   initializeParticles();
   initializeSkillsFilter();
   initializeSkillModal();
-  initializeProjectModal();
   initializeFormHandling();
   initializeLazyLoading();
   initializeGitHubActivity();
+  initializeContactProtection();
 }
 
 /**
