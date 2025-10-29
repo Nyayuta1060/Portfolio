@@ -21,6 +21,7 @@ import {
   initializeProjectModal
 } from './components.js';
 import { initializeGitHubActivity } from './github.js';
+import { initializeContactProtection } from './contact.js';
 
 /**
  * アプリケーション設定
@@ -69,6 +70,7 @@ function initializeCoreFeatures() {
   initializeFormHandling();
   initializeLazyLoading();
   initializeGitHubActivity();
+  initializeContactProtection();
 }
 
 /**
