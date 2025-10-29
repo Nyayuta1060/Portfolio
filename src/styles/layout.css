@@ -712,14 +712,12 @@ section {
             }
 
             /* プロジェクトグリッド */
-            .projects-grid {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-              gap: 2rem;
-              margin: 3rem 0;
-            }
-
-            .project-card-link {
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}            .project-card-link {
               text-decoration: none;
               color: inherit;
               display: block;

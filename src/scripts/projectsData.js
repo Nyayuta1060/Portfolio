@@ -88,7 +88,7 @@ export const PROJECT_DETAILS = {
     description: '学生向けのオープンソースタスク管理ツール',
     type: PROJECT_TYPE.WEB_APP,
     status: PROJECT_STATUS.IN_PROGRESS,
-    featured: true,
+    featured: false,
     period: '2024年5月〜現在',
     role: 'フロントエンド開発、UI設計',
     developmentType: 'team',
