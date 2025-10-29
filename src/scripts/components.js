@@ -426,7 +426,15 @@ function openProjectModal(projectId) {
   document.getElementById('project-modal-status').textContent = getProjectStatusLabel(project.status);
   document.getElementById('project-modal-status').className = `project-modal-status status-${project.status}`;
   document.getElementById('project-modal-period').textContent = project.period;
-  document.getElementById('project-modal-role').textContent = project.role;
+  
+  // 役割（nullの場合は非表示）
+  const roleItem = document.querySelector('#project-modal-role').closest('.project-info-item');
+  if (project.role) {
+    document.getElementById('project-modal-role').textContent = project.role;
+    roleItem.style.display = '';
+  } else {
+    roleItem.style.display = 'none';
+  }
   
   // 開発形態
   const devType = project.developmentType === 'team' 

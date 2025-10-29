@@ -37,9 +37,9 @@ export const PROJECT_TYPE = {
  *   status: PROJECT_STATUS.COMPLETED,
  *   featured: false,  // 注目プロジェクトかどうか
  *   period: '開発期間',
- *   role: '担当した役割',
+ *   role: '担当した役割',  // チーム開発の場合のみ指定、個人開発の場合はnull
  *   developmentType: 'personal',  // 'personal' or 'team'
- *   teamSize: null,  // チーム開発の場合は人数 (例: 4)
+ *   teamSize: null,  // チーム開発の場合は人数 (例: 3)、個人開発の場合はnull
  *   technologies: ['HTML', 'CSS', 'JavaScript'],
  *   image: {
  *     type: 'file',  // 'file', 'icon', 'placeholder'
@@ -54,26 +54,7 @@ export const PROJECT_TYPE = {
  *   highlights: [
  *     '特徴1',
  *     '特徴2'
- *   ],
- *   // モーダル専用フィールド
- *   modal: {
- *     detailedDescription: 'プロジェクトの詳細説明（複数段落可）',
- *     challenges: '技術的な挑戦や工夫した点',
- *     gallery: [
- *       {
- *         type: 'image',  // 'image' or 'video'
- *         src: './src/assets/projects/projectId/screenshot1.png',
- *         alt: '説明',
- *         caption: 'キャプション（オプション）'
- *       },
- *       {
- *         type: 'video',
- *         src: './src/assets/projects/projectId/demo.mp4',
- *         poster: './src/assets/projects/projectId/poster.png',  // サムネイル
- *         alt: 'デモ動画'
- *       }
- *     ]
- *   }
+ *   ]
  * }
  */
 
@@ -88,15 +69,15 @@ export const PROJECT_DETAILS = {
     description: '学生向けのオープンソースタスク管理ツール',
     type: PROJECT_TYPE.WEB_APP,
     status: PROJECT_STATUS.IN_PROGRESS,
-    featured: false,
-    period: '2024年5月〜現在',
-    role: 'フロントエンド開発、UI設計',
+    featured: true,
+    period: '2025年5月〜現在',
+    role: 'リードプログラマー',
     developmentType: 'team',
     teamSize: 4,
     technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
     image: {
       type: 'file',
-      src: './src/assets/projects/nulltasker/NullTasker.png',
+      src: './src/assets/projects/NullTasker.png',
       alt: 'NullTasker'
     },
     links: {
@@ -108,19 +89,7 @@ export const PROJECT_DETAILS = {
       '学生の学習効率を向上させるタスク管理システム',
       'チーム開発でのコラボレーション経験',
       'レスポンシブデザインの実装'
-    ],
-    modal: {
-      detailedDescription: '学生の学習効率を向上させることを目的とした、オープンソースのタスク管理ツールです。授業、課題、テスト勉強などを効率的に管理できるよう設計されています。チーム4人で開発を進めており、学生が本当に必要とする機能を重視しています。',
-      challenges: 'チーム開発におけるコミュニケーションとGit管理の効率化。レスポンシブデザインの実装では、モバイルファーストのアプローチを採用し、様々なデバイスで快適に使用できるUIを実現しました。',
-      gallery: [
-        {
-          type: 'image',
-          src: './src/assets/projects/nulltasker/screenshot1.png',
-          alt: 'NullTasker メイン画面',
-          caption: 'タスク一覧画面'
-        }
-      ]
-    }
+    ]
   },
 
   // ========== Web Projects ==========
@@ -131,7 +100,7 @@ export const PROJECT_DETAILS = {
     status: PROJECT_STATUS.IN_PROGRESS,
     featured: false,
     period: '2024年10月〜現在',
-    role: '個人開発',
+    role: null,
     developmentType: 'personal',
     teamSize: null,
     technologies: ['HTML', 'CSS', 'JavaScript', 'Github API'],
@@ -141,19 +110,14 @@ export const PROJECT_DETAILS = {
     },
     links: {
       github: 'https://github.com/Nyayuta1060/Portfolio',
-      demo: 'https://nyayuta1060.github.io/Portfolio/',
+      demo: null,
       article: null
     },
     highlights: [
       'レスポンシブデザインの実装',
       'パーティクルアニメーション',
       'スキル詳細モーダル機能'
-    ],
-    modal: {
-      detailedDescription: '自分のスキルとプロジェクトを紹介するために制作したポートフォリオサイトです。HTML/CSS/JavaScriptのみで構築し、フレームワークに頼らずモダンなWebデザインを実現しました。GitHub APIを活用してリポジトリ情報を動的に取得しています。',
-      challenges: 'バニラJavaScriptでのモジュール設計とコンポーネント化。スキル詳細モーダルやパーティクルアニメーションなど、UXを重視した機能実装に注力しました。',
-      gallery: []
-    }
+    ]
   },
 
   // ========== CLI Tools ==========
@@ -164,7 +128,7 @@ export const PROJECT_DETAILS = {
     status: PROJECT_STATUS.COMPLETED,
     featured: false,
     period: '2024年6月',
-    role: '個人開発',
+    role: null,
     developmentType: 'personal',
     teamSize: null,
     technologies: ['Python'],
@@ -181,12 +145,7 @@ export const PROJECT_DETAILS = {
       'コマンドラインから簡単に翻訳',
       '複数言語対応',
       'シンプルなUI'
-    ],
-    modal: {
-      detailedDescription: 'コマンドラインから手軽に翻訳できるシンプルなツールです。開発作業中にドキュメントやエラーメッセージを素早く翻訳する目的で作成しました。',
-      challenges: 'CLIツールとしての使いやすさを追求し、直感的なコマンド体系を設計しました。',
-      gallery: []
-    }
+    ]
   },
 
   // ========== Automation Tools ==========
@@ -197,7 +156,7 @@ export const PROJECT_DETAILS = {
     status: PROJECT_STATUS.COMPLETED,
     featured: false,
     period: '2024年8月',
-    role: '個人開発',
+    role: null,
     developmentType: 'personal',
     teamSize: null,
     technologies: ['Python', 'GitHub Actions'],
@@ -214,12 +173,7 @@ export const PROJECT_DETAILS = {
       'GitHub Actionsによる自動化',
       'コントリビューション継続の支援',
       'Discord通知機能'
-    ],
-    modal: {
-      detailedDescription: 'GitHubのコントリビューションを継続するモチベーションを維持するための自動化ツールです。毎日の活動状況をDiscordに通知し、継続を促します。GitHub Actionsを活用した完全自動化を実現しています。',
-      challenges: 'GitHub Actionsのスケジュール実行とDiscord Webhookの連携。通知内容を工夫し、モチベーション向上につながる情報を提供しました。',
-      gallery: []
-    }
+    ]
   },
 
   // ========== ここに新しいプロジェクトを追加 ==========
@@ -232,7 +186,9 @@ export const PROJECT_DETAILS = {
   //   status: PROJECT_STATUS.IN_PROGRESS,
   //   featured: false,
   //   period: '2025年1月〜',
-  //   role: '個人開発',
+  //   role: null,  // チーム開発の場合は '担当した役割'、個人開発の場合はnull
+  //   developmentType: 'personal',  // 'personal' or 'team'
+  //   teamSize: null,  // チーム開発の場合は人数、個人開発の場合はnull
   //   technologies: ['React', 'TypeScript', 'Node.js'],
   //   image: {
   //     type: 'file',
