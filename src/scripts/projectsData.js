@@ -96,7 +96,7 @@ export const PROJECT_DETAILS = {
     technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
     image: {
       type: 'file',
-      src: './src/assets/projects/NullTasker.png',
+      src: './src/assets/projects/nulltasker/NullTasker.png',
       alt: 'NullTasker'
     },
     links: {
