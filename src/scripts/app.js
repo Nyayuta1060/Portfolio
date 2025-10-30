@@ -36,9 +36,11 @@ const APP_CONFIG = {
  */
 document.addEventListener('DOMContentLoaded', () => {
   try {
+    console.log('📦 Starting Portfolio initialization...');
     initializeApp();
     console.log('🚀 Portfolio初期化成功!');
   } catch (error) {
+    console.error('❌ App Initialization failed:', error);
     logError('App Initialization', error);
   }
 });
@@ -61,16 +63,32 @@ function initializeApp() {
  * コア機能を初期化
  */
 function initializeCoreFeatures() {
-  initializeNavigation();
-  initializeScrollEffects();
-  initializeParticles();
-  initializeSkillsFilter();
-  initializeSkillModal();
-  initializeProjectModal();
-  initializeFormHandling();
-  initializeLazyLoading();
-  initializeGitHubActivity();
-  initializeContactProtection();
+  try {
+    console.log('🔧 Initializing Navigation...');
+    initializeNavigation();
+    console.log('🔧 Initializing Scroll Effects...');
+    initializeScrollEffects();
+    console.log('🔧 Initializing Particles...');
+    initializeParticles();
+    console.log('🔧 Initializing Skills Filter...');
+    initializeSkillsFilter();
+    console.log('🔧 Initializing Skill Modal...');
+    initializeSkillModal();
+    console.log('🔧 Initializing Project Modal...');
+    initializeProjectModal();
+    console.log('🔧 Initializing Form Handling...');
+    initializeFormHandling();
+    console.log('🔧 Initializing Lazy Loading...');
+    initializeLazyLoading();
+    console.log('🔧 Initializing GitHub Activity...');
+    initializeGitHubActivity();
+    console.log('🔧 Initializing Contact Protection...');
+    initializeContactProtection();
+    console.log('✅ All core features initialized successfully');
+  } catch (error) {
+    console.error('❌ Error in initializeCoreFeatures:', error);
+    throw error;
+  }
 }
 
 /**
