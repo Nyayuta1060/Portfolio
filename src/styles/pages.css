@@ -510,6 +510,10 @@
   background: linear-gradient(135deg, #0080ff, #0099ff);
 }
 
+.skill-card[data-tech="typst"] .skill-image {
+  background: linear-gradient(135deg, #239dad, #34c1d3);
+}
+
 /* ホバー時の強調効果 */
 .skill-card:hover[data-tech="html"] {
   box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
@@ -604,6 +608,11 @@
 .skill-card:hover[data-tech="zed"] {
   box-shadow: 0 15px 35px rgba(0, 128, 255, 0.3);
   border-color: #0080ff;
+}
+
+.skill-card:hover[data-tech="typst"] {
+  box-shadow: 0 15px 35px rgba(35, 157, 173, 0.3);
+  border-color: #239dad;
 }
 
 /* プロジェクトカード特殊スタイル */

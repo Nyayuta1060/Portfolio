@@ -332,6 +332,20 @@ export const SKILL_DETAILS = {
     }
   },
 
+  typst: {
+    name: 'Typst',
+    category: CATEGORIES.TOOLS,
+    level: SKILL_LEVELS.BEGINNER,
+    frequency: FREQUENCY.WEEKLY_1_2,
+    usage: '文書作成、レポート作成',
+    experience: '2025年10月〜',
+    comment: 'レポートやスライド作成などで使い始めました。',
+    links: {
+      official: 'https://typst.app/',
+      github: 'https://github.com/typst/typst'
+    }
+  },
+
   // ========== ここに新しいスキルを追加 ==========
   // スキルを追加する場合は、上記のテンプレートに従って記述してください
   // 例:
