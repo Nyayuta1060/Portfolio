@@ -834,17 +834,22 @@ section {
 
             .contact-methods {
               margin-bottom: 3rem;
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              gap: 1.5rem;
             }
 
             .contact-method {
               display: flex;
+              flex-direction: column;
               align-items: center;
-              gap: 1.5rem;
+              justify-content: center;
+              text-align: center;
+              gap: 1rem;
               padding: 2rem;
               background: var(--card-bg);
               border: 2px solid var(--border-color);
               border-radius: 15px;
-              margin-bottom: 1.5rem;
               transition: var(--transition-smooth);
               backdrop-filter: blur(10px);
             }
@@ -854,26 +859,39 @@ section {
               box-shadow: 0 10px 30px rgba(100, 255, 218, 0.2);
             }
 
-            .contact-method i {
-              font-size: 2rem;
-              color: var(--primary-color);
-              width: 50px;
-              text-align: center;
+            .contact-method-header {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 0.8rem;
             }
 
-            .contact-details h4 {
+            .contact-method-header i {
+              font-size: 2.5rem;
+              color: var(--primary-color);
+            }
+
+            .contact-method-header h4 {
               font-size: 1.1rem;
               color: var(--text-primary);
-              margin-bottom: 0.5rem;
+              margin: 0;
               font-weight: 600;
+            }
+
+            .contact-details {
+              width: 100%;
             }
 
             .contact-details a {
               color: var(--primary-color);
               text-decoration: none;
               font-family: var(--font-mono);
-              font-size: 1rem;
+              font-size: 0.95rem;
               transition: var(--transition-smooth);
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: block;
             }
 
             .contact-details a:hover {
@@ -882,8 +900,8 @@ section {
             }
 
             .social-links {
-              display: flex;
-              flex-direction: column;
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
               gap: 1rem;
             }
 

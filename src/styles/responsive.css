@@ -44,6 +44,15 @@
   .project-card.featured .project-content {
     grid-template-columns: 1fr;
   }
+
+  /* Contact section - タブレットでは2列を維持 */
+  .contact-methods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .social-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* モバイル (768px以下) */
@@ -197,6 +206,15 @@
     height: 250px;
   }
 
+  /* Contact section - モバイルでは1列に */
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links {
+    grid-template-columns: 1fr;
+  }
+
   /* プロジェクト・ニュースページ */
   .projects-header,
   .news-header {
@@ -332,6 +350,21 @@
 
   .hero-subtitle {
     font-size: 1.1rem;
+  }
+
+  /* Contact section - 小画面モバイル */
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .contact-method {
+    padding: 1.5rem;
+  }
+
+  .social-links {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .skills-grid {
@@ -510,6 +543,9 @@
 
   .contact-details .email-address {
     font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .email-actions {
@@ -556,6 +592,9 @@
   .contact-details .email-address {
     font-size: 0.85rem;
     line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .email-actions {

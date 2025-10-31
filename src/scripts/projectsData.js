@@ -77,7 +77,7 @@ export const PROJECT_DETAILS = {
     technologies: ['HTML', 'CSS', 'JavaScript', 'Node.js'],
     image: {
       type: 'file',
-      src: './src/assets/projects/NullTasker.png',
+      src: './src/assets/projects/nulltasker/NullTasker.png',
       alt: 'NullTasker'
     },
     links: {
@@ -89,7 +89,25 @@ export const PROJECT_DETAILS = {
       '学生の学習効率を向上させるタスク管理システム',
       'チーム開発でのコラボレーション経験',
       'レスポンシブデザインの実装'
-    ]
+    ],
+    modal: {
+      detailedDescription: '学生の学習効率を向上させることを目的とした、オープンソースのタスク管理ツールです。チーム開発での経験を通じて、協力してプロジェクトを進める重要性を学びました。',
+      gallery: [
+        {
+          type: 'image',
+          src: './src/assets/projects/nulltasker/NullTasker.png',
+          alt: 'NullTasker メイン画面',
+          caption: 'NullTasker メイン画面'
+        }
+        // 追加の画像・動画がある場合はここに追加
+        // {
+        //   type: 'image',
+        //   src: './src/assets/projects/nulltasker/screenshot2.png',
+        //   alt: 'タスク一覧画面',
+        //   caption: 'タスク一覧画面'
+        // }
+      ]
+    }
   },
 
   // ========== Web Projects ==========
@@ -145,7 +163,19 @@ export const PROJECT_DETAILS = {
       'GUIで翻訳',
       '複数言語対応',
       'シンプルなUI'
-    ]
+    ],
+    modal: {
+      detailedDescription: 'Pythonで実装したシンプルで使いやすい翻訳ツールです。GUIを備えており、複数の言語に対応しています。',
+      gallery: [
+        // 画像・動画を追加する場合はここに追加
+        // {
+        //   type: 'image',
+        //   src: './src/assets/projects/pytranslater/screenshot1.png',
+        //   alt: 'PyTranslater メイン画面',
+        //   caption: 'PyTranslater メイン画面'
+        // }
+      ]
+    }
   },
 
   // ========== Automation Tools ==========

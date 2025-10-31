@@ -607,11 +607,6 @@
 }
 
 /* プロジェクトカード特殊スタイル */
-.add-project {
-  width: 350px !important;
-  max-width: 350px !important;
-}
-
 .add-project .project-placeholder {
   background: linear-gradient(135deg, var(--border-color), var(--secondary-bg));
   color: var(--text-muted);
@@ -622,11 +617,6 @@
   background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   color: white;
   border-color: var(--primary-color);
-}
-
-/* Coming Soonカードの高さを他のカードと統一 */
-.add-project .project-info {
-  flex: 0;
 }
 
 .project-overlay {
@@ -661,15 +651,6 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-}
-
-.project-overlay.coming-soon {
-  background: rgba(100, 255, 218, 0.1);
-  color: var(--primary-color);
-}
-
-.add-project:hover .project-overlay.coming-soon {
-  opacity: 1;
 }
 
 /* 画像フォールバック */
