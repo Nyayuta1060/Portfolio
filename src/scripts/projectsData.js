@@ -96,8 +96,12 @@ export const PROJECT_DETAILS = {
         {
           type: 'image',
           src: './src/assets/projects/nulltasker/NullTasker.png',
-          alt: 'NullTasker メイン画面',
-          caption: 'NullTasker メイン画面'
+          alt: 'NullTasker ロゴ',
+          caption: 'NullTasker ロゴ'
+        },
+        {
+          type: 'image',
+
         }
         // 追加の画像・動画がある場合はここに追加
         // {
@@ -167,6 +171,24 @@ export const PROJECT_DETAILS = {
     modal: {
       detailedDescription: 'Pythonで実装したシンプルで使いやすい翻訳ツールです。GUIを備えており、複数の言語に対応しています。',
       gallery: [
+        {
+          type: 'image',
+          src: './src/assets/projects/pytranslater/demo.png',
+          alt: 'PyTranslater デモ画面',
+          caption: 'PyTranslater デモ画面'
+        },
+        {
+          type: 'image',
+          src: './src/assets/projects/pytranslater/demo-another-page.png',
+          alt: '個別ページで開いた様子',
+          caption: '個別ページで開いた様子'
+        },
+        {
+          type: 'image',
+          src: './src/assets/projects/pytranslater/demo-setting.png',
+          alt: '詳細設定画面',
+          caption: '詳細設定画面'
+        }
         // 画像・動画を追加する場合はここに追加
         // {
         //   type: 'image',
