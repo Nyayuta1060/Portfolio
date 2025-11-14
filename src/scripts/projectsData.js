@@ -98,10 +98,6 @@ export const PROJECT_DETAILS = {
           src: './src/assets/projects/nulltasker/NullTasker.png',
           alt: 'NullTasker ロゴ',
           caption: 'NullTasker ロゴ'
-        },
-        {
-          type: 'image',
-
         }
         // 追加の画像・動画がある場合はここに追加
         // {
@@ -225,8 +221,25 @@ export const PROJECT_DETAILS = {
       'GitHub Actionsによる自動化',
       'コントリビューション継続の支援',
       'Discord通知機能'
-    ]
-  },
+    ],
+    modal: {
+      detailedDescription: 'GitHub ActionsとPythonを活用して、GitHubのcontributionを継続的に支援する自動化ツールです。Discordへの通知機能も備えています。',
+      gallery: [
+        {
+          type: 'image',
+          src: './src/assets/projects/git-grassreporter/discord-report.png',
+          alt: '実際のメッセージ',
+          caption: '実際のメッセージ'
+        },
+        {
+          type: 'image',
+          src: './src/assets/projects/git-grassreporter/action.png',
+          alt: 'Actionの動作履歴',
+          caption: 'Actionの動作履歴'
+        }
+        ]
+  }
+}
 
   // ========== ここに新しいプロジェクトを追加 ==========
   // プロジェクトを追加する場合は、上記のテンプレートに従って記述してください
