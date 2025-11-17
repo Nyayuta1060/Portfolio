@@ -23,6 +23,7 @@ import {
 import { initializeGitHubActivity } from './github.js';
 import { initializeContactProtection } from './contact.js';
 import { initializeData } from './init.js';
+import { initializeCareer } from './career.js';
 
 /**
  * アプリケーション設定
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await initializeData();
     
     // その後アプリを初期化
-    initializeApp();
+    await initializeApp();
     console.log('🚀 Portfolio初期化成功!');
   } catch (error) {
     console.error('❌ App Initialization failed:', error);
@@ -54,9 +55,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 /**
  * アプリケーションの初期化
  */
-function initializeApp() {
+async function initializeApp() {
   // コア機能を初期化
-  initializeCoreFeatures();
+  await initializeCoreFeatures();
   
   // ユーティリティ機能を初期化
   initializeUtilityFeatures();
@@ -68,7 +69,7 @@ function initializeApp() {
 /**
  * コア機能を初期化
  */
-function initializeCoreFeatures() {
+async function initializeCoreFeatures() {
   try {
     console.log('🔧 Initializing Navigation...');
     initializeNavigation();
@@ -86,6 +87,8 @@ function initializeCoreFeatures() {
     initializeFormHandling();
     console.log('🔧 Initializing Lazy Loading...');
     initializeLazyLoading();
+    console.log('🔧 Initializing Career Section...');
+    await initializeCareer();
     console.log('🔧 Initializing GitHub Activity...');
     initializeGitHubActivity();
     console.log('🔧 Initializing Contact Protection...');

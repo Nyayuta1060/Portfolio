@@ -494,6 +494,40 @@ section {
   margin: 0;
 }
 
+/* グループ化された経歴アイテム */
+.career-item-group .career-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.career-subitem {
+  padding: 0.8rem 0;
+  border-left: 2px solid var(--border-color);
+  padding-left: 1rem;
+  margin-left: 0.5rem;
+}
+
+.career-subitem:not(:last-child) {
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.career-subevent {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.career-subevent i {
+  color: var(--primary-color);
+  font-size: 0.9em;
+}
+
 .stats {
   display: flex;
   gap: 2rem;

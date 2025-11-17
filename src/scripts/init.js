@@ -3,6 +3,7 @@
 
 import { initProjectData } from './projectsData.js';
 import { initSkillData } from './skillsData.js';
+import { initCareerData } from './careerData.js';
 
 /**
  * すべてのデータを初期化
@@ -14,7 +15,8 @@ export async function initializeData() {
   try {
     await Promise.all([
       initProjectData(),
-      initSkillData()
+      initSkillData(),
+      initCareerData()
     ]);
     console.log('✅ Data loaded successfully');
     return true;

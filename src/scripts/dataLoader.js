@@ -6,7 +6,7 @@
  * @param {string} path - JSONファイルのパス
  * @returns {Promise<Object>} パースされたJSONオブジェクト
  */
-async function loadJSON(path) {
+export async function loadJSON(path) {
   try {
     const response = await fetch(path);
     if (!response.ok) {
