@@ -32,6 +32,19 @@ export {
   initProjectData
 } from './projectsData.js';
 
+// 経歴データのインポート
+export {
+  CAREER_CATEGORY,
+  getCareerData,
+  getTimeline,
+  getStats,
+  getCareerByCategory,
+  getCareerById,
+  getCareerCount,
+  getLatestCareer,
+  initCareerData
+} from './careerData.js';
+
 // アニメーション設定
 export const ANIMATION_CONFIG = {
   DEBOUNCE_DELAY: 250,
