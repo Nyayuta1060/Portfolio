@@ -1,8 +1,4 @@
 src/assets/skillstocks/README.md
 src/assets/projects/README.md
+src/data/README.md
 memo.md
-
-# ドキュメント系ファイル（README.md以外）
-src/scripts/*_GUIDE.md
-src/styles/*_GUIDE.md
-**/GUIDE.md

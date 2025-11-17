@@ -22,6 +22,7 @@ import {
 } from './components.js';
 import { initializeGitHubActivity } from './github.js';
 import { initializeContactProtection } from './contact.js';
+import { initializeData } from './init.js';
 
 /**
  * アプリケーション設定
@@ -34,9 +35,14 @@ const APP_CONFIG = {
 /**
  * DOMContentLoaded時の初期化
  */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   try {
     console.log('📦 Starting Portfolio initialization...');
+    
+    // データを最初にロード
+    await initializeData();
+    
+    // その後アプリを初期化
     initializeApp();
     console.log('🚀 Portfolio初期化成功!');
   } catch (error) {

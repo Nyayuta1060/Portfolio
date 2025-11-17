@@ -1,6 +1,6 @@
 // ========== プロジェクトモーダル機能 ==========
 import { getElements, addEventListeners } from './utils.js';
-import { PROJECT_DETAILS } from './projectsData.js';
+import { getProjectDetails } from './projectsData.js';
 
 // ========== 定数定義 ==========
 
@@ -87,7 +87,7 @@ export function initializeProjectModal() {
  * @param {NodeList} projectCards - プロジェクトカードの要素
  */
 function setupProjectCardEvents(projectCards) {
-  addEventListeners(projectCards, 'click', function(e) {
+  addEventListeners(projectCards, 'click', async function(e) {
     // リンクボタンのクリックはモーダルを開かない
     if (e.target.closest('.project-link-btn') || e.target.closest('.project-links')) {
       return;
@@ -95,7 +95,8 @@ function setupProjectCardEvents(projectCards) {
     
     e.preventDefault();
     const projectId = this.getAttribute('data-project');
-    if (projectId && PROJECT_DETAILS[projectId]) {
+    const projectDetails = await getProjectDetails();
+    if (projectId && projectDetails[projectId]) {
       openProjectModal(projectId);
     }
   });
@@ -280,8 +281,9 @@ function buildLinksSection() {
  * プロジェクトモーダルを開く
  * @param {string} projectId - プロジェクトID
  */
-function openProjectModal(projectId) {
-  const project = PROJECT_DETAILS[projectId];
+async function openProjectModal(projectId) {
+  const projectDetails = await getProjectDetails();
+  const project = projectDetails[projectId];
   const modal = document.getElementById('project-modal');
   
   if (!modal || !project) return;
