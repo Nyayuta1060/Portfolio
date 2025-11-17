@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub API Test</title>
+  <link rel="stylesheet" href="./src/styles/base.css">
+  <link rel="stylesheet" href="./src/styles/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      padding: 2rem;
+      background: var(--bg-primary, #0a0a0a);
+      color: var(--text-primary, #ffffff);
+      font-family: 'Inter', sans-serif;
+    }
+    .test-section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--bg-secondary, #1a1a1a);
+      border-radius: 12px;
+      border: 1px solid var(--border-color, #333);
+    }
+    .test-results {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #0d1117;
+      border-radius: 8px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .success { color: #3fb950; }
+    .error { color: #f85149; }
+    .info { color: #58a6ff; }
+    button {
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      background: var(--primary-color, #667eea);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-section">
+    <h1>GitHub API 接続テスト</h1>
+    <p>このページでGitHub APIへの接続をテストします。</p>
+    
+    <div>
+      <button onclick="testUserData()">ユーザー情報を取得</button>
+      <button onclick="testRepositories()">リポジトリ情報を取得</button>
+      <button onclick="testGitHubActivity()">GitHub Activity初期化</button>
+      <button onclick="clearResults()">クリア</button>
+    </div>
+    
+    <div id="results" class="test-results">
+コンソールを開いて詳細なログを確認してください。
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>GitHub Activity プレビュー</h2>
+    <div class="github-activity-section">
+      <div class="github-activity-content"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { fetchUserData, fetchRepositories, initializeGitHubActivity } from './src/scripts/github.js';
+
+    const resultsDiv = document.getElementById('results');
+
+    function log(message, type = 'info') {
+      const timestamp = new Date().toLocaleTimeString();
+      const span = document.createElement('span');
+      span.className = type;
+      span.textContent = `[${timestamp}] ${message}\n`;
+      resultsDiv.appendChild(span);
+      resultsDiv.scrollTop = resultsDiv.scrollHeight;
+    }
+
+    window.testUserData = async function() {
+      log('=== ユーザー情報取得テスト開始 ===');
+      try {
+        log('API呼び出し中...', 'info');
+        const userData = await fetchUserData();
+        if (userData) {
+          log('✅ ユーザー情報取得成功:', 'success');
+          log(JSON.stringify(userData, null, 2), 'success');
+        } else {
+          log('❌ ユーザー情報がnullです', 'error');
+          log('⚠️ ブラウザのコンソール(F12)で詳細なエラーを確認してください', 'error');
+        }
+      } catch (error) {
+        log(`❌ エラー: ${error.message}`, 'error');
+        log(`❌ スタック: ${error.stack}`, 'error');
+        console.error('Full error:', error);
+      }
+    };
+
+    window.testRepositories = async function() {
+      log('=== リポジトリ情報取得テスト開始 ===');
+      try {
+        log('API呼び出し中...', 'info');
+        const repos = await fetchRepositories();
+        if (repos && repos.length > 0) {
+          log(`✅ ${repos.length}個のリポジトリを取得しました:`, 'success');
+          log(JSON.stringify(repos, null, 2), 'success');
+        } else {
+          log('⚠️ リポジトリが見つかりませんでした', 'error');
+          log('⚠️ ブラウザのコンソール(F12)で詳細なエラーを確認してください', 'error');
+        }
+      } catch (error) {
+        log(`❌ エラー: ${error.message}`, 'error');
+        log(`❌ スタック: ${error.stack}`, 'error');
+        console.error('Full error:', error);
+      }
+    };
+
+    window.testGitHubActivity = async function() {
+      log('=== GitHub Activity初期化テスト開始 ===');
+      try {
+        log('初期化中...', 'info');
+        await initializeGitHubActivity();
+        log('✅ GitHub Activity初期化完了', 'success');
+        log('⚠️ 下のプレビューセクションを確認してください', 'info');
+      } catch (error) {
+        log(`❌ エラー: ${error.message}`, 'error');
+        log(`❌ スタック: ${error.stack}`, 'error');
+        console.error('Full error:', error);
+      }
+    };
+
+    window.clearResults = function() {
+      resultsDiv.innerHTML = 'コンソールを開いて詳細なログを確認してください。\n';
+    };
+
+    // ページ読み込み時の情報表示
+    log('GitHub API テストページ準備完了');
+    log(`対象ユーザー: Nyayuta1060`);
+    log(`API Base: https://api.github.com`);
+  </script>
+</body>
+</html>
