@@ -11,14 +11,11 @@
           "category": "education"
         },
         {
-      "title": "ろぼっと倶楽部 制御班 入部",
-      "description": "高専ロボコンに向けて、ロボットの制御やプログラミングに取り組む。",
-      "category": "club"
+          "title": "ろぼっと倶楽部 制御班 入部",
+          "description": "高専ロボコンに向けて、ロボットの制御やプログラミングに取り組む。",
+          "category": "club"
         }
       ]
-    },
-    {
-
     },
     {
       "id": "entry-2024-09",
