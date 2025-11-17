@@ -2,23 +2,24 @@
 
 // スキルデータのインポート
 export { 
-  SKILL_DETAILS,
   SKILL_LEVELS,
   FREQUENCY,
   CATEGORIES,
   getSkillCategory,
+  getSkillDetails,
   groupSkillsByCategory,
   hasSkill,
   getAllSkillIds,
-  getSkillCount
+  getSkillCount,
+  initSkillData
 } from './skillsData.js';
 
 // プロジェクトデータのインポート
 export {
-  PROJECT_DETAILS,
   PROJECT_STATUS,
   PROJECT_TYPE,
   getProjectDetails,
+  getProjectById,
   getFeaturedProjects,
   getProjectsByStatus,
   getProjectsByType,
@@ -27,7 +28,8 @@ export {
   getAllProjectIds,
   getProjectCount,
   getAllProjects,
-  getSortedProjects
+  getSortedProjects,
+  initProjectData
 } from './projectsData.js';
 
 // アニメーション設定

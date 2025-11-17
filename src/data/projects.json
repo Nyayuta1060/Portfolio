@@ -1,0 +1,158 @@
+{
+  "nulltasker": {
+    "name": "NullTasker",
+    "description": "学生向けのオープンソースタスク管理ツール",
+    "type": "web-app",
+    "status": "in-progress",
+    "featured": true,
+    "period": "2025年5月〜現在",
+    "role": "リードプログラマー",
+    "developmentType": "team",
+    "teamSize": 5,
+    "technologies": ["HTML", "CSS", "JavaScript", "Node.js"],
+    "image": {
+      "type": "file",
+      "src": "./src/assets/projects/nulltasker/NullTasker.png",
+      "alt": "NullTasker"
+    },
+    "links": {
+      "github": "https://github.com/Team-Nullpo/NullTasker",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "学生の学習効率を向上させるタスク管理システム",
+      "チーム開発でのコラボレーション経験",
+      "レスポンシブデザインの実装"
+    ],
+    "modal": {
+      "detailedDescription": "学生の学習効率を向上させることを目的とした、オープンソースのタスク管理ツールです。チーム開発での経験を通じて、協力してプロジェクトを進める重要性を学びました。",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/NullTasker.png",
+          "alt": "NullTasker ロゴ",
+          "caption": "NullTasker ロゴ"
+        }
+      ]
+    }
+  },
+  "portfolio": {
+    "name": "Portfolio Website",
+    "description": "HTML/CSS/JavaScriptで作成したポートフォリオサイト(本サイト)",
+    "type": "web-app",
+    "status": "in-progress",
+    "featured": false,
+    "period": "2025年9月〜現在",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": ["HTML", "CSS", "JavaScript", "Github API"],
+    "image": {
+      "type": "icon",
+      "icon": "fas fa-globe"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/Portfolio",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "レスポンシブデザインの実装",
+      "パーティクルアニメーション",
+      "モーダル機能"
+    ]
+  },
+  "pytranslater": {
+    "name": "PyTranslater",
+    "description": "Pythonで実装した翻訳ツール",
+    "type": "ai-ml",
+    "status": "completed",
+    "featured": false,
+    "period": "2025年6月",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": ["Python"],
+    "image": {
+      "type": "icon",
+      "icon": "fa-solid fa-language"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/PyTranslater",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "GUIで翻訳",
+      "複数言語対応",
+      "シンプルなUI"
+    ],
+    "modal": {
+      "detailedDescription": "Pythonで実装したシンプルで使いやすい翻訳ツールです。GUIを備えており、複数の言語に対応しています。",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/pytranslater/demo.png",
+          "alt": "PyTranslater デモ画面",
+          "caption": "PyTranslater デモ画面"
+        },
+        {
+          "type": "image",
+          "src": "./src/assets/projects/pytranslater/demo-another-page.png",
+          "alt": "個別ページで開いた様子",
+          "caption": "個別ページで開いた様子"
+        },
+        {
+          "type": "image",
+          "src": "./src/assets/projects/pytranslater/demo-setting.png",
+          "alt": "詳細設定画面",
+          "caption": "詳細設定画面"
+        }
+      ]
+    }
+  },
+  "git-grassreporter": {
+    "name": "Git-GrassReporter",
+    "description": "PythonとGitHub Actionsを用いたcontributionの継続を自動支援するツール",
+    "type": "automation",
+    "status": "completed",
+    "featured": false,
+    "period": "2025年10月",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": ["Python", "GitHub Actions"],
+    "image": {
+      "type": "icon",
+      "icon": "fa-solid fa-bullhorn"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/Git-GrassReporter",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "GitHub Actionsによる自動化",
+      "コントリビューション継続の支援",
+      "Discord通知機能"
+    ],
+    "modal": {
+      "detailedDescription": "GitHub ActionsとPythonを活用して、GitHubのcontributionを継続的に支援する自動化ツールです。Discordへの通知機能も備えています。",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/git-grassreporter/discord-report.png",
+          "alt": "実際のメッセージ",
+          "caption": "実際のメッセージ"
+        },
+        {
+          "type": "image",
+          "src": "./src/assets/projects/git-grassreporter/action.png",
+          "alt": "Actionの動作履歴",
+          "caption": "Actionの動作履歴"
+        }
+      ]
+    }
+  }
+}
