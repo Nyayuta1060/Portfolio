@@ -90,7 +90,7 @@ async function initializeCoreFeatures() {
     console.log('🔧 Initializing Career Section...');
     await initializeCareer();
     console.log('🔧 Initializing GitHub Activity...');
-    initializeGitHubActivity();
+    await initializeGitHubActivity();
     console.log('🔧 Initializing Contact Protection...');
     initializeContactProtection();
     console.log('✅ All core features initialized successfully');

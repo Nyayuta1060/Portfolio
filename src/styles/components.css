@@ -1187,6 +1187,20 @@
   color: #ef4444;
 }
 
+.github-error .error-title {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.github-error .error-details {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
 .github-error p {
   color: var(--text-secondary);
   font-size: 1rem;
