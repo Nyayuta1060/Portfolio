@@ -1,0 +1,57 @@
+{
+  "timeline": [
+    {
+      "id": "entry-2024-04",
+      "date": "2024.04",
+      "isGroup": true,
+      "items": [
+        {
+          "title": "大阪公立大学工業高等専門学校 入学",
+          "description": "高専に入学し、専門知識を学び始める。",
+          "category": "education"
+        },
+        {
+      "title": "ろぼっと倶楽部 制御班 入部",
+      "description": "高専ロボコンに向けて、ロボットの制御やプログラミングに取り組む。",
+      "category": "club"
+        }
+      ]
+    },
+    {
+
+    },
+    {
+      "id": "entry-2024-09",
+      "date": "2024.09",
+      "category": "competition",
+      "title": "キャチロボバトルコンテストに出場",
+      "description": null
+    },
+    {
+      "id": "entry-2025-03",
+      "date": "2025.03",
+      "title": "関西春ロボコンに出場",
+      "description": null,
+      "category": "competition"
+    },
+    {
+      "id": "entry-2025-04",
+      "date": "2025.04",
+      "title": "知能情報コースに進級",
+      "description": "AIや機械学習・プログラミングなど、より専門的な分野を学び始める。",
+      "category": "education"
+    },
+    {
+      "id": "entry-2025-09",
+      "date": "2025.09",
+      "title": "高専ロボコン2025 近畿地区大会に出場",
+      "description": "Bチームピットとして出場。田中貴金属グループ賞を受賞",
+      "category": "competition"
+    }
+  ],
+  "stats": {
+    "yearsOfLearning": 6,
+    "projectsCompleted": 15,
+    "technologies": 10
+  }
+}
