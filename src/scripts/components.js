@@ -1,6 +1,6 @@
 // ========== コンポーネント機能 ==========
 import { getElements, addEventListeners } from './utils.js';
-import { SKILL_DETAILS } from './constants.js';
+import { getSkillDetails } from './skillsData.js';
 import { initializeProjectModal } from './projectModal.js';
 
 // ========== 入力フォーカス効果 ==========
@@ -127,10 +127,11 @@ export function initializeSkillModal() {
   createModalElement();
 
   // スキルカードにクリックイベントを追加
-  addEventListeners(skillCards, 'click', function(e) {
+  addEventListeners(skillCards, 'click', async function(e) {
     e.preventDefault();
     const techId = this.getAttribute('data-tech');
-    if (techId && SKILL_DETAILS[techId]) {
+    const skillDetails = await getSkillDetails();
+    if (techId && skillDetails[techId]) {
       openSkillModal(techId);
     }
   });
@@ -194,8 +195,9 @@ function createModalElement() {
  * モーダルを開く
  * @param {string} techId - 技術ID
  */
-function openSkillModal(techId) {
-  const skill = SKILL_DETAILS[techId];
+async function openSkillModal(techId) {
+  const skillDetails = await getSkillDetails();
+  const skill = skillDetails[techId];
   const modal = document.getElementById('skill-modal');
   
   if (!modal || !skill) return;
