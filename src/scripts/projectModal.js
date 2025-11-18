@@ -466,7 +466,9 @@ function createLinkHTML(href, icon, label) {
 function setupGallery(gallery) {
   const viewer = document.getElementById('gallery-viewer');
   const thumbnails = document.getElementById('gallery-thumbnails');
-  let currentIndex = 0;
+  
+  // currentIndexを追跡するオブジェクト
+  const galleryState = { currentIndex: 0 };
 
   function showGalleryItem(index) {
     const item = gallery[index];
@@ -477,7 +479,7 @@ function setupGallery(gallery) {
       : buildGalleryVideo(item);
 
     updateThumbnails(thumbnails, index);
-    currentIndex = index;
+    galleryState.currentIndex = index;
   }
 
   function buildGalleryImage(item) {
@@ -504,8 +506,8 @@ function setupGallery(gallery) {
     });
   }
 
-  renderGalleryThumbnails(thumbnails, gallery);
-  setupGalleryNavigation(gallery, showGalleryItem, currentIndex);
+  renderGalleryThumbnails(thumbnails, gallery, showGalleryItem);
+  setupGalleryNavigation(gallery, galleryState, showGalleryItem);
   showGalleryItem(0);
 }
 
@@ -513,19 +515,20 @@ function setupGallery(gallery) {
  * ギャラリーサムネイルをレンダリング
  * @param {HTMLElement} container - サムネイルコンテナ
  * @param {Array} gallery - ギャラリーアイテム
+ * @param {Function} showGalleryItem - アイテム表示関数
  */
-function renderGalleryThumbnails(container, gallery) {
+function renderGalleryThumbnails(container, gallery, showGalleryItem) {
   container.innerHTML = gallery.map((item, index) => {
     return item.type === 'image'
       ? buildImageThumbnail(item, index)
       : buildVideoThumbnail(item, index);
   }).join('');
 
+  // サムネイルのクリックイベントを設定
   container.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
     thumb.addEventListener('click', function() {
       const index = parseInt(this.getAttribute('data-index'));
-      const showGalleryItem = this.parentElement.showGalleryItem;
-      if (showGalleryItem) showGalleryItem(index);
+      showGalleryItem(index);
     });
   });
 }
@@ -564,10 +567,10 @@ function buildVideoThumbnail(item, index) {
 /**
  * ギャラリーナビゲーションをセットアップ
  * @param {Array} gallery - ギャラリーアイテム
+ * @param {Object} galleryState - ギャラリーの状態オブジェクト
  * @param {Function} showGalleryItem - アイテム表示関数
- * @param {number} currentIndex - 現在のインデックス
  */
-function setupGalleryNavigation(gallery, showGalleryItem, currentIndex) {
+function setupGalleryNavigation(gallery, galleryState, showGalleryItem) {
   const prevBtn = document.querySelector('.gallery-prev');
   const nextBtn = document.querySelector('.gallery-next');
 
@@ -582,14 +585,20 @@ function setupGalleryNavigation(gallery, showGalleryItem, currentIndex) {
   prevBtn.style.display = 'flex';
   nextBtn.style.display = 'flex';
 
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + gallery.length) % gallery.length;
-    showGalleryItem(currentIndex);
+  // 前回のイベントリスナーを削除（重複防止）
+  const newPrevBtn = prevBtn.cloneNode(true);
+  const newNextBtn = nextBtn.cloneNode(true);
+  prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+  nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+
+  newPrevBtn.addEventListener('click', () => {
+    galleryState.currentIndex = (galleryState.currentIndex - 1 + gallery.length) % gallery.length;
+    showGalleryItem(galleryState.currentIndex);
   });
 
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % gallery.length;
-    showGalleryItem(currentIndex);
+  newNextBtn.addEventListener('click', () => {
+    galleryState.currentIndex = (galleryState.currentIndex + 1) % gallery.length;
+    showGalleryItem(galleryState.currentIndex);
   });
 }
 
