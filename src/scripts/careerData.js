@@ -109,5 +109,33 @@ export async function getLatestCareer(count = 3) {
   return timeline.slice(-count).reverse();
 }
 
+/**
+ * 資格データを取得
+ * @returns {Promise<Array>} 資格の配列
+ */
+export async function getCertifications() {
+  const data = await getCareerData();
+  return data.certifications || [];
+}
+
+/**
+ * カテゴリ別に資格をフィルタリング
+ * @param {string} category - カテゴリ
+ * @returns {Promise<Array>} フィルタリングされた資格の配列
+ */
+export async function getCertificationsByCategory(category) {
+  const certifications = await getCertifications();
+  return certifications.filter(cert => cert.category === category);
+}
+
+/**
+ * 資格の総数を取得
+ * @returns {Promise<number>} 資格の総数
+ */
+export async function getCertificationCount() {
+  const certifications = await getCertifications();
+  return certifications.length;
+}
+
 // 後方互換性のためのエクスポート
 export { careerDataCache as CAREER_DATA };

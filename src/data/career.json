@@ -50,5 +50,17 @@
     "yearsOfLearning": 6,
     "projectsCompleted": 15,
     "technologies": 10
-  }
+  },
+  "certifications": [
+    {
+      "id": "cert-eiken-pre2",
+      "name": "実用英語技能検定準2級",
+      "nameEn": "EIKEN Grade Pre-2",
+      "issuer": "公益財団法人 日本英語検定協会",
+      "date": "2023.07",
+      "icon": "fas fa-language",
+      "description": "高校中級程度の英語能力を証明する資格",
+      "category": "language"
+    }
+  ]
 }

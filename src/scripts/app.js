@@ -23,7 +23,7 @@ import {
 import { initializeGitHubActivity } from './github.js';
 import { initializeContactProtection } from './contact.js';
 import { initializeData } from './init.js';
-import { initializeCareer } from './career.js';
+import { initializeCareer, initializeCertifications } from './career.js';
 
 /**
  * アプリケーション設定
@@ -89,6 +89,8 @@ async function initializeCoreFeatures() {
     initializeLazyLoading();
     console.log('🔧 Initializing Career Section...');
     await initializeCareer();
+    console.log('🔧 Initializing Certifications Section...');
+    await initializeCertifications();
     console.log('🔧 Initializing GitHub Activity...');
     await initializeGitHubActivity();
     console.log('🔧 Initializing Contact Protection...');

@@ -28,6 +28,29 @@ export async function initializeCareer() {
 }
 
 /**
+ * 資格セクションを初期化
+ */
+export async function initializeCertifications() {
+  const certificationsContainer = document.querySelector('.certifications-grid');
+  
+  if (!certificationsContainer) {
+    console.warn('Certifications container not found');
+    return;
+  }
+
+  try {
+    const { getCertifications } = await import('./careerData.js');
+    const certifications = await getCertifications();
+
+    renderCertifications(certificationsContainer, certifications);
+    console.log('✅ Certifications section loaded successfully');
+  } catch (error) {
+    logError('Initialize Certifications', error);
+    showCertificationsError(certificationsContainer);
+  }
+}
+
+/**
  * 経歴タイムラインをレンダリング
  * @param {HTMLElement} container - コンテナ要素
  * @param {Array} timeline - タイムラインデータ
@@ -139,6 +162,63 @@ function showCareerError(container) {
     <div class="career-error" style="text-align: center; padding: 2rem; color: #999;">
       <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
       <p>経歴データの読み込みに失敗しました</p>
+    </div>
+  `;
+}
+
+/**
+ * 資格をレンダリング
+ * @param {HTMLElement} container - コンテナ要素
+ * @param {Array} certifications - 資格データ
+ */
+function renderCertifications(container, certifications) {
+  if (!certifications || certifications.length === 0) {
+    container.innerHTML = `
+      <div class="no-certifications">
+        <p>現在、表示できる資格情報はありません。</p>
+      </div>
+    `;
+    return;
+  }
+
+  const certificationsHTML = certifications.map(cert => createCertificationCard(cert)).join('');
+  container.innerHTML = certificationsHTML;
+}
+
+/**
+ * 資格カードのHTMLを生成
+ * @param {Object} cert - 資格データ
+ * @returns {string} HTML文字列
+ */
+function createCertificationCard(cert) {
+  return `
+    <div class="certification-card" data-category="${cert.category}">
+      <div class="certification-icon">
+        <i class="${cert.icon}"></i>
+      </div>
+      <div class="certification-info">
+        <h4 class="certification-name">${cert.name}</h4>
+        <p class="certification-name-en">${cert.nameEn}</p>
+        <p class="certification-issuer">${cert.issuer}</p>
+        <p class="certification-date">
+          <i class="fas fa-calendar"></i>
+          ${cert.date} 取得
+        </p>
+        ${cert.description ? `<p class="certification-description">${cert.description}</p>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * 資格エラー状態を表示
+ * @param {HTMLElement} container - コンテナ要素
+ */
+function showCertificationsError(container) {
+  container.innerHTML = `
+    <div class="certifications-error" style="text-align: center; padding: 2rem; color: #999;">
+      <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+      <p>資格データの読み込みに失敗しました</p>
     </div>
   `;
 }
