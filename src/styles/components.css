@@ -742,6 +742,12 @@
   box-shadow: 0 8px 20px rgba(0, 128, 255, 0.3);
 }
 
+.skill-modal-icon[data-tech="typst"] {
+  background: linear-gradient(135deg, #239dad, #3eb8c8);
+  border-color: #239dad;
+  box-shadow: 0 8px 20px rgba(35, 157, 173, 0.3);
+}
+
 .skill-modal-title-section {
   flex: 1;
 }
