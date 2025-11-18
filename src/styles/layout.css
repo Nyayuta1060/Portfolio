@@ -551,6 +551,120 @@ section {
   margin-top: 0.5rem;
 }
 
+/* ========== 資格セクション ========== */
+.certifications-section {
+  margin: 3rem 0;
+}
+
+.certifications-title {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.certifications-title i {
+  font-size: 1.3rem;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.certification-card {
+  background: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 1.8rem;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.certification-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(100, 255, 218, 0.15);
+}
+
+.certification-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--gradient-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certification-icon i {
+  font-size: 2rem;
+  color: var(--background);
+}
+
+.certification-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.certification-name {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.certification-name-en {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-style: italic;
+}
+
+.certification-issuer {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.certification-date {
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+}
+
+.certification-date i {
+  font-size: 0.8rem;
+}
+
+.certification-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0 0 0;
+  line-height: 1.5;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.no-certifications {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
 /* テックオービット */
 .tech-orbit {
   position: relative;

@@ -45,6 +45,11 @@
     grid-template-columns: 1fr;
   }
 
+  /* Certifications responsive */
+  .certifications-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
   /* Contact section - タブレットでは2列を維持 */
   .contact-methods {
     grid-template-columns: repeat(2, 1fr);
@@ -204,6 +209,20 @@
   .tech-orbit {
     width: 250px;
     height: 250px;
+  }
+
+  /* Certifications mobile */
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certification-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .certification-icon {
+    margin: 0 auto;
   }
 
   /* Contact section - モバイルでは1列に */
