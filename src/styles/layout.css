@@ -42,7 +42,7 @@
   color: var(--primary-bg);
   font-size: 1.3rem;
   box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
-  transition: all 0.3s ease;
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -102,6 +102,36 @@
 .nav-logo:hover .logo-subtitle {
   color: var(--secondary-color);
   letter-spacing: 2px;
+}
+
+/* ロゴクリック時のアクティブ状態 */
+.nav-logo:active .logo-icon {
+  transform: rotate(-10deg) scale(0.95);
+  box-shadow: 0 2px 10px rgba(100, 255, 218, 0.5);
+}
+
+.nav-logo:active .logo-name {
+  transform: scale(0.98);
+}
+
+/* ロゴ回転アニメーション用 */
+@keyframes logoRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ロゴパルスエフェクト */
+@keyframes logoPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(100, 255, 218, 0.6);
+  }
 }
 
 .bracket {
