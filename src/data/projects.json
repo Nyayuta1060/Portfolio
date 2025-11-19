@@ -33,6 +33,31 @@
           "src": "./src/assets/projects/nulltasker/NullTasker.png",
           "alt": "NullTasker ロゴ",
           "caption": "NullTasker ロゴ"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/task.png",
+          "alt": "タスク管理画面",
+          "caption": "タスク管理画面"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/calender.png",
+          "alt": "カレンダー画面",
+          "caption": "カレンダー画面"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/smartphone.png",
+          "alt": "スマートフォン表示",
+          "caption": "スマートフォン表示"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/login.png",
+          "alt": "ログイン画面",
+          "caption": "ログイン画面"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/new-user.png",
+          "alt": "新規登録画面",
+          "caption": "新規登録画面"
         }
       ]
     }
