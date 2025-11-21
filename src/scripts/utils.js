@@ -37,8 +37,11 @@ export function throttle(func, limit) {
 
 /**
  * 要素が存在するかチェック
- * @param {string|HTMLElement} element - セレクターまたは要素
+ * @param {string|HTMLElement|null} element - セレクターまたは要素
  * @returns {HTMLElement|null} 要素またはnull
+ * @example
+ * const header = getElement('.header');
+ * const sameHeader = getElement(header); // 既存の要素を渡しても動作
  */
 export function getElement(element) {
   if (typeof element === 'string') {
@@ -50,36 +53,56 @@ export function getElement(element) {
 /**
  * 複数の要素を取得
  * @param {string} selector - CSSセレクター
- * @returns {NodeList} 要素のリスト
+ * @returns {NodeListOf<Element>} 要素のリスト（空の場合もある）
+ * @throws {TypeError} selectorが文字列でない場合
+ * @example
+ * const buttons = getElements('.btn');
+ * buttons.forEach(btn => console.log(btn));
  */
 export function getElements(selector) {
+  if (typeof selector !== 'string') {
+    throw new TypeError('Selector must be a string');
+  }
   return document.querySelectorAll(selector);
 }
 
 /**
  * クラスの追加・削除をトグル
- * @param {HTMLElement} element - 対象要素
+ * @param {HTMLElement|null} element - 対象要素
  * @param {string} className - クラス名
+ * @returns {boolean} トグル後のクラスの存在状態
+ * @example
+ * const isActive = toggleClass(menu, 'active');
  */
 export function toggleClass(element, className) {
-  if (element) {
-    element.classList.toggle(className);
+  if (element && element instanceof HTMLElement) {
+    return element.classList.toggle(className);
   }
+  return false;
 }
 
 /**
  * 安全にイベントリスナーを追加
- * @param {HTMLElement|NodeList} elements - 対象要素
+ * @param {HTMLElement|NodeList|Array<HTMLElement>|null} elements - 対象要素
  * @param {string} event - イベント名
- * @param {Function} handler - ハンドラー関数
+ * @param {EventListener} handler - ハンドラー関数
+ * @param {AddEventListenerOptions} [options] - イベントリスナーオプション
+ * @returns {void}
+ * @example
+ * addEventListeners(buttons, 'click', handleClick);
+ * addEventListeners(button, 'click', handleClick, { once: true });
  */
-export function addEventListeners(elements, event, handler) {
+export function addEventListeners(elements, event, handler, options) {
   if (!elements) return;
   
-  if (elements instanceof NodeList) {
-    elements.forEach(el => el.addEventListener(event, handler));
+  if (elements instanceof NodeList || Array.isArray(elements)) {
+    elements.forEach(el => {
+      if (el instanceof HTMLElement) {
+        el.addEventListener(event, handler, options);
+      }
+    });
   } else if (elements instanceof HTMLElement) {
-    elements.addEventListener(event, handler);
+    elements.addEventListener(event, handler, options);
   }
 }
 
@@ -89,14 +112,19 @@ export function addEventListeners(elements, event, handler) {
  * 画像の遅延読み込みを初期化
  * ネイティブのlazyloadingをサポートしている場合はそれを使用
  * サポートしていない場合はIntersection Observerを使用
+ * @returns {void}
+ * @example
+ * initializeLazyImages();
  */
 export function initializeLazyImages() {
   if ('loading' in HTMLImageElement.prototype) {
     const images = getElements('img[data-src]');
     images.forEach(img => {
-      img.loading = 'lazy';
-      img.src = img.dataset.src;
-      img.removeAttribute('data-src');
+      if (img instanceof HTMLImageElement) {
+        img.loading = 'lazy';
+        img.src = img.dataset.src || '';
+        img.removeAttribute('data-src');
+      }
     });
   } else {
     // フォールバック: Intersection Observerを使用
@@ -106,6 +134,8 @@ export function initializeLazyImages() {
 
 /**
  * Intersection Observerによる遅延読み込み(フォールバック)
+ * @private
+ * @returns {void}
  */
 function initializeLazyLoadingFallback() {
   const lazyElements = getElements('[data-src]');
@@ -114,9 +144,12 @@ function initializeLazyLoadingFallback() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const element = entry.target;
-        element.src = element.getAttribute('data-src');
-        element.removeAttribute('data-src');
-        lazyObserver.unobserve(element);
+        const src = element.getAttribute('data-src');
+        if (src && element instanceof HTMLElement) {
+          element.setAttribute('src', src);
+          element.removeAttribute('data-src');
+          lazyObserver.unobserve(element);
+        }
       }
     });
   });
@@ -126,11 +159,17 @@ function initializeLazyLoadingFallback() {
 
 /**
  * 重要なリソースをプリロード
+ * @param {string[]} [additionalResources=[]] - 追加でプリロードするリソースのURL配列
+ * @returns {void}
+ * @example
+ * preloadCriticalResources();
+ * preloadCriticalResources(['https://example.com/custom-font.woff2']);
  */
-export function preloadCriticalResources() {
+export function preloadCriticalResources(additionalResources = []) {
   const criticalFonts = [
     'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap',
-    'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap'
+    'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap',
+    ...additionalResources
   ];
 
   criticalFonts.forEach(fontUrl => {
@@ -146,6 +185,9 @@ export function preloadCriticalResources() {
 
 /**
  * アクセシビリティ機能を初期化
+ * @returns {void}
+ * @example
+ * initializeAccessibility();
  */
 export function initializeAccessibility() {
   setupKeyboardNavigation();
@@ -154,6 +196,9 @@ export function initializeAccessibility() {
 
 /**
  * キーボードナビゲーションのセットアップ
+ * Tabキーでのフォーカス時に視覚的インジケーターを表示
+ * @private
+ * @returns {void}
  */
 function setupKeyboardNavigation() {
   document.addEventListener('keydown', (e) => {
@@ -169,12 +214,31 @@ function setupKeyboardNavigation() {
 
 /**
  * ユーザーの減色モーション設定を尊重
+ * prefers-reduced-motionメディアクエリに対応
+ * @private
+ * @returns {void}
  */
 function respectReducedMotion() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  
+  if (prefersReducedMotion.matches) {
     document.documentElement.style.setProperty('--transition-smooth', 'none');
     document.documentElement.style.setProperty('--transition-bounce', 'none');
+    document.documentElement.style.setProperty('--transition-fast', 'none');
   }
+  
+  // 設定変更の監視
+  prefersReducedMotion.addEventListener('change', (e) => {
+    if (e.matches) {
+      document.documentElement.style.setProperty('--transition-smooth', 'none');
+      document.documentElement.style.setProperty('--transition-bounce', 'none');
+      document.documentElement.style.setProperty('--transition-fast', 'none');
+    } else {
+      document.documentElement.style.removeProperty('--transition-smooth');
+      document.documentElement.style.removeProperty('--transition-bounce');
+      document.documentElement.style.removeProperty('--transition-fast');
+    }
+  });
 }
 
 // ========== DOM操作ユーティリティ ==========
