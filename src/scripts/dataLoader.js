@@ -1,6 +1,8 @@
 // ========== データローダー ==========
 // JSONファイルからデータを読み込むユーティリティ
 
+import { DATA_CONFIG } from './config.js';
+
 /**
  * JSONファイルを読み込む共通関数
  * @param {string} path - JSONファイルのパス
@@ -24,7 +26,7 @@ export async function loadJSON(path) {
  * @returns {Promise<Object>} プロジェクトデータ
  */
 export async function loadProjects() {
-  return await loadJSON('./src/data/projects.json');
+  return await loadJSON(DATA_CONFIG.paths.projects);
 }
 
 /**
@@ -32,7 +34,7 @@ export async function loadProjects() {
  * @returns {Promise<Object>} スキルデータ
  */
 export async function loadSkills() {
-  return await loadJSON('./src/data/skills.json');
+  return await loadJSON(DATA_CONFIG.paths.skills);
 }
 
 /**

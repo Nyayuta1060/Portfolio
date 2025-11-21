@@ -3,24 +3,7 @@
  */
 
 import { logError } from './utils.js';
-import { DATA_SOURCES } from './constants.js';
-
-/**
- * プロジェクトデータを読み込む
- * @returns {Promise<Object>} プロジェクトデータ
- */
-async function loadProjectsData() {
-  try {
-    const response = await fetch(DATA_SOURCES.PROJECTS);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch projects data: ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    logError('Error loading projects data', error);
-    throw error;
-  }
-}
+import { getProjectDetails } from './projectsData.js';
 
 /**
  * プロジェクト画像のHTML要素を生成
@@ -162,7 +145,7 @@ export async function initializeProjects() {
   }
 
   try {
-    const projectsData = await loadProjectsData();
+    const projectsData = await getProjectDetails();
     console.log('✅ Projects data loaded:', Object.keys(projectsData).length, 'projects');
     
     // ローディング表示をクリア

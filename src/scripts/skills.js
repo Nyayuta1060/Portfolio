@@ -3,7 +3,7 @@
  */
 
 import { logError } from './utils.js';
-import { DATA_SOURCES } from './constants.js';
+import { getSkillDetails } from './skillsData.js';
 
 /**
  * カテゴリ情報の定義
@@ -26,23 +26,6 @@ const CATEGORY_INFO = {
     icon: 'fas fa-tools'
   }
 };
-
-/**
- * スキルデータを読み込む
- * @returns {Promise<Object>} スキルデータ
- */
-async function loadSkillsData() {
-  try {
-    const response = await fetch(DATA_SOURCES.SKILLS);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch skills data: ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    logError('Error loading skills data', error);
-    throw error;
-  }
-}
 
 /**
  * スキルカードのHTML要素を生成
@@ -118,7 +101,7 @@ export async function initializeSkills() {
   }
 
   try {
-    const skillsData = await loadSkillsData();
+    const skillsData = await getSkillDetails();
     console.log('✅ Skills data loaded:', Object.keys(skillsData).length, 'skills');
     
     // カテゴリごとにスキルを分類
