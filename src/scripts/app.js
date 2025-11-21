@@ -1,4 +1,5 @@
 // ========== メイン初期化ファイル ==========
+import { APP_CONFIG, PERFORMANCE_CONFIG } from './config.js';
 import { 
   debounce, 
   throttle, 
@@ -24,14 +25,6 @@ import { initializeGitHubActivity } from './github.js';
 import { initializeContactProtection } from './contact.js';
 import { initializeData } from './init.js';
 import { initializeCareer, initializeCertifications } from './career.js';
-
-/**
- * アプリケーション設定
- */
-const APP_CONFIG = {
-  DEBOUNCE_DELAY: 250,
-  THROTTLE_DELAY: 16 // 60fps
-};
 
 /**
  * DOMContentLoaded時の初期化
@@ -126,7 +119,7 @@ function setupEventListeners() {
 function setupResizeHandler() {
   window.addEventListener('resize', debounce(() => {
     handleResize();
-  }, APP_CONFIG.DEBOUNCE_DELAY));
+  }, PERFORMANCE_CONFIG.debounceDelay));
 }
 
 /**
@@ -135,7 +128,7 @@ function setupResizeHandler() {
 function setupScrollHandler() {
   window.addEventListener('scroll', throttle(() => {
     handleScroll();
-  }, APP_CONFIG.THROTTLE_DELAY));
+  }, PERFORMANCE_CONFIG.throttleDelay));
 }
 
 /**
