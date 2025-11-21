@@ -320,6 +320,68 @@ body {
 }
 
 /**
+ * ローディングアクティブ時
+ */
+.loading-active {
+  overflow: hidden;
+}
+
+/**
+ * ローディングオーバーレイ
+ */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+}
+
+.loading-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-overlay-content p {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+/**
+ * スピナーサイズバリエーション
+ */
+.spinner-small {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.spinner-medium {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+.spinner-large {
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
+}
+
+/**
  * テキスト中央揃え
  */
 .text-center {
