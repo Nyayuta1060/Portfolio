@@ -207,11 +207,111 @@ export function addAnimationStyles() {
   document.head.appendChild(style);
 }
 
+// ========== エラーハンドリング ==========
+
 /**
- * エラーハンドリング用のログ関数
- * @param {string} context - エラーのコンテキスト
- * @param {Error} error - エラーオブジェクト
+ * エラーレベルの定義
  */
-export function logError(context, error) {
-  console.error(`[${context}] エラーが発生しました:`, error);
+const ERROR_LEVELS = {
+  INFO: 'INFO',
+  WARN: 'WARN',
+  ERROR: 'ERROR',
+  CRITICAL: 'CRITICAL'
+};
+
+/**
+ * 拡張エラーハンドリング用のログ関数
+ * 開発環境では詳細情報を表示し、本番環境では最小限の情報のみ記録
+ * @param {string} context - エラーのコンテキスト（機能名、ファイル名など）
+ * @param {Error|string} error - エラーオブジェクトまたはメッセージ
+ * @param {string} level - エラーレベル（INFO, WARN, ERROR, CRITICAL）
+ * @param {Object} additionalInfo - 追加情報（オプション）
+ */
+export function logError(context, error, level = ERROR_LEVELS.ERROR, additionalInfo = {}) {
+  const timestamp = new Date().toISOString();
+  const isDevelopment = window.location.hostname === 'localhost' || 
+                        window.location.hostname === '127.0.0.1';
+  
+  // エラー情報の構築
+  const errorInfo = {
+    timestamp,
+    context,
+    level,
+    message: error?.message || error,
+    stack: error?.stack,
+    userAgent: navigator.userAgent,
+    url: window.location.href,
+    ...additionalInfo
+  };
+
+  // レベルに応じたログ出力
+  const logMethod = {
+    [ERROR_LEVELS.INFO]: console.info,
+    [ERROR_LEVELS.WARN]: console.warn,
+    [ERROR_LEVELS.ERROR]: console.error,
+    [ERROR_LEVELS.CRITICAL]: console.error
+  }[level] || console.error;
+
+  if (isDevelopment) {
+    // 開発環境: 詳細情報を表示
+    logMethod(`[${level}] [${context}] @ ${timestamp}`, errorInfo);
+  } else {
+    // 本番環境: 最小限の情報のみ
+    logMethod(`[${level}] [${context}]:`, error?.message || error);
+  }
+
+  // クリティカルエラーの場合は追加処理（将来的に外部サービスへの送信など）
+  if (level === ERROR_LEVELS.CRITICAL) {
+    handleCriticalError(errorInfo);
+  }
+
+  return errorInfo;
 }
+
+/**
+ * クリティカルエラーの処理
+ * @param {Object} errorInfo - エラー情報
+ */
+function handleCriticalError(errorInfo) {
+  // 将来的にはエラートラッキングサービス（Sentry等）への送信を実装
+  console.error('🚨 CRITICAL ERROR:', errorInfo);
+  
+  // ユーザーへの通知（オプション）
+  // showErrorNotification('重大なエラーが発生しました。ページを再読み込みしてください。');
+}
+
+/**
+ * 安全な関数実行ラッパー
+ * エラーが発生してもアプリケーション全体が停止しないようにする
+ * @param {Function} fn - 実行する関数
+ * @param {string} context - コンテキスト
+ * @param {Function} fallback - エラー時のフォールバック関数
+ * @returns {*} 関数の実行結果またはフォールバック結果
+ */
+export function safeExecute(fn, context, fallback = () => null) {
+  try {
+    return fn();
+  } catch (error) {
+    logError(context, error, ERROR_LEVELS.ERROR);
+    return fallback();
+  }
+}
+
+/**
+ * 非同期関数の安全な実行ラッパー
+ * @param {Function} fn - 実行する非同期関数
+ * @param {string} context - コンテキスト
+ * @param {Function} fallback - エラー時のフォールバック関数
+ * @returns {Promise<*>} 関数の実行結果またはフォールバック結果
+ */
+export async function safeExecuteAsync(fn, context, fallback = async () => null) {
+  try {
+    return await fn();
+  } catch (error) {
+    logError(context, error, ERROR_LEVELS.ERROR);
+    return await fallback();
+  }
+}
+
+// エラーレベルをエクスポート
+export { ERROR_LEVELS };
