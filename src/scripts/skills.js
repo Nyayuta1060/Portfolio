@@ -107,6 +107,7 @@ function createCategorySection(category, skillCards) {
  * スキルセクションを初期化して表示
  */
 export async function initializeSkills() {
+  console.log('🎨 Initializing Skills Section...');
   const container = document.querySelector('.skills-grid-container');
   if (!container) {
     logError('Skills container not found');
@@ -115,6 +116,7 @@ export async function initializeSkills() {
 
   try {
     const skillsData = await loadSkillsData();
+    console.log('✅ Skills data loaded:', Object.keys(skillsData).length, 'skills');
     
     // カテゴリごとにスキルを分類
     const skillsByCategory = {};
@@ -136,8 +138,11 @@ export async function initializeSkills() {
       container.appendChild(section);
     });
 
+    console.log('✅ Skills section rendered successfully');
+
   } catch (error) {
     container.innerHTML = '<p class="error-message">スキルデータの読み込みに失敗しました</p>';
     logError('Failed to initialize skills section', { error });
+    console.error('❌ Skills initialization error:', error);
   }
 }

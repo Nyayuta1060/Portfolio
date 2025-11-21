@@ -154,6 +154,7 @@ function createProjectCard(projectId, projectData) {
  * プロジェクトセクションを初期化して表示
  */
 export async function initializeProjects() {
+  console.log('🎨 Initializing Projects Section...');
   const container = document.querySelector('.projects-grid');
   if (!container) {
     logError('Projects container not found');
@@ -162,6 +163,7 @@ export async function initializeProjects() {
 
   try {
     const projectsData = await loadProjectsData();
+    console.log('✅ Projects data loaded:', Object.keys(projectsData).length, 'projects');
     
     // ローディング表示をクリア
     container.innerHTML = '';
@@ -172,8 +174,11 @@ export async function initializeProjects() {
       container.appendChild(card);
     });
 
+    console.log('✅ Projects section rendered successfully');
+
   } catch (error) {
     container.innerHTML = '<p class="error-message">プロジェクトデータの読み込みに失敗しました</p>';
     logError('Failed to initialize projects section', { error });
+    console.error('❌ Projects initialization error:', error);
   }
 }

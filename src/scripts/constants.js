@@ -45,6 +45,13 @@ export {
   initCareerData
 } from './careerData.js';
 
+// データソースのパス
+export const DATA_SOURCES = {
+  SKILLS: './src/data/skills.json',
+  PROJECTS: './src/data/projects.json',
+  CAREER: './src/data/career.json'
+};
+
 // アニメーション設定
 export const ANIMATION_CONFIG = {
   DEBOUNCE_DELAY: 250,
