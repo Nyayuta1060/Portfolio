@@ -614,7 +614,7 @@ function setupGalleryNavigation(gallery, galleryState, showGalleryItem) {
  */
 function showModal(modal) {
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
 }
 
 /**
@@ -625,7 +625,7 @@ function closeProjectModal() {
   if (!modal) return;
 
   modal.classList.remove('active');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
 
   stopAllVideos(modal);
 }

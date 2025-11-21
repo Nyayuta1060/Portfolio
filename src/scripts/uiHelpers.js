@@ -92,7 +92,7 @@ export function createCard(config) {
   }
   
   if (onClick) {
-    card.style.cursor = 'pointer';
+    card.classList.add('clickable');
     card.addEventListener('click', onClick);
   }
   
@@ -183,7 +183,7 @@ export function openModal(modal) {
   
   if (modalElement) {
     modalElement.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
   }
 }
 
@@ -199,7 +199,7 @@ export function closeModal(modal) {
   
   if (modalElement) {
     modalElement.classList.remove('active');
-    document.body.style.overflow = '';
+    document.body.classList.remove('modal-open');
   }
 }
 

@@ -286,6 +286,16 @@ body {
 .fade-in {
   opacity: 1 !important;
   transform: translateY(0) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/**
+ * フェードアウトクラス
+ */
+.fade-out {
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /**
@@ -293,6 +303,20 @@ body {
  */
 .hidden {
   display: none !important;
+}
+
+/**
+ * クリック可能要素のカーソル
+ */
+.clickable {
+  cursor: pointer;
+}
+
+/**
+ * モーダル開いている時のbody
+ */
+.modal-open {
+  overflow: hidden;
 }
 
 /**

@@ -89,11 +89,8 @@ function filterSkillCategoriesDynamic(container, category) {
  */
 function showAllCategories(categorySections) {
   categorySections.forEach(section => {
-    section.classList.remove('hidden');
-    setTimeout(() => {
-      section.style.opacity = '1';
-      section.style.transform = 'translateY(0)';
-    }, 50);
+    section.classList.remove('hidden', 'fade-out');
+    section.classList.add('fade-in');
   });
 }
 
@@ -107,17 +104,16 @@ function showSpecificCategory(categorySections, category) {
     const sectionCategory = section.getAttribute('data-category');
     
     if (sectionCategory === category) {
-      section.classList.remove('hidden');
-      setTimeout(() => {
-        section.style.opacity = '1';
-        section.style.transform = 'translateY(0)';
-      }, 50);
+      section.classList.remove('hidden', 'fade-out');
+      section.classList.add('fade-in');
     } else {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(20px)';
-      setTimeout(() => {
+      section.classList.remove('fade-in');
+      section.classList.add('fade-out');
+      // トランジション後に hidden を追加
+      section.addEventListener('transitionend', function hideSection() {
         section.classList.add('hidden');
-      }, 300);
+        section.removeEventListener('transitionend', hideSection);
+      }, { once: true });
     }
   });
 }
@@ -232,29 +228,31 @@ async function openSkillModal(techId) {
 
   // リンクを設定
   const linksContainer = document.getElementById('modal-skill-links');
-  linksContainer.innerHTML = '';
+  const links = [];
   
   if (skill.links.official) {
-    linksContainer.innerHTML += `
+    links.push(`
       <a href="${skill.links.official}" class="skill-modal-link" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-book"></i>
         <span>公式ドキュメント</span>
       </a>
-    `;
+    `);
   }
   
   if (skill.links.github) {
-    linksContainer.innerHTML += `
+    links.push(`
       <a href="${skill.links.github}" class="skill-modal-link" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-github"></i>
         <span>GitHub</span>
       </a>
-    `;
+    `);
   }
+  
+  linksContainer.innerHTML = links.join('');
 
   // モーダルを表示
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
 }
 
 /**
@@ -265,7 +263,7 @@ function closeSkillModal() {
   if (!modal) return;
 
   modal.classList.remove('active');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
 }
 
 /**
