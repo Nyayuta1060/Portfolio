@@ -62,7 +62,7 @@ export const OBSERVER_CONFIG = {
 
 // ナビゲーション設定
 export const NAV_CONFIG = {
-  OFFSET: 80, // ナビバーの高さ
+  OFFSET: 80, // ナビバーの高さ（CSS変数 --nav-height と同期）
   SCROLL_THRESHOLD: 100,
   ACTIVE_SECTION_OFFSET: 150
 };
@@ -70,6 +70,32 @@ export const NAV_CONFIG = {
 // パララックス設定
 export const PARALLAX_CONFIG = {
   SPEED: 0.5
+};
+
+// Z-Index階層（CSS変数と同期）
+export const Z_INDEX = {
+  DROPDOWN: 100,
+  STICKY: 500,
+  NAVBAR: 1000,
+  MODAL_OVERLAY: 9999,
+  MODAL: 10000
+};
+
+// ブレークポイント（ピクセル値）
+export const BREAKPOINTS = {
+  MOBILE: 480,
+  TABLET: 768,
+  DESKTOP: 1024,
+  WIDE: 1440
+};
+
+// タイミング定数
+export const TIMING = {
+  TRANSITION_FAST: 150,
+  TRANSITION_NORMAL: 300,
+  TRANSITION_SLOW: 400,
+  DEBOUNCE_DEFAULT: 250,
+  THROTTLE_DEFAULT: 16
 };
 
 // セレクター定数

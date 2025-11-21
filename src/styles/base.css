@@ -60,14 +60,31 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --transition-fast: all 0.15s ease;
+  --animation-delay-base: 200ms;
   
   /* === レイアウト === */
   --container-max-width: 1200px;
   --nav-height: 80px;
+  --section-padding: 8rem;
+  --card-padding: 2rem;
+  --modal-padding: 2.5rem;
   --border-radius-sm: 8px;
   --border-radius-md: 15px;
   --border-radius-lg: 20px;
   --border-radius-full: 50px;
+  
+  /* === Z-Index階層 === */
+  --z-index-dropdown: 100;
+  --z-index-sticky: 500;
+  --z-index-navbar: 1000;
+  --z-index-modal-overlay: 9999;
+  --z-index-modal: 10000;
+  
+  /* === ブレークポイント（参照用） === */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1440px;
 }
 
 /**
