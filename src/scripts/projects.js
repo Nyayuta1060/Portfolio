@@ -17,7 +17,7 @@ async function loadProjectsData() {
     }
     return await response.json();
   } catch (error) {
-    logError('Error loading projects data', { error });
+    logError('Error loading projects data', error);
     throw error;
   }
 }

@@ -73,7 +73,7 @@ const MODAL_ICONS = {
  */
 export function initializeProjectModal() {
   createProjectModalElement();
-  setupProjectCardEvents(null); // イベントデリゲーション使用のためnull
+  setupProjectCardEvents();
   setupModalCloseEvents();
 }
 
@@ -81,9 +81,8 @@ export function initializeProjectModal() {
 
 /**
  * プロジェクトカードのイベントを設定（イベントデリゲーション使用）
- * @param {NodeList} projectCards - プロジェクトカードの要素（未使用だが後方互換性のため保持）
  */
-function setupProjectCardEvents(projectCards) {
+function setupProjectCardEvents() {
   // イベントデリゲーション: .projects-gridにイベントを設定
   const projectsGrid = document.querySelector('.projects-grid');
   if (!projectsGrid) return;

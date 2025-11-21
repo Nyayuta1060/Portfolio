@@ -109,11 +109,13 @@ function showSpecificCategory(categorySections, category) {
     } else {
       section.classList.remove('fade-in');
       section.classList.add('fade-out');
-      // トランジション後に hidden を追加
-      section.addEventListener('transitionend', function hideSection() {
-        section.classList.add('hidden');
-        section.removeEventListener('transitionend', hideSection);
-      }, { once: true });
+      // トランジション後に hidden を追加（opacity完了時のみ）
+      section.addEventListener('transitionend', function hideSection(e) {
+        if (e.propertyName === 'opacity') {
+          section.classList.add('hidden');
+          section.removeEventListener('transitionend', hideSection);
+        }
+      });
     }
   });
 }

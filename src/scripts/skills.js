@@ -39,7 +39,7 @@ async function loadSkillsData() {
     }
     return await response.json();
   } catch (error) {
-    logError('Error loading skills data', { error });
+    logError('Error loading skills data', error);
     throw error;
   }
 }
@@ -105,6 +105,9 @@ function createCategorySection(category, skillCards) {
 
 /**
  * スキルセクションを初期化して表示
+ * データを読み込み、カテゴリごとにスキルカードをレンダリングする
+ * @returns {Promise<void>}
+ * @throws {Error} データの読み込みに失敗した場合
  */
 export async function initializeSkills() {
   console.log('🎨 Initializing Skills Section...');

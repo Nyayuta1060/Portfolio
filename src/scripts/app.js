@@ -1,5 +1,5 @@
 // ========== メイン初期化ファイル ==========
-import { APP_CONFIG, PERFORMANCE_CONFIG } from './config.js';
+import { PERFORMANCE_CONFIG } from './config.js';
 import { 
   debounce, 
   throttle, 

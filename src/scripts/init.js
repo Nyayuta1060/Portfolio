@@ -15,10 +15,15 @@ export async function initializeData() {
   console.log('📂 Loading data from JSON files...');
   
   try {
+    // データを先に初期化（キャッシュ作成）
     await Promise.all([
       initProjectData(),
       initSkillData(),
-      initCareerData(),
+      initCareerData()
+    ]);
+    
+    // キャッシュされたデータを使ってUIを構築
+    await Promise.all([
       initializeSkills(),
       initializeProjects()
     ]);

@@ -156,17 +156,21 @@ export function createModal(config) {
   modal.appendChild(overlay);
   modal.appendChild(modalContent);
   
-  // オーバーレイクリックで閉じる
-  if (closeOnOverlay) {
+  // オーバーレイクリック
+  if (closeOnOverlay && overlay) {
     overlay.addEventListener('click', () => closeModal(modal));
   }
   
-  // ESCキーで閉じる
-  document.addEventListener('keydown', (e) => {
+  // Escキーで閉じる（メモリリークを防ぐためにハンドラーを保存）
+  const handleEscape = (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
       closeModal(modal);
     }
-  });
+  };
+  document.addEventListener('keydown', handleEscape);
+  
+  // クリーンアップ用にハンドラーを保存
+  modal._escapeHandler = handleEscape;
   
   return modal;
 }
@@ -200,6 +204,12 @@ export function closeModal(modal) {
   if (modalElement) {
     modalElement.classList.remove('active');
     document.body.classList.remove('modal-open');
+    
+    // Escキーハンドラーのクリーンアップ
+    if (modalElement._escapeHandler) {
+      document.removeEventListener('keydown', modalElement._escapeHandler);
+      delete modalElement._escapeHandler;
+    }
   }
 }
 
