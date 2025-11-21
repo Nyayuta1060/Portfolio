@@ -70,12 +70,15 @@ async function initializeCoreFeatures() {
     initializeScrollEffects();
     console.log('🔧 Initializing Particles...');
     initializeParticles();
-    console.log('🔧 Initializing Skills Filter...');
-    initializeSkillsFilter();
+    
+    // モーダルとフィルターを先に初期化（イベントデリゲーション使用）
     console.log('🔧 Initializing Skill Modal...');
     initializeSkillModal();
     console.log('🔧 Initializing Project Modal...');
     initializeProjectModal();
+    console.log('🔧 Initializing Skills Filter...');
+    initializeSkillsFilter();
+    
     console.log('🔧 Initializing Form Handling...');
     initializeFormHandling();
     console.log('🔧 Initializing Lazy Loading...');
