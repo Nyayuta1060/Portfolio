@@ -37,17 +37,24 @@ function setupInputFocusEffects() {
 
 /**
  * スキルフィルター機能を初期化
+ * イベントデリゲーションを使用して動的に生成されたセクションにも対応
  */
 export function initializeSkillsFilter() {
-  const filterBtns = getElements('.filter-btn');
-  const categorySections = getElements('.skill-category-section');
+  const filterContainer = document.querySelector('.skills-filter');
+  const skillsContainer = document.querySelector('.skills-grid-container');
 
-  if (filterBtns.length === 0) return;
+  if (!filterContainer || !skillsContainer) return;
 
-  addEventListeners(filterBtns, 'click', function() {
-    const category = this.getAttribute('data-category');
-    updateActiveFilter(filterBtns, this);
-    filterSkillCategories(categorySections, category);
+  // イベントデリゲーション: .skills-filterにイベントを設定
+  filterContainer.addEventListener('click', function(e) {
+    const filterBtn = e.target.closest('.filter-btn');
+    if (!filterBtn) return;
+
+    const category = filterBtn.getAttribute('data-category');
+    const allFilterBtns = filterContainer.querySelectorAll('.filter-btn');
+    
+    updateActiveFilter(allFilterBtns, filterBtn);
+    filterSkillCategoriesDynamic(skillsContainer, category);
   });
 }
 
@@ -62,11 +69,13 @@ function updateActiveFilter(filterBtns, activeBtn) {
 }
 
 /**
- * スキルカテゴリをフィルタリング
- * @param {NodeList} categorySections - カテゴリセクションのリスト
+ * スキルカテゴリを動的にフィルタリング
+ * @param {HTMLElement} container - スキルコンテナ
  * @param {string} category - フィルターカテゴリ
  */
-function filterSkillCategories(categorySections, category) {
+function filterSkillCategoriesDynamic(container, category) {
+  const categorySections = container.querySelectorAll('.skill-category-section');
+  
   if (category === 'all') {
     showAllCategories(categorySections);
   } else {
@@ -80,11 +89,8 @@ function filterSkillCategories(categorySections, category) {
  */
 function showAllCategories(categorySections) {
   categorySections.forEach(section => {
-    section.classList.remove('hidden');
-    setTimeout(() => {
-      section.style.opacity = '1';
-      section.style.transform = 'translateY(0)';
-    }, 50);
+    section.classList.remove('hidden', 'fade-out');
+    section.classList.add('fade-in');
   });
 }
 
@@ -98,17 +104,18 @@ function showSpecificCategory(categorySections, category) {
     const sectionCategory = section.getAttribute('data-category');
     
     if (sectionCategory === category) {
-      section.classList.remove('hidden');
-      setTimeout(() => {
-        section.style.opacity = '1';
-        section.style.transform = 'translateY(0)';
-      }, 50);
+      section.classList.remove('hidden', 'fade-out');
+      section.classList.add('fade-in');
     } else {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(20px)';
-      setTimeout(() => {
-        section.classList.add('hidden');
-      }, 300);
+      section.classList.remove('fade-in');
+      section.classList.add('fade-out');
+      // トランジション後に hidden を追加（opacity完了時のみ）
+      section.addEventListener('transitionend', function hideSection(e) {
+        if (e.propertyName === 'opacity') {
+          section.classList.add('hidden');
+          section.removeEventListener('transitionend', hideSection);
+        }
+      });
     }
   });
 }
@@ -117,19 +124,23 @@ function showSpecificCategory(categorySections, category) {
 
 /**
  * スキル詳細モーダル機能を初期化
+ * イベントデリゲーションを使用して動的に生成されたカードにも対応
  */
 export function initializeSkillModal() {
-  const skillCards = getElements('.skill-card');
-  
-  if (skillCards.length === 0) return;
-
   // モーダルHTML要素を作成
   createModalElement();
 
-  // スキルカードにクリックイベントを追加
-  addEventListeners(skillCards, 'click', async function(e) {
+  // イベントデリゲーション: .skills-grid-containerにイベントを設定
+  const skillsContainer = document.querySelector('.skills-grid-container');
+  if (!skillsContainer) return;
+
+  skillsContainer.addEventListener('click', async function(e) {
+    // .skill-cardまたはその子要素がクリックされた場合
+    const skillCard = e.target.closest('.skill-card');
+    if (!skillCard) return;
+
     e.preventDefault();
-    const techId = this.getAttribute('data-tech');
+    const techId = skillCard.getAttribute('data-tech');
     const skillDetails = await getSkillDetails();
     if (techId && skillDetails[techId]) {
       openSkillModal(techId);
@@ -219,29 +230,31 @@ async function openSkillModal(techId) {
 
   // リンクを設定
   const linksContainer = document.getElementById('modal-skill-links');
-  linksContainer.innerHTML = '';
+  const links = [];
   
   if (skill.links.official) {
-    linksContainer.innerHTML += `
+    links.push(`
       <a href="${skill.links.official}" class="skill-modal-link" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-book"></i>
         <span>公式ドキュメント</span>
       </a>
-    `;
+    `);
   }
   
   if (skill.links.github) {
-    linksContainer.innerHTML += `
+    links.push(`
       <a href="${skill.links.github}" class="skill-modal-link" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-github"></i>
         <span>GitHub</span>
       </a>
-    `;
+    `);
   }
+  
+  linksContainer.innerHTML = links.join('');
 
   // モーダルを表示
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
 }
 
 /**
@@ -252,7 +265,7 @@ function closeSkillModal() {
   if (!modal) return;
 
   modal.classList.remove('active');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
 }
 
 /**

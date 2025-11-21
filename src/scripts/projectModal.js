@@ -69,32 +69,35 @@ const MODAL_ICONS = {
 
 /**
  * プロジェクト詳細モーダル機能を初期化
+ * 動的に生成されるカードにも対応
  */
 export function initializeProjectModal() {
-  const projectCards = getElements('.project-card');
-  
-  if (projectCards.length === 0) return;
-
   createProjectModalElement();
-  setupProjectCardEvents(projectCards);
+  setupProjectCardEvents();
   setupModalCloseEvents();
 }
 
 // ========== イベント設定 ==========
 
 /**
- * プロジェクトカードのイベントを設定
- * @param {NodeList} projectCards - プロジェクトカードの要素
+ * プロジェクトカードのイベントを設定（イベントデリゲーション使用）
  */
-function setupProjectCardEvents(projectCards) {
-  addEventListeners(projectCards, 'click', async function(e) {
+function setupProjectCardEvents() {
+  // イベントデリゲーション: .projects-gridにイベントを設定
+  const projectsGrid = document.querySelector('.projects-grid');
+  if (!projectsGrid) return;
+
+  projectsGrid.addEventListener('click', async function(e) {
     // リンクボタンのクリックはモーダルを開かない
     if (e.target.closest('.project-link-btn') || e.target.closest('.project-links')) {
       return;
     }
+
+    const projectCard = e.target.closest('.project-card');
+    if (!projectCard) return;
     
     e.preventDefault();
-    const projectId = this.getAttribute('data-project');
+    const projectId = projectCard.getAttribute('data-project');
     const projectDetails = await getProjectDetails();
     if (projectId && projectDetails[projectId]) {
       openProjectModal(projectId);
@@ -610,7 +613,7 @@ function setupGalleryNavigation(gallery, galleryState, showGalleryItem) {
  */
 function showModal(modal) {
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  document.body.classList.add('modal-open');
 }
 
 /**
@@ -621,7 +624,7 @@ function closeProjectModal() {
   if (!modal) return;
 
   modal.classList.remove('active');
-  document.body.style.overflow = '';
+  document.body.classList.remove('modal-open');
 
   stopAllVideos(modal);
 }

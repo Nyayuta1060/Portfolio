@@ -45,10 +45,17 @@ export {
   initCareerData
 } from './careerData.js';
 
-// アニメーション設定
+// config.jsから設定をインポート（重複を避けるため）
+export { DATA_CONFIG, ANIMATION_CONFIG as ANIMATION_CONFIG_ORIGINAL, PERFORMANCE_CONFIG } from './config.js';
+
+// DATA_SOURCESはDATA_CONFIGから作成（後方互換性のため）
+import { DATA_CONFIG } from './config.js';
+export const DATA_SOURCES = DATA_CONFIG.paths;
+
+// ANIMATION_CONFIGは互換性のために保持（config.jsの形式を平坦化）
 export const ANIMATION_CONFIG = {
   DEBOUNCE_DELAY: 250,
-  THROTTLE_DELAY: 16, // 60fps
+  THROTTLE_DELAY: 16,
   PARTICLE_COUNT: 50,
   PARTICLE_CONNECTION_DISTANCE: 100,
   SKILL_BAR_ANIMATION_DELAY: 200
@@ -62,7 +69,7 @@ export const OBSERVER_CONFIG = {
 
 // ナビゲーション設定
 export const NAV_CONFIG = {
-  OFFSET: 80, // ナビバーの高さ
+  OFFSET: 80, // ナビバーの高さ（CSS変数 --nav-height と同期）
   SCROLL_THRESHOLD: 100,
   ACTIVE_SECTION_OFFSET: 150
 };
@@ -70,6 +77,32 @@ export const NAV_CONFIG = {
 // パララックス設定
 export const PARALLAX_CONFIG = {
   SPEED: 0.5
+};
+
+// Z-Index階層（CSS変数と同期）
+export const Z_INDEX = {
+  DROPDOWN: 100,
+  STICKY: 500,
+  NAVBAR: 1000,
+  MODAL_OVERLAY: 9999,
+  MODAL: 10000
+};
+
+// ブレークポイント（ピクセル値）
+export const BREAKPOINTS = {
+  MOBILE: 480,
+  TABLET: 768,
+  DESKTOP: 1024,
+  WIDE: 1440
+};
+
+// タイミング定数
+export const TIMING = {
+  TRANSITION_FAST: 150,
+  TRANSITION_NORMAL: 300,
+  TRANSITION_SLOW: 400,
+  DEBOUNCE_DEFAULT: 250,
+  THROTTLE_DEFAULT: 16
 };
 
 // セレクター定数

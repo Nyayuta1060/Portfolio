@@ -4,6 +4,8 @@
 import { initProjectData } from './projectsData.js';
 import { initSkillData } from './skillsData.js';
 import { initCareerData } from './careerData.js';
+import { initializeSkills } from './skills.js';
+import { initializeProjects } from './projects.js';
 
 /**
  * すべてのデータを初期化
@@ -13,10 +15,17 @@ export async function initializeData() {
   console.log('📂 Loading data from JSON files...');
   
   try {
+    // データを先に初期化（キャッシュ作成）
     await Promise.all([
       initProjectData(),
       initSkillData(),
       initCareerData()
+    ]);
+    
+    // キャッシュされたデータを使ってUIを構築
+    await Promise.all([
+      initializeSkills(),
+      initializeProjects()
     ]);
     console.log('✅ Data loaded successfully');
     return true;

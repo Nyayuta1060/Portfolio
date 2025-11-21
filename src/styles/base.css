@@ -60,14 +60,31 @@
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --transition-fast: all 0.15s ease;
+  --animation-delay-base: 200ms;
   
   /* === レイアウト === */
   --container-max-width: 1200px;
   --nav-height: 80px;
+  --section-padding: 8rem;
+  --card-padding: 2rem;
+  --modal-padding: 2.5rem;
   --border-radius-sm: 8px;
   --border-radius-md: 15px;
   --border-radius-lg: 20px;
   --border-radius-full: 50px;
+  
+  /* === Z-Index階層 === */
+  --z-index-dropdown: 100;
+  --z-index-sticky: 500;
+  --z-index-navbar: 1000;
+  --z-index-modal-overlay: 9999;
+  --z-index-modal: 10000;
+  
+  /* === ブレークポイント（参照用） === */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1440px;
 }
 
 /**
@@ -269,6 +286,16 @@ body {
 .fade-in {
   opacity: 1 !important;
   transform: translateY(0) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/**
+ * フェードアウトクラス
+ */
+.fade-out {
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /**
@@ -276,6 +303,82 @@ body {
  */
 .hidden {
   display: none !important;
+}
+
+/**
+ * クリック可能要素のカーソル
+ */
+.clickable {
+  cursor: pointer;
+}
+
+/**
+ * モーダル開いている時のbody
+ */
+.modal-open {
+  overflow: hidden;
+}
+
+/**
+ * ローディングアクティブ時
+ */
+.loading-active {
+  overflow: hidden;
+}
+
+/**
+ * ローディングオーバーレイ
+ */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+}
+
+.loading-overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-overlay-content p {
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+/**
+ * スピナーサイズバリエーション
+ */
+.spinner-small {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.spinner-medium {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+.spinner-large {
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
 }
 
 /**

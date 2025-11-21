@@ -18,8 +18,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- CSS Files (in proper order) -->
     <link rel="stylesheet" href="./src/styles/base.css">
     <link rel="stylesheet" href="./src/styles/components.css">
@@ -195,9 +193,7 @@
               Technical Skills
             </h2>
             <div class="skills-content">
-              <p class="skills-description">
-                私が習得している技術スタック
-              </p>
+              <p class="skills-description">私が習得している技術スタック</p>
 
               <!-- カテゴリフィルター -->
               <div class="skills-filter">
@@ -223,166 +219,11 @@
                 </button>
               </div>
 
-              <!-- スキルグリッド表示 -->
+              <!-- スキルグリッド（JavaScriptで動的生成） -->
               <div class="skills-grid-container">
-                <!-- Frontend -->
-                <div class="skill-category-section" data-category="frontend">
-                  <h3 class="category-title">
-                    <i class="fas fa-laptop-code"></i>
-                    Frontend Development
-                  </h3>
-                  <div class="skills-grid">
-                    <div class="skill-card" data-tech="html" data-category="frontend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/html.png" alt="HTML" loading="lazy">
-                      </div>
-                      <div class="skill-name">HTML</div>
-                    </div>
-                    <div class="skill-card" data-tech="css" data-category="frontend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/css.png" alt="CSS" loading="lazy">
-                      </div>
-                      <div class="skill-name">CSS</div>
-                    </div>
-                    <div class="skill-card" data-tech="javascript" data-category="frontend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/javascript.png" alt="JavaScript" loading="lazy">
-                      </div>
-                      <div class="skill-name">JavaScript</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Backend -->
-                <div class="skill-category-section" data-category="backend">
-                  <h3 class="category-title">
-                    <i class="fas fa-server"></i>
-                    Backend Development
-                  </h3>
-                  <div class="skills-grid">
-                    <div class="skill-card" data-tech="nodejs" data-category="backend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/nodejs.png" alt="Node.js" loading="lazy">
-                      </div>
-                      <div class="skill-name">Node.js</div>
-                    </div>
-                    <div class="skill-card" data-tech="python" data-category="backend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/python.png" alt="Python" loading="lazy">
-                      </div>
-                      <div class="skill-name">Python</div>
-                    </div>
-                    <div class="skill-card" data-tech="elixir" data-category="backend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/elixir.png" alt="Elixir" loading="lazy">
-                      </div>
-                      <div class="skill-name">Elixir</div>
-                    </div>
-                    <div class="skill-card" data-tech="phoenix" data-category="backend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/phoenix.png" alt="Phoenix" loading="lazy">
-                      </div>
-                      <div class="skill-name">Phoenix</div>
-                    </div>
-                    <div class="skill-card" data-tech="cpp" data-category="backend">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/cpp.png" alt="C++" loading="lazy">
-                      </div>
-                      <div class="skill-name">C++</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- AI/ML -->
-                <div class="skill-category-section" data-category="ai-ml">
-                  <h3 class="category-title">
-                    <i class="fas fa-brain"></i>
-                    AI & Machine Learning
-                  </h3>
-                  <div class="skills-grid">
-                    <div class="skill-card" data-tech="pytorch" data-category="ai-ml">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/pytorch.png" alt="PyTorch" loading="lazy">
-                      </div>
-                      <div class="skill-name">PyTorch</div>
-                    </div>
-                    <div class="skill-card" data-tech="numpy" data-category="ai-ml">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/numpy.png" alt="NumPy" loading="lazy">
-                      </div>
-                      <div class="skill-name">NumPy</div>
-                    </div>
-                    <div class="skill-card" data-tech="pandas" data-category="ai-ml">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/pandas.png" alt="Pandas" loading="lazy">
-                      </div>
-                      <div class="skill-name">Pandas</div>
-                    </div>
-                    <div class="skill-card" data-tech="opencv" data-category="ai-ml">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/opencv.png" alt="OpenCV" loading="lazy">
-                      </div>
-                      <div class="skill-name">OpenCV</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Tools -->
-                <div class="skill-category-section" data-category="tools">
-                  <h3 class="category-title">
-                    <i class="fas fa-tools"></i>
-                    Development Tools
-                  </h3>
-                  <div class="skills-grid">
-                    <div class="skill-card" data-tech="docker" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/docker.png" alt="Docker" loading="lazy">
-                      </div>
-                      <div class="skill-name">Docker</div>
-                    </div>
-                    <div class="skill-card" data-tech="git" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/git.png" alt="Git" loading="lazy">
-                      </div>
-                      <div class="skill-name">Git</div>
-                    </div>
-                    <div class="skill-card" data-tech="github" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/github.png" alt="GitHub" loading="lazy">
-                      </div>
-                      <div class="skill-name">GitHub</div>
-                    </div>
-                    <div class="skill-card" data-tech="gitlab" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/gitlab.png" alt="GitLab" loading="lazy">
-                      </div>
-                      <div class="skill-name">GitLab</div>
-                    </div>
-                    <div class="skill-card" data-tech="vscode" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/vscode.png" alt="VS Code" loading="lazy">
-                      </div>
-                      <div class="skill-name">VS Code</div>
-                    </div>
-                    <div class="skill-card" data-tech="visualstudio" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/visualstudio.png" alt="Visual Studio" loading="lazy">
-                      </div>
-                      <div class="skill-name">Visual Studio</div>
-                    </div>
-                    <div class="skill-card" data-tech="zed" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/zed.png" alt="Zed" loading="lazy">
-                      </div>
-                      <div class="skill-name">Zed</div>
-                    </div>
-                    <div class="skill-card" data-tech="typst" data-category="tools">
-                      <div class="skill-image">
-                        <img src="./src/assets/skillstocks/typst.png" alt="Typst" loading="lazy">
-                      </div>
-                      <div class="skill-name">Typst</div>
-                    </div>
-                  </div>
+                <div class="loading-container">
+                  <div class="loading-spinner"></div>
+                  <p>スキルデータを読み込み中...</p>
                 </div>
               </div>
             </div>
@@ -397,106 +238,14 @@
               My Projects
             </h2>
             <div class="projects-content">
-              <p class="projects-description">
-                私が取り組んできたプロジェクトの一覧
-              </p>
+              <p class="projects-description">私が取り組んできたプロジェクトの一覧</p>
 
-              <!-- プロジェクトグリッド表示 -->
+              <!-- プロジェクトグリッド（JavaScriptで動的生成） -->
               <div class="projects-grid">
-                <!-- プロジェクト1 -->
-                <div class="project-card" data-project="portfolio">
-                  <div class="project-image">
-                    <div class="project-placeholder">
-                      <i class="fas fa-globe"></i>
-                    </div>
-                  </div>
-                  <div class="project-info">
-                    <h3 class="project-title">Portfolio Website</h3>
-                    <p class="project-description">HTML/CSS/JavaScriptで作成したポートフォリオサイト(本サイト)</p>
-                    <div class="project-tech-tags">
-                      <span class="tech-tag">HTML</span>
-                      <span class="tech-tag">CSS</span>
-                      <span class="tech-tag">JavaScript</span>
-                    </div>
-                  </div>
-                  <div class="project-links">
-                    <a href="https://github.com/Nyayuta1060/Portfolio" class="project-link-btn" target="_blank" rel="noopener noreferrer" aria-label="Portfolio WebsiteのGitHubリポジトリを開く">
-                      <i class="fab fa-github"></i>
-                      GitHub
-                    </a>
-                  </div>
+                <div class="loading-container">
+                  <div class="loading-spinner"></div>
+                  <p>プロジェクトデータを読み込み中...</p>
                 </div>
-
-                <!-- プロジェクト2 (Featured) -->
-                <div class="project-card featured" data-project="nulltasker">
-                  <div class="project-badge">Featured</div>
-                  <div class="project-image">
-                    <img src="./src/assets/projects/nulltasker/NullTasker.png" alt="NullTasker" loading="lazy">
-                  </div>
-                  <div class="project-info">
-                    <h3 class="project-title">NullTasker</h3>
-                    <p class="project-description">学生向けのオープンソースタスク管理ツール</p>
-                    <div class="project-tech-tags">
-                      <span class="tech-tag">HTML</span>
-                      <span class="tech-tag">CSS</span>
-                      <span class="tech-tag">JavaScript</span>
-                      <span class="tech-tag">Node.js</span>
-                    </div>
-                  </div>
-                  <div class="project-links">
-                    <a href="https://github.com/Team-Nullpo/NullTasker" class="project-link-btn" target="_blank" rel="noopener noreferrer" aria-label="NullTaskerのGitHubリポジトリを開く">
-                      <i class="fab fa-github"></i>
-                      GitHub
-                    </a>
-                  </div>
-                </div>
-
-                <!-- プロジェクト3 -->
-                <div class="project-card" data-project="pytranslater">
-                  <div class="project-image">
-                    <div class="project-placeholder">
-                      <i class="fa-solid fa-language"></i>
-                    </div>
-                  </div>
-                  <div class="project-info">
-                    <h3 class="project-title">PyTranslater</h3>
-                    <p class="project-description">Pythonで実装した翻訳ツール</p>
-                    <div class="project-tech-tags">
-                      <span class="tech-tag">Python</span>
-                    </div>
-                  </div>
-                  <div class="project-links">
-                    <a href="https://github.com/Nyayuta1060/PyTranslater" class="project-link-btn" target="_blank" rel="noopener noreferrer" aria-label="PyTranslaterのGitHubリポジトリを開く">
-                      <i class="fab fa-github"></i>
-                      GitHub
-                    </a>
-                  </div>
-                </div>
-
-                                <!-- プロジェクト4 -->
-                <div class="project-card" data-project="git-grassreporter">
-                  <div class="project-image">
-                    <div class="project-placeholder">
-                      <i class="fa-solid fa-bullhorn"></i>
-                    </div>
-                  </div>
-                  <div class="project-info">
-                    <h3 class="project-title">Git-GrassReporter</h3>
-                    <p class="project-description">PythonとGithub Actionsを用いたcontributionの継続を自動支援するツール</p>
-                    <div class="project-tech-tags">
-                      <span class="tech-tag">Python</span>
-                      <span class="tech-tag">GitHub Actions</span>
-                    </div>
-                  </div>
-                  <div class="project-links">
-                    <a href="https://github.com/Nyayuta1060/Git-GrassReporter" class="project-link-btn" target="_blank" rel="noopener noreferrer" aria-label="Git-GrassReporterのGitHubリポジトリを開く">
-                      <i class="fab fa-github"></i>
-                      GitHub
-                    </a>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
           </div>
