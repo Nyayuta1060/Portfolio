@@ -42,27 +42,25 @@
     
     <!-- 初期状態でメインコンテンツを非表示 -->
     <style>
-      /* boot画面表示前は完全非表示 */
-      body:not(.boot-ready) .navbar,
-      body:not(.boot-ready) #particles-container,
-      body:not(.boot-ready) section,
-      body:not(.boot-ready) footer { 
-        visibility: hidden !important;
-        opacity: 0 !important;
+      /* 初期状態は全て非表示 */
+      .navbar,
+      #particles-container,
+      section,
+      footer { 
+        display: none !important;
       }
       
-      /* boot中はz-indexで隠す（裏でレンダリング） */
+      /* boot-ready後は表示を許可 */
+      body.boot-ready .navbar,
+      body.boot-ready #particles-container,
+      body.boot-ready section,
+      body.boot-ready footer {
+        display: block !important;
+      }
+      
+      /* boot中はスクロール無効 */
       body.booting { 
         overflow: hidden; 
-      }
-      body.booting .navbar,
-      body.booting #particles-container,
-      body.booting section:not(#boot-screen),
-      body.booting footer {
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative;
-        z-index: 1;
       }
     </style>
   </head>
