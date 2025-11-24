@@ -49,6 +49,79 @@ Terminal ready. Type '<span class="command-highlight">help</span>' to see availa
 }
 
 /**
+ * システムをシャットダウン
+ */
+async function shutdownSystem(terminalBody) {
+  const shutdownMessages = [
+    'Broadcast message from visitor@portfolio',
+    '',
+    'The system is going down for poweroff NOW!',
+    '',
+    'Stopping services...',
+    '[  OK  ] Stopped target Multi-User System',
+    '[  OK  ] Stopped portfolio services',
+    '[  OK  ] Stopped network services',
+    '',
+    'Unmounting file systems...',
+    '[  OK  ] Unmounted /home/visitor/portfolio',
+    '',
+    'Powering off...',
+    ''
+  ];
+
+  for (const msg of shutdownMessages) {
+    displayOutput(msg, terminalBody);
+    await sleep(msg === '' ? 100 : 200);
+  }
+
+  await sleep(500);
+
+  // 画面全体を暗転
+  const shutdownScreen = document.createElement('div');
+  shutdownScreen.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #00ff00;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 1s ease;
+  `;
+  
+  const message = document.createElement('div');
+  message.style.cssText = `
+    text-align: center;
+    line-height: 2;
+  `;
+  message.innerHTML = `
+    <div style="font-size: 3rem; margin-bottom: 2rem;">⏻</div>
+    <div>System halted.</div>
+    <div style="margin-top: 1rem; font-size: 0.9rem; color: #64ffda;">You can close this tab now.</div>
+  `;
+  
+  shutdownScreen.appendChild(message);
+  document.body.appendChild(shutdownScreen);
+  
+  // フェードイン
+  requestAnimationFrame(() => {
+    shutdownScreen.style.opacity = '1';
+  });
+
+  // タブを閉じようと試行（動作する環境でのみ動作）
+  await sleep(2000);
+  window.close();
+}
+
+/**
  * システムを再起動
  */
 async function rebootSystem(terminalBody) {
@@ -367,6 +440,9 @@ async function executeCommand(input, terminalBody) {
       
       if (result === 'CLEAR_TERMINAL') {
         clearTerminal(terminalBody);
+      } else if (result === 'SHUTDOWN_SYSTEM') {
+        await shutdownSystem(terminalBody);
+        return; // shutdown後はプロンプトを表示しない
       } else if (result === 'REBOOT_SYSTEM') {
         await rebootSystem(terminalBody);
         return; // reboot後はプロンプトを表示しない

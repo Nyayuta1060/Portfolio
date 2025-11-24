@@ -18,6 +18,7 @@ import { bannerCommand } from './commands/banner.js';
 import { neofetchCommand } from './commands/neofetch.js';
 import { rebootCommand } from './commands/reboot.js';
 import { rmCommand } from './commands/rm.js';
+import { shutdownCommand } from './commands/shutdown.js';
 
 export const COMMANDS = {
   help: helpCommand,
@@ -35,5 +36,6 @@ export const COMMANDS = {
   banner: bannerCommand,
   neofetch: neofetchCommand,
   reboot: rebootCommand,
-  rm: rmCommand
+  rm: rmCommand,
+  shutdown: shutdownCommand
 };
