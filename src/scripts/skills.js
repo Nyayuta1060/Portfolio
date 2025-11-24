@@ -37,6 +37,7 @@ function createSkillCard(techId, skillData) {
   const card = document.createElement('div');
   card.className = 'skill-card';
   card.dataset.tech = techId;
+  card.dataset.skillId = techId;
   card.dataset.category = skillData.category;
 
   const imageDiv = document.createElement('div');

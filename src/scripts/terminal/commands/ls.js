@@ -2,7 +2,7 @@
  * ls コマンド
  */
 
-import { getCurrentDirectory, fileSystem, normalizePath } from '../fileSystem.js';
+import { getCurrentDirectory, fileSystem, normalizePath, isDeleted } from '../fileSystem.js';
 import { getProjectDetails } from '../../projectsData.js';
 import { getSkillDetails } from '../../skillsData.js';
 
@@ -28,14 +28,24 @@ export const lsCommand = {
     // skills ディレクトリの場合、動的にスキル一覧を生成
     if (targetPath === '/home/visitor/portfolio/skills') {
       const skills = await getSkillDetails();
-      contents = Object.keys(skills).map(id => `${id}.txt`);
+      contents = Object.keys(skills)
+        .filter(id => !isDeleted(id, 'skill'))
+        .map(id => `${id}.txt`);
     }
     
     // projects ディレクトリの場合、動的にプロジェクト一覧を生成
     if (targetPath === '/home/visitor/portfolio/projects') {
       const projects = await getProjectDetails();
-      contents = Object.keys(projects).map(id => `${id}.txt`);
+      contents = Object.keys(projects)
+        .filter(id => !isDeleted(id, 'project'))
+        .map(id => `${id}.txt`);
     }
+    
+    // 静的ファイルの削除チェック
+    contents = contents.filter(item => {
+      const fullPath = targetPath + '/' + item;
+      return !isDeleted(fullPath, 'file');
+    });
     
     if (contents.length === 0) {
       return '(空のディレクトリ)';

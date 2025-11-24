@@ -4,7 +4,7 @@
  */
 
 import { COMMANDS } from './terminal/commands.js';
-import { getCurrentDirectory, normalizePath, fileSystem } from './terminal/fileSystem.js';
+import { getCurrentDirectory, normalizePath, fileSystem, isDeleted } from './terminal/fileSystem.js';
 import { sleep, escapeHtml, getCommonPrefix } from './terminal/utils.js';
 import { getProjectDetails } from './projectsData.js';
 import { getSkillDetails } from './skillsData.js';
@@ -321,18 +321,14 @@ async function removeFile(itemId, itemType, terminalBody) {
     displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting skill '${itemId}'...</span>`, terminalBody);
     await sleep(300);
     
-    // スキルカードを探して削除
-    const skillCards = document.querySelectorAll('.skill-card');
-    for (const card of skillCards) {
-      const skillName = card.querySelector('.skill-name');
-      if (skillName && skillName.textContent.toLowerCase().includes(itemId.toLowerCase())) {
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.5) rotate(10deg)';
-        await sleep(600);
-        card.remove();
-        break;
-      }
+    // スキルカードを探して削除（data-skill-id属性で検索）
+    const skillCard = document.querySelector(`.skill-card[data-skill-id="${itemId}"]`);
+    if (skillCard) {
+      skillCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      skillCard.style.opacity = '0';
+      skillCard.style.transform = 'scale(0.5) rotate(10deg)';
+      await sleep(600);
+      skillCard.remove();
     }
     
     displayOutput(`<span style="color: #10b981;">✓ Skill '${itemId}' has been removed</span>`, terminalBody);
@@ -708,18 +704,28 @@ async function getPathCompletions(partial) {
   
   // ディレクトリの内容を取得
   if (fileSystem[targetDir]) {
-    let contents = [...fileSystem[targetDir].contents];
+    let contents = [];
     
     // skills ディレクトリの動的コンテンツ
     if (targetDir === '/home/visitor/portfolio/skills') {
       const skills = await getSkillDetails();
-      contents = Object.keys(skills).map(id => `${id}.txt`);
+      contents = Object.keys(skills)
+        .filter(id => !isDeleted(id, 'skill'))
+        .map(id => `${id}.txt`);
     }
-    
     // projects ディレクトリの動的コンテンツ
-    if (targetDir === '/home/visitor/portfolio/projects') {
+    else if (targetDir === '/home/visitor/portfolio/projects') {
       const projects = await getProjectDetails();
-      contents = Object.keys(projects).map(id => `${id}.txt`);
+      contents = Object.keys(projects)
+        .filter(id => !isDeleted(id, 'project'))
+        .map(id => `${id}.txt`);
+    }
+    // 静的ファイル・ディレクトリ
+    else {
+      contents = [...fileSystem[targetDir].contents].filter(item => {
+        const fullPath = `${targetDir}/${item}`.replace(/\/+/g, '/');
+        return !isDeleted(fullPath, 'file');
+      });
     }
     
     // プレフィックスに一致するものをフィルタ
