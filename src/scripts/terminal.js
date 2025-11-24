@@ -12,6 +12,8 @@ import { getSkillDetails } from './skillsData.js';
 // コマンド履歴
 let commandHistory = [];
 let historyIndex = -1;
+// カーソル位置
+let cursorPosition = 0;
 
 /**
  * ターミナルを初期化
@@ -365,6 +367,27 @@ async function removeFile(itemId, itemType, terminalBody) {
 }
 
 /**
+ * カーソル位置を考慮して入力表示を更新
+ */
+function updateInputDisplay(inputTextElement, text, cursorPos) {
+  // テキストをカーソル位置で分割
+  const beforeCursor = text.slice(0, cursorPos);
+  const afterCursor = text.slice(cursorPos);
+  
+  // カーソルを文字の間に表示
+  if (afterCursor) {
+    inputTextElement.innerHTML = escapeHtml(beforeCursor) + '<span class="terminal-cursor">_</span>' + escapeHtml(afterCursor);
+  } else {
+    inputTextElement.innerHTML = escapeHtml(beforeCursor);
+    // カーソルが末尾の場合は別要素として追加
+    const cursor = inputTextElement.nextElementSibling;
+    if (cursor && cursor.classList.contains('terminal-cursor')) {
+      cursor.style.display = 'inline-block';
+    }
+  }
+}
+
+/**
  * プロンプトを表示
  */
 function displayPrompt(terminalBody) {
@@ -409,6 +432,7 @@ function setupTerminalEventListeners(terminalBody) {
       }
       
       currentInput = '';
+      cursorPosition = 0;
       
       // 最下部にスクロール
       terminalBody.scrollTop = terminalBody.scrollHeight;
@@ -418,17 +442,43 @@ function setupTerminalEventListeners(terminalBody) {
     // Backspace キー
     if (e.key === 'Backspace') {
       e.preventDefault();
-      currentInput = currentInput.slice(0, -1);
-      inputText.textContent = currentInput;
+      if (cursorPosition > 0) {
+        currentInput = currentInput.slice(0, cursorPosition - 1) + currentInput.slice(cursorPosition);
+        cursorPosition--;
+        updateInputDisplay(inputText, currentInput, cursorPosition);
+      }
+      // 最下部にスクロール
+      terminalBody.scrollTop = terminalBody.scrollHeight;
       return;
     }
 
-    // 上矢印キー (履歴を遡る)
+    // 左矢印キー (カーソルを左に移動)
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (cursorPosition > 0) {
+        cursorPosition--;
+        updateInputDisplay(inputText, currentInput, cursorPosition);
+      }
+      return;
+    }
+
+    // 右矢印キー (カーソルを右に移動)
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (cursorPosition < currentInput.length) {
+        cursorPosition++;
+        updateInputDisplay(inputText, currentInput, cursorPosition);
+      }
+      return;
+    }
+
+    // 上矢印キー (履歴を遮る)
     if (e.key === 'ArrowUp') {
       e.preventDefault();
       if (historyIndex < commandHistory.length - 1) {
         historyIndex++;
         currentInput = commandHistory[historyIndex];
+        cursorPosition = currentInput.length;
         inputText.textContent = currentInput;
       }
       return;
@@ -440,10 +490,12 @@ function setupTerminalEventListeners(terminalBody) {
       if (historyIndex > 0) {
         historyIndex--;
         currentInput = commandHistory[historyIndex];
+        cursorPosition = currentInput.length;
         inputText.textContent = currentInput;
       } else if (historyIndex === 0) {
         historyIndex = -1;
         currentInput = '';
+        cursorPosition = 0;
         inputText.textContent = '';
       }
       return;
@@ -488,8 +540,11 @@ function setupTerminalEventListeners(terminalBody) {
     // 通常の文字入力
     if (e.key.length === 1 && !e.ctrlKey && !e.altKey && !e.metaKey) {
       e.preventDefault();
-      currentInput += e.key;
-      inputText.textContent = currentInput;
+      currentInput = currentInput.slice(0, cursorPosition) + e.key + currentInput.slice(cursorPosition);
+      cursorPosition++;
+      updateInputDisplay(inputText, currentInput, cursorPosition);
+      // 最下部にスクロール
+      terminalBody.scrollTop = terminalBody.scrollHeight;
     }
   });
 
