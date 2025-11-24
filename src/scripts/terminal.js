@@ -713,14 +713,24 @@ async function getPathCompletions(partial) {
     // skills ディレクトリの動的コンテンツ
     if (targetDir === '/home/visitor/portfolio/skills') {
       const skills = await getSkillDetails();
-      contents = Object.keys(skills).map(id => `${id}.txt`);
+      contents = Object.keys(skills)
+        .filter(id => !isDeleted(id, 'skill'))
+        .map(id => `${id}.txt`);
     }
     
     // projects ディレクトリの動的コンテンツ
     if (targetDir === '/home/visitor/portfolio/projects') {
       const projects = await getProjectDetails();
-      contents = Object.keys(projects).map(id => `${id}.txt`);
+      contents = Object.keys(projects)
+        .filter(id => !isDeleted(id, 'project'))
+        .map(id => `${id}.txt`);
     }
+    
+    // 静的ファイルから削除済みを除外
+    contents = contents.filter(item => {
+      const fullPath = `${targetDir}/${item}`.replace(/\/+/g, '/');
+      return !isDeleted(fullPath, 'file');
+    });
     
     // プレフィックスに一致するものをフィルタ
     const filtered = contents.filter(item => 
