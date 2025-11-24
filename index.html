@@ -39,34 +39,6 @@
     <!-- External Resources -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    
-    <!-- 初期状態でメインコンテンツを非表示 -->
-    <style>
-      /* 初期状態は全て非表示（レイアウトは保持） */
-      .navbar,
-      #particles-container,
-      section,
-      footer { 
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-      }
-      
-      /* boot-ready後は表示を許可 */
-      body.boot-ready .navbar,
-      body.boot-ready #particles-container,
-      body.boot-ready section,
-      body.boot-ready footer {
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-      }
-      
-      /* boot中はスクロール無効 */
-      body.booting { 
-        overflow: hidden; 
-      }
-    </style>
   </head>
   <body class="booting">
     <!-- パーティクル背景 -->
