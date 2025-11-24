@@ -4,7 +4,7 @@
  */
 
 import { COMMANDS } from './terminal/commands.js';
-import { getCurrentDirectory, normalizePath, fileSystem } from './terminal/fileSystem.js';
+import { getCurrentDirectory, normalizePath, fileSystem, isDeleted } from './terminal/fileSystem.js';
 import { sleep, escapeHtml, getCommonPrefix } from './terminal/utils.js';
 import { getProjectDetails } from './projectsData.js';
 import { getSkillDetails } from './skillsData.js';
