@@ -240,20 +240,17 @@ function setupTerminalEventListeners(terminalBody) {
  * コマンドを実行
  */
 async function executeCommand(input, terminalBody) {
-  // 現在の入力行を取得して固定化
+  // 現在の入力行を削除
   const currentInputLine = terminalBody.querySelector('.terminal-input-line');
   if (currentInputLine) {
-    // 入力行を通常の出力行に変換
-    currentInputLine.className = 'terminal-line';
-    const inputText = currentInputLine.querySelector('.terminal-input-text');
-    const cursor = currentInputLine.querySelector('.terminal-cursor');
-    if (inputText) {
-      inputText.textContent = input;
-    }
-    if (cursor) {
-      cursor.remove();
-    }
+    currentInputLine.remove();
   }
+
+  // 入力されたコマンドを履歴として表示
+  const commandLine = document.createElement('div');
+  commandLine.className = 'terminal-line';
+  commandLine.innerHTML = `<span class="terminal-prompt">visitor@portfolio:~$</span> ${escapeHtml(input)}`;
+  terminalBody.appendChild(commandLine);
 
   const [command, ...args] = input.split(' ');
   const fullCommand = input.toLowerCase();
@@ -267,23 +264,19 @@ async function executeCommand(input, terminalBody) {
       
       if (result === 'CLEAR_TERMINAL') {
         clearTerminal(terminalBody);
-        displayPrompt(terminalBody);
       } else {
         displayOutput(result, terminalBody);
-        // 新しいプロンプトを表示
-        displayPrompt(terminalBody);
       }
     } catch (error) {
       displayOutput(`エラー: コマンドの実行に失敗しました`, terminalBody);
       console.error('Command execution error:', error);
-      // 新しいプロンプトを表示
-      displayPrompt(terminalBody);
     }
   } else {
     displayOutput(`コマンドが見つかりません: ${escapeHtml(command)}\n'help' でコマンド一覧を表示できます`, terminalBody);
-    // 新しいプロンプトを表示
-    displayPrompt(terminalBody);
   }
+
+  // 新しいプロンプトを表示
+  displayPrompt(terminalBody);
   
   // 最下部にスクロール
   terminalBody.scrollTop = terminalBody.scrollHeight;
