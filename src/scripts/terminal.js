@@ -708,7 +708,7 @@ async function getPathCompletions(partial) {
   
   // ディレクトリの内容を取得
   if (fileSystem[targetDir]) {
-    let contents = [...fileSystem[targetDir].contents];
+    let contents = [];
     
     // skills ディレクトリの動的コンテンツ
     if (targetDir === '/home/visitor/portfolio/skills') {
@@ -717,20 +717,20 @@ async function getPathCompletions(partial) {
         .filter(id => !isDeleted(id, 'skill'))
         .map(id => `${id}.txt`);
     }
-    
     // projects ディレクトリの動的コンテンツ
-    if (targetDir === '/home/visitor/portfolio/projects') {
+    else if (targetDir === '/home/visitor/portfolio/projects') {
       const projects = await getProjectDetails();
       contents = Object.keys(projects)
         .filter(id => !isDeleted(id, 'project'))
         .map(id => `${id}.txt`);
     }
-    
-    // 静的ファイルから削除済みを除外
-    contents = contents.filter(item => {
-      const fullPath = `${targetDir}/${item}`.replace(/\/+/g, '/');
-      return !isDeleted(fullPath, 'file');
-    });
+    // 静的ファイル・ディレクトリ
+    else {
+      contents = [...fileSystem[targetDir].contents].filter(item => {
+        const fullPath = `${targetDir}/${item}`.replace(/\/+/g, '/');
+        return !isDeleted(fullPath, 'file');
+      });
+    }
     
     // プレフィックスに一致するものをフィルタ
     const filtered = contents.filter(item => 
