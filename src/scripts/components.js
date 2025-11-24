@@ -90,6 +90,9 @@ function filterSkillCategoriesDynamic(container, category) {
 function showAllCategories(categorySections) {
   categorySections.forEach((section, index) => {
     section.classList.remove('hidden', 'fade-out');
+    section.style.position = '';
+    section.style.width = '';
+    section.style.pointerEvents = '';
     section.classList.add('fade-in');
     
     // カテゴリごとにディレイを設定
@@ -110,24 +113,21 @@ function showSpecificCategory(categorySections, category) {
     const sectionCategory = section.getAttribute('data-category');
     
     if (sectionCategory === category) {
+      // 表示するセクションは即座にhiddenを解除
       section.classList.remove('hidden', 'fade-out');
+      section.style.position = '';
+      section.style.width = '';
+      section.style.pointerEvents = '';
       section.classList.add('fade-in');
       section.style.animationDelay = '0s';
       
       // スキルカードにstaggered animationを適用
       applyStaggeredAnimation(section);
     } else {
-      section.classList.remove('fade-in');
-      section.classList.add('fade-out');
+      // 非表示にするセクションは即座にhiddenにして、フェードアウトアニメーションはスキップ
+      section.classList.remove('fade-in', 'fade-out');
+      section.classList.add('hidden');
       section.style.animationDelay = '0s';
-      
-      // トランジション後に hidden を追加（opacity完了時のみ）
-      section.addEventListener('animationend', function hideSection(e) {
-        if (section.classList.contains('fade-out')) {
-          section.classList.add('hidden');
-          section.removeEventListener('animationend', hideSection);
-        }
-      }, { once: true });
     }
   });
 }
