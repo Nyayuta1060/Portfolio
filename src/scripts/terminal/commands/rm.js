@@ -2,7 +2,7 @@
  * rm コマンド
  */
 
-import { fileSystem, normalizePath } from '../fileSystem.js';
+import { fileSystem, normalizePath, markAsDeleted } from '../fileSystem.js';
 import { getProjectDetails } from '../../projectsData.js';
 import { getSkillDetails } from '../../skillsData.js';
 
@@ -28,6 +28,7 @@ export const rmCommand = {
       if (fileSystem[targetPath].type === 'directory') {
         return `rm: '${target}' を削除できません: ディレクトリです\nヒント: ディレクトリを削除するには 'rm -r ${target}' を使用してください`;
       }
+      markAsDeleted(targetPath, 'file');
       return `RM_FILE:${targetPath}:static`;
     }
     
@@ -36,6 +37,7 @@ export const rmCommand = {
       const skillId = targetPath.split('/').pop().replace('.txt', '');
       const skills = await getSkillDetails();
       if (skills[skillId]) {
+        markAsDeleted(skillId, 'skill');
         return `RM_FILE:${skillId}:skill`;
       }
     }
@@ -45,6 +47,7 @@ export const rmCommand = {
       const projectId = targetPath.split('/').pop().replace('.txt', '');
       const projects = await getProjectDetails();
       if (projects[projectId]) {
+        markAsDeleted(projectId, 'project');
         return `RM_FILE:${projectId}:project`;
       }
     }
