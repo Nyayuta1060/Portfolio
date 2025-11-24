@@ -88,9 +88,18 @@ function filterSkillCategoriesDynamic(container, category) {
  * @param {NodeList} categorySections - カテゴリセクションのリスト
  */
 function showAllCategories(categorySections) {
-  categorySections.forEach(section => {
+  categorySections.forEach((section, index) => {
     section.classList.remove('hidden', 'fade-out');
+    section.style.position = '';
+    section.style.width = '';
+    section.style.pointerEvents = '';
     section.classList.add('fade-in');
+    
+    // カテゴリごとにディレイを設定
+    section.style.animationDelay = `${index * 0.1}s`;
+    
+    // カテゴリ内のスキルカードにstaggered animationを適用
+    applyStaggeredAnimation(section);
   });
 }
 
@@ -104,19 +113,37 @@ function showSpecificCategory(categorySections, category) {
     const sectionCategory = section.getAttribute('data-category');
     
     if (sectionCategory === category) {
+      // 表示するセクションは即座にhiddenを解除
       section.classList.remove('hidden', 'fade-out');
+      section.style.position = '';
+      section.style.width = '';
+      section.style.pointerEvents = '';
       section.classList.add('fade-in');
+      section.style.animationDelay = '0s';
+      
+      // スキルカードにstaggered animationを適用
+      applyStaggeredAnimation(section);
     } else {
-      section.classList.remove('fade-in');
-      section.classList.add('fade-out');
-      // トランジション後に hidden を追加（opacity完了時のみ）
-      section.addEventListener('transitionend', function hideSection(e) {
-        if (e.propertyName === 'opacity') {
-          section.classList.add('hidden');
-          section.removeEventListener('transitionend', hideSection);
-        }
-      });
+      // 非表示にするセクションは即座にhiddenにして、フェードアウトアニメーションはスキップ
+      section.classList.remove('fade-in', 'fade-out');
+      section.classList.add('hidden');
+      section.style.animationDelay = '0s';
     }
+  });
+}
+
+/**
+ * スキルカードにstaggered animationを適用
+ * @param {HTMLElement} section - カテゴリセクション
+ */
+function applyStaggeredAnimation(section) {
+  const cards = section.querySelectorAll('.skill-card');
+  cards.forEach((card, index) => {
+    // 既存のアニメーションをリセット
+    card.style.animation = 'none';
+    // リフローを強制してアニメーションを再適用
+    card.offsetHeight;
+    card.style.animation = `cardFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s backwards`;
   });
 }
 
