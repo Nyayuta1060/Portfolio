@@ -152,7 +152,14 @@ function setupTerminalEventListeners(terminalBody) {
       return;
     }
 
-    const inputText = terminalBody.querySelector('.terminal-input-text');
+    // 最後の入力行を取得（最新のもの）
+    const allInputLines = terminalBody.querySelectorAll('.terminal-input-line');
+    if (allInputLines.length === 0) {
+      console.warn('Input line not found');
+      return;
+    }
+    const currentInputLine = allInputLines[allInputLines.length - 1];
+    const inputText = currentInputLine.querySelector('.terminal-input-text');
     if (!inputText) {
       console.warn('Input text element not found');
       return;
@@ -165,9 +172,15 @@ function setupTerminalEventListeners(terminalBody) {
         await executeCommand(currentInput.trim(), terminalBody);
         commandHistory.unshift(currentInput.trim());
         historyIndex = -1;
+        currentInput = '';
+      } else {
+        // 空のコマンドの場合も新しいプロンプトを表示
+        const cursor = currentInputLine.querySelector('.terminal-cursor');
+        if (cursor) cursor.remove();
+        currentInputLine.classList.remove('terminal-input-line');
+        displayPrompt(terminalBody);
+        currentInput = '';
       }
-      currentInput = '';
-      inputText.textContent = '';
       return;
     }
 
@@ -240,11 +253,12 @@ function setupTerminalEventListeners(terminalBody) {
  * コマンドを実行
  */
 async function executeCommand(input, terminalBody) {
-  // 現在の入力行を取得
-  const currentInputLine = terminalBody.querySelector('.terminal-input-line');
-  if (!currentInputLine) return;
+  // 最後の入力行を取得
+  const allInputLines = terminalBody.querySelectorAll('.terminal-input-line');
+  if (allInputLines.length === 0) return;
+  const currentInputLine = allInputLines[allInputLines.length - 1];
 
-  // 入力内容を設定してカーソルを削除
+  // 入力内容を確定してカーソルを削除
   const inputText = currentInputLine.querySelector('.terminal-input-text');
   const cursor = currentInputLine.querySelector('.terminal-cursor');
   if (inputText) {
@@ -254,7 +268,7 @@ async function executeCommand(input, terminalBody) {
     cursor.remove();
   }
   
-  // 入力行を通常の行に変換
+  // 入力行を通常の行に変換（ログとして保存）
   currentInputLine.classList.remove('terminal-input-line');
 
   const [command, ...args] = input.split(' ');
