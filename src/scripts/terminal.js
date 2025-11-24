@@ -49,6 +49,104 @@ Terminal ready. Type '<span class="command-highlight">help</span>' to see availa
 }
 
 /**
+ * Matrixアニメーションを再生
+ */
+async function playMatrixAnimation(terminalBody) {
+  const chars = '日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:・."=*+-<>¦╌ç';
+  const lines = 15;
+  const columns = 60;
+  let frameCount = 0;
+  const maxFrames = 30;
+  
+  // 初期状態の作成
+  let matrix = Array(lines).fill(null).map(() => 
+    Array(columns).fill(null).map(() => ({
+      char: ' ',
+      brightness: 0
+    }))
+  );
+  
+  // 各列の進行状況
+  const columnProgress = Array(columns).fill(0).map(() => Math.floor(Math.random() * lines));
+  
+  const animate = () => {
+    if (frameCount >= maxFrames) {
+      displayOutput('<span style="color: #64ffda;">Matrix animation complete. Press Ctrl+C to stop (just kidding!)</span>', terminalBody);
+      return;
+    }
+    
+    // マトリックスを更新
+    for (let col = 0; col < columns; col++) {
+      // 列を進める
+      if (Math.random() > 0.7) {
+        columnProgress[col] = (columnProgress[col] + 1) % (lines + 5);
+      }
+      
+      // 文字を更新
+      for (let row = 0; row < lines; row++) {
+        const distance = columnProgress[col] - row;
+        
+        if (distance === 0) {
+          // 先頭は明るい緑
+          matrix[row][col] = {
+            char: chars[Math.floor(Math.random() * chars.length)],
+            brightness: 2
+          };
+        } else if (distance > 0 && distance < 8) {
+          // トレイルは徐々に暗く
+          matrix[row][col].brightness = Math.max(0, matrix[row][col].brightness - 0.2);
+        } else {
+          // それ以外は暗くする
+          matrix[row][col].brightness = Math.max(0, matrix[row][col].brightness - 0.1);
+        }
+        
+        // ランダムに文字を変更
+        if (matrix[row][col].brightness > 0 && Math.random() > 0.9) {
+          matrix[row][col].char = chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+    }
+    
+    // 描画
+    let output = '';
+    for (let row = 0; row < lines; row++) {
+      for (let col = 0; col < columns; col++) {
+        const cell = matrix[row][col];
+        let color;
+        if (cell.brightness >= 2) {
+          color = '#ffffff'; // 白
+        } else if (cell.brightness >= 1) {
+          color = '#00ff00'; // 明るい緑
+        } else if (cell.brightness >= 0.5) {
+          color = '#008800'; // 中間の緑
+        } else if (cell.brightness > 0) {
+          color = '#004400'; // 暗い緑
+        } else {
+          color = '#000000'; // 黒
+        }
+        output += `<span style="color: ${color};">${cell.char}</span>`;
+      }
+      output += '\n';
+    }
+    
+    displayOutput(output, terminalBody);
+    
+    frameCount++;
+    
+    if (frameCount < maxFrames) {
+      setTimeout(animate, 100);
+    }
+  };
+  
+  displayOutput('<span style="color: #00ff00;">Starting Matrix animation... (30 frames)</span>\n', terminalBody);
+  await sleep(500);
+  animate();
+  
+  // アニメーション完了まで待機
+  await sleep(maxFrames * 100 + 500);
+}
+
+/**
  * システムをシャットダウン
  */
 async function shutdownSystem(terminalBody) {
@@ -440,6 +538,8 @@ async function executeCommand(input, terminalBody) {
       
       if (result === 'CLEAR_TERMINAL') {
         clearTerminal(terminalBody);
+      } else if (result === 'MATRIX_ANIMATION') {
+        await playMatrixAnimation(terminalBody);
       } else if (result === 'SHUTDOWN_SYSTEM') {
         await shutdownSystem(terminalBody);
         return; // shutdown後はプロンプトを表示しない

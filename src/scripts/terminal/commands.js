@@ -19,6 +19,10 @@ import { neofetchCommand } from './commands/neofetch.js';
 import { rebootCommand } from './commands/reboot.js';
 import { rmCommand } from './commands/rm.js';
 import { shutdownCommand } from './commands/shutdown.js';
+import { matrixCommand } from './commands/matrix.js';
+import { treeCommand } from './commands/tree.js';
+import { cowsayCommand } from './commands/cowsay.js';
+import { slCommand } from './commands/sl.js';
 
 export const COMMANDS = {
   help: helpCommand,
@@ -37,5 +41,9 @@ export const COMMANDS = {
   neofetch: neofetchCommand,
   reboot: rebootCommand,
   rm: rmCommand,
-  shutdown: shutdownCommand
+  shutdown: shutdownCommand,
+  matrix: matrixCommand,
+  tree: treeCommand,
+  cowsay: cowsayCommand,
+  sl: slCommand
 };
