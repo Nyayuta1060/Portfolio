@@ -88,9 +88,15 @@ function filterSkillCategoriesDynamic(container, category) {
  * @param {NodeList} categorySections - カテゴリセクションのリスト
  */
 function showAllCategories(categorySections) {
-  categorySections.forEach(section => {
+  categorySections.forEach((section, index) => {
     section.classList.remove('hidden', 'fade-out');
     section.classList.add('fade-in');
+    
+    // カテゴリごとにディレイを設定
+    section.style.animationDelay = `${index * 0.1}s`;
+    
+    // カテゴリ内のスキルカードにstaggered animationを適用
+    applyStaggeredAnimation(section);
   });
 }
 
@@ -106,17 +112,38 @@ function showSpecificCategory(categorySections, category) {
     if (sectionCategory === category) {
       section.classList.remove('hidden', 'fade-out');
       section.classList.add('fade-in');
+      section.style.animationDelay = '0s';
+      
+      // スキルカードにstaggered animationを適用
+      applyStaggeredAnimation(section);
     } else {
       section.classList.remove('fade-in');
       section.classList.add('fade-out');
+      section.style.animationDelay = '0s';
+      
       // トランジション後に hidden を追加（opacity完了時のみ）
-      section.addEventListener('transitionend', function hideSection(e) {
-        if (e.propertyName === 'opacity') {
+      section.addEventListener('animationend', function hideSection(e) {
+        if (section.classList.contains('fade-out')) {
           section.classList.add('hidden');
-          section.removeEventListener('transitionend', hideSection);
+          section.removeEventListener('animationend', hideSection);
         }
-      });
+      }, { once: true });
     }
+  });
+}
+
+/**
+ * スキルカードにstaggered animationを適用
+ * @param {HTMLElement} section - カテゴリセクション
+ */
+function applyStaggeredAnimation(section) {
+  const cards = section.querySelectorAll('.skill-card');
+  cards.forEach((card, index) => {
+    // 既存のアニメーションをリセット
+    card.style.animation = 'none';
+    // リフローを強制してアニメーションを再適用
+    card.offsetHeight;
+    card.style.animation = `cardFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s backwards`;
   });
 }
 

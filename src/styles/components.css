@@ -185,11 +185,67 @@
                                 transition: color 0.3s ease;
                               }
 
-                              .skill-card:hover .skill-name {
-                                color: var(--primary-color);
-                              }
+              .skill-card:hover .skill-name {
+                color: var(--primary-color);
+              }
 
-                              /* プロジェクトカード */
+              /* スキルカテゴリセクションのアニメーション */
+              .skill-category-section {
+                transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                            transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                opacity: 1;
+                transform: translateY(0);
+              }
+
+              .skill-category-section.fade-in {
+                animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+              }
+
+              .skill-category-section.fade-out {
+                animation: fadeOutDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+              }
+
+              .skill-category-section.hidden {
+                display: none;
+              }
+
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(30px) scale(0.95);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0) scale(1);
+                }
+              }
+
+              @keyframes fadeOutDown {
+                from {
+                  opacity: 1;
+                  transform: translateY(0) scale(1);
+                }
+                to {
+                  opacity: 0;
+                  transform: translateY(-20px) scale(0.95);
+                }
+              }
+
+              /* スキルカードのstaggeredアニメーション */
+              .skill-card {
+                animation: cardFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+              }
+
+              @keyframes cardFadeIn {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px) scale(0.9);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0) scale(1);
+                }
+              }                              /* プロジェクトカード */
                               .project-card {
                                 background: var(--card-bg);
                                 border-radius: 20px;
@@ -433,28 +489,59 @@
                                 font-weight: 500;
                               }
 
-                              /* フィルター */
-                              .filter-btn {
-                                background: var(--card-bg);
-                                border: 2px solid var(--border-color);
-                                color: var(--text-secondary);
-                                padding: 0.8rem 1.5rem;
-                                border-radius: 25px;
-                                cursor: pointer;
-                                transition: var(--transition-smooth);
-                                font-weight: 500;
-                                backdrop-filter: blur(10px);
-                              }
+              /* フィルター */
+              .filter-btn {
+                background: var(--card-bg);
+                border: 2px solid var(--border-color);
+                color: var(--text-secondary);
+                padding: 0.8rem 1.5rem;
+                border-radius: 25px;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                font-weight: 500;
+                backdrop-filter: blur(10px);
+                position: relative;
+                overflow: hidden;
+              }
 
-                              .filter-btn:hover,
-                              .filter-btn.active {
-                                background: var(--primary-color);
-                                border-color: var(--primary-color);
-                                color: var(--primary-bg);
-                                transform: translateY(-2px);
-                              }
+              .filter-btn::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: var(--primary-color);
+                transform: translate(-50%, -50%);
+                transition: width 0.5s ease, height 0.5s ease;
+                z-index: -1;
+              }
 
-                              /* 検索ボックス */
+              .filter-btn:hover::before {
+                width: 300px;
+                height: 300px;
+              }
+
+              .filter-btn:hover {
+                border-color: var(--primary-color);
+                color: var(--primary-bg);
+                transform: translateY(-3px) scale(1.03);
+                box-shadow: 0 8px 20px rgba(100, 255, 218, 0.25);
+              }
+
+              .filter-btn.active {
+                background: var(--primary-color);
+                border-color: var(--primary-color);
+                color: var(--primary-bg);
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 8px 25px rgba(100, 255, 218, 0.35);
+              }
+
+              .filter-btn.active::before {
+                width: 300px;
+                height: 300px;
+              }                              /* 検索ボックス */
                               .search-box {
                                 position: relative;
                                 max-width: 400px;
