@@ -370,20 +370,30 @@ async function removeFile(itemId, itemType, terminalBody) {
  * カーソル位置を考慮して入力表示を更新
  */
 function updateInputDisplay(inputTextElement, text, cursorPos) {
-  // テキストをカーソル位置で分割
-  const beforeCursor = text.slice(0, cursorPos);
-  const afterCursor = text.slice(cursorPos);
+  const inputLine = inputTextElement.parentElement;
   
-  // カーソルを文字の間に表示
+  // 既存のカーソルを削除
+  const existingCursor = inputLine.querySelector('.terminal-cursor');
+  if (existingCursor) {
+    existingCursor.remove();
+  }
+  
+  // テキストをカーソル位置で分割
+  const beforeCursor = escapeHtml(text.slice(0, cursorPos));
+  const afterCursor = escapeHtml(text.slice(cursorPos));
+  
+  // テキストとカーソルを設定
   if (afterCursor) {
-    inputTextElement.innerHTML = escapeHtml(beforeCursor) + '<span class="terminal-cursor">_</span>' + escapeHtml(afterCursor);
+    // カーソルが途中にある場合
+    inputTextElement.innerHTML = beforeCursor + '<span class="terminal-cursor">_</span>' + afterCursor;
   } else {
-    inputTextElement.innerHTML = escapeHtml(beforeCursor);
-    // カーソルが末尾の場合は別要素として追加
-    const cursor = inputTextElement.nextElementSibling;
-    if (cursor && cursor.classList.contains('terminal-cursor')) {
-      cursor.style.display = 'inline-block';
-    }
+    // カーソルが末尾にある場合
+    inputTextElement.innerHTML = beforeCursor;
+    // カーソルを別要素として追加
+    const cursor = document.createElement('span');
+    cursor.className = 'terminal-cursor';
+    cursor.textContent = '_';
+    inputTextElement.parentElement.appendChild(cursor);
   }
 }
 
