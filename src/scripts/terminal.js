@@ -98,10 +98,9 @@ export function initializeTerminal() {
   console.log('🖥️ Initializing Interactive Terminal...');
   
   const terminalBody = document.querySelector('.terminal-body');
-  const terminalInput = document.querySelector('.terminal-input');
   
-  if (!terminalBody || !terminalInput) {
-    console.warn('Terminal elements not found');
+  if (!terminalBody) {
+    console.warn('Terminal body not found');
     return;
   }
 
@@ -112,7 +111,7 @@ export function initializeTerminal() {
   displayPrompt(terminalBody);
 
   // イベントリスナーを設定
-  setupTerminalEventListeners(terminalInput, terminalBody);
+  setupTerminalEventListeners(terminalBody);
 
   console.log('✅ Interactive Terminal initialized');
 }
@@ -137,19 +136,13 @@ function displayPrompt(terminalBody) {
   promptLine.innerHTML = `<span class="terminal-prompt">visitor@portfolio:~$</span> <span class="terminal-input-text"></span><span class="terminal-cursor">_</span>`;
   terminalBody.appendChild(promptLine);
   
-  // カーソルアニメーション
-  const cursor = promptLine.querySelector('.terminal-cursor');
-  if (cursor) {
-    setInterval(() => {
-      cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-    }, 530);
-  }
+  console.log('✅ Prompt displayed');
 }
 
 /**
  * ターミナルのイベントリスナーを設定
  */
-function setupTerminalEventListeners(terminalInput, terminalBody) {
+function setupTerminalEventListeners(terminalBody) {
   let currentInput = '';
 
   // キーボード入力をキャプチャ
@@ -160,7 +153,10 @@ function setupTerminalEventListeners(terminalInput, terminalBody) {
     }
 
     const inputText = terminalBody.querySelector('.terminal-input-text');
-    if (!inputText) return;
+    if (!inputText) {
+      console.warn('Input text element not found');
+      return;
+    }
 
     // Enter キー
     if (e.key === 'Enter') {
