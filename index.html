@@ -42,12 +42,14 @@
     
     <!-- 初期状態でメインコンテンツを非表示 -->
     <style>
-      /* 初期状態は全て非表示 */
+      /* 初期状態は全て非表示（レイアウトは保持） */
       .navbar,
       #particles-container,
       section,
       footer { 
-        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
       }
       
       /* boot-ready後は表示を許可 */
@@ -55,7 +57,9 @@
       body.boot-ready #particles-container,
       body.boot-ready section,
       body.boot-ready footer {
-        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
       }
       
       /* boot中はスクロール無効 */
