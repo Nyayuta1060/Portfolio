@@ -16,7 +16,7 @@ export const lsCommand = {
     }
     
     if (!fileSystem[targetPath]) {
-      return `ls: ${args[0] || targetPath}: そのようなファイルやディレクトリはありません`;
+      return `ls: cannot access '${args[0] || targetPath}': No such file or directory`;
     }
     
     if (fileSystem[targetPath].type === 'file') {

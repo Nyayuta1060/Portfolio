@@ -61,11 +61,11 @@ GitHub: ${project.github || 'N/A'}`;
         }
       }
       
-      return `cat: ${args[0]}: そのようなファイルやディレクトリはありません`;
+      return `cat: ${args[0]}: No such file or directory`;
     }
     
     if (fileSystem[targetPath].type === 'directory') {
-      return `cat: ${args[0]}: ディレクトリです`;
+      return `cat: ${args[0]}: Is a directory`;
     }
     
     return fileSystem[targetPath].content;
