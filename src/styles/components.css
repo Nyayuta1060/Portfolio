@@ -116,37 +116,30 @@
         margin-bottom: 0.5rem;
         white-space: pre-wrap;
         word-wrap: break-word;
-        display: flex;
-        align-items: baseline;
-        gap: 0.5rem;
       }
 
       .terminal-input-line {
-        display: flex;
-        align-items: baseline;
-        gap: 0.5rem;
+        display: block;
+        margin-bottom: 0;
       }
 
       .terminal-prompt {
         color: var(--primary-color);
         font-weight: 600;
         user-select: none;
-        flex-shrink: 0;
       }
 
       .terminal-input-text {
         color: var(--text-primary);
-        flex: 1;
-        min-width: 0;
       }
 
       .terminal-cursor {
-        display: inline;
-        width: auto;
-        height: auto;
-        background: transparent;
-        color: var(--primary-color);
+        display: inline-block;
+        width: 8px;
+        height: 1em;
+        background: var(--primary-color);
         animation: blink 1.06s steps(1) infinite;
+        vertical-align: text-bottom;
       }
 
       @keyframes blink {

@@ -240,17 +240,22 @@ function setupTerminalEventListeners(terminalBody) {
  * コマンドを実行
  */
 async function executeCommand(input, terminalBody) {
-  // 現在の入力行を削除
+  // 現在の入力行を取得
   const currentInputLine = terminalBody.querySelector('.terminal-input-line');
-  if (currentInputLine) {
-    currentInputLine.remove();
-  }
+  if (!currentInputLine) return;
 
-  // 入力されたコマンドを履歴として表示
-  const commandLine = document.createElement('div');
-  commandLine.className = 'terminal-line';
-  commandLine.innerHTML = `<span class="terminal-prompt">visitor@portfolio:~$</span> ${escapeHtml(input)}`;
-  terminalBody.appendChild(commandLine);
+  // 入力内容を設定してカーソルを削除
+  const inputText = currentInputLine.querySelector('.terminal-input-text');
+  const cursor = currentInputLine.querySelector('.terminal-cursor');
+  if (inputText) {
+    inputText.textContent = input;
+  }
+  if (cursor) {
+    cursor.remove();
+  }
+  
+  // 入力行を通常の行に変換
+  currentInputLine.classList.remove('terminal-input-line');
 
   const [command, ...args] = input.split(' ');
   const fullCommand = input.toLowerCase();
