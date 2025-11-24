@@ -40,8 +40,7 @@
 
 /* コードアニメーション */
 .code-animation {
-  width: 100%;
-  max-width: 1200px;
+  width: 1200px;
 }
 
 /* ターミナル */
@@ -51,6 +50,7 @@
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border: 1px solid var(--border-color);
+  width: 100%;
 }
 
 .terminal-header {
