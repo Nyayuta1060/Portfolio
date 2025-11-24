@@ -316,25 +316,49 @@ Type 'help' to see available commands`;
     }
   },
   rm: {
-    description: 'ページセクションを削除 (例: rm about, rm *, rm -rf /)',
-    execute: (args) => {
+    description: 'ファイルを削除 (例: rm about.txt, rm skills/html.txt)',
+    execute: async (args) => {
       if (args.length === 0) {
-        return 'rm: オペランドがありません\n使用例: rm about, rm skills, rm projects, rm contact, rm *';
+        return 'rm: オペランドがありません\n使用例: rm about.txt, rm skills/html.txt, rm *';
       }
       
-      const target = args[0].toLowerCase();
-      const validTargets = ['about', 'skills', 'projects', 'contact'];
+      const target = args[0];
       
-      // rm * または rm -rf / の場合は全削除
+      // rm * または rm -rf の場合は全削除
       if (target === '*' || args.join(' ').includes('-rf')) {
-        return 'RM_SECTION:all';
+        return 'RM_FILE:*:all';
       }
       
-      if (!validTargets.includes(target)) {
-        return `rm: '${args[0]}' を削除できません: そのようなセクションはありません\n有効なセクション: ${validTargets.join(', ')}, *`;
+      // パスを正規化
+      const targetPath = normalizePath(target);
+      
+      // ファイルシステム上の静的ファイル
+      if (fileSystem[targetPath]) {
+        if (fileSystem[targetPath].type === 'directory') {
+          return `rm: '${target}' を削除できません: ディレクトリです\nヒント: ディレクトリを削除するには 'rm -r ${target}' を使用してください`;
+        }
+        return `RM_FILE:${targetPath}:static`;
       }
       
-      return `RM_SECTION:${target}`;
+      // skills ディレクトリ内のファイル
+      if (targetPath.startsWith('/home/visitor/portfolio/skills/')) {
+        const skillId = targetPath.split('/').pop().replace('.txt', '');
+        const skills = await getSkillDetails();
+        if (skills[skillId]) {
+          return `RM_FILE:${skillId}:skill`;
+        }
+      }
+      
+      // projects ディレクトリ内のファイル
+      if (targetPath.startsWith('/home/visitor/portfolio/projects/')) {
+        const projectId = targetPath.split('/').pop().replace('.txt', '');
+        const projects = await getProjectDetails();
+        if (projects[projectId]) {
+          return `RM_FILE:${projectId}:project`;
+        }
+      }
+      
+      return `rm: '${target}' を削除できません: そのようなファイルやディレクトリはありません`;
     }
   }
 };
@@ -375,12 +399,12 @@ Terminal ready. Type '<span class="command-highlight">help</span>' to see availa
 }
 
 /**
- * セクションを削除
+ * ファイルを削除
  */
-async function removeSection(sectionName, terminalBody) {
+async function removeFile(itemId, itemType, terminalBody) {
   // 全削除の場合
-  if (sectionName === 'all') {
-    displayOutput(`<span style="color: #ff6b6b;">⚠️  CRITICAL WARNING: Deleting all sections...</span>`, terminalBody);
+  if (itemType === 'all') {
+    displayOutput(`<span style="color: #ff6b6b;">⚠️  CRITICAL WARNING: Deleting all files...</span>`, terminalBody);
     await sleep(500);
     displayOutput(`<span style="color: #ff6b6b;">rm: removing everything...</span>`, terminalBody);
     await sleep(500);
@@ -406,47 +430,94 @@ async function removeSection(sectionName, terminalBody) {
       if (section) section.remove();
     });
     
-    displayOutput(`<span style="color: #10b981;">✓ All sections have been removed</span>`, terminalBody);
+    displayOutput(`<span style="color: #10b981;">✓ All files have been removed</span>`, terminalBody);
     displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
     displayOutput(`<span style="color: #ff6b6b;">💀 System is now empty. Type 'reboot' to restore.</span>`, terminalBody);
     return;
   }
   
-  // 個別削除
-  const sectionMap = {
-    'about': '#about',
-    'skills': '#skills',
-    'projects': '#projects',
-    'contact': '#contact'
-  };
-  
-  const sectionSelector = sectionMap[sectionName];
-  const section = document.querySelector(sectionSelector);
-  
-  if (!section) {
-    displayOutput(`エラー: セクション '${sectionName}' が見つかりません`, terminalBody);
+  // 静的ファイルの削除
+  if (itemType === 'static') {
+    const fileName = itemId.split('/').pop();
+    displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting file '${fileName}'...</span>`, terminalBody);
+    await sleep(300);
+    
+    // about.txt の場合は About セクション全体を削除
+    if (fileName === 'about.txt') {
+      const section = document.querySelector('#about');
+      if (section) {
+        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(-50px)';
+        await sleep(800);
+        section.remove();
+      }
+    }
+    // contact.txt の場合は Contact セクション全体を削除
+    else if (fileName === 'contact.txt') {
+      const section = document.querySelector('#contact');
+      if (section) {
+        section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(-50px)';
+        await sleep(800);
+        section.remove();
+      }
+    }
+    
+    displayOutput(`<span style="color: #10b981;">✓ File '${fileName}' has been removed</span>`, terminalBody);
+    displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
     return;
   }
   
-  // 警告メッセージを表示
-  displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting section '${sectionName}'...</span>`, terminalBody);
-  await sleep(500);
+  // スキルカードの削除
+  if (itemType === 'skill') {
+    displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting skill '${itemId}'...</span>`, terminalBody);
+    await sleep(300);
+    
+    // スキルカードを探して削除
+    const skillCards = document.querySelectorAll('.skill-card');
+    for (const card of skillCards) {
+      const skillName = card.querySelector('.skill-name');
+      if (skillName && skillName.textContent.toLowerCase().includes(itemId.toLowerCase())) {
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.opacity = '0';
+        card.style.transform = 'scale(0.5) rotate(10deg)';
+        await sleep(600);
+        card.remove();
+        break;
+      }
+    }
+    
+    displayOutput(`<span style="color: #10b981;">✓ Skill '${itemId}' has been removed</span>`, terminalBody);
+    displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
+    return;
+  }
   
-  displayOutput(`rm: removing section '${sectionName}'`, terminalBody);
-  await sleep(300);
-  
-  // セクションをフェードアウト
-  section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-  section.style.opacity = '0';
-  section.style.transform = 'translateY(-50px)';
-  
-  await sleep(800);
-  
-  // DOMから削除
-  section.remove();
-  
-  displayOutput(`<span style="color: #10b981;">✓ Section '${sectionName}' has been removed</span>`, terminalBody);
-  displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
+  // プロジェクトカードの削除
+  if (itemType === 'project') {
+    displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting project '${itemId}'...</span>`, terminalBody);
+    await sleep(300);
+    
+    // プロジェクトカードを探して削除
+    const projectCards = document.querySelectorAll('.project-card');
+    for (const card of projectCards) {
+      const projectTitle = card.querySelector('.project-title');
+      if (projectTitle && projectTitle.textContent.toLowerCase().includes(itemId.toLowerCase().replace('-', ' '))) {
+        const cardParent = card.closest('.project-card-link') || card.parentElement;
+        cardParent.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        cardParent.style.opacity = '0';
+        cardParent.style.transform = 'scale(0.5) rotate(-10deg)';
+        await sleep(600);
+        cardParent.remove();
+        break;
+      }
+    }
+    
+    displayOutput(`<span style="color: #10b981;">✓ Project '${itemId}' has been removed</span>`, terminalBody);
+    displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
+    return;
+  }
 }
 
 /**
@@ -662,9 +733,11 @@ async function executeCommand(input, terminalBody) {
       } else if (result === 'REBOOT_SYSTEM') {
         await rebootSystem(terminalBody);
         return; // reboot後はプロンプトを表示しない
-      } else if (result.startsWith('RM_SECTION:')) {
-        const sectionName = result.split(':')[1];
-        await removeSection(sectionName, terminalBody);
+      } else if (result.startsWith('RM_FILE:')) {
+        const parts = result.split(':');
+        const itemId = parts[1];
+        const itemType = parts[2];
+        await removeFile(itemId, itemType, terminalBody);
       } else {
         displayOutput(result, terminalBody);
       }
@@ -728,10 +801,9 @@ async function autocomplete(input) {
       return await getPathCompletions(lastArg);
     }
     
-    // rm コマンドの場合はセクション名を補完
+    // rm コマンドの場合はファイル名を補完
     if (command === 'rm') {
-      const sections = ['about', 'skills', 'projects', 'contact', '*', '-rf'];
-      return sections.filter(sec => sec.startsWith(lastArg.toLowerCase()));
+      return await getPathCompletions(lastArg);
     }
   }
   
