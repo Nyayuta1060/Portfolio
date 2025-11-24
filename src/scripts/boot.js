@@ -6,6 +6,9 @@
  * ブートスクリーンを作成
  */
 function createBootScreen() {
+  // bodyにbootingクラスを追加してメインコンテンツを非表示
+  document.body.classList.add('booting');
+  
   const bootScreen = document.createElement('div');
   bootScreen.id = 'boot-screen';
   bootScreen.className = 'boot-screen active';
@@ -78,6 +81,8 @@ function removeBootScreen() {
     bootScreen.classList.add('fade-out');
     setTimeout(() => {
       bootScreen.remove();
+      // メインコンテンツを表示
+      document.body.classList.remove('booting');
     }, 500);
   }
 }

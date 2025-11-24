@@ -1,5 +1,17 @@
 /* ========== ブートスクリーン ========== */
 
+/* ブート中はメインコンテンツを非表示 */
+body.booting .navbar,
+body.booting #particles-container,
+body.booting .hero,
+body.booting section:not(.boot-screen) {
+  display: none !important;
+}
+
+body.booting {
+  overflow: hidden;
+}
+
 .boot-screen {
   position: fixed;
   top: 0;
