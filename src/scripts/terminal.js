@@ -321,7 +321,7 @@ Type 'help' to see available commands`;
 /**
  * ターミナルを初期化
  */
-export function initializeTerminal() {
+export async function initializeTerminal() {
   console.log('🖥️ Initializing Interactive Terminal...');
   
   const terminalBody = document.querySelector('.terminal-body');
