@@ -41,7 +41,7 @@
 /* コードアニメーション */
 .code-animation {
   width: 100%;
-  max-width: 850px;
+  max-width: 1000px;
 }
 
 /* ターミナル */
@@ -87,10 +87,10 @@
         font-family: var(--font-mono);
         font-size: 0.9rem;
         line-height: 1.8;
-        min-height: 300px;
-        max-height: 400px;
+        min-height: 400px;
+        max-height: 500px;
         overflow-y: auto;
-        overflow-x: hidden;
+        overflow-x: auto;
       }
 
       /* ターミナルスクロールバー */
