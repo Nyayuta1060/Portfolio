@@ -42,10 +42,10 @@
     
     <!-- 初期状態でメインコンテンツを非表示 -->
     <style>
-      body { overflow: hidden; }
-      body:not(.booting) .navbar,
-      body:not(.booting) #particles-container,
-      body:not(.booting) section { display: none !important; }
+      body.booting { overflow: hidden; }
+      body.booting .navbar,
+      body.booting #particles-container,
+      body.booting section:not(#boot-screen) { display: none !important; }
     </style>
   </head>
   <body class="booting">
