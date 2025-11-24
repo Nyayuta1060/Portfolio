@@ -34,7 +34,8 @@ export const rmCommand = {
     
     // skills ディレクトリ内のファイル
     if (targetPath.startsWith('/home/visitor/portfolio/skills/')) {
-      const skillId = targetPath.split('/').pop().replace('.txt', '');
+      const fileName = targetPath.split('/').pop();
+      const skillId = fileName.endsWith('.txt') ? fileName.slice(0, -4) : fileName;
       const skills = await getSkillDetails();
       if (skills[skillId]) {
         markAsDeleted(skillId, 'skill');
@@ -44,7 +45,8 @@ export const rmCommand = {
     
     // projects ディレクトリ内のファイル
     if (targetPath.startsWith('/home/visitor/portfolio/projects/')) {
-      const projectId = targetPath.split('/').pop().replace('.txt', '');
+      const fileName = targetPath.split('/').pop();
+      const projectId = fileName.endsWith('.txt') ? fileName.slice(0, -4) : fileName;
       const projects = await getProjectDetails();
       if (projects[projectId]) {
         markAsDeleted(projectId, 'project');
