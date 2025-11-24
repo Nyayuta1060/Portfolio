@@ -240,8 +240,20 @@ function setupTerminalEventListeners(terminalBody) {
  * コマンドを実行
  */
 async function executeCommand(input, terminalBody) {
-  // 入力コマンドを表示
-  displayOutput(`<span class="terminal-prompt">visitor@portfolio:~$</span> ${escapeHtml(input)}`, terminalBody, false);
+  // 現在の入力行を取得して固定化
+  const currentInputLine = terminalBody.querySelector('.terminal-input-line');
+  if (currentInputLine) {
+    // 入力行を通常の出力行に変換
+    currentInputLine.className = 'terminal-line';
+    const inputText = currentInputLine.querySelector('.terminal-input-text');
+    const cursor = currentInputLine.querySelector('.terminal-cursor');
+    if (inputText) {
+      inputText.textContent = input;
+    }
+    if (cursor) {
+      cursor.remove();
+    }
+  }
 
   const [command, ...args] = input.split(' ');
   const fullCommand = input.toLowerCase();
@@ -255,19 +267,23 @@ async function executeCommand(input, terminalBody) {
       
       if (result === 'CLEAR_TERMINAL') {
         clearTerminal(terminalBody);
+        displayPrompt(terminalBody);
       } else {
         displayOutput(result, terminalBody);
+        // 新しいプロンプトを表示
+        displayPrompt(terminalBody);
       }
     } catch (error) {
       displayOutput(`エラー: コマンドの実行に失敗しました`, terminalBody);
       console.error('Command execution error:', error);
+      // 新しいプロンプトを表示
+      displayPrompt(terminalBody);
     }
   } else {
     displayOutput(`コマンドが見つかりません: ${escapeHtml(command)}\n'help' でコマンド一覧を表示できます`, terminalBody);
+    // 新しいプロンプトを表示
+    displayPrompt(terminalBody);
   }
-
-  // 新しいプロンプトを表示
-  displayPrompt(terminalBody);
   
   // 最下部にスクロール
   terminalBody.scrollTop = terminalBody.scrollHeight;
@@ -281,13 +297,8 @@ function displayOutput(text, terminalBody, addNewline = true) {
   outputLine.className = 'terminal-line terminal-output';
   outputLine.innerHTML = addNewline ? `${text}\n` : text;
   
-  // 最後の入力行の前に挿入
-  const inputLine = terminalBody.querySelector('.terminal-input-line');
-  if (inputLine) {
-    terminalBody.insertBefore(outputLine, inputLine);
-  } else {
-    terminalBody.appendChild(outputLine);
-  }
+  // 最後に追加（入力行は後から追加される）
+  terminalBody.appendChild(outputLine);
 }
 
 /**
