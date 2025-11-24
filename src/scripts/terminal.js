@@ -88,6 +88,138 @@ const COMMANDS = {
   echo: {
     description: 'テキストを出力 (例: echo Hello World)',
     execute: (args) => args.join(' ') || ''
+  },
+  pwd: {
+    description: '現在のディレクトリを表示',
+    execute: () => '/home/visitor/portfolio'
+  },
+  ls: {
+    description: 'ファイルとディレクトリを一覧表示',
+    execute: () => {
+      return `about.txt\nskills/\nprojects/\ncontact.txt\nREADME.md\n\n💡 ヒント: 'ls projects' でプロジェクト一覧を表示できます`;
+    }
+  },
+  cat: {
+    description: 'ファイル内容を表示 (例: cat README.md)',
+    execute: (args) => {
+      const file = args[0];
+      if (!file) {
+        return 'cat: ファイル名を指定してください\n例: cat README.md';
+      }
+      
+      const files = {
+        'README.md': `# Nyayuta's Portfolio
+
+このポートフォリオサイトへようこそ！
+Web開発とAI/機械学習に興味を持って学習しています。
+
+利用可能なコマンド:
+- help: コマンド一覧
+- ls projects: プロジェクト一覧
+- cat skills: スキル一覧
+- contact: 連絡先情報`,
+        'about.txt': `Name: Nyayuta
+School: 大阪公立大学工業高等専門学校
+Course: 知能情報コース 2年生
+
+興味分野:
+- Web開発 (Frontend/Backend)
+- AI・機械学習
+- データサイエンス`,
+        'contact.txt': `📧 Contact Information
+
+GitHub: https://github.com/Nyayuta1060
+Twitter: https://twitter.com/Nyayuta0717
+
+お気軽にご連絡ください！`
+      };
+      
+      if (file === 'skills') {
+        return COMMANDS['cat skills'].execute();
+      }
+      
+      return files[file] || `cat: ${file}: そのようなファイルやディレクトリはありません`;
+    }
+  },
+  theme: {
+    description: 'テーマカラーを表示',
+    execute: () => {
+      return `🎨 現在のテーマ: Dark Mode
+
+Primary Color: #64ffda (Cyan)
+Background: #0a192f (Navy)
+Secondary: #112240 (Dark Blue)
+
+💡 このポートフォリオはダークテーマで最適化されています`;
+    }
+  },
+  skills: {
+    description: 'スキル一覧を簡潔に表示',
+    execute: async () => {
+      const skills = await getSkillDetails();
+      const skillNames = Object.values(skills).map(s => s.name);
+      return `習得スキル (${skillNames.length}件):\n${skillNames.join(', ')}\n\n詳細は 'cat skills' で確認できます`;
+    }
+  },
+  projects: {
+    description: 'プロジェクト一覧を簡潔に表示',
+    execute: async () => {
+      const projects = await getProjectDetails();
+      const projectTitles = Object.values(projects).map(p => `- ${p.title}`);
+      return `プロジェクト (${projectTitles.length}件):\n${projectTitles.join('\n')}\n\n詳細は 'ls projects' で確認できます`;
+    }
+  },
+  github: {
+    description: 'GitHub プロフィールを開く',
+    execute: () => {
+      window.open('https://github.com/Nyayuta1060', '_blank');
+      return '✅ GitHubプロフィールを新しいタブで開きました';
+    }
+  },
+  twitter: {
+    description: 'Twitter プロフィールを開く',
+    execute: () => {
+      window.open('https://twitter.com/Nyayuta0717', '_blank');
+      return '✅ Twitterプロフィールを新しいタブで開きました';
+    }
+  },
+  history: {
+    description: 'コマンド履歴を表示',
+    execute: () => {
+      if (commandHistory.length === 0) {
+        return 'コマンド履歴はありません';
+      }
+      return `コマンド履歴:\n${commandHistory.map((cmd, i) => `  ${commandHistory.length - i}  ${cmd}`).join('\n')}`;
+    }
+  },
+  banner: {
+    description: 'ウェルカムバナーを表示',
+    execute: () => {
+      return `
+╔═══════════════════════════════════════════════╗
+║                                               ║
+║   Welcome to Nyayuta's Portfolio Terminal    ║
+║                                               ║
+║   大阪公立大学工業高等専門学校                ║
+║   知能情報コース 2年生                        ║
+║                                               ║
+╚═══════════════════════════════════════════════╝
+
+Type 'help' to see available commands`;
+    }
+  },
+  neofetch: {
+    description: 'システム情報を表示',
+    execute: () => {
+      return `
+      ___           visitor@portfolio
+     (.. |          ─────────────────
+     (<> |          OS: Portfolio v1.0
+    / __  \\         Shell: interactive-terminal
+   ( /  \\ /|        Browser: ${navigator.userAgent.split(' ').pop()}
+  _/\\ __)/_)        Skills: ${Object.keys(COMMANDS).length} commands
+  \\/-____\\/         Uptime: ${Math.floor(performance.now() / 1000)}s`;
+    }
   }
 };
 
