@@ -185,6 +185,11 @@
         font-weight: 600;
       }
 
+      .directory {
+        color: #8be9fd;
+        font-weight: 600;
+      }
+
       /* 静的コード表示用スタイル(削除予定) */
       .code-line {
         margin-bottom: 0.5rem;

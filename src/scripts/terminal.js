@@ -10,6 +10,92 @@ import { getSkillDetails } from './skillsData.js';
 let commandHistory = [];
 let historyIndex = -1;
 
+// 現在のディレクトリ
+let currentDirectory = '/home/visitor/portfolio';
+
+// ディレクトリ構造
+const fileSystem = {
+  '/home/visitor/portfolio': {
+    type: 'directory',
+    contents: ['about.txt', 'contact.txt', 'README.md', 'skills', 'projects']
+  },
+  '/home/visitor/portfolio/skills': {
+    type: 'directory',
+    contents: [] // 動的に生成
+  },
+  '/home/visitor/portfolio/projects': {
+    type: 'directory',
+    contents: [] // 動的に生成
+  },
+  '/home/visitor/portfolio/about.txt': {
+    type: 'file',
+    content: `Name: Nyayuta
+School: 大阪公立大学工業高等専門学校
+Course: 知能情報コース 2年生
+
+興味分野:
+- Web開発 (Frontend/Backend)
+- AI・機械学習
+- データサイエンス
+
+詳しくは 'cd skills' または 'cd projects' で確認できます。`
+  },
+  '/home/visitor/portfolio/contact.txt': {
+    type: 'file',
+    content: `📧 Contact Information
+
+GitHub: https://github.com/Nyayuta1060
+Twitter: https://twitter.com/Nyayuta0717
+
+コマンド:
+  github  - GitHubプロフィールを開く
+  twitter - Twitterプロフィールを開く
+
+お気軽にご連絡ください！`
+  },
+  '/home/visitor/portfolio/README.md': {
+    type: 'file',
+    content: `# Nyayuta's Portfolio
+
+このポートフォリオサイトへようこそ！
+Web開発とAI/機械学習に興味を持って学習しています。
+
+## ディレクトリ構造
+- about.txt    自己紹介
+- contact.txt  連絡先情報
+- skills/      習得スキル
+- projects/    開発プロジェクト
+
+## 便利なコマンド
+- ls           ファイル一覧
+- cd [dir]     ディレクトリ移動
+- cat [file]   ファイル表示
+- help         コマンド一覧`
+  }
+};
+
+/**
+ * パスを正規化
+ */
+function normalizePath(path) {
+  if (!path.startsWith('/')) {
+    path = currentDirectory + '/' + path;
+  }
+  
+  const parts = path.split('/').filter(p => p && p !== '.');
+  const result = [];
+  
+  for (const part of parts) {
+    if (part === '..') {
+      result.pop();
+    } else {
+      result.push(part);
+    }
+  }
+  
+  return '/' + result.join('/');
+}
+
 /**
  * 利用可能なコマンドとその説明
  */
@@ -27,59 +113,142 @@ const COMMANDS = {
     description: 'ターミナルをクリア',
     execute: () => 'CLEAR_TERMINAL'
   },
-  'ls projects': {
-    description: 'プロジェクト一覧を表示',
-    execute: async () => {
-      const projects = await getProjectDetails();
-      const projectList = Object.entries(projects)
-        .map(([id, project]) => {
-          const techStack = project.techStack ? project.techStack.join(', ') : 'N/A';
-          return `  📁 <span class="project-name">${project.title}</span>\n     ${project.description}\n     技術: ${techStack}`;
-        })
-        .join('\n\n');
-      return `プロジェクト一覧 (全${Object.keys(projects).length}件):\n\n${projectList}`;
+  pwd: {
+    description: '現在のディレクトリを表示',
+    execute: () => currentDirectory
+  },
+  cd: {
+    description: 'ディレクトリを移動 (例: cd skills, cd ..)',
+    execute: (args) => {
+      if (args.length === 0) {
+        currentDirectory = '/home/visitor/portfolio';
+        return '';
+      }
+      
+      const targetPath = normalizePath(args[0]);
+      
+      if (fileSystem[targetPath] && fileSystem[targetPath].type === 'directory') {
+        currentDirectory = targetPath;
+        return '';
+      } else if (fileSystem[targetPath] && fileSystem[targetPath].type === 'file') {
+        return `cd: ${args[0]}: ディレクトリではありません`;
+      } else {
+        return `cd: ${args[0]}: そのようなディレクトリはありません`;
+      }
     }
   },
-  'cat skills': {
-    description: 'スキル一覧を表示',
-    execute: async () => {
-      const skills = await getSkillDetails();
-      const categories = {
-        frontend: { title: 'Frontend Development', skills: [] },
-        backend: { title: 'Backend Development', skills: [] },
-        'ai-ml': { title: 'AI & Machine Learning', skills: [] },
-        tools: { title: 'Development Tools', skills: [] }
-      };
+  ls: {
+    description: 'ファイルとディレクトリを一覧表示',
+    execute: async (args) => {
+      let targetPath = currentDirectory;
+      
+      if (args.length > 0) {
+        targetPath = normalizePath(args[0]);
+      }
+      
+      if (!fileSystem[targetPath]) {
+        return `ls: ${args[0] || targetPath}: そのようなファイルやディレクトリはありません`;
+      }
+      
+      if (fileSystem[targetPath].type === 'file') {
+        return args[0] || targetPath.split('/').pop();
+      }
+      
+      let contents = [...fileSystem[targetPath].contents];
+      
+      // skills ディレクトリの場合、動的にスキル一覧を生成
+      if (targetPath === '/home/visitor/portfolio/skills') {
+        const skills = await getSkillDetails();
+        contents = Object.keys(skills).map(id => `${id}.txt`);
+      }
+      
+      // projects ディレクトリの場合、動的にプロジェクト一覧を生成
+      if (targetPath === '/home/visitor/portfolio/projects') {
+        const projects = await getProjectDetails();
+        contents = Object.keys(projects).map(id => `${id}.txt`);
+      }
+      
+      if (contents.length === 0) {
+        return '(空のディレクトリ)';
+      }
+      
+      return contents.map(item => {
+        const fullPath = targetPath + '/' + item;
+        const isDir = fileSystem[fullPath]?.type === 'directory' || 
+                      targetPath === '/home/visitor/portfolio/skills' ||
+                      targetPath === '/home/visitor/portfolio/projects';
+        return isDir && !item.includes('.') ? `<span class="directory">${item}/</span>` : item;
+      }).join('  ');
+    }
+  },
+  cat: {
+    description: 'ファイル内容を表示 (例: cat about.txt)',
+    execute: async (args) => {
+      if (args.length === 0) {
+        return 'cat: ファイル名を指定してください\n使用例: cat about.txt, cat README.md';
+      }
+      
+      const targetPath = normalizePath(args[0]);
+      
+      if (!fileSystem[targetPath]) {
+        // skills ディレクトリ内のファイル
+        if (targetPath.startsWith('/home/visitor/portfolio/skills/')) {
+          const skillId = targetPath.split('/').pop().replace('.txt', '');
+          const skills = await getSkillDetails();
+          const skill = skills[skillId];
+          
+          if (skill) {
+            return `スキル: ${skill.name}
+レベル: ${skill.level}
+頻度: ${skill.frequency}
 
-      Object.entries(skills).forEach(([id, skill]) => {
-        if (categories[skill.category]) {
-          categories[skill.category].skills.push(`${skill.name} (${skill.level})`);
+主な用途:
+${skill.usage}
+
+使用期間:
+${skill.experience}
+
+コメント:
+${skill.comment}
+
+リンク:
+${skill.links.official ? `  公式: ${skill.links.official}` : ''}
+${skill.links.github ? `  GitHub: ${skill.links.github}` : ''}`;
+          }
         }
-      });
+        
+        // projects ディレクトリ内のファイル
+        if (targetPath.startsWith('/home/visitor/portfolio/projects/')) {
+          const projectId = targetPath.split('/').pop().replace('.txt', '');
+          const projects = await getProjectDetails();
+          const project = projects[projectId];
+          
+          if (project) {
+            return `プロジェクト: ${project.title}
 
-      const categoryList = Object.values(categories)
-        .filter(cat => cat.skills.length > 0)
-        .map(cat => `  <span class="category-name">${cat.title}</span>\n    ${cat.skills.join(', ')}`)
-        .join('\n\n');
+説明:
+${project.description}
 
-      return `スキル一覧:\n\n${categoryList}`;
-    }
-  },
-  contact: {
-    description: '連絡先情報を表示',
-    execute: () => {
-      return `📧 連絡先情報:\n\n  GitHub:  <a href="https://github.com/Nyayuta1060" target="_blank" rel="noopener noreferrer">@Nyayuta1060</a>\n  Twitter: <a href="https://twitter.com/Nyayuta0717" target="_blank" rel="noopener noreferrer">@Nyayuta0717</a>\n\n  または、ページ下部のContactセクションからお問い合わせください`;
-    }
-  },
-  about: {
-    description: '自己紹介を表示',
-    execute: () => {
-      return `👤 Nyayuta\n\n大阪公立大学工業高等専門学校\n知能情報コース/2年生\n\nWeb開発、AI/機械学習に興味を持ち、日々学習を続けています。\n詳細は About セクションをご覧ください！`;
+技術スタック:
+${project.techStack ? project.techStack.join(', ') : 'N/A'}
+
+GitHub: ${project.github || 'N/A'}`;
+          }
+        }
+        
+        return `cat: ${args[0]}: そのようなファイルやディレクトリはありません`;
+      }
+      
+      if (fileSystem[targetPath].type === 'directory') {
+        return `cat: ${args[0]}: ディレクトリです`;
+      }
+      
+      return fileSystem[targetPath].content;
     }
   },
   whoami: {
     description: '現在のユーザーを表示',
-    execute: () => 'visitor@portfolio'
+    execute: () => 'visitor'
   },
   date: {
     description: '現在の日時を表示',
@@ -88,86 +257,6 @@ const COMMANDS = {
   echo: {
     description: 'テキストを出力 (例: echo Hello World)',
     execute: (args) => args.join(' ') || ''
-  },
-  pwd: {
-    description: '現在のディレクトリを表示',
-    execute: () => '/home/visitor/portfolio'
-  },
-  ls: {
-    description: 'ファイルとディレクトリを一覧表示',
-    execute: () => {
-      return `about.txt\nskills/\nprojects/\ncontact.txt\nREADME.md\n\n💡 ヒント: 'ls projects' でプロジェクト一覧を表示できます`;
-    }
-  },
-  cat: {
-    description: 'ファイル内容を表示 (例: cat README.md)',
-    execute: (args) => {
-      const file = args[0];
-      if (!file) {
-        return 'cat: ファイル名を指定してください\n例: cat README.md';
-      }
-      
-      const files = {
-        'README.md': `# Nyayuta's Portfolio
-
-このポートフォリオサイトへようこそ！
-Web開発とAI/機械学習に興味を持って学習しています。
-
-利用可能なコマンド:
-- help: コマンド一覧
-- ls projects: プロジェクト一覧
-- cat skills: スキル一覧
-- contact: 連絡先情報`,
-        'about.txt': `Name: Nyayuta
-School: 大阪公立大学工業高等専門学校
-Course: 知能情報コース 2年生
-
-興味分野:
-- Web開発 (Frontend/Backend)
-- AI・機械学習
-- データサイエンス`,
-        'contact.txt': `📧 Contact Information
-
-GitHub: https://github.com/Nyayuta1060
-Twitter: https://twitter.com/Nyayuta0717
-
-お気軽にご連絡ください！`
-      };
-      
-      if (file === 'skills') {
-        return COMMANDS['cat skills'].execute();
-      }
-      
-      return files[file] || `cat: ${file}: そのようなファイルやディレクトリはありません`;
-    }
-  },
-  theme: {
-    description: 'テーマカラーを表示',
-    execute: () => {
-      return `🎨 現在のテーマ: Dark Mode
-
-Primary Color: #64ffda (Cyan)
-Background: #0a192f (Navy)
-Secondary: #112240 (Dark Blue)
-
-💡 このポートフォリオはダークテーマで最適化されています`;
-    }
-  },
-  skills: {
-    description: 'スキル一覧を簡潔に表示',
-    execute: async () => {
-      const skills = await getSkillDetails();
-      const skillNames = Object.values(skills).map(s => s.name);
-      return `習得スキル (${skillNames.length}件):\n${skillNames.join(', ')}\n\n詳細は 'cat skills' で確認できます`;
-    }
-  },
-  projects: {
-    description: 'プロジェクト一覧を簡潔に表示',
-    execute: async () => {
-      const projects = await getProjectDetails();
-      const projectTitles = Object.values(projects).map(p => `- ${p.title}`);
-      return `プロジェクト (${projectTitles.length}件):\n${projectTitles.join('\n')}\n\n詳細は 'ls projects' で確認できます`;
-    }
   },
   github: {
     description: 'GitHub プロフィールを開く',
@@ -265,7 +354,8 @@ Type '<span class="command-highlight">help</span>' to see available commands.
 function displayPrompt(terminalBody) {
   const promptLine = document.createElement('div');
   promptLine.className = 'terminal-line terminal-input-line';
-  promptLine.innerHTML = `<span class="terminal-prompt">visitor@portfolio:~$</span> <span class="terminal-input-text"></span><span class="terminal-cursor">_</span>`;
+  const promptPath = currentDirectory.replace('/home/visitor/portfolio', '~');
+  promptLine.innerHTML = `<span class="terminal-prompt">visitor@portfolio:${promptPath}$</span> <span class="terminal-input-text"></span><span class="terminal-cursor">_</span>`;
   terminalBody.appendChild(promptLine);
   
   console.log('✅ Prompt displayed');
