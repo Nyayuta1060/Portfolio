@@ -314,6 +314,23 @@ Type 'help' to see available commands`;
     execute: () => {
       return 'REBOOT_SYSTEM';
     }
+  },
+  rm: {
+    description: 'ページセクションを削除 (例: rm about, rm skills)',
+    execute: (args) => {
+      if (args.length === 0) {
+        return 'rm: オペランドがありません\n使用例: rm about, rm skills, rm projects, rm contact';
+      }
+      
+      const target = args[0].toLowerCase();
+      const validTargets = ['about', 'skills', 'projects', 'contact'];
+      
+      if (!validTargets.includes(target)) {
+        return `rm: '${args[0]}' を削除できません: そのようなセクションはありません\n有効なセクション: ${validTargets.join(', ')}`;
+      }
+      
+      return `RM_SECTION:${target}`;
+    }
   }
 };
 
@@ -350,6 +367,46 @@ function displayWelcomeMessage(terminalBody) {
 Terminal ready. Type '<span class="command-highlight">help</span>' to see available commands.
 </div>`;
   terminalBody.innerHTML = welcomeMessage;
+}
+
+/**
+ * セクションを削除
+ */
+async function removeSection(sectionName, terminalBody) {
+  const sectionMap = {
+    'about': '#about',
+    'skills': '#skills',
+    'projects': '#projects',
+    'contact': '#contact'
+  };
+  
+  const sectionSelector = sectionMap[sectionName];
+  const section = document.querySelector(sectionSelector);
+  
+  if (!section) {
+    displayOutput(`エラー: セクション '${sectionName}' が見つかりません`, terminalBody);
+    return;
+  }
+  
+  // 警告メッセージを表示
+  displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting section '${sectionName}'...</span>`, terminalBody);
+  await sleep(500);
+  
+  displayOutput(`rm: removing section '${sectionName}'`, terminalBody);
+  await sleep(300);
+  
+  // セクションをフェードアウト
+  section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(-50px)';
+  
+  await sleep(800);
+  
+  // DOMから削除
+  section.remove();
+  
+  displayOutput(`<span style="color: #10b981;">✓ Section '${sectionName}' has been removed</span>`, terminalBody);
+  displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
 }
 
 /**
@@ -565,6 +622,9 @@ async function executeCommand(input, terminalBody) {
       } else if (result === 'REBOOT_SYSTEM') {
         await rebootSystem(terminalBody);
         return; // reboot後はプロンプトを表示しない
+      } else if (result.startsWith('RM_SECTION:')) {
+        const sectionName = result.split(':')[1];
+        await removeSection(sectionName, terminalBody);
       } else {
         displayOutput(result, terminalBody);
       }
@@ -626,6 +686,12 @@ async function autocomplete(input) {
     // cd, ls, cat コマンドの場合はファイル/ディレクトリを補完
     if (['cd', 'ls', 'cat'].includes(command)) {
       return await getPathCompletions(lastArg);
+    }
+    
+    // rm コマンドの場合はセクション名を補完
+    if (command === 'rm') {
+      const sections = ['about', 'skills', 'projects', 'contact'];
+      return sections.filter(sec => sec.startsWith(lastArg.toLowerCase()));
     }
   }
   
