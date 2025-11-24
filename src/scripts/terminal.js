@@ -321,7 +321,7 @@ Type 'help' to see available commands`;
 /**
  * ターミナルを初期化
  */
-export async function initializeTerminal() {
+export function initializeTerminal() {
   console.log('🖥️ Initializing Interactive Terminal...');
   
   const terminalBody = document.querySelector('.terminal-body');
@@ -331,8 +331,8 @@ export async function initializeTerminal() {
     return;
   }
 
-  // ブートシーケンスを表示
-  await displayBootSequence(terminalBody);
+  // ウェルカムメッセージを表示
+  displayWelcomeMessage(terminalBody);
 
   // 初期プロンプトを表示
   displayPrompt(terminalBody);
@@ -344,56 +344,13 @@ export async function initializeTerminal() {
 }
 
 /**
- * ブートシーケンスを表示
+ * ウェルカムメッセージを表示
  */
-async function displayBootSequence(terminalBody) {
-  const bootMessages = [
-    '[  0.000000] Portfolio OS v1.0 booting...',
-    '[  0.123456] Initializing system components',
-    '[  0.234567] Loading kernel modules',
-    '[  0.345678] Mounting file systems',
-    '[  0.456789] Starting network services',
-    '[  0.567890] Loading user profile: visitor',
-    '[  0.678901] Initializing terminal shell',
-    '[  0.789012] System ready',
-    '',
-    '╔═══════════════════════════════════════════════╗',
-    '║                                               ║',
-    '║   Welcome to Nyayuta\'s Portfolio Terminal    ║',
-    '║                                               ║',
-    '║   大阪公立大学工業高等専門学校                ║',
-    '║   知能情報コース 2年生                        ║',
-    '║                                               ║',
-    '╚═══════════════════════════════════════════════╝',
-    '',
-    'Type \'<span class="command-highlight">help</span>\' to see available commands.'
-  ];
-
-  terminalBody.innerHTML = '';
-
-  for (let i = 0; i < bootMessages.length; i++) {
-    const line = document.createElement('div');
-    line.className = 'terminal-line boot-message';
-    line.innerHTML = bootMessages[i];
-    terminalBody.appendChild(line);
-    
-    // スクロール
-    terminalBody.scrollTop = terminalBody.scrollHeight;
-    
-    // ウェイト（最初の数行は速く、後は少し遅く）
-    if (i < 8) {
-      await sleep(100);
-    } else {
-      await sleep(200);
-    }
-  }
-}
-
-/**
- * ウェルカムメッセージを表示（後方互換性のため残す）
- */
-async function displayWelcomeMessage(terminalBody) {
-  await displayBootSequence(terminalBody);
+function displayWelcomeMessage(terminalBody) {
+  const welcomeMessage = `<div class="terminal-line welcome-message">
+Terminal ready. Type '<span class="command-highlight">help</span>' to see available commands.
+</div>`;
+  terminalBody.innerHTML = welcomeMessage;
 }
 
 /**
@@ -415,14 +372,8 @@ async function rebootSystem(terminalBody) {
 
   await sleep(500);
 
-  // ターミナルをクリアして再起動
-  clearTerminal(terminalBody);
-  currentDirectory = '/home/visitor/portfolio'; // ディレクトリをリセット
-  await displayBootSequence(terminalBody);
-  displayPrompt(terminalBody);
-  
-  // スクロール
-  terminalBody.scrollTop = terminalBody.scrollHeight;
+  // ページをリロード
+  window.location.reload();
 }
 
 /**

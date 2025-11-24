@@ -26,6 +26,7 @@ import { initializeContactProtection } from './contact.js';
 import { initializeData } from './init.js';
 import { initializeCareer, initializeCertifications } from './career.js';
 import { initializeTerminal } from './terminal.js';
+import { initializeBootSequence } from './boot.js';
 
 /**
  * DOMContentLoaded時の初期化
@@ -33,6 +34,9 @@ import { initializeTerminal } from './terminal.js';
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     console.log('📦 Starting Portfolio initialization...');
+    
+    // ブートシーケンスを表示
+    await initializeBootSequence();
     
     // データを最初にロード
     await initializeData();
