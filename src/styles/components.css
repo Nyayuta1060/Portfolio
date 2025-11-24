@@ -175,6 +175,21 @@
         font-weight: 700;
       }
 
+      .boot-message {
+        color: var(--text-secondary);
+        font-family: var(--font-mono);
+        animation: fadeIn 0.1s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
       .project-name {
         color: #50fa7b;
         font-weight: 600;

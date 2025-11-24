@@ -309,6 +309,12 @@ Type 'help' to see available commands`;
   _/\\ __)/_)        Skills: ${Object.keys(COMMANDS).length} commands
   \\/-____\\/         Uptime: ${Math.floor(performance.now() / 1000)}s`;
     }
+  },
+  reboot: {
+    description: 'システムを再起動',
+    execute: () => {
+      return 'REBOOT_SYSTEM';
+    }
   }
 };
 
@@ -325,8 +331,8 @@ export function initializeTerminal() {
     return;
   }
 
-  // ウェルカムメッセージを表示
-  displayWelcomeMessage(terminalBody);
+  // ブートシーケンスを表示
+  await displayBootSequence(terminalBody);
 
   // 初期プロンプトを表示
   displayPrompt(terminalBody);
@@ -338,14 +344,92 @@ export function initializeTerminal() {
 }
 
 /**
- * ウェルカムメッセージを表示
+ * ブートシーケンスを表示
  */
-function displayWelcomeMessage(terminalBody) {
-  const welcomeMessage = `<div class="terminal-line welcome-message">
-Welcome to Nyayuta's Portfolio Terminal!
-Type '<span class="command-highlight">help</span>' to see available commands.
-</div>`;
-  terminalBody.innerHTML = welcomeMessage;
+async function displayBootSequence(terminalBody) {
+  const bootMessages = [
+    '[  0.000000] Portfolio OS v1.0 booting...',
+    '[  0.123456] Initializing system components',
+    '[  0.234567] Loading kernel modules',
+    '[  0.345678] Mounting file systems',
+    '[  0.456789] Starting network services',
+    '[  0.567890] Loading user profile: visitor',
+    '[  0.678901] Initializing terminal shell',
+    '[  0.789012] System ready',
+    '',
+    '╔═══════════════════════════════════════════════╗',
+    '║                                               ║',
+    '║   Welcome to Nyayuta\'s Portfolio Terminal    ║',
+    '║                                               ║',
+    '║   大阪公立大学工業高等専門学校                ║',
+    '║   知能情報コース 2年生                        ║',
+    '║                                               ║',
+    '╚═══════════════════════════════════════════════╝',
+    '',
+    'Type \'<span class="command-highlight">help</span>\' to see available commands.'
+  ];
+
+  terminalBody.innerHTML = '';
+
+  for (let i = 0; i < bootMessages.length; i++) {
+    const line = document.createElement('div');
+    line.className = 'terminal-line boot-message';
+    line.innerHTML = bootMessages[i];
+    terminalBody.appendChild(line);
+    
+    // スクロール
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+    
+    // ウェイト（最初の数行は速く、後は少し遅く）
+    if (i < 8) {
+      await sleep(100);
+    } else {
+      await sleep(200);
+    }
+  }
+}
+
+/**
+ * ウェルカムメッセージを表示（後方互換性のため残す）
+ */
+async function displayWelcomeMessage(terminalBody) {
+  await displayBootSequence(terminalBody);
+}
+
+/**
+ * システムを再起動
+ */
+async function rebootSystem(terminalBody) {
+  const shutdownMessages = [
+    'Shutting down system...',
+    'Stopping services',
+    'Unmounting file systems',
+    'System halted',
+    ''
+  ];
+
+  for (const msg of shutdownMessages) {
+    displayOutput(msg, terminalBody);
+    await sleep(150);
+  }
+
+  await sleep(500);
+
+  // ターミナルをクリアして再起動
+  clearTerminal(terminalBody);
+  currentDirectory = '/home/visitor/portfolio'; // ディレクトリをリセット
+  await displayBootSequence(terminalBody);
+  displayPrompt(terminalBody);
+  
+  // スクロール
+  terminalBody.scrollTop = terminalBody.scrollHeight;
+}
+
+/**
+ * スリープ関数
+ */
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
@@ -528,6 +612,9 @@ async function executeCommand(input, terminalBody) {
       
       if (result === 'CLEAR_TERMINAL') {
         clearTerminal(terminalBody);
+      } else if (result === 'REBOOT_SYSTEM') {
+        await rebootSystem(terminalBody);
+        return; // reboot後はプロンプトを表示しない
       } else {
         displayOutput(result, terminalBody);
       }
