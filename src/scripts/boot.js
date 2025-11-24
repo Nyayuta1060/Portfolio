@@ -83,8 +83,6 @@ function removeBootScreen() {
       bootScreen.remove();
       // メインコンテンツを表示
       document.body.classList.remove('booting');
-      // ページトップにスクロール（ヒーローセクションを表示）
-      window.scrollTo({ top: 0, behavior: 'instant' });
     }, 500);
   }
 }
