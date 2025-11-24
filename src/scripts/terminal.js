@@ -316,17 +316,22 @@ Type 'help' to see available commands`;
     }
   },
   rm: {
-    description: 'ページセクションを削除 (例: rm about, rm skills)',
+    description: 'ページセクションを削除 (例: rm about, rm *, rm -rf /)',
     execute: (args) => {
       if (args.length === 0) {
-        return 'rm: オペランドがありません\n使用例: rm about, rm skills, rm projects, rm contact';
+        return 'rm: オペランドがありません\n使用例: rm about, rm skills, rm projects, rm contact, rm *';
       }
       
       const target = args[0].toLowerCase();
       const validTargets = ['about', 'skills', 'projects', 'contact'];
       
+      // rm * または rm -rf / の場合は全削除
+      if (target === '*' || args.join(' ').includes('-rf')) {
+        return 'RM_SECTION:all';
+      }
+      
       if (!validTargets.includes(target)) {
-        return `rm: '${args[0]}' を削除できません: そのようなセクションはありません\n有効なセクション: ${validTargets.join(', ')}`;
+        return `rm: '${args[0]}' を削除できません: そのようなセクションはありません\n有効なセクション: ${validTargets.join(', ')}, *`;
       }
       
       return `RM_SECTION:${target}`;
@@ -373,6 +378,41 @@ Terminal ready. Type '<span class="command-highlight">help</span>' to see availa
  * セクションを削除
  */
 async function removeSection(sectionName, terminalBody) {
+  // 全削除の場合
+  if (sectionName === 'all') {
+    displayOutput(`<span style="color: #ff6b6b;">⚠️  CRITICAL WARNING: Deleting all sections...</span>`, terminalBody);
+    await sleep(500);
+    displayOutput(`<span style="color: #ff6b6b;">rm: removing everything...</span>`, terminalBody);
+    await sleep(500);
+    
+    const sections = ['#about', '#skills', '#projects', '#contact'];
+    
+    for (const selector of sections) {
+      const section = document.querySelector(selector);
+      if (section) {
+        displayOutput(`rm: removing section '${selector.replace('#', '')}'`, terminalBody);
+        section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        section.style.opacity = '0';
+        section.style.transform = 'scale(0.8)';
+        await sleep(300);
+      }
+    }
+    
+    await sleep(500);
+    
+    // 全て削除
+    sections.forEach(selector => {
+      const section = document.querySelector(selector);
+      if (section) section.remove();
+    });
+    
+    displayOutput(`<span style="color: #10b981;">✓ All sections have been removed</span>`, terminalBody);
+    displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
+    displayOutput(`<span style="color: #ff6b6b;">💀 System is now empty. Type 'reboot' to restore.</span>`, terminalBody);
+    return;
+  }
+  
+  // 個別削除
   const sectionMap = {
     'about': '#about',
     'skills': '#skills',
@@ -690,7 +730,7 @@ async function autocomplete(input) {
     
     // rm コマンドの場合はセクション名を補完
     if (command === 'rm') {
-      const sections = ['about', 'skills', 'projects', 'contact'];
+      const sections = ['about', 'skills', 'projects', 'contact', '*', '-rf'];
       return sections.filter(sec => sec.startsWith(lastArg.toLowerCase()));
     }
   }
