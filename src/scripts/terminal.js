@@ -321,18 +321,14 @@ async function removeFile(itemId, itemType, terminalBody) {
     displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting skill '${itemId}'...</span>`, terminalBody);
     await sleep(300);
     
-    // スキルカードを探して削除
-    const skillCards = document.querySelectorAll('.skill-card');
-    for (const card of skillCards) {
-      const skillName = card.querySelector('.skill-name');
-      if (skillName && skillName.textContent.toLowerCase().includes(itemId.toLowerCase())) {
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.5) rotate(10deg)';
-        await sleep(600);
-        card.remove();
-        break;
-      }
+    // スキルカードを探して削除（data-skill-id属性で検索）
+    const skillCard = document.querySelector(`.skill-card[data-skill-id="${itemId}"]`);
+    if (skillCard) {
+      skillCard.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      skillCard.style.opacity = '0';
+      skillCard.style.transform = 'scale(0.5) rotate(10deg)';
+      await sleep(600);
+      skillCard.remove();
     }
     
     displayOutput(`<span style="color: #10b981;">✓ Skill '${itemId}' has been removed</span>`, terminalBody);
