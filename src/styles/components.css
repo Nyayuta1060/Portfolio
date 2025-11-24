@@ -41,7 +41,7 @@
 /* コードアニメーション */
 .code-animation {
   width: 100%;
-  max-width: 500px;
+  max-width: 1200px;
 }
 
 /* ターミナル */
@@ -87,8 +87,125 @@
         font-family: var(--font-mono);
         font-size: 0.9rem;
         line-height: 1.8;
+        min-height: 400px;
+        max-height: 500px;
+        overflow-y: auto;
+        overflow-x: auto;
       }
 
+      /* ターミナルスクロールバー */
+      .terminal-body::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .terminal-body::-webkit-scrollbar-track {
+        background: var(--accent-bg);
+      }
+
+      .terminal-body::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+      }
+
+      .terminal-body::-webkit-scrollbar-thumb:hover {
+        background: var(--primary-color);
+      }
+
+      /* インタラクティブターミナル用スタイル */
+      .terminal-line {
+        margin-bottom: 0.5rem;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+
+      .terminal-input-line {
+        display: block;
+        margin-bottom: 0;
+      }
+
+      .terminal-prompt {
+        color: var(--primary-color);
+        font-weight: 600;
+        user-select: none;
+      }
+
+      .terminal-input-text {
+        color: var(--text-primary);
+      }
+
+      .terminal-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 1em;
+        background: var(--primary-color);
+        animation: blink 1.06s steps(1) infinite;
+        vertical-align: text-bottom;
+      }
+
+      @keyframes blink {
+        0%, 49% {
+          opacity: 1;
+        }
+        50%, 100% {
+          opacity: 0;
+        }
+      }
+
+      .terminal-output {
+        color: var(--text-secondary);
+      }
+
+      .terminal-output a {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+
+      .welcome-message {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
+
+      .command-name {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .command-highlight {
+        color: var(--primary-color);
+        font-weight: 700;
+      }
+
+      .boot-message {
+        color: var(--text-secondary);
+        font-family: var(--font-mono);
+        animation: fadeIn 0.1s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .project-name {
+        color: #50fa7b;
+        font-weight: 600;
+      }
+
+      .category-name {
+        color: #8be9fd;
+        font-weight: 600;
+      }
+
+      .directory {
+        color: #8be9fd;
+        font-weight: 600;
+      }
+
+      /* 静的コード表示用スタイル(削除予定) */
       .code-line {
         margin-bottom: 0.5rem;
         opacity: 0;

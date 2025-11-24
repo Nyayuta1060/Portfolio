@@ -19,11 +19,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <!-- CSS Files (in proper order) -->
-    <link rel="stylesheet" href="./src/styles/base.css">
-    <link rel="stylesheet" href="./src/styles/components.css">
-    <link rel="stylesheet" href="./src/styles/layout.css">
-    <link rel="stylesheet" href="./src/styles/pages.css">
-    <link rel="stylesheet" href="./src/styles/responsive.css">
+    <link rel="stylesheet" href="./src/styles/boot.css?v=2">
+    <link rel="stylesheet" href="./src/styles/base.css?v=2">
+    <link rel="stylesheet" href="./src/styles/components.css?v=2">
+    <link rel="stylesheet" href="./src/styles/layout.css?v=2">
+    <link rel="stylesheet" href="./src/styles/pages.css?v=2">
+    <link rel="stylesheet" href="./src/styles/responsive.css?v=2">
 
     <!-- External Resources -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -102,18 +103,10 @@
                   <span class="btn-yellow"></span>
                   <span class="btn-green"></span>
                 </div>
-                <span class="terminal-title">neural_network.py</span>
+                <span class="terminal-title">portfolio-terminal</span>
               </div>
               <div class="terminal-body">
-                <div class="code-line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div>
-                <div class="code-line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</div>
-                <div class="code-line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</div>
-                <div class="code-line"></div>
-                <div class="code-line"><span class="keyword">class</span> <span class="class-name">NeuralNetwork</span>:</div>
-                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="function">__init__</span>(self, layers):</div>
-                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.model = tf.keras.Sequential()</div>
-                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span> layer <span class="keyword">in</span> layers:</div>
-                <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.model.add(layer)</div>
+                <!-- インタラクティブターミナル: terminal.jsで動的に生成 -->
               </div>
             </div>
           </div>

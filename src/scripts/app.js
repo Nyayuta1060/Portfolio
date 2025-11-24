@@ -25,6 +25,8 @@ import { initializeGitHubActivity } from './github.js';
 import { initializeContactProtection } from './contact.js';
 import { initializeData } from './init.js';
 import { initializeCareer, initializeCertifications } from './career.js';
+import { initializeTerminal } from './terminal.js';
+import { initializeBootSequence } from './boot.js';
 
 /**
  * DOMContentLoaded時の初期化
@@ -32,6 +34,9 @@ import { initializeCareer, initializeCertifications } from './career.js';
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     console.log('📦 Starting Portfolio initialization...');
+    
+    // ブートシーケンスを表示
+    await initializeBootSequence();
     
     // データを最初にロード
     await initializeData();
@@ -64,6 +69,8 @@ async function initializeApp() {
  */
 async function initializeCoreFeatures() {
   try {
+    console.log('🔧 Initializing Terminal...');
+    initializeTerminal();
     console.log('🔧 Initializing Navigation...');
     initializeNavigation();
     console.log('🔧 Initializing Scroll Effects...');
