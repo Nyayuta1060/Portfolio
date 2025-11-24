@@ -442,12 +442,35 @@ function setupTerminalEventListeners(terminalBody) {
     // Tab キー (オートコンプリート)
     if (e.key === 'Tab') {
       e.preventDefault();
-      const suggestions = autocomplete(currentInput);
+      const suggestions = await autocomplete(currentInput);
       if (suggestions.length === 1) {
-        currentInput = suggestions[0];
+        // 1つだけの場合は補完
+        const parts = currentInput.split(' ');
+        if (parts.length === 1) {
+          currentInput = suggestions[0] + ' ';
+        } else {
+          parts[parts.length - 1] = suggestions[0];
+          currentInput = parts.join(' ');
+          // ディレクトリの場合はスペースを追加しない
+          const fullPath = normalizePath(suggestions[0]);
+          if (!fileSystem[fullPath] || fileSystem[fullPath].type !== 'directory') {
+            currentInput += ' ';
+          }
+        }
         inputText.textContent = currentInput;
       } else if (suggestions.length > 1) {
+        // 複数の候補がある場合は共通部分まで補完
+        const commonPrefix = getCommonPrefix(suggestions);
+        if (commonPrefix && commonPrefix.length > currentInput.split(' ').pop().length) {
+          const parts = currentInput.split(' ');
+          parts[parts.length - 1] = commonPrefix;
+          currentInput = parts.join(' ');
+          inputText.textContent = currentInput;
+        }
+        // 候補を表示
         displayOutput(`\n${suggestions.join('  ')}`, terminalBody, false);
+        // 最下部にスクロール
+        terminalBody.scrollTop = terminalBody.scrollHeight;
       }
       return;
     }
@@ -545,14 +568,108 @@ function clearTerminal(terminalBody) {
 /**
  * オートコンプリート
  */
-function autocomplete(input) {
+async function autocomplete(input) {
   if (!input) return Object.keys(COMMANDS);
   
-  const suggestions = Object.keys(COMMANDS).filter(cmd => 
-    cmd.toLowerCase().startsWith(input.toLowerCase())
+  const parts = input.split(' ');
+  const command = parts[0];
+  
+  // コマンド名の補完
+  if (parts.length === 1) {
+    const suggestions = Object.keys(COMMANDS).filter(cmd => 
+      cmd.toLowerCase().startsWith(input.toLowerCase())
+    );
+    return suggestions;
+  }
+  
+  // ファイル/ディレクトリ名の補完
+  if (parts.length >= 2) {
+    const lastArg = parts[parts.length - 1];
+    
+    // cd, ls, cat コマンドの場合はファイル/ディレクトリを補完
+    if (['cd', 'ls', 'cat'].includes(command)) {
+      return await getPathCompletions(lastArg);
+    }
+  }
+  
+  return [];
+}
+
+/**
+ * パスの補完候補を取得
+ */
+async function getPathCompletions(partial) {
+  const suggestions = [];
+  
+  // 現在のディレクトリの内容を取得
+  let targetDir = currentDirectory;
+  let prefix = partial;
+  
+  // パスが含まれている場合
+  if (partial.includes('/')) {
+    const lastSlash = partial.lastIndexOf('/');
+    const dirPart = partial.substring(0, lastSlash);
+    prefix = partial.substring(lastSlash + 1);
+    targetDir = normalizePath(dirPart);
+  }
+  
+  // ディレクトリの内容を取得
+  let contents = [];
+  
+  if (fileSystem[targetDir] && fileSystem[targetDir].type === 'directory') {
+    contents = [...fileSystem[targetDir].contents];
+    
+    // skills ディレクトリの場合
+    if (targetDir === '/home/visitor/portfolio/skills') {
+      const skills = await getSkillDetails();
+      contents = Object.keys(skills).map(id => `${id}.txt`);
+    }
+    
+    // projects ディレクトリの場合
+    if (targetDir === '/home/visitor/portfolio/projects') {
+      const projects = await getProjectDetails();
+      contents = Object.keys(projects).map(id => `${id}.txt`);
+    }
+  }
+  
+  // .. を追加
+  if (targetDir !== '/home/visitor/portfolio') {
+    contents.unshift('..');
+  }
+  
+  // 前方一致でフィルター
+  const matches = contents.filter(item => 
+    item.toLowerCase().startsWith(prefix.toLowerCase())
   );
   
+  // パスを再構築
+  matches.forEach(match => {
+    if (partial.includes('/')) {
+      const dirPart = partial.substring(0, partial.lastIndexOf('/') + 1);
+      suggestions.push(dirPart + match);
+    } else {
+      suggestions.push(match);
+    }
+  });
+  
   return suggestions;
+}
+
+/**
+ * 共通プレフィックスを取得
+ */
+function getCommonPrefix(strings) {
+  if (strings.length === 0) return '';
+  if (strings.length === 1) return strings[0];
+  
+  let prefix = strings[0];
+  for (let i = 1; i < strings.length; i++) {
+    while (strings[i].indexOf(prefix) !== 0) {
+      prefix = prefix.substring(0, prefix.length - 1);
+      if (prefix === '') return '';
+    }
+  }
+  return prefix;
 }
 
 /**
