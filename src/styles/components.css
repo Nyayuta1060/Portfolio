@@ -153,11 +153,22 @@
 
       .terminal-output {
         color: var(--text-secondary);
+        font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        white-space: pre;
       }
 
       .terminal-output a {
         color: var(--primary-color);
         text-decoration: underline;
+      }
+
+      /* バナー専用スタイル */
+      .banner-text {
+        font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        white-space: pre;
+        letter-spacing: 0;
       }
 
       .welcome-message {
