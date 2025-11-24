@@ -45,7 +45,8 @@
       /* boot画面表示前は完全非表示 */
       body:not(.boot-ready) .navbar,
       body:not(.boot-ready) #particles-container,
-      body:not(.boot-ready) section { 
+      body:not(.boot-ready) section,
+      body:not(.boot-ready) footer { 
         visibility: hidden !important;
         opacity: 0 !important;
       }
@@ -56,7 +57,8 @@
       }
       body.booting .navbar,
       body.booting #particles-container,
-      body.booting section:not(#boot-screen) {
+      body.booting section:not(#boot-screen),
+      body.booting footer {
         visibility: visible !important;
         opacity: 1 !important;
         position: relative;
