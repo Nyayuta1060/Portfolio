@@ -25,6 +25,7 @@ import { initializeGitHubActivity } from './github.js';
 import { initializeContactProtection } from './contact.js';
 import { initializeData } from './init.js';
 import { initializeCareer, initializeCertifications } from './career.js';
+import { initializeTerminal } from './terminal.js';
 
 /**
  * DOMContentLoaded時の初期化
@@ -64,6 +65,8 @@ async function initializeApp() {
  */
 async function initializeCoreFeatures() {
   try {
+    console.log('🔧 Initializing Terminal...');
+    initializeTerminal();
     console.log('🔧 Initializing Navigation...');
     initializeNavigation();
     console.log('🔧 Initializing Scroll Effects...');
