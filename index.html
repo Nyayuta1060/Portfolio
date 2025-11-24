@@ -42,10 +42,26 @@
     
     <!-- 初期状態でメインコンテンツを非表示 -->
     <style>
-      body.booting { overflow: hidden; }
+      /* boot画面表示前は完全非表示 */
+      body:not(.boot-ready) .navbar,
+      body:not(.boot-ready) #particles-container,
+      body:not(.boot-ready) section { 
+        visibility: hidden !important;
+        opacity: 0 !important;
+      }
+      
+      /* boot中はz-indexで隠す（裏でレンダリング） */
+      body.booting { 
+        overflow: hidden; 
+      }
       body.booting .navbar,
       body.booting #particles-container,
-      body.booting section:not(#boot-screen) { display: none !important; }
+      body.booting section:not(#boot-screen) {
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative;
+        z-index: 1;
+      }
     </style>
   </head>
   <body class="booting">

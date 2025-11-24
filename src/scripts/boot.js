@@ -6,6 +6,9 @@
  * ブートスクリーンを作成
  */
 function createBootScreen() {
+  // boot-readyクラスを追加してメインコンテンツのレンダリングを許可（裏で）
+  document.body.classList.add('boot-ready');
+  
   const bootScreen = document.createElement('div');
   bootScreen.id = 'boot-screen';
   bootScreen.className = 'boot-screen active';
