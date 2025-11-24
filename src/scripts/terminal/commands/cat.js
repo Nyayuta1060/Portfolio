@@ -15,9 +15,10 @@ export const catCommand = {
     
     const targetPath = normalizePath(args[0]);
     
+    // まず完全一致でファイルシステムをチェック
     if (!fileSystem[targetPath]) {
-      // skills ディレクトリ内のファイル
-      if (targetPath.startsWith('/home/visitor/portfolio/skills/')) {
+      // skills ディレクトリ内のファイル（.txt拡張子が必須）
+      if (targetPath.startsWith('/home/visitor/portfolio/skills/') && targetPath.endsWith('.txt')) {
         const skillId = targetPath.split('/').pop().replace('.txt', '');
         const skills = await getSkillDetails();
         const skill = skills[skillId];
@@ -42,8 +43,8 @@ ${skill.links.github ? `  GitHub: ${skill.links.github}` : ''}`;
         }
       }
       
-      // projects ディレクトリ内のファイル
-      if (targetPath.startsWith('/home/visitor/portfolio/projects/')) {
+      // projects ディレクトリ内のファイル（.txt拡張子が必須）
+      if (targetPath.startsWith('/home/visitor/portfolio/projects/') && targetPath.endsWith('.txt')) {
         const projectId = targetPath.split('/').pop().replace('.txt', '');
         const projects = await getProjectDetails();
         const project = projects[projectId];
@@ -61,11 +62,11 @@ GitHub: ${project.github || 'N/A'}`;
         }
       }
       
-      return `cat: ${args[0]}: そのようなファイルやディレクトリはありません`;
+      return `cat: ${args[0]}: No such file or directory`;
     }
     
     if (fileSystem[targetPath].type === 'directory') {
-      return `cat: ${args[0]}: ディレクトリです`;
+      return `cat: ${args[0]}: Is a directory`;
     }
     
     return fileSystem[targetPath].content;

@@ -18,9 +18,9 @@ export const cdCommand = {
       setCurrentDirectory(targetPath);
       return '';
     } else if (fileSystem[targetPath] && fileSystem[targetPath].type === 'file') {
-      return `cd: ${args[0]}: ディレクトリではありません`;
+      return `cd: ${args[0]}: Not a directory`;
     } else {
-      return `cd: ${args[0]}: そのようなディレクトリはありません`;
+      return `cd: ${args[0]}: No such file or directory`;
     }
   }
 };

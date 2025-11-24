@@ -40,7 +40,7 @@ async function displayBootMessages(container) {
     { text: '║                                       ║', },
     { text: '║ Welcome to Nyayuta\'s Portfolio OS     ║', },
     { text: '║                                       ║', },
-    { text: '║ 大阪公立大学工業高等専門学校            　 ║', },
+    { text: '║ 大阪公立大学工業高等専門学校              ║', },
     { text: '║ 知能情報コース 2年生                     ║', },
     { text: '║                                       ║', },
     { text: '╚═══════════════════════════════════════╝', },
