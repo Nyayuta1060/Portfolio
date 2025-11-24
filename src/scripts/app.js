@@ -28,6 +28,12 @@ import { initializeCareer, initializeCertifications } from './career.js';
 import { initializeTerminal } from './terminal.js';
 import { initializeBootSequence } from './boot.js';
 
+// ページ読み込み開始時に即座にトップにスクロール
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 /**
  * DOMContentLoaded時の初期化
  */
