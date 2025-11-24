@@ -287,10 +287,10 @@ GitHub: ${project.github || 'N/A'}`;
       return `
 ╔═══════════════════════════════════════╗
 ║　　　　　　　　　　　　　　　　　　　║
-║  Welcome to Nyayuta's Portfolio OS   ║
+║ Welcome to Nyayuta's Portfolio OS   ║
 ║　　　　　　　　　　　　　　　　　　　║
-║　大阪公立大学工業高等専門学校　　　║
-║　知能情報コース 2年生　　　　　　　║
+║ 大阪公立大学工業高等専門学校　　　 ║
+║ 知能情報コース 2年生　　　　　　　 ║
 ║　　　　　　　　　　　　　　　　　　　║
 ╚═══════════════════════════════════════╝
 
