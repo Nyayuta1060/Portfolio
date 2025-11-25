@@ -1,5 +1,28 @@
 /* ========== ブートスクリーン ========== */
 
+/* 初期状態：全コンテンツ非表示 */
+.navbar,
+#particles-container,
+section,
+footer {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* boot-ready後：裏でレンダリング開始（boot画面の下） */
+body.boot-ready .navbar,
+body.boot-ready #particles-container,
+body.boot-ready section,
+body.boot-ready footer {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* boot中はスクロール無効 */
+body.booting {
+  overflow: hidden;
+}
+
 .boot-screen {
   position: fixed;
   top: 0;

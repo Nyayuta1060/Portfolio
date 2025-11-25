@@ -13,6 +13,47 @@ export function getCurrentDirectory() {
   return currentDirectory;
 }
 
+// 削除されたアイテムを追跡
+export const deletedItems = {
+  files: new Set(),
+  skills: new Set(),
+  projects: new Set()
+};
+
+/**
+ * ファイルを削除済みとしてマーク
+ */
+export function markAsDeleted(path, type = 'file') {
+  if (type === 'skill') {
+    deletedItems.skills.add(path);
+  } else if (type === 'project') {
+    deletedItems.projects.add(path);
+  } else {
+    deletedItems.files.add(path);
+  }
+}
+
+/**
+ * 削除済みかチェック
+ */
+export function isDeleted(path, type = 'file') {
+  if (type === 'skill') {
+    return deletedItems.skills.has(path);
+  } else if (type === 'project') {
+    return deletedItems.projects.has(path);
+  }
+  return deletedItems.files.has(path);
+}
+
+/**
+ * 全ての削除をリセット（reboot用）
+ */
+export function resetDeleted() {
+  deletedItems.files.clear();
+  deletedItems.skills.clear();
+  deletedItems.projects.clear();
+}
+
 // ディレクトリ構造
 export const fileSystem = {
   '/home/visitor/portfolio': {
