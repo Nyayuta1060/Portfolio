@@ -220,11 +220,11 @@ function showTooltip(element, message) {
   tooltip.className = 'email-tooltip';
   tooltip.textContent = message;
   
-  // 位置を計算
+  // 位置を計算(スクロール位置を考慮)
   const rect = element.getBoundingClientRect();
-  tooltip.style.position = 'fixed';
-  tooltip.style.top = `${rect.top - 40}px`;
-  tooltip.style.left = `${rect.left + rect.width / 2}px`;
+  tooltip.style.position = 'absolute';
+  tooltip.style.top = `${rect.top + window.scrollY - 40}px`;
+  tooltip.style.left = `${rect.left + window.scrollX + rect.width / 2}px`;
   tooltip.style.transform = 'translateX(-50%)';
   
   document.body.appendChild(tooltip);
