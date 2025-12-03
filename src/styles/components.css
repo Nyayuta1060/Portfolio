@@ -134,11 +134,9 @@
 
       .terminal-cursor {
         display: inline-block;
-        width: 8px;
-        height: 1em;
         background: var(--primary-color);
+        color: var(--primary-bg);
         animation: blink 1.06s steps(1) infinite;
-        vertical-align: text-bottom;
       }
 
       @keyframes blink {

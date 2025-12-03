@@ -376,20 +376,17 @@ function updateInputDisplay(inputTextElement, text, cursorPos) {
   
   // テキストをカーソル位置で分割
   const beforeCursor = escapeHtml(text.slice(0, cursorPos));
-  const afterCursor = escapeHtml(text.slice(cursorPos));
+  const cursorChar = text.slice(cursorPos, cursorPos + 1);
+  const afterCursor = escapeHtml(text.slice(cursorPos + 1));
   
   // テキストとカーソルを設定
-  if (afterCursor) {
-    // カーソルが途中にある場合
-    inputTextElement.innerHTML = beforeCursor + '<span class="terminal-cursor">_</span>' + afterCursor;
+  if (cursorChar) {
+    // カーソルが文字の上にある場合（実際のターミナルと同じ）
+    const escapedCursorChar = escapeHtml(cursorChar);
+    inputTextElement.innerHTML = beforeCursor + '<span class="terminal-cursor">' + escapedCursorChar + '</span>' + afterCursor;
   } else {
-    // カーソルが末尾にある場合
-    inputTextElement.innerHTML = beforeCursor;
-    // カーソルを別要素として追加
-    const cursor = document.createElement('span');
-    cursor.className = 'terminal-cursor';
-    cursor.textContent = '_';
-    inputTextElement.parentElement.appendChild(cursor);
+    // カーソルが末尾にある場合（空白文字を表示）
+    inputTextElement.innerHTML = beforeCursor + '<span class="terminal-cursor"> </span>';
   }
 }
 
