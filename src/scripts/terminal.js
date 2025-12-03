@@ -525,7 +525,9 @@ function setupTerminalEventListeners(terminalBody) {
             currentInput += ' ';
           }
         }
-        inputText.textContent = currentInput;
+        // カーソル位置を更新（補完後のテキスト末尾に移動）
+        cursorPosition = currentInput.length;
+        updateInputDisplay(inputText, currentInput, cursorPosition);
       } else if (suggestions.length > 1) {
         // 複数の候補がある場合は共通部分まで補完
         const commonPrefix = getCommonPrefix(suggestions);
@@ -533,7 +535,9 @@ function setupTerminalEventListeners(terminalBody) {
           const parts = currentInput.split(' ');
           parts[parts.length - 1] = commonPrefix;
           currentInput = parts.join(' ');
-          inputText.textContent = currentInput;
+          // カーソル位置を更新
+          cursorPosition = currentInput.length;
+          updateInputDisplay(inputText, currentInput, cursorPosition);
         }
         // 候補を表示
         displayOutput(`\n${suggestions.join('  ')}`, terminalBody, false);
