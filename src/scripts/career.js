@@ -39,11 +39,18 @@ export async function initializeCareer() {
  * @param {HTMLElement} careerTimeline - タイムラインコンテナ
  */
 async function loadAndRenderCareer(careerTimeline) {
-  const [timeline, stats] = await Promise.all([
-    getTimeline(),
-    getStats()
-  ]);
-  renderCareerTimeline(careerTimeline, timeline, stats);
+  try {
+    console.log('🔄 Loading career data...');
+    const [timeline, stats] = await Promise.all([
+      getTimeline(),
+      getStats()
+    ]);
+    console.log('✅ Career data loaded:', { timeline, stats });
+    renderCareerTimeline(careerTimeline, timeline, stats);
+  } catch (error) {
+    console.error('❌ Error in loadAndRenderCareer:', error);
+    throw error;
+  }
 }
 
 // 資格セクションの言語変更イベントリスナーが登録されているかのフラグ

@@ -132,26 +132,50 @@ export async function initializeSkills() {
  * @param {HTMLElement} container - スキルコンテナ
  */
 async function loadAndRenderSkills(container) {
-  const skillsData = await getSkillDetails();
-  console.log('✅ Skills data loaded:', Object.keys(skillsData).length, 'skills');
-  
-  // カテゴリごとにスキルを分類
-  const skillsByCategory = {};
-  
-  Object.entries(skillsData).forEach(([techId, skillData]) => {
-    const category = skillData.category;
-    if (!skillsByCategory[category]) {
-      skillsByCategory[category] = [];
+  try {
+    console.log('🔄 Loading skills data...');
+    const skillsData = await getSkillDetails();
+    console.log('✅ Skills data loaded:', skillsData);
+    console.log('📊 Number of skills:', Object.keys(skillsData).length);
+    
+    if (!skillsData || Object.keys(skillsData).length === 0) {
+      console.warn('⚠️ No skills data found');
+      container.innerHTML = '<p class="error-message">スキルデータが見つかりません</p>';
+      return;
     }
-    skillsByCategory[category].push(createSkillCard(techId, skillData));
-  });
+    
+    // カテゴリごとにスキルを分類
+    const skillsByCategory = {};
+    
+    Object.entries(skillsData).forEach(([techId, skillData]) => {
+      const category = skillData.category;
+      if (!skillsByCategory[category]) {
+        skillsByCategory[category] = [];
+      }
+      skillsByCategory[category].push(createSkillCard(techId, skillData));
+    });
 
-  // ローディング表示をクリア
-  container.innerHTML = '';
+    // ローディング表示をクリア
+    container.innerHTML = '';
 
-  // カテゴリセクションを作成して追加
-  Object.entries(skillsByCategory).forEach(([category, skillCards]) => {
-    const section = createCategorySection(category, skillCards);
-    container.appendChild(section);
-  });
+    // カテゴリセクションを作成して追加
+    Object.entries(skillsByCategory).forEach(([category, skillCards]) => {
+      const section = createCategorySection(category, skillCards);
+      
+      // アニメーション用のクラスを削除してから追加（再トリガー）
+      section.classList.remove('fade-in');
+      // 即座にfade-inクラスを追加して表示
+      requestAnimationFrame(() => {
+        section.classList.add('fade-in');
+      });
+      
+      container.appendChild(section);
+    });
+    
+    console.log('✅ Skills rendered:', container.children.length, 'categories');
+  } catch (error) {
+    console.error('❌ Error in loadAndRenderSkills:', error);
+    container.innerHTML = '<p class="error-message">スキルの読み込みに失敗しました: ' + error.message + '</p>';
+    throw error;
+  }
 }

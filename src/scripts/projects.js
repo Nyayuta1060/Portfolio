@@ -175,15 +175,55 @@ export async function initializeProjects() {
  * @param {HTMLElement} container - プロジェクトコンテナ
  */
 async function loadAndRenderProjects(container) {
-  const projectsData = await getProjectDetails();
-  console.log('✅ Projects data loaded:', Object.keys(projectsData).length, 'projects');
-  
-  // ローディング表示をクリア
-  container.innerHTML = '';
+  try {
+    console.log('🔄 Loading projects data...');
+    const projectsData = await getProjectDetails();
+    console.log('✅ Projects data loaded:', projectsData);
+    console.log('📊 Number of projects:', Object.keys(projectsData).length);
+    
+    if (!projectsData || Object.keys(projectsData).length === 0) {
+      console.warn('⚠️ No projects data found');
+      container.innerHTML = '<p class="error-message">プロジェクトデータが見つかりません</p>';
+      return;
+    }
+    
+    // ローディング表示をクリア
+    container.innerHTML = '';
+    console.log('🗑️ Container cleared');
 
-  // プロジェクトカードを作成して追加
-  Object.entries(projectsData).forEach(([projectId, projectData]) => {
-    const card = createProjectCard(projectId, projectData);
-    container.appendChild(card);
-  });
+    // プロジェクトカードを作成して追加
+    Object.entries(projectsData).forEach(([projectId, projectData]) => {
+      console.log('🎨 Creating card for project:', projectId);
+      try {
+        const card = createProjectCard(projectId, projectData);
+        console.log('✅ Card created:', card);
+        
+        // アニメーション用のクラスを削除してから追加（再トリガー）
+        card.classList.remove('fade-in');
+        // 即座にfade-inクラスを追加して表示
+        requestAnimationFrame(() => {
+          card.classList.add('fade-in');
+        });
+        
+        container.appendChild(card);
+        console.log('✅ Card appended to container');
+      } catch (error) {
+        console.error('❌ Error creating card for', projectId, ':', error);
+      }
+    });
+    
+    console.log('✅ Projects rendered:', container.children.length, 'cards');
+    console.log('📦 Container HTML:', container.innerHTML.substring(0, 200));
+    console.log('🎨 Container display:', window.getComputedStyle(container).display);
+    console.log('🎨 Container visibility:', window.getComputedStyle(container).visibility);
+    
+    // 各カードの表示状態も確認
+    Array.from(container.children).forEach((card, index) => {
+      console.log(`Card ${index} display:`, window.getComputedStyle(card).display);
+    });
+  } catch (error) {
+    console.error('❌ Error in loadAndRenderProjects:', error);
+    container.innerHTML = '<p class="error-message">プロジェクトの読み込みに失敗しました: ' + error.message + '</p>';
+    throw error;
+  }
 }
