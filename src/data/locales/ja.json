@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "subtitle": "大阪公立大学工業高等専門学校<br>知能情報コース/2年生",
+    "viewProjects": "View Projects",
+    "getInTouch": "Get In Touch"
+  },
+  "about": {
+    "title": "About Me",
+    "description1": "知能情報コースでAIや機械学習といった最新技術を学び、実践的なスキルを身につけています。",
+    "description2": "ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。",
+    "careerTitle": "経歴",
+    "certificationsTitle": "資格・認定",
+    "githubActivityTitle": "GitHub Activity",
+    "loadingCareer": "経歴データを読み込み中...",
+    "loadingCertifications": "資格データを読み込み中...",
+    "loadingGithub": "GitHubデータを読み込み中..."
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "description": "私が習得している技術スタック",
+    "all": "All",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "aiml": "AI/ML",
+    "tools": "Tools",
+    "loading": "スキルデータを読み込み中...",
+    "level": "レベル",
+    "frequency": "使用頻度",
+    "usage": "用途",
+    "experience": "経験",
+    "comment": "コメント",
+    "officialSite": "公式サイト",
+    "github": "GitHub"
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "私が取り組んできたプロジェクトの一覧",
+    "loading": "プロジェクトデータを読み込み中...",
+    "status": {
+      "completed": "完了",
+      "in-progress": "進行中",
+      "planning": "計画中"
+    },
+    "developmentType": {
+      "solo": "個人開発",
+      "team": "チーム開発"
+    },
+    "role": "役割",
+    "period": "期間",
+    "teamSize": "チームサイズ",
+    "technologies": "使用技術",
+    "highlights": "ハイライト",
+    "links": {
+      "github": "GitHub",
+      "demo": "デモ",
+      "article": "記事"
+    },
+    "viewDetails": "詳細を見る",
+    "closeModal": "閉じる"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "お気軽にご連絡ください。",
+    "schoolEmail": "学校用メール",
+    "personalEmail": "個人用メール",
+    "loading": "読み込み中...",
+    "github": "GitHub",
+    "twitter": "Twitter"
+  },
+  "footer": {
+    "copyright": "© 2025 Nyayuta Portfolio. All rights reserved."
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました"
+  }
+}

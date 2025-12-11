@@ -66,6 +66,16 @@
     display: flex;
   }
 
+  .language-switcher {
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+
+  .lang-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
   .nav-menu {
     position: fixed;
     left: -100%;
@@ -360,6 +370,16 @@
 
   .name {
     font-size: 2rem;
+  }
+
+  .language-switcher {
+    gap: 0.3rem;
+    margin-right: 0.5rem;
+  }
+
+  .lang-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
   }
 
   /* スマートフォンではターミナルを非表示 */

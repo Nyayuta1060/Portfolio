@@ -27,6 +27,7 @@ import { initializeData } from './init.js';
 import { initializeCareer, initializeCertifications } from './career.js';
 import { initializeTerminal } from './terminal.js';
 import { initializeBootSequence } from './boot.js';
+import i18n from './i18n.js';
 
 // ページ読み込み開始時に即座にトップにスクロール
 if ('scrollRestoration' in history) {
@@ -41,6 +42,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     console.log('📦 Starting Portfolio initialization...');
     
+    // i18nを初期化
+    console.log('🌐 Initializing i18n...');
+    await i18n.initialize();
+    
     // ブートシーケンスを表示
     await initializeBootSequence();
     
@@ -49,6 +54,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // その後アプリを初期化
     await initializeApp();
+    
+    // UIを更新
+    i18n.updateUI();
+    
     console.log('🚀 Portfolio初期化成功!');
   } catch (error) {
     console.error('❌ App Initialization failed:', error);
@@ -79,6 +88,8 @@ async function initializeCoreFeatures() {
     initializeTerminal();
     console.log('🔧 Initializing Navigation...');
     initializeNavigation();
+    console.log('🔧 Initializing Language Switcher...');
+    initializeLanguageSwitcher();
     console.log('🔧 Initializing Scroll Effects...');
     initializeScrollEffects();
     console.log('🔧 Initializing Particles...');
@@ -180,3 +191,39 @@ window.scrollToSection = function(sectionId) {
     });
   }
 };
+
+/**
+ * 言語切り替えを初期化
+ */
+function initializeLanguageSwitcher() {
+  const langButtons = document.querySelectorAll('.lang-btn');
+  
+  // 現在の言語に基づいてボタンのアクティブ状態を更新
+  const updateActiveButton = () => {
+    const currentLang = i18n.getCurrentLanguage();
+    langButtons.forEach(btn => {
+      if (btn.dataset.lang === currentLang) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  };
+  
+  // 初期状態を設定
+  updateActiveButton();
+  
+  // 各ボタンにクリックイベントを追加
+  langButtons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const lang = button.dataset.lang;
+      if (lang && lang !== i18n.getCurrentLanguage()) {
+        await i18n.switchLanguage(lang);
+        updateActiveButton();
+      }
+    });
+  });
+  
+  // 言語変更イベントをリッスン
+  window.addEventListener('languageChanged', updateActiveButton);
+}

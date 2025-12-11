@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nyayuta's Portfolio">
-    <meta name="keywords" content="Portfolio, Web Developer, AI, Machine Learning, Python, JavaScript">
+    <meta name="description" content="Nyayuta's Portfolio - Exploring various fields of development including Web, AI/ML, and more.">
+    <meta name="keywords" content="Portfolio, Web Developer, AI, Machine Learning, Python, JavaScript, Nyayuta">
     <meta name="author" content="Nyayuta">
     <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon">
 
     <!-- Open Graph / SNS共有用 -->
-    <!-- Open Graph / SNS共有用 -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nyayuta | Portfolio">
-    <meta property="og:description" content="大阪公立大学工業高等専門学校 知能情報コース2年生のポートフォリオサイト。Web開発、AI/機械学習、Python、JavaScriptなどのプロジェクトを紹介。">
+    <meta property="og:description" content="様々な分野の開発に挑戦するNyayutaのポートフォリオ。Web開発、AI/機械学習、自動化ツールなど多様なプロジェクトを紹介。">
     <meta property="og:url" content="https://nyayuta1060.github.io/Portfolio/">
     <meta property="og:site_name" content="Nyayuta's Portfolio">
     <meta property="og:locale" content="ja_JP">
@@ -20,7 +19,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nyayuta | Portfolio">
-    <meta name="twitter:description" content="大阪公立大学工業高等専門学校 知能情報コース2年生のポートフォリオサイト">
+    <meta name="twitter:description" content="様々な分野の開発に挑戦するNyayutaのポートフォリオサイト">
     
     <title>Nyayuta | Portfolio</title>
     
@@ -57,12 +56,20 @@
           </span>
         </a>
         <ul class="nav-menu">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#skills" class="nav-link">Skills</a></li>
-          <li><a href="#projects" class="nav-link">Projects</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+          <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
         </ul>
+        <div class="language-switcher">
+          <button class="lang-btn" data-lang="ja" title="日本語">
+            <span class="lang-text">JP</span>
+          </button>
+          <button class="lang-btn" data-lang="en" title="English">
+            <span class="lang-text">EN</span>
+          </button>
+        </div>
         <div class="hamburger">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -76,21 +83,21 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-title">
-            <span class="greeting">Hello, I'm</span>
+            <span class="greeting" data-i18n="hero.greeting">Hello, I'm</span>
             <span class="name">Nyayuta</span>
           </h1>
-          <p class="hero-subtitle">
+          <p class="hero-subtitle" data-i18n="hero.subtitle" data-i18n-html>
             大阪公立大学工業高等専門学校<br>
             知能情報コース/2年生
           </p>
           <div class="hero-buttons">
             <button class="btn btn-primary" onclick="scrollToSection('projects')">
               <i class="fas fa-folder-open"></i>
-              View Projects
+              <span data-i18n="hero.viewProjects">View Projects</span>
             </button>
             <button class="btn btn-secondary" onclick="scrollToSection('contact')">
               <i class="fas fa-envelope"></i>
-              Get In Touch
+              <span data-i18n="hero.getInTouch">Get In Touch</span>
             </button>
           </div>
 
@@ -129,15 +136,15 @@
       <div class="container">
         <h2 class="section-title">
           <span class="title-number">01.</span>
-          About Me
+          <span data-i18n="about.title">About Me</span>
         </h2>
         <div class="about-content">
           <div class="about-text">
-            <p class="about-description">
+            <p class="about-description" data-i18n="about.description1">
               知能情報コースでAIや機械学習といった最新技術を学び、
               実践的なスキルを身につけています。
             </p>
-            <p class="about-description">
+            <p class="about-description" data-i18n="about.description2">
               ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。
             </p>
 
@@ -145,13 +152,13 @@
             <div class="career-section">
               <h3 class="career-title">
                 <i class="fas fa-graduation-cap"></i>
-                経歴
+                <span data-i18n="about.careerTitle">経歴</span>
               </h3>
               <div class="career-timeline">
                 <!-- career.jsで動的に生成 -->
                 <div class="career-loading" style="text-align: center; padding: 2rem; color: #999;">
                   <div class="loading-spinner"></div>
-                  <p>経歴データを読み込み中...</p>
+                  <p data-i18n="about.loadingCareer">経歴データを読み込み中...</p>
                 </div>
               </div>
             </div>
@@ -160,13 +167,13 @@
             <div class="certifications-section">
               <h3 class="certifications-title">
                 <i class="fas fa-certificate"></i>
-                資格・認定
+                <span data-i18n="about.certificationsTitle">資格・認定</span>
               </h3>
               <div class="certifications-grid">
                 <!-- career.jsで動的に生成 -->
                 <div class="certifications-loading" style="text-align: center; padding: 2rem; color: #999;">
                   <div class="loading-spinner"></div>
-                  <p>資格データを読み込み中...</p>
+                  <p data-i18n="about.loadingCertifications">資格データを読み込み中...</p>
                 </div>
               </div>
             </div>
@@ -175,50 +182,49 @@
             <div class="github-activity-section">
               <h3 class="github-activity-title">
                 <i class="fab fa-github"></i>
-                GitHub Activity
+                <span data-i18n="about.githubActivityTitle">GitHub Activity</span>
               </h3>
               <div class="github-activity-content">
                 <!-- GitHub.jsで動的に生成 -->
                 <div class="github-loading">
                   <div class="loading-spinner"></div>
-                  <p>GitHubデータを読み込み中...</p>
+                  <p data-i18n="about.loadingGithub">GitHubデータを読み込み中...</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- スキルセクション -->
         <section id="skills" class="skills">
           <div class="container">
             <h2 class="section-title">
               <span class="title-number">02.</span>
-              Technical Skills
+              <span data-i18n="skills.title">Technical Skills</span>
             </h2>
             <div class="skills-content">
-              <p class="skills-description">私が習得している技術スタック</p>
+              <p class="skills-description" data-i18n="skills.description">私が習得している技術スタック</p>
 
               <!-- カテゴリフィルター -->
               <div class="skills-filter">
                 <button class="filter-btn active" data-category="all">
                   <i class="fas fa-th"></i>
-                  <span>All</span>
+                  <span data-i18n="skills.all">All</span>
                 </button>
                 <button class="filter-btn" data-category="frontend">
                   <i class="fas fa-laptop-code"></i>
-                  <span>Frontend</span>
+                  <span data-i18n="skills.frontend">Frontend</span>
                 </button>
                 <button class="filter-btn" data-category="backend">
                   <i class="fas fa-server"></i>
-                  <span>Backend</span>
+                  <span data-i18n="skills.backend">Backend</span>
                 </button>
                 <button class="filter-btn" data-category="ai-ml">
                   <i class="fas fa-brain"></i>
-                  <span>AI/ML</span>
+                  <span data-i18n="skills.aiml">AI/ML</span>
                 </button>
                 <button class="filter-btn" data-category="tools">
                   <i class="fas fa-tools"></i>
-                  <span>Tools</span>
+                  <span data-i18n="skills.tools">Tools</span>
                 </button>
               </div>
 
@@ -226,7 +232,7 @@
               <div class="skills-grid-container">
                 <div class="loading-container">
                   <div class="loading-spinner"></div>
-                  <p>スキルデータを読み込み中...</p>
+                  <p data-i18n="skills.loading">スキルデータを読み込み中...</p>
                 </div>
               </div>
             </div>
@@ -238,16 +244,16 @@
           <div class="container">
             <h2 class="section-title">
               <span class="title-number">03.</span>
-              My Projects
+              <span data-i18n="projects.title">My Projects</span>
             </h2>
             <div class="projects-content">
-              <p class="projects-description">私が取り組んできたプロジェクトの一覧</p>
+              <p class="projects-description" data-i18n="projects.description">私が取り組んできたプロジェクトの一覧</p>
 
               <!-- プロジェクトグリッド（JavaScriptで動的生成） -->
               <div class="projects-grid">
                 <div class="loading-container">
                   <div class="loading-spinner"></div>
-                  <p>プロジェクトデータを読み込み中...</p>
+                  <p data-i18n="projects.loading">プロジェクトデータを読み込み中...</p>
                 </div>
               </div>
             </div>
@@ -261,28 +267,28 @@
               <div class="contact-info">
                 <h2 class="section-title">
                   <span class="title-number">04.</span>
-                  Contact
+                  <span data-i18n="contact.title">Contact</span>
                 </h2>
-                <p>
+                <p data-i18n="contact.description">
                   お気軽にご連絡ください。
                 </p>
                 <div class="contact-methods">
                   <div class="contact-method">
                     <div class="contact-method-header">
                       <i class="fas fa-envelope"></i>
-                      <h4>学校用メール</h4>
+                      <h4 data-i18n="contact.schoolEmail">学校用メール</h4>
                     </div>
                     <div class="contact-details" data-email-container="school-email">
-                      <a href="#" data-email-id="school-email" class="email-address" aria-label="学校用メールアドレス">読み込み中...</a>
+                      <a href="#" data-email-id="school-email" class="email-address" aria-label="学校用メールアドレス" data-i18n="contact.loading">読み込み中...</a>
                     </div>
                   </div>
                   <div class="contact-method">
                     <div class="contact-method-header">
                       <i class="fas fa-envelope-open"></i>
-                      <h4>個人用メール</h4>
+                      <h4 data-i18n="contact.personalEmail">個人用メール</h4>
                     </div>
                     <div class="contact-details" data-email-container="personal-email">
-                      <a href="#" data-email-id="personal-email" class="email-address" aria-label="個人用メールアドレス">読み込み中...</a>
+                      <a href="#" data-email-id="personal-email" class="email-address" aria-label="個人用メールアドレス" data-i18n="contact.loading">読み込み中...</a>
                     </div>
                   </div>
                 </div>
@@ -290,11 +296,11 @@
                 <div class="social-links">
                   <a href="https://github.com/Nyayuta1060" class="social-link" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-github"></i>
-                    <span>GitHub</span>
+                    <span data-i18n="contact.github">GitHub</span>
                   </a>
                   <a href="https://twitter.com/Nyayuta0717" class="social-link" target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-twitter"></i>
-                    <span>Twitter</span>
+                    <span data-i18n="contact.twitter">Twitter</span>
                   </a>
                 </div>
               </div>
@@ -306,7 +312,7 @@
         <footer class="footer">
           <div class="container">
             <div class="footer-content">
-              <p>&copy; 2025 Nyayuta Portfolio. All rights reserved.</p>
+              <p data-i18n="footer.copyright">&copy; 2025 Nyayuta Portfolio. All rights reserved.</p>
             </div>
           </div>
         </footer>

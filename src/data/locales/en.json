@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "subtitle": "Osaka Metropolitan University College of Technology<br>Intelligent Informatics Course / 2nd Year",
+    "viewProjects": "View Projects",
+    "getInTouch": "Get In Touch"
+  },
+  "about": {
+    "title": "About Me",
+    "description1": "I'm learning cutting-edge technologies such as AI and machine learning in the Intelligent Informatics Course, acquiring practical skills.",
+    "description2": "As a member of the Robot Club's control team, I work on robot control and programming for the National Institute of Technology Robot Contest.",
+    "careerTitle": "Career",
+    "certificationsTitle": "Certifications",
+    "githubActivityTitle": "GitHub Activity",
+    "loadingCareer": "Loading career data...",
+    "loadingCertifications": "Loading certification data...",
+    "loadingGithub": "Loading GitHub data..."
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "description": "My technical stack",
+    "all": "All",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "aiml": "AI/ML",
+    "tools": "Tools",
+    "loading": "Loading skill data...",
+    "level": "Level",
+    "frequency": "Frequency",
+    "usage": "Usage",
+    "experience": "Experience",
+    "comment": "Comment",
+    "officialSite": "Official Site",
+    "github": "GitHub"
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "Projects I've worked on",
+    "loading": "Loading project data...",
+    "status": {
+      "completed": "Completed",
+      "in-progress": "In Progress",
+      "planning": "Planning"
+    },
+    "developmentType": {
+      "solo": "Solo Development",
+      "team": "Team Development"
+    },
+    "role": "Role",
+    "period": "Period",
+    "teamSize": "Team Size",
+    "technologies": "Technologies",
+    "highlights": "Highlights",
+    "links": {
+      "github": "GitHub",
+      "demo": "Demo",
+      "article": "Article"
+    },
+    "viewDetails": "View Details",
+    "closeModal": "Close"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Feel free to contact me.",
+    "schoolEmail": "School Email",
+    "personalEmail": "Personal Email",
+    "loading": "Loading...",
+    "github": "GitHub",
+    "twitter": "Twitter"
+  },
+  "footer": {
+    "copyright": "© 2025 Nyayuta Portfolio. All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred"
+  }
+}
