@@ -2,6 +2,7 @@
 import { getElements, addEventListeners } from './utils.js';
 import { getSkillDetails } from './skillsData.js';
 import { initializeProjectModal } from './projectModal.js';
+import i18n from './i18n.js';
 
 // ========== 入力フォーカス効果 ==========
 
@@ -206,19 +207,19 @@ function createModalElement() {
         </div>
         <div class="skill-modal-body">
           <div class="skill-detail-section">
-            <h4><i class="fas fa-briefcase"></i> 主な用途</h4>
+            <h4><i class="fas fa-briefcase"></i> <span data-i18n="skills.usage">用途</span></h4>
             <p id="modal-skill-usage"></p>
           </div>
           <div class="skill-detail-section">
-            <h4><i class="fas fa-clock"></i> 使用期間</h4>
+            <h4><i class="fas fa-clock"></i> <span data-i18n="skills.experience">経験</span></h4>
             <p id="modal-skill-experience"></p>
           </div>
           <div class="skill-detail-section">
-            <h4><i class="fas fa-comment"></i> コメント</h4>
+            <h4><i class="fas fa-comment"></i> <span data-i18n="skills.comment">コメント</span></h4>
             <p id="modal-skill-comment"></p>
           </div>
           <div class="skill-detail-section skill-links-section">
-            <h4><i class="fas fa-link"></i> 関連リンク</h4>
+            <h4><i class="fas fa-link"></i> <span data-i18n="skills.links">関連リンク</span></h4>
             <div class="skill-modal-links" id="modal-skill-links"></div>
           </div>
         </div>
@@ -263,7 +264,7 @@ async function openSkillModal(techId) {
     links.push(`
       <a href="${skill.links.official}" class="skill-modal-link" target="_blank" rel="noopener noreferrer">
         <i class="fas fa-book"></i>
-        <span>公式ドキュメント</span>
+        <span data-i18n="skills.officialSite">公式サイト</span>
       </a>
     `);
   }
@@ -272,7 +273,7 @@ async function openSkillModal(techId) {
     links.push(`
       <a href="${skill.links.github}" class="skill-modal-link" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-github"></i>
-        <span>GitHub</span>
+        <span data-i18n="skills.github">GitHub</span>
       </a>
     `);
   }
@@ -282,6 +283,9 @@ async function openSkillModal(techId) {
   // モーダルを表示
   modal.classList.add('active');
   document.body.classList.add('modal-open');
+  
+  // i18n適用
+  i18n.updateUI();
 }
 
 /**

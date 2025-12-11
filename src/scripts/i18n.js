@@ -49,7 +49,7 @@ class I18nManager {
    */
   async loadTranslations(language) {
     try {
-      const response = await fetch(`./src/data/locales/${language}.json`);
+      const response = await fetch(`./src/data/locales/${language}/main.json`);
       if (!response.ok) {
         throw new Error(`Failed to load translations for ${language}`);
       }

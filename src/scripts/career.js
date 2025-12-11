@@ -1,6 +1,10 @@
 // ========== 経歴セクション機能 ==========
 import { getTimeline, getStats } from './careerData.js';
 import { logError } from './utils.js';
+import i18n from './i18n.js';
+
+// 言語変更イベントリスナーが登録されているかのフラグ
+let careerListenerRegistered = false;
 
 /**
  * 経歴セクションを初期化
@@ -14,18 +18,36 @@ export async function initializeCareer() {
   }
 
   try {
-    const [timeline, stats] = await Promise.all([
-      getTimeline(),
-      getStats()
-    ]);
-
-    renderCareerTimeline(careerTimeline, timeline, stats);
+    await loadAndRenderCareer(careerTimeline);
     console.log('✅ Career section loaded successfully');
+    
+    // 言語変更イベントリスナーを一度だけ追加
+    if (!careerListenerRegistered) {
+      window.addEventListener('languageChanged', async () => {
+        await loadAndRenderCareer(careerTimeline);
+      });
+      careerListenerRegistered = true;
+    }
   } catch (error) {
     logError('Initialize Career', error);
     showCareerError(careerTimeline);
   }
 }
+
+/**
+ * 経歴データを読み込んでレンダリング
+ * @param {HTMLElement} careerTimeline - タイムラインコンテナ
+ */
+async function loadAndRenderCareer(careerTimeline) {
+  const [timeline, stats] = await Promise.all([
+    getTimeline(),
+    getStats()
+  ]);
+  renderCareerTimeline(careerTimeline, timeline, stats);
+}
+
+// 資格セクションの言語変更イベントリスナーが登録されているかのフラグ
+let certificationsListenerRegistered = false;
 
 /**
  * 資格セクションを初期化
@@ -39,15 +61,31 @@ export async function initializeCertifications() {
   }
 
   try {
-    const { getCertifications } = await import('./careerData.js');
-    const certifications = await getCertifications();
-
-    renderCertifications(certificationsContainer, certifications);
+    await loadAndRenderCertifications(certificationsContainer);
     console.log('✅ Certifications section loaded successfully');
+    
+    // 言語変更イベントリスナーを一度だけ追加
+    if (!certificationsListenerRegistered) {
+      window.addEventListener('languageChanged', async () => {
+        await loadAndRenderCertifications(certificationsContainer);
+      });
+      certificationsListenerRegistered = true;
+    }
   } catch (error) {
     logError('Initialize Certifications', error);
     showCertificationsError(certificationsContainer);
   }
+}
+
+/**
+ * 資格データを読み込んでレンダリング
+ * @param {HTMLElement} certificationsContainer - 資格コンテナ
+ */
+async function loadAndRenderCertifications(certificationsContainer) {
+  const { getCertifications } = await import('./careerData.js');
+  const certifications = await getCertifications();
+  renderCertifications(certificationsContainer, certifications);
+  i18n.updateUI();
 }
 
 /**
@@ -65,6 +103,9 @@ function renderCareerTimeline(container, timeline, stats) {
   
   // コンテナに挿入
   container.innerHTML = timelineHTML + statsHTML;
+  
+  // i18n適用
+  i18n.updateUI();
 }
 
 /**
@@ -139,15 +180,15 @@ function createStatsSection(stats) {
     <div class="stats">
       <div class="stat-item">
         <div class="stat-number">${stats.yearsOfLearning}+</div>
-        <div class="stat-label">Years of Learning</div>
+        <div class="stat-label" data-i18n="about.stats.yearsOfLearning">Years of Learning</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">${stats.projectsCompleted}+</div>
-        <div class="stat-label">Projects Completed</div>
+        <div class="stat-label" data-i18n="about.stats.projectsCompleted">Projects Completed</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">${stats.technologies}+</div>
-        <div class="stat-label">Technologies</div>
+        <div class="stat-label" data-i18n="about.stats.technologies">Technologies</div>
       </div>
     </div>
   `;

@@ -1,0 +1,183 @@
+{
+  "nulltasker": {
+    "name": "NullTasker",
+    "description": "Open-source task management tool for students",
+    "type": "web-app",
+    "status": "in-progress",
+    "featured": true,
+    "period": "May 2025 - Present",
+    "role": "Lead Programmer",
+    "developmentType": "team",
+    "teamSize": 5,
+    "technologies": ["HTML", "CSS", "JavaScript", "Node.js"],
+    "image": {
+      "type": "file",
+      "src": "./src/assets/projects/nulltasker/NullTasker.png",
+      "alt": "NullTasker"
+    },
+    "links": {
+      "github": "https://github.com/Team-Nullpo/NullTasker",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "Task management system to improve student learning efficiency",
+      "Team development collaboration experience",
+      "Responsive design implementation"
+    ],
+    "modal": {
+      "detailedDescription": "An open-source task management tool aimed at improving student learning efficiency. Through team development experience, I learned the importance of collaborating to advance projects.",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/NullTasker.png",
+          "alt": "NullTasker Logo",
+          "caption": "NullTasker Logo"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/task.png",
+          "alt": "Task Management Screen",
+          "caption": "Task Management Screen"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/calender.png",
+          "alt": "Calendar Screen",
+          "caption": "Calendar Screen"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/smartphone.png",
+          "alt": "Smartphone Display",
+          "caption": "Smartphone Display"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/login.png",
+          "alt": "Login Screen",
+          "caption": "Login Screen"
+        },{
+          "type": "image",
+          "src": "./src/assets/projects/nulltasker/new-user.png",
+          "alt": "Registration Screen",
+          "caption": "Registration Screen"
+        }
+      ]
+    }
+  },
+  "portfolio": {
+    "name": "Portfolio Website",
+    "description": "Portfolio website created with HTML/CSS/JavaScript (this site)",
+    "type": "web-app",
+    "status": "in-progress",
+    "featured": false,
+    "period": "September 2025 - Present",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": ["HTML", "CSS", "JavaScript", "Github API"],
+    "image": {
+      "type": "icon",
+      "icon": "fas fa-globe"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/Portfolio",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "Responsive design implementation",
+      "Particle animation",
+      "Modal functionality"
+    ]
+  },
+  "pytranslater": {
+    "name": "PyTranslater",
+    "description": "Translation tool implemented in Python",
+    "type": "ai-ml",
+    "status": "completed",
+    "featured": false,
+    "period": "June 2025",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": ["Python"],
+    "image": {
+      "type": "icon",
+      "icon": "fa-solid fa-language"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/PyTranslater",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "GUI translation",
+      "Multiple language support",
+      "Simple UI"
+    ],
+    "modal": {
+      "detailedDescription": "A simple and user-friendly translation tool implemented in Python. Features a GUI and supports multiple languages.",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/pytranslater/demo.png",
+          "alt": "PyTranslater Demo Screen",
+          "caption": "PyTranslater Demo Screen"
+        },
+        {
+          "type": "image",
+          "src": "./src/assets/projects/pytranslater/demo-another-page.png",
+          "alt": "Opened in Separate Page",
+          "caption": "Opened in Separate Page"
+        },
+        {
+          "type": "image",
+          "src": "./src/assets/projects/pytranslater/demo-setting.png",
+          "alt": "Advanced Settings Screen",
+          "caption": "Advanced Settings Screen"
+        }
+      ]
+    }
+  },
+  "git-grassreporter": {
+    "name": "Git-GrassReporter",
+    "description": "Tool to automatically support continuous contribution using Python and GitHub Actions",
+    "type": "automation",
+    "status": "completed",
+    "featured": false,
+    "period": "October 2025",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": ["Python", "GitHub Actions"],
+    "image": {
+      "type": "icon",
+      "icon": "fa-solid fa-bullhorn"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/Git-GrassReporter",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "Automation with GitHub Actions",
+      "Support for continuous contribution",
+      "Discord notification feature"
+    ],
+    "modal": {
+      "detailedDescription": "An automation tool that uses GitHub Actions and Python to support continuous GitHub contributions. Also includes Discord notification functionality.",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/git-grassreporter/discord-report.png",
+          "alt": "Actual Message",
+          "caption": "Actual Message"
+        },
+        {
+          "type": "image",
+          "src": "./src/assets/projects/git-grassreporter/action.png",
+          "alt": "Action Execution History",
+          "caption": "Action Execution History"
+        }
+      ]
+    }
+  }
+}

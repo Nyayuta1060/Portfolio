@@ -87,6 +87,9 @@ function createCategorySection(category, skillCards) {
   return section;
 }
 
+// 言語変更イベントリスナーが登録されているかのフラグ
+let skillsListenerRegistered = false;
+
 /**
  * スキルセクションを初期化して表示
  * データを読み込み、カテゴリごとにスキルカードをレンダリングする
@@ -102,34 +105,53 @@ export async function initializeSkills() {
   }
 
   try {
-    const skillsData = await getSkillDetails();
-    console.log('✅ Skills data loaded:', Object.keys(skillsData).length, 'skills');
-    
-    // カテゴリごとにスキルを分類
-    const skillsByCategory = {};
-    
-    Object.entries(skillsData).forEach(([techId, skillData]) => {
-      const category = skillData.category;
-      if (!skillsByCategory[category]) {
-        skillsByCategory[category] = [];
-      }
-      skillsByCategory[category].push(createSkillCard(techId, skillData));
-    });
-
-    // ローディング表示をクリア
-    container.innerHTML = '';
-
-    // カテゴリセクションを作成して追加
-    Object.entries(skillsByCategory).forEach(([category, skillCards]) => {
-      const section = createCategorySection(category, skillCards);
-      container.appendChild(section);
-    });
-
+    await loadAndRenderSkills(container);
     console.log('✅ Skills section rendered successfully');
+    
+    // 言語変更イベントリスナーを一度だけ追加
+    if (!skillsListenerRegistered) {
+      window.addEventListener('languageChanged', async () => {
+        try {
+          await loadAndRenderSkills(container);
+        } catch (error) {
+          console.error('❌ Error reloading skills:', error);
+        }
+      });
+      skillsListenerRegistered = true;
+    }
 
   } catch (error) {
     container.innerHTML = '<p class="error-message">スキルデータの読み込みに失敗しました</p>';
     logError('Failed to initialize skills section', { error });
     console.error('❌ Skills initialization error:', error);
   }
+}
+
+/**
+ * スキルデータを読み込んでレンダリング
+ * @param {HTMLElement} container - スキルコンテナ
+ */
+async function loadAndRenderSkills(container) {
+  const skillsData = await getSkillDetails();
+  console.log('✅ Skills data loaded:', Object.keys(skillsData).length, 'skills');
+  
+  // カテゴリごとにスキルを分類
+  const skillsByCategory = {};
+  
+  Object.entries(skillsData).forEach(([techId, skillData]) => {
+    const category = skillData.category;
+    if (!skillsByCategory[category]) {
+      skillsByCategory[category] = [];
+    }
+    skillsByCategory[category].push(createSkillCard(techId, skillData));
+  });
+
+  // ローディング表示をクリア
+  container.innerHTML = '';
+
+  // カテゴリセクションを作成して追加
+  Object.entries(skillsByCategory).forEach(([category, skillCards]) => {
+    const section = createCategorySection(category, skillCards);
+    container.appendChild(section);
+  });
 }

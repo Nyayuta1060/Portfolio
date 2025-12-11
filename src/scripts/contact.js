@@ -1,4 +1,5 @@
  // ========== コンタクト機能 ==========
+import i18n from './i18n.js';
 
 /**
  * メールアドレスのスパム対策付き初期化
@@ -28,10 +29,36 @@ export function initializeContactProtection() {
       initializeEmailAddress(data);
     });
 
+    // 言語変更イベントをリッスン
+    window.addEventListener('languageChanged', () => {
+      emailData.forEach(data => {
+        updateEmailButtons(data.id);
+      });
+    });
+
     console.log('✅ Contact protection initialized');
   } catch (error) {
     console.error('❌ Contact protection error:', error);
     // エラーがあっても他の機能は動作するように、エラーを握りつぶす
+  }
+}
+
+/**
+ * メールボタンのテキストを更新
+ * @param {string} emailId - メールアドレスのID
+ */
+function updateEmailButtons(emailId) {
+  const container = document.querySelector(`[data-email-container="${emailId}"]`);
+  if (!container) return;
+
+  const mailtoButton = container.querySelector('.email-mailto-btn span');
+  const copyButton = container.querySelector('.email-copy-btn span');
+
+  if (mailtoButton) {
+    mailtoButton.textContent = i18n.t('contact.openMailer');
+  }
+  if (copyButton) {
+    copyButton.textContent = i18n.t('contact.copy');
   }
 }
 
@@ -101,19 +128,19 @@ function initializeEmailAddress(data) {
   // メーラーで開くボタン
   const mailtoButton = document.createElement('button');
   mailtoButton.className = 'email-action-btn email-mailto-btn';
-  mailtoButton.setAttribute('aria-label', 'メールアプリで開く');
-  mailtoButton.innerHTML = '<i class="fas fa-envelope"></i><span>メーラー</span>';
+  mailtoButton.setAttribute('aria-label', 'Open in email app');
+  mailtoButton.innerHTML = '<i class="fas fa-envelope"></i><span data-i18n="contact.openMailer">メーラー</span>';
   mailtoButton.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.href = `mailto:${email}`;
-    showTooltip(mailtoButton, 'メーラーを開きました');
+    showTooltip(mailtoButton, i18n.t('contact.mailerOpened'));
   });
   
   // コピーボタンを作成
   const copyButton = document.createElement('button');
   copyButton.className = 'email-action-btn email-copy-btn';
-  copyButton.setAttribute('aria-label', 'メールアドレスをコピー');
-  copyButton.innerHTML = '<i class="fas fa-copy"></i><span>コピー</span>';
+  copyButton.setAttribute('aria-label', 'Copy email address');
+  copyButton.innerHTML = '<i class="fas fa-copy"></i><span data-i18n="contact.copy">コピー</span>';
   copyButton.addEventListener('click', (e) => {
     e.preventDefault();
     copyToClipboard(email, copyButton);
@@ -183,7 +210,7 @@ function showCopyFeedback(button, success) {
     button.classList.add('copied');
     
     // フィードバックツールチップを表示
-    showTooltip(button, 'コピーしました!');
+    showTooltip(button, i18n.t('contact.copied'));
     
     // 2秒後に元に戻す
     setTimeout(() => {
@@ -194,7 +221,7 @@ function showCopyFeedback(button, success) {
     button.innerHTML = '<i class="fas fa-times"></i>';
     button.classList.add('copy-error');
     
-    showTooltip(button, 'コピーに失敗しました');
+    showTooltip(button, i18n.t('contact.copyFailed'));
     
     setTimeout(() => {
       button.innerHTML = originalHTML;

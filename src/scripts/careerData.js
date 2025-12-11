@@ -1,8 +1,9 @@
 // ========== 経歴データ管理ファイル ==========
-// 経歴データはsrc/data/career.jsonで管理されています
+// 経歴データはsrc/data/locales/{language}/career.jsonで管理されています
 // このファイルは定数とヘルパー関数を提供します
 
 import { loadJSON } from './dataLoader.js';
+import i18n from './i18n.js';
 
 /**
  * 経歴カテゴリの定義
@@ -16,36 +17,48 @@ export const CAREER_CATEGORY = {
 };
 
 // 経歴データのキャッシュ
-let careerDataCache = null;
+let careerDataCache = {};
 
 /**
  * 経歴データを読み込む
+ * @param {string} language - 言語コード
  * @returns {Promise<Object>} 経歴データ
  */
-async function loadCareer() {
-  return await loadJSON('./src/data/career.json');
+async function loadCareer(language) {
+  return await loadJSON(`./src/data/locales/${language}/career.json`);
 }
 
 /**
  * 経歴データの初期化
  * JSONファイルからデータを読み込みます
+ * @param {string} language - 言語コード (オプション、未指定時は現在の言語)
  */
-export async function initCareerData() {
-  if (careerDataCache === null) {
-    careerDataCache = await loadCareer();
+export async function initCareerData(language = null) {
+  const lang = language || i18n.getCurrentLanguage();
+  if (!careerDataCache[lang]) {
+    careerDataCache[lang] = await loadCareer(lang);
   }
-  return careerDataCache;
+  return careerDataCache[lang];
 }
 
 /**
  * 経歴データを取得
  * 初期化されていない場合は自動的に初期化します
+ * @param {string} language - 言語コード (オプション、未指定時は現在の言語)
  */
-export async function getCareerData() {
-  if (careerDataCache === null) {
-    await initCareerData();
+export async function getCareerData(language = null) {
+  const lang = language || i18n.getCurrentLanguage();
+  if (!careerDataCache[lang]) {
+    await initCareerData(lang);
   }
-  return careerDataCache;
+  return careerDataCache[lang];
+}
+
+/**
+ * キャッシュをクリア
+ */
+export function clearCareerCache() {
+  careerDataCache = {};
 }
 
 /**

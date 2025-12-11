@@ -1,8 +1,9 @@
 // ========== プロジェクトデータ管理ファイル ==========
-// プロジェクトデータはsrc/data/projects.jsonで管理されています
+// プロジェクトデータはsrc/data/locales/{language}/projects.jsonで管理されています
 // このファイルは定数とヘルパー関数を提供します
 
-import { loadProjects } from './dataLoader.js';
+import { loadJSON } from './dataLoader.js';
+import i18n from './i18n.js';
 
 export const PROJECT_STATUS = {
   COMPLETED: 'completed',
@@ -22,20 +23,38 @@ export const PROJECT_TYPE = {
   OTHER: 'other'
 };
 
-let projectDataCache = null;
+let projectDataCache = {};
 
-export async function initProjectData() {
-  if (projectDataCache === null) {
-    projectDataCache = await loadProjects();
-  }
-  return projectDataCache;
+/**
+ * プロジェクトデータを読み込む
+ * @param {string} language - 言語コード
+ * @returns {Promise<Object>} プロジェクトデータ
+ */
+async function loadProjects(language) {
+  return await loadJSON(`./src/data/locales/${language}/projects.json`);
 }
 
-export async function getProjectDetails() {
-  if (projectDataCache === null) {
-    await initProjectData();
+export async function initProjectData(language = null) {
+  const lang = language || i18n.getCurrentLanguage();
+  if (!projectDataCache[lang]) {
+    projectDataCache[lang] = await loadProjects(lang);
   }
-  return projectDataCache;
+  return projectDataCache[lang];
+}
+
+export async function getProjectDetails(language = null) {
+  const lang = language || i18n.getCurrentLanguage();
+  if (!projectDataCache[lang]) {
+    await initProjectData(lang);
+  }
+  return projectDataCache[lang];
+}
+
+/**
+ * キャッシュをクリア
+ */
+export function clearProjectCache() {
+  projectDataCache = {};
 }
 
 export async function getProjectById(projectId) {

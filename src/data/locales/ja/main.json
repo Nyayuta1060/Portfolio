@@ -21,7 +21,12 @@
     "githubActivityTitle": "GitHub Activity",
     "loadingCareer": "経歴データを読み込み中...",
     "loadingCertifications": "資格データを読み込み中...",
-    "loadingGithub": "GitHubデータを読み込み中..."
+    "loadingGithub": "GitHubデータを読み込み中...",
+    "stats": {
+      "yearsOfLearning": "学習年数",
+      "projectsCompleted": "完了プロジェクト",
+      "technologies": "習得技術"
+    }
   },
   "skills": {
     "title": "Technical Skills",
@@ -37,6 +42,7 @@
     "usage": "用途",
     "experience": "経験",
     "comment": "コメント",
+    "links": "関連リンク",
     "officialSite": "公式サイト",
     "github": "GitHub"
   },
@@ -73,7 +79,12 @@
     "personalEmail": "個人用メール",
     "loading": "読み込み中...",
     "github": "GitHub",
-    "twitter": "Twitter"
+    "twitter": "Twitter",
+    "openMailer": "メーラー",
+    "copy": "コピー",
+    "copied": "コピーしました!",
+    "copyFailed": "コピーに失敗しました",
+    "mailerOpened": "メーラーを開きました"
   },
   "footer": {
     "copyright": "© 2025 Nyayuta Portfolio. All rights reserved."

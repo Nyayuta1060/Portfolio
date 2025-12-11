@@ -28,6 +28,9 @@ import { initializeCareer, initializeCertifications } from './career.js';
 import { initializeTerminal } from './terminal.js';
 import { initializeBootSequence } from './boot.js';
 import i18n from './i18n.js';
+import { clearCareerCache } from './careerData.js';
+import { clearProjectCache } from './projectsData.js';
+import { clearSkillCache } from './skillsData.js';
 
 // ページ読み込み開始時に即座にトップにスクロール
 if ('scrollRestoration' in history) {
@@ -218,6 +221,11 @@ function initializeLanguageSwitcher() {
     button.addEventListener('click', async () => {
       const lang = button.dataset.lang;
       if (lang && lang !== i18n.getCurrentLanguage()) {
+        // キャッシュをクリア
+        clearCareerCache();
+        clearProjectCache();
+        clearSkillCache();
+        
         await i18n.switchLanguage(lang);
         updateActiveButton();
       }

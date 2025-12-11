@@ -133,6 +133,9 @@ function createProjectCard(projectId, projectData) {
   return card;
 }
 
+// 言語変更イベントリスナーが登録されているかのフラグ
+let projectsListenerRegistered = false;
+
 /**
  * プロジェクトセクションを初期化して表示
  */
@@ -145,23 +148,42 @@ export async function initializeProjects() {
   }
 
   try {
-    const projectsData = await getProjectDetails();
-    console.log('✅ Projects data loaded:', Object.keys(projectsData).length, 'projects');
-    
-    // ローディング表示をクリア
-    container.innerHTML = '';
-
-    // プロジェクトカードを作成して追加
-    Object.entries(projectsData).forEach(([projectId, projectData]) => {
-      const card = createProjectCard(projectId, projectData);
-      container.appendChild(card);
-    });
-
+    await loadAndRenderProjects(container);
     console.log('✅ Projects section rendered successfully');
+    
+    // 言語変更イベントリスナーを一度だけ追加
+    if (!projectsListenerRegistered) {
+      window.addEventListener('languageChanged', async () => {
+        try {
+          await loadAndRenderProjects(container);
+        } catch (error) {
+          console.error('❌ Error reloading projects:', error);
+        }
+      });
+      projectsListenerRegistered = true;
+    }
 
   } catch (error) {
     container.innerHTML = '<p class="error-message">プロジェクトデータの読み込みに失敗しました</p>';
     logError('Failed to initialize projects section', { error });
     console.error('❌ Projects initialization error:', error);
   }
+}
+
+/**
+ * プロジェクトデータを読み込んでレンダリング
+ * @param {HTMLElement} container - プロジェクトコンテナ
+ */
+async function loadAndRenderProjects(container) {
+  const projectsData = await getProjectDetails();
+  console.log('✅ Projects data loaded:', Object.keys(projectsData).length, 'projects');
+  
+  // ローディング表示をクリア
+  container.innerHTML = '';
+
+  // プロジェクトカードを作成して追加
+  Object.entries(projectsData).forEach(([projectId, projectData]) => {
+    const card = createProjectCard(projectId, projectData);
+    container.appendChild(card);
+  });
 }

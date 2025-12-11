@@ -1,0 +1,65 @@
+{
+  "timeline": [
+    {
+      "id": "entry-2024-04",
+      "date": "2024.04",
+      "isGroup": true,
+      "items": [
+        {
+          "title": "Enrolled in Osaka Metropolitan University College of Technology",
+          "description": "Started studying specialized knowledge at the college of technology.",
+          "category": "education"
+        },
+        {
+          "title": "Joined Robot Club Control Team",
+          "description": "Working on robot control and programming for the National Institute of Technology Robot Contest.",
+          "category": "club"
+        }
+      ]
+    },
+    {
+      "id": "entry-2024-09",
+      "date": "2024.09",
+      "category": "competition",
+      "title": "Participated in Catch Robo Battle Contest",
+      "description": null
+    },
+    {
+      "id": "entry-2025-03",
+      "date": "2025.03",
+      "title": "Participated in Kansai Spring Robocon",
+      "description": null,
+      "category": "competition"
+    },
+    {
+      "id": "entry-2025-04",
+      "date": "2025.04",
+      "title": "Advanced to Intelligent Informatics Course",
+      "description": "Started studying more specialized fields such as AI, machine learning, and programming.",
+      "category": "education"
+    },
+    {
+      "id": "entry-2025-09",
+      "date": "2025.09",
+      "title": "Participated in National Institute of Technology Robot Contest 2025 Kinki Regional Competition",
+      "description": "Participated as Team B pit crew. Awarded Tanaka Kikinzoku Group Prize",
+      "category": "competition"
+    }
+  ],
+  "stats": {
+    "yearsOfLearning": 6,
+    "projectsCompleted": 15,
+    "technologies": 10
+  },
+  "certifications": [
+    {
+      "id": "cert-eiken-pre2",
+      "name": "EIKEN Grade Pre-2",
+      "issuer": "The Society for Testing English Proficiency, Inc. (STEP)",
+      "date": "2023.07",
+      "icon": "fas fa-language",
+      "description": "Certification proving high school intermediate level English proficiency",
+      "category": "language"
+    }
+  ]
+}

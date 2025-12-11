@@ -1,0 +1,261 @@
+{
+  "html": {
+    "name": "HTML",
+    "category": "frontend",
+    "level": "Advanced",
+    "frequency": "3-5 times/week",
+    "usage": "Web page structure design",
+    "experience": "Since April 2020",
+    "comment": "Used in various projects.",
+    "links": {
+      "official": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+      "github": null
+    }
+  },
+  "css": {
+    "name": "CSS",
+    "category": "frontend",
+    "level": "Intermediate",
+    "frequency": "3-5 times/week",
+    "usage": "Responsive design, animations, modern layout design",
+    "experience": "Since April 2020",
+    "comment": "Used in combination with HTML. I'm still learning to create beautiful designs.",
+    "links": {
+      "official": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "github": null
+    }
+  },
+  "javascript": {
+    "name": "JavaScript",
+    "category": "frontend",
+    "level": "Intermediate",
+    "frequency": "3-5 times/week",
+    "usage": "Web application development",
+    "experience": "Since June 2020",
+    "comment": "Used in combination with HTML/CSS. Currently studying to create modern frontends.",
+    "links": {
+      "official": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+      "github": null
+    }
+  },
+  "nodejs": {
+    "name": "Node.js",
+    "category": "backend",
+    "level": "Intermediate",
+    "frequency": "3-5 times/week",
+    "usage": "Backend API development, build tools, script automation",
+    "experience": "Since October 2022",
+    "comment": "Used for building web servers and creating various tools.",
+    "links": {
+      "official": "https://nodejs.org/",
+      "github": "https://github.com/nodejs/node"
+    }
+  },
+  "python": {
+    "name": "Python",
+    "category": "backend",
+    "level": "Advanced",
+    "frequency": "5-7 times/week",
+    "usage": "AI/ML development, data analysis, automation scripts",
+    "experience": "Since April 2022",
+    "comment": "A language I tend to rely on for almost anything. Utilizing it across a wide range of fields.",
+    "links": {
+      "official": "https://www.python.org/",
+      "github": "https://github.com/python/cpython"
+    }
+  },
+  "elixir": {
+    "name": "Elixir",
+    "category": "backend",
+    "level": "Intermediate",
+    "frequency": "3-5 times/week",
+    "usage": "Web application development, concurrent processing",
+    "experience": "Since April 2024",
+    "comment": "Currently learning functional programming. Recently hooked on it.",
+    "links": {
+      "official": "https://elixir-lang.org/",
+      "github": "https://github.com/elixir-lang/elixir"
+    }
+  },
+  "phoenix": {
+    "name": "Phoenix",
+    "category": "backend",
+    "level": "Beginner",
+    "frequency": "1-2 times/week",
+    "usage": "Real-time web application development",
+    "experience": "Since October 2024",
+    "comment": "Elixir web framework. Used for creating LiveView applications.",
+    "links": {
+      "official": "https://www.phoenixframework.org/",
+      "github": "https://github.com/phoenixframework/phoenix"
+    }
+  },
+  "cpp": {
+    "name": "C++",
+    "category": "backend",
+    "level": "Intermediate",
+    "frequency": "2-4 times/week",
+    "usage": "Robot control, embedded systems",
+    "experience": "Since April 2023",
+    "comment": "Used for robot control in robot contests.",
+    "links": {
+      "official": "https://isocpp.org/",
+      "github": null
+    }
+  },
+  "pytorch": {
+    "name": "PyTorch",
+    "category": "ai-ml",
+    "level": "Beginner",
+    "frequency": "1-2 times/week",
+    "usage": "Building and training deep learning models",
+    "experience": "Since July 2024",
+    "comment": "Used for building models for image recognition and natural language processing. It's evolving rapidly and I'm just keeping up.",
+    "links": {
+      "official": "https://pytorch.org/",
+      "github": "https://github.com/pytorch/pytorch"
+    }
+  },
+  "numpy": {
+    "name": "NumPy",
+    "category": "ai-ml",
+    "level": "Advanced",
+    "frequency": "2-4 times/week",
+    "usage": "Numerical computing, array operations, data processing",
+    "experience": "Since June 2022",
+    "comment": "An essential library for numerical computing in Python. Just importing it seems to solve everything.",
+    "links": {
+      "official": "https://numpy.org/",
+      "github": "https://github.com/numpy/numpy"
+    }
+  },
+  "pandas": {
+    "name": "Pandas",
+    "category": "ai-ml",
+    "level": "Intermediate",
+    "frequency": "1-2 times/week",
+    "usage": "Data analysis, preprocessing, CSV file operations",
+    "experience": "Since June 2022",
+    "comment": "An essential tool for data analysis. Flexible data manipulation using DataFrames is convenient.",
+    "links": {
+      "official": "https://pandas.pydata.org/",
+      "github": "https://github.com/pandas-dev/pandas"
+    }
+  },
+  "opencv": {
+    "name": "OpenCV",
+    "category": "ai-ml",
+    "level": "Intermediate",
+    "frequency": "2-4 times/month",
+    "usage": "Image processing, object detection, camera control",
+    "experience": "Since September 2024",
+    "comment": "Utilized for image recognition and camera control. Used for real-time processing.",
+    "links": {
+      "official": "https://opencv.org/",
+      "github": "https://github.com/opencv/opencv"
+    }
+  },
+  "docker": {
+    "name": "Docker",
+    "category": "tools",
+    "level": "Beginner",
+    "frequency": "2-4 times/month",
+    "usage": "Development environment setup, containerization, deployment",
+    "experience": "Since June 2024",
+    "comment": "Not used much yet, currently studying.",
+    "links": {
+      "official": "https://www.docker.com/",
+      "github": "https://github.com/docker"
+    }
+  },
+  "git": {
+    "name": "Git",
+    "category": "tools",
+    "level": "Advanced",
+    "frequency": "Daily",
+    "usage": "Version control, team development, code history management",
+    "experience": "Since April 2020",
+    "comment": "An indispensable tool for development. I'm conscious of branch strategies and commit management.",
+    "links": {
+      "official": "https://git-scm.com/",
+      "github": "https://github.com/git/git"
+    }
+  },
+  "github": {
+    "name": "GitHub",
+    "category": "tools",
+    "level": "Advanced",
+    "frequency": "Daily",
+    "usage": "Code management, CI/CD, project management",
+    "experience": "Since April 2020",
+    "comment": "Just using it for now. Started learning GitHub Actions too. I think this is my 2nd or 3rd account.",
+    "links": {
+      "official": "https://github.com",
+      "github": null
+    }
+  },
+  "gitlab": {
+    "name": "GitLab",
+    "category": "tools",
+    "level": "Intermediate",
+    "frequency": "1-2 times/week",
+    "usage": "Code management, CI/CD, private repositories",
+    "experience": "Since April 2023",
+    "comment": "Sometimes use it as an alternative to GitHub for a change.",
+    "links": {
+      "official": "https://about.gitlab.com/"
+    }
+  },
+  "vscode": {
+    "name": "VS Code",
+    "category": "tools",
+    "level": "Advanced",
+    "frequency": "Daily",
+    "usage": "Code editing",
+    "experience": "Since April 2020",
+    "comment": "Used as main editor.",
+    "links": {
+      "official": "https://code.visualstudio.com/",
+      "github": "https://github.com/microsoft/vscode"
+    }
+  },
+  "visualstudio": {
+    "name": "Visual Studio",
+    "category": "tools",
+    "level": "Beginner",
+    "frequency": "1-2 times/week",
+    "usage": "Code editing",
+    "experience": "Since April 2023",
+    "comment": "Rarely used",
+    "links": {
+      "official": "https://visualstudio.microsoft.com/",
+      "github": null
+    }
+  },
+  "zed": {
+    "name": "Zed",
+    "category": "tools",
+    "level": "Beginner",
+    "frequency": "1-2 times/week",
+    "usage": "Lightweight code editing",
+    "experience": "Since September 2025",
+    "comment": "Fast and lightweight editor. Recently discovered and started using it.",
+    "links": {
+      "official": "https://zed.dev/",
+      "github": "https://github.com/zed-industries/zed"
+    }
+  },
+  "typst": {
+    "name": "Typst",
+    "category": "tools",
+    "level": "Beginner",
+    "frequency": "1-2 times/week",
+    "usage": "Document creation, report writing",
+    "experience": "Since October 2025",
+    "comment": "Started using for reports and slide creation.",
+    "links": {
+      "official": "https://typst.app/",
+      "github": "https://github.com/typst/typst"
+    }
+  }
+}

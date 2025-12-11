@@ -1,8 +1,9 @@
 // ========== スキルデータ管理ファイル ==========
-// スキルデータはsrc/data/skills.jsonで管理されています
+// スキルデータはsrc/data/locales/{language}/skills.jsonで管理されています
 // このファイルは定数とヘルパー関数を提供します
 
-import { loadSkills } from './dataLoader.js';
+import { loadJSON } from './dataLoader.js';
+import i18n from './i18n.js';
 
 export const SKILL_LEVELS = {
   BEGINNER: '初級',
@@ -28,20 +29,38 @@ export const CATEGORIES = {
   TOOLS: 'tools'
 };
 
-let skillDataCache = null;
+let skillDataCache = {};
 
-export async function initSkillData() {
-  if (skillDataCache === null) {
-    skillDataCache = await loadSkills();
-  }
-  return skillDataCache;
+/**
+ * スキルデータを読み込む
+ * @param {string} language - 言語コード
+ * @returns {Promise<Object>} スキルデータ
+ */
+async function loadSkills(language) {
+  return await loadJSON(`./src/data/locales/${language}/skills.json`);
 }
 
-export async function getSkillDetails() {
-  if (skillDataCache === null) {
-    await initSkillData();
+export async function initSkillData(language = null) {
+  const lang = language || i18n.getCurrentLanguage();
+  if (!skillDataCache[lang]) {
+    skillDataCache[lang] = await loadSkills(lang);
   }
-  return skillDataCache;
+  return skillDataCache[lang];
+}
+
+export async function getSkillDetails(language = null) {
+  const lang = language || i18n.getCurrentLanguage();
+  if (!skillDataCache[lang]) {
+    await initSkillData(lang);
+  }
+  return skillDataCache[lang];
+}
+
+/**
+ * キャッシュをクリア
+ */
+export function clearSkillCache() {
+  skillDataCache = {};
 }
 
 export async function getSkillCategory(skillId) {

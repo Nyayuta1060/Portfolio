@@ -21,7 +21,12 @@
     "githubActivityTitle": "GitHub Activity",
     "loadingCareer": "Loading career data...",
     "loadingCertifications": "Loading certification data...",
-    "loadingGithub": "Loading GitHub data..."
+    "loadingGithub": "Loading GitHub data...",
+    "stats": {
+      "yearsOfLearning": "Years of Learning",
+      "projectsCompleted": "Projects Completed",
+      "technologies": "Technologies"
+    }
   },
   "skills": {
     "title": "Technical Skills",
@@ -37,6 +42,7 @@
     "usage": "Usage",
     "experience": "Experience",
     "comment": "Comment",
+    "links": "Links",
     "officialSite": "Official Site",
     "github": "GitHub"
   },
@@ -73,7 +79,12 @@
     "personalEmail": "Personal Email",
     "loading": "Loading...",
     "github": "GitHub",
-    "twitter": "Twitter"
+    "twitter": "Twitter",
+    "openMailer": "Mailer",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copyFailed": "Copy failed",
+    "mailerOpened": "Mailer opened"
   },
   "footer": {
     "copyright": "© 2025 Nyayuta Portfolio. All rights reserved."
