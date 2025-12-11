@@ -175,15 +175,33 @@ export async function initializeProjects() {
  * @param {HTMLElement} container - プロジェクトコンテナ
  */
 async function loadAndRenderProjects(container) {
-  const projectsData = await getProjectDetails();
-  console.log('✅ Projects data loaded:', Object.keys(projectsData).length, 'projects');
-  
-  // ローディング表示をクリア
-  container.innerHTML = '';
+  try {
+    const projectsData = await getProjectDetails();
+    
+    if (!projectsData || Object.keys(projectsData).length === 0) {
+      container.innerHTML = '<p class="error-message">プロジェクトデータが見つかりません</p>';
+      return;
+    }
+    
+    // ローディング表示をクリア
+    container.innerHTML = '';
 
-  // プロジェクトカードを作成して追加
-  Object.entries(projectsData).forEach(([projectId, projectData]) => {
-    const card = createProjectCard(projectId, projectData);
-    container.appendChild(card);
-  });
+    // プロジェクトカードを作成して追加
+    Object.entries(projectsData).forEach(([projectId, projectData]) => {
+      const card = createProjectCard(projectId, projectData);
+      
+      // アニメーション用のクラスを削除してから追加（再トリガー）
+      card.classList.remove('fade-in');
+      // 即座にfade-inクラスを追加して表示
+      requestAnimationFrame(() => {
+        card.classList.add('fade-in');
+      });
+      
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error('❌ Error in loadAndRenderProjects:', error);
+    container.innerHTML = '<p class="error-message">プロジェクトの読み込みに失敗しました: ' + error.message + '</p>';
+    throw error;
+  }
 }

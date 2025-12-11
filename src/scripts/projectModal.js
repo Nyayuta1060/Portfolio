@@ -1,6 +1,7 @@
 // ========== プロジェクトモーダル機能 ==========
 import { getElements, addEventListeners } from './utils.js';
 import { getProjectDetails } from './projectsData.js';
+import i18n from './i18n.js';
 
 // ========== 定数定義 ==========
 
@@ -220,7 +221,7 @@ function buildGallerySection() {
 function buildOverviewSection() {
   return `
     <div class="project-modal-section">
-      <h3><i class="${MODAL_ICONS.OVERVIEW}"></i> ${MODAL_LABELS.SECTIONS.OVERVIEW}</h3>
+      <h3><i class="${MODAL_ICONS.OVERVIEW}"></i> <span data-i18n="projects.modal.overview">プロジェクト概要</span></h3>
       <div class="project-info-grid" id="project-info-grid"></div>
     </div>
   `;
@@ -233,7 +234,7 @@ function buildOverviewSection() {
 function buildTechStackSection() {
   return `
     <div class="project-modal-section">
-      <h3><i class="${MODAL_ICONS.TECH_STACK}"></i> ${MODAL_LABELS.SECTIONS.TECH_STACK}</h3>
+      <h3><i class="${MODAL_ICONS.TECH_STACK}"></i> <span data-i18n="projects.modal.techStack">使用技術</span></h3>
       <div class="project-modal-tech-tags" id="project-modal-tech"></div>
     </div>
   `;
@@ -246,7 +247,7 @@ function buildTechStackSection() {
 function buildDetailsSection() {
   return `
     <div class="project-modal-section">
-      <h3><i class="${MODAL_ICONS.DETAILS}"></i> ${MODAL_LABELS.SECTIONS.DETAILS}</h3>
+      <h3><i class="${MODAL_ICONS.DETAILS}"></i> <span data-i18n="projects.modal.details">詳細</span></h3>
       <p class="project-modal-description" id="project-modal-description"></p>
     </div>
   `;
@@ -259,7 +260,7 @@ function buildDetailsSection() {
 function buildHighlightsSection() {
   return `
     <div class="project-modal-section">
-      <h3><i class="${MODAL_ICONS.HIGHLIGHTS}"></i> ${MODAL_LABELS.SECTIONS.HIGHLIGHTS}</h3>
+      <h3><i class="${MODAL_ICONS.HIGHLIGHTS}"></i> <span data-i18n="projects.modal.highlights">主な機能・特徴</span></h3>
       <ul class="project-modal-highlights" id="project-modal-highlights"></ul>
     </div>
   `;
@@ -272,7 +273,7 @@ function buildHighlightsSection() {
 function buildLinksSection() {
   return `
     <div class="project-modal-section">
-      <h3><i class="${MODAL_ICONS.LINKS}"></i> ${MODAL_LABELS.SECTIONS.LINKS}</h3>
+      <h3><i class="${MODAL_ICONS.LINKS}"></i> <span data-i18n="projects.modal.links">リンク</span></h3>
       <div class="project-modal-links" id="project-modal-links"></div>
     </div>
   `;
@@ -316,10 +317,10 @@ function renderModalContent(project) {
 function renderHeader(project) {
   document.getElementById('project-modal-title').textContent = project.name;
   document.getElementById('project-modal-type').textContent = 
-    MODAL_LABELS.PROJECT_TYPE[project.type] || project.type;
+    i18n.t(`projects.modal.projectTypes.${project.type}`) || project.type;
   
   const statusElement = document.getElementById('project-modal-status');
-  statusElement.textContent = MODAL_LABELS.STATUS[project.status] || project.status;
+  statusElement.textContent = i18n.t(`projects.modal.status.${project.status}`) || project.status;
   statusElement.className = `project-modal-status status-${project.status}`;
 }
 
@@ -332,17 +333,17 @@ function renderOverview(project) {
   const infoItems = [];
 
   // 開発期間
-  infoItems.push(createInfoItem(MODAL_LABELS.INFO.PERIOD, project.period));
+  infoItems.push(createInfoItem(i18n.t('projects.modal.period'), project.period));
 
   // 開発形態
   const devType = project.developmentType === 'team' 
-    ? `${MODAL_LABELS.DEV_TYPE.TEAM}${project.teamSize ? ` (${project.teamSize}人)` : ''}` 
-    : MODAL_LABELS.DEV_TYPE.PERSONAL;
-  infoItems.push(createInfoItem(MODAL_LABELS.INFO.DEV_TYPE, devType));
+    ? `${i18n.t('projects.modal.team')}${project.teamSize ? ` (${project.teamSize}人)` : ''}` 
+    : i18n.t('projects.modal.personal');
+  infoItems.push(createInfoItem(i18n.t('projects.modal.devType'), devType));
 
   // 役割（nullでない場合のみ）
   if (project.role) {
-    infoItems.push(createInfoItem(MODAL_LABELS.INFO.ROLE, project.role));
+    infoItems.push(createInfoItem(i18n.t('projects.modal.role'), project.role));
   }
 
   infoGrid.innerHTML = infoItems.join('');

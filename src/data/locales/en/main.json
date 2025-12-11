@@ -70,7 +70,35 @@
       "article": "Article"
     },
     "viewDetails": "View Details",
-    "closeModal": "Close"
+    "closeModal": "Close",
+    "modal": {
+      "overview": "Project Overview",
+      "techStack": "Tech Stack",
+      "details": "Details",
+      "highlights": "Key Features",
+      "links": "Links",
+      "period": "Development Period",
+      "devType": "Development Type",
+      "role": "Role",
+      "team": "Team Development",
+      "personal": "Personal Project",
+      "projectTypes": {
+        "web-app": "Web Application",
+        "cli-tool": "CLI Tool",
+        "library": "Library",
+        "automation": "Automation",
+        "game": "Game",
+        "robot": "Robot",
+        "ai-ml": "AI/ML",
+        "other": "Other"
+      },
+      "status": {
+        "completed": "Completed",
+        "in-progress": "In Progress",
+        "archived": "Archived",
+        "planning": "Planning"
+      }
+    }
   },
   "contact": {
     "title": "Contact",

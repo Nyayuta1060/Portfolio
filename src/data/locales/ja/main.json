@@ -70,7 +70,35 @@
       "article": "記事"
     },
     "viewDetails": "詳細を見る",
-    "closeModal": "閉じる"
+    "closeModal": "閉じる",
+    "modal": {
+      "overview": "プロジェクト概要",
+      "techStack": "使用技術",
+      "details": "詳細",
+      "highlights": "主な機能・特徴",
+      "links": "リンク",
+      "period": "開発期間",
+      "devType": "開発形態",
+      "role": "役割",
+      "team": "チーム開発",
+      "personal": "個人開発",
+      "projectTypes": {
+        "web-app": "Webアプリ",
+        "cli-tool": "CLIツール",
+        "library": "ライブラリ",
+        "automation": "自動化",
+        "game": "ゲーム",
+        "robot": "ロボット",
+        "ai-ml": "AI/ML",
+        "other": "その他"
+      },
+      "status": {
+        "completed": "完成",
+        "in-progress": "進行中",
+        "archived": "アーカイブ",
+        "planning": "計画中"
+      }
+    }
   },
   "contact": {
     "title": "Contact",
