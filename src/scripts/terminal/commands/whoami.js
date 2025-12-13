@@ -3,6 +3,6 @@
  */
 
 export const whoamiCommand = {
-  description: '現在のユーザーを表示',
+  description: 'terminal.commands.whoami.description',
   execute: () => 'visitor'
 };

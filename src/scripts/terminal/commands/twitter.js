@@ -3,7 +3,7 @@
  */
 
 export const twitterCommand = {
-  description: 'Twitterプロフィールを開く',
+  description: 'terminal.commands.twitter.description',
   execute: () => {
     window.open('https://twitter.com/Nyayuta0717', '_blank');
     return 'Twitterプロフィールを開きました';

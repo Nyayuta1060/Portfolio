@@ -3,6 +3,6 @@
  */
 
 export const echoCommand = {
-  description: 'テキストを表示 (例: echo Hello)',
+  description: 'terminal.commands.echo.description',
   execute: (args) => args.join(' ')
 };

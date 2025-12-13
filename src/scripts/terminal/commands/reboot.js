@@ -3,7 +3,7 @@
  */
 
 export const rebootCommand = {
-  description: 'システムを再起動',
+  description: 'terminal.commands.reboot.description',
   execute: () => {
     return 'REBOOT_SYSTEM';
   }

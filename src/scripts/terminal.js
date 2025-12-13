@@ -8,6 +8,7 @@ import { getCurrentDirectory, normalizePath, fileSystem, isDeleted } from './ter
 import { sleep, escapeHtml, getCommonPrefix } from './terminal/utils.js';
 import { getProjectDetails } from './projectsData.js';
 import { getSkillDetails } from './skillsData.js';
+import i18n from './i18n.js';
 
 // コマンド履歴
 let commandHistory = [];
@@ -37,6 +38,18 @@ export function initializeTerminal() {
   // イベントリスナーを設定
   setupTerminalEventListeners(terminalBody);
 
+  // 言語変更イベントリスナーを設定
+  window.addEventListener('languageChanged', () => {
+    console.log('🌐 Terminal language changed, updating welcome message...');
+    // ターミナルをクリアして再表示
+    const currentTerminalBody = document.querySelector('.terminal-body');
+    if (currentTerminalBody) {
+      currentTerminalBody.innerHTML = '';
+      displayWelcomeMessage(currentTerminalBody);
+      displayPrompt(currentTerminalBody);
+    }
+  });
+
   console.log('✅ Interactive Terminal initialized');
 }
 
@@ -44,8 +57,10 @@ export function initializeTerminal() {
  * ウェルカムメッセージを表示
  */
 function displayWelcomeMessage(terminalBody) {
+  const welcomeText = i18n.t('terminal.welcome');
+  
   const welcomeMessage = `<div class="terminal-line welcome-message">
-Terminal ready. Type '<span class="command-highlight">help</span>' to see available commands.
+${welcomeText}
 </div>`;
   terminalBody.innerHTML = welcomeMessage;
 }
@@ -361,7 +376,43 @@ async function removeFile(itemId, itemType, terminalBody) {
     return;
   }
 }
-
+/**
+ * ディレクトリを削除
+ */
+async function removeDirectory(dirName, terminalBody) {
+  displayOutput(`<span style="color: #ff6b6b;">⚠️  WARNING: Deleting directory '${dirName}' and all its contents...</span>`, terminalBody);
+  await sleep(500);
+  
+  // skills ディレクトリの削除
+  if (dirName === 'skills') {
+    const section = document.querySelector('#skills');
+    if (section) {
+      section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(-50px)';
+      await sleep(800);
+      section.remove();
+    }
+    displayOutput(`<span style="color: #10b981;">✓ Directory 'skills' and all its contents have been removed</span>`, terminalBody);
+    displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
+    return;
+  }
+  
+  // projects ディレクトリの削除
+  if (dirName === 'projects') {
+    const section = document.querySelector('#projects');
+    if (section) {
+      section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(-50px)';
+      await sleep(800);
+      section.remove();
+    }
+    displayOutput(`<span style="color: #10b981;">✓ Directory 'projects' and all its contents have been removed</span>`, terminalBody);
+    displayOutput(`<span style="color: #fbbf24;">💡 ヒント: 元に戻すには 'reboot' コマンドを実行してください</span>`, terminalBody);
+    return;
+  }
+}
 /**
  * カーソル位置を考慮して入力表示を更新
  */
@@ -612,16 +663,22 @@ async function executeCommand(input, terminalBody) {
         const parts = result.split(':');
         const itemId = parts[1];
         const itemType = parts[2];
-        await removeFile(itemId, itemType, terminalBody);
+        
+        // ディレクトリの削除の場合
+        if (itemType === 'directory') {
+          await removeDirectory(itemId, terminalBody);
+        } else {
+          await removeFile(itemId, itemType, terminalBody);
+        }
       } else {
         displayOutput(result, terminalBody);
       }
     } catch (error) {
-      displayOutput(`エラー: コマンドの実行に失敗しました`, terminalBody);
+      displayOutput(i18n.t('terminal.executionError'), terminalBody);
       console.error('Command execution error:', error);
     }
   } else {
-    displayOutput(`コマンドが見つかりません: ${escapeHtml(command)}\n'help' でコマンド一覧を表示できます`, terminalBody);
+    displayOutput(`${i18n.t('terminal.commandNotFound')}: ${escapeHtml(command)}\n${i18n.t('terminal.commandNotFoundHint')}`, terminalBody);
   }
 
   // 新しいプロンプトを表示

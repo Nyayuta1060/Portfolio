@@ -3,9 +3,10 @@
  */
 
 import { getCurrentDirectory, setCurrentDirectory, fileSystem, normalizePath } from '../fileSystem.js';
+import i18n from '../../i18n.js';
 
 export const cdCommand = {
-  description: 'ディレクトリを移動 (例: cd skills, cd ..)',
+  description: 'terminal.commands.cd.description',
   execute: (args) => {
     if (args.length === 0) {
       setCurrentDirectory('/home/visitor/portfolio');
@@ -18,9 +19,9 @@ export const cdCommand = {
       setCurrentDirectory(targetPath);
       return '';
     } else if (fileSystem[targetPath] && fileSystem[targetPath].type === 'file') {
-      return `cd: ${args[0]}: Not a directory`;
+      return `cd: ${args[0]}: ${i18n.t('terminal.commands.cd.notADirectory')}`;
     } else {
-      return `cd: ${args[0]}: No such file or directory`;
+      return `cd: ${args[0]}: ${i18n.t('terminal.commands.cd.noSuchFileOrDirectory')}`;
     }
   }
 };

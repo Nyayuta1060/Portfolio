@@ -124,5 +124,100 @@
     "viewGithubProfile": "View GitHub Profile",
     "openGithubRepo": "Open GitHub Repository",
     "githubDataFetchFailed": "Failed to fetch GitHub data"
+  },
+  "terminal": {
+    "commands": {
+      "help": {
+        "description": "Display available commands",
+        "output": "Available commands:",
+        "hint": "Hint: Use Tab key for auto-completion, ↑↓ keys to browse history"
+      },
+      "ls": {
+        "description": "List files and directories",
+        "noSuchFileOrDirectory": "No such file or directory"
+      },
+      "cd": {
+        "description": "Change directory (e.g., cd skills, cd ..)",
+        "notADirectory": "Not a directory",
+        "noSuchFileOrDirectory": "No such file or directory"
+      },
+      "cat": {
+        "description": "Display file contents (e.g., cat about.txt)",
+        "noFileSpecified": "Please specify a file name",
+        "usage": "Usage: cat about.txt, cat README.md",
+        "noSuchFileOrDirectory": "No such file or directory",
+        "skill": "Skill",
+        "level": "Level",
+        "frequency": "Frequency",
+        "mainUsage": "Main Usage",
+        "experience": "Experience",
+        "comment": "Comment",
+        "links": "Links",
+        "official": "Official",
+        "project": "Project",
+        "projectDescription": "Description",
+        "techStack": "Tech Stack"
+      },
+      "rm": {
+        "description": "Remove files (e.g., rm about.txt, rm skills/html.txt)",
+        "noOperand": "No operand specified",
+        "usage": "Usage: rm about.txt, rm skills/html.txt, rm *",
+        "cannotRemoveDirectory": "cannot remove: Is a directory",
+        "hint": "Hint: Use 'rm -r {0}' to remove a directory",
+        "noSuchFileOrDirectory": "cannot remove: No such file or directory"
+      },
+      "pwd": {
+        "description": "Display current directory"
+      },
+      "clear": {
+        "description": "Clear the terminal"
+      },
+      "whoami": {
+        "description": "Display current user name"
+      },
+      "date": {
+        "description": "Display current date and time"
+      },
+      "echo": {
+        "description": "Display text"
+      },
+      "tree": {
+        "description": "Display directory structure in tree format"
+      },
+      "history": {
+        "description": "Display command history"
+      },
+      "banner": {
+        "description": "Display welcome banner"
+      },
+      "github": {
+        "description": "Open GitHub profile"
+      },
+      "twitter": {
+        "description": "Open Twitter profile"
+      },
+      "neofetch": {
+        "description": "Display system information"
+      },
+      "cowsay": {
+        "description": "Make a cow say something"
+      },
+      "matrix": {
+        "description": "Matrix-style animation"
+      },
+      "sl": {
+        "description": "Steam locomotive animation"
+      },
+      "reboot": {
+        "description": "Reload the page"
+      },
+      "shutdown": {
+        "description": "Close the page"
+      }
+    },
+    "welcome": "Terminal ready. Type '<span class='command-highlight'>help</span>' to see available commands.",
+    "commandNotFound": "Command not found",
+    "commandNotFoundHint": "Type 'help' to see available commands",
+    "executionError": "Error: Command execution failed"
   }
 }

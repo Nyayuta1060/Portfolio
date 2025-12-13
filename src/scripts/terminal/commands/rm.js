@@ -5,18 +5,21 @@
 import { fileSystem, normalizePath, markAsDeleted } from '../fileSystem.js';
 import { getProjectDetails } from '../../projectsData.js';
 import { getSkillDetails } from '../../skillsData.js';
+import i18n from '../../i18n.js';
 
 export const rmCommand = {
-  description: 'ファイルを削除 (例: rm about.txt, rm skills/html.txt)',
+  description: 'terminal.commands.rm.description',
   execute: async (args) => {
     if (args.length === 0) {
-      return 'rm: オペランドがありません\n使用例: rm about.txt, rm skills/html.txt, rm *';
+      return `rm: ${i18n.t('terminal.commands.rm.noOperand')}\n${i18n.t('terminal.commands.rm.usage')}`;
     }
     
-    const target = args[0];
+    // -rフラグをチェック
+    const hasRecursiveFlag = args.includes('-r') || args.includes('-rf') || args.includes('-fr');
+    const target = args.find(arg => !arg.startsWith('-')) || args[args.length - 1];
     
     // rm * または rm -rf の場合は全削除
-    if (target === '*' || args.join(' ').includes('-rf')) {
+    if (target === '*' || (hasRecursiveFlag && args.length === 2 && !target)) {
       return 'RM_FILE:*:all';
     }
     
@@ -26,7 +29,22 @@ export const rmCommand = {
     // ファイルシステム上の静的ファイル
     if (fileSystem[targetPath]) {
       if (fileSystem[targetPath].type === 'directory') {
-        return `rm: '${target}' を削除できません: ディレクトリです\nヒント: ディレクトリを削除するには 'rm -r ${target}' を使用してください`;
+        if (!hasRecursiveFlag) {
+          return `rm: '${target}' ${i18n.t('terminal.commands.rm.cannotRemoveDirectory')}\n${i18n.t('terminal.commands.rm.hint').replace('{0}', target)}`;
+        }
+        // -rフラグがある場合はディレクトリを削除
+        markAsDeleted(targetPath, 'directory');
+        
+        // skillsディレクトリの場合は特別な処理
+        if (targetPath === '/home/visitor/portfolio/skills') {
+          return 'RM_FILE:skills:directory';
+        }
+        // projectsディレクトリの場合は特別な処理
+        if (targetPath === '/home/visitor/portfolio/projects') {
+          return 'RM_FILE:projects:directory';
+        }
+        
+        return `RM_FILE:${targetPath}:static`;
       }
       markAsDeleted(targetPath, 'file');
       return `RM_FILE:${targetPath}:static`;
@@ -54,6 +72,6 @@ export const rmCommand = {
       }
     }
     
-    return `rm: '${target}' を削除できません: そのようなファイルやディレクトリはありません`;
+    return `rm: '${target}' ${i18n.t('terminal.commands.rm.noSuchFileOrDirectory')}`;
   }
 };

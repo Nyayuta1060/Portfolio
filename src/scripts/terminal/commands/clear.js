@@ -3,6 +3,6 @@
  */
 
 export const clearCommand = {
-  description: 'ターミナルをクリア',
+  description: 'terminal.commands.clear.description',
   execute: () => 'CLEAR_TERMINAL'
 };

@@ -3,7 +3,7 @@
  */
 
 export const cowsayCommand = {
-  description: '牛がメッセージを喋る (例: cowsay Hello)',
+  description: 'terminal.commands.cowsay.description',
   execute: (args) => {
     const message = args.length > 0 ? args.join(' ') : 'Moo!';
     const msgLength = message.length;

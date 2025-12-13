@@ -3,7 +3,7 @@
  */
 
 export const shutdownCommand = {
-  description: 'システムをシャットダウン',
+  description: 'terminal.commands.shutdown.description',
   execute: () => {
     return 'SHUTDOWN_SYSTEM';
   }

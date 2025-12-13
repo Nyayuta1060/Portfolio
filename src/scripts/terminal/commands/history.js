@@ -3,7 +3,7 @@
  */
 
 export const historyCommand = {
-  description: 'コマンド履歴を表示',
+  description: 'terminal.commands.history.description',
   execute: (args, { commandHistory }) => {
     if (commandHistory.length === 0) {
       return 'コマンド履歴はありません';

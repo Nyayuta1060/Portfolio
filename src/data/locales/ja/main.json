@@ -124,5 +124,100 @@
     "viewGithubProfile": "GitHubプロフィールを見る",
     "openGithubRepo": "GitHubリポジトリを開く",
     "githubDataFetchFailed": "GitHubデータの取得に失敗しました"
+  },
+  "terminal": {
+    "commands": {
+      "help": {
+        "description": "利用可能なコマンド一覧を表示",
+        "output": "利用可能なコマンド:",
+        "hint": "ヒント: Tab キーでオートコンプリート、↑↓ キーで履歴を参照できます"
+      },
+      "ls": {
+        "description": "ファイルとディレクトリを一覧表示",
+        "noSuchFileOrDirectory": "そのようなファイルやディレクトリはありません"
+      },
+      "cd": {
+        "description": "ディレクトリを移動 (例: cd skills, cd ..)",
+        "notADirectory": "ディレクトリではありません",
+        "noSuchFileOrDirectory": "そのようなファイルやディレクトリはありません"
+      },
+      "cat": {
+        "description": "ファイル内容を表示 (例: cat about.txt)",
+        "noFileSpecified": "ファイル名を指定してください",
+        "usage": "使用例: cat about.txt, cat README.md",
+        "noSuchFileOrDirectory": "そのようなファイルやディレクトリはありません",
+        "skill": "スキル",
+        "level": "レベル",
+        "frequency": "頻度",
+        "mainUsage": "主な用途",
+        "experience": "使用期間",
+        "comment": "コメント",
+        "links": "リンク",
+        "official": "公式",
+        "project": "プロジェクト",
+        "projectDescription": "説明",
+        "techStack": "技術スタック"
+      },
+      "rm": {
+        "description": "ファイルを削除 (例: rm about.txt, rm skills/html.txt)",
+        "noOperand": "オペランドがありません",
+        "usage": "使用例: rm about.txt, rm skills/html.txt, rm *",
+        "cannotRemoveDirectory": "を削除できません: ディレクトリです",
+        "hint": "ヒント: ディレクトリを削除するには 'rm -r {0}' を使用してください",
+        "noSuchFileOrDirectory": "を削除できません: そのようなファイルやディレクトリはありません"
+      },
+      "pwd": {
+        "description": "現在のディレクトリを表示"
+      },
+      "clear": {
+        "description": "ターミナルをクリア"
+      },
+      "whoami": {
+        "description": "現在のユーザー名を表示"
+      },
+      "date": {
+        "description": "現在の日時を表示"
+      },
+      "echo": {
+        "description": "テキストを表示"
+      },
+      "tree": {
+        "description": "ディレクトリ構造をツリー形式で表示"
+      },
+      "history": {
+        "description": "コマンド履歴を表示"
+      },
+      "banner": {
+        "description": "ウェルカムバナーを表示"
+      },
+      "github": {
+        "description": "GitHubプロフィールを開く"
+      },
+      "twitter": {
+        "description": "Twitterプロフィールを開く"
+      },
+      "neofetch": {
+        "description": "システム情報を表示"
+      },
+      "cowsay": {
+        "description": "牛がメッセージを話す"
+      },
+      "matrix": {
+        "description": "マトリックス風のアニメーション"
+      },
+      "sl": {
+        "description": "蒸気機関車のアニメーション"
+      },
+      "reboot": {
+        "description": "ページをリロード"
+      },
+      "shutdown": {
+        "description": "ページを閉じる"
+      }
+    },
+    "welcome": "ターミナル準備完了。'<span class='command-highlight'>help</span>' と入力してコマンド一覧を表示します。",
+    "commandNotFound": "コマンドが見つかりません",
+    "commandNotFoundHint": "'help' でコマンド一覧を表示できます",
+    "executionError": "エラー: コマンドの実行に失敗しました"
   }
 }

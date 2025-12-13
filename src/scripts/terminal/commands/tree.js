@@ -7,7 +7,7 @@ import { getProjectDetails } from '../../projectsData.js';
 import { getSkillDetails } from '../../skillsData.js';
 
 export const treeCommand = {
-  description: 'ディレクトリ構造をツリー表示',
+  description: 'terminal.commands.tree.description',
   execute: async (args) => {
     const startDir = getCurrentDirectory();
     let output = startDir + '\n';

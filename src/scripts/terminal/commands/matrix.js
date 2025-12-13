@@ -3,7 +3,7 @@
  */
 
 export const matrixCommand = {
-  description: 'Matrix風の文字が流れる',
+  description: 'terminal.commands.matrix.description',
   execute: () => {
     return 'MATRIX_ANIMATION';
   }

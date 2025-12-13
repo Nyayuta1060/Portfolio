@@ -5,6 +5,6 @@
 import { getCurrentDirectory } from '../fileSystem.js';
 
 export const pwdCommand = {
-  description: '現在のディレクトリを表示',
+  description: 'terminal.commands.pwd.description',
   execute: () => getCurrentDirectory()
 };

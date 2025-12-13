@@ -3,7 +3,7 @@
  */
 
 export const slCommand = {
-  description: '蒸気機関車が通り過ぎる (lsのタイポ)',
+  description: 'terminal.commands.sl.description',
   execute: () => {
     return `
                       (  ) (@@) ( )  (@)  ()    @@    O     @     O     @

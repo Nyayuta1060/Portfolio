@@ -5,9 +5,10 @@
 import { getCurrentDirectory, fileSystem, normalizePath, isDeleted } from '../fileSystem.js';
 import { getProjectDetails } from '../../projectsData.js';
 import { getSkillDetails } from '../../skillsData.js';
+import i18n from '../../i18n.js';
 
 export const lsCommand = {
-  description: 'ファイルとディレクトリを一覧表示',
+  description: 'terminal.commands.ls.description',
   execute: async (args) => {
     let targetPath = getCurrentDirectory();
     
@@ -16,7 +17,7 @@ export const lsCommand = {
     }
     
     if (!fileSystem[targetPath]) {
-      return `ls: cannot access '${args[0] || targetPath}': No such file or directory`;
+      return `ls: cannot access '${args[0] || targetPath}': ${i18n.t('terminal.commands.ls.noSuchFileOrDirectory')}`;
     }
     
     if (fileSystem[targetPath].type === 'file') {

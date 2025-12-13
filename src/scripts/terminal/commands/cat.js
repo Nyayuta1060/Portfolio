@@ -5,12 +5,13 @@
 import { fileSystem, normalizePath } from '../fileSystem.js';
 import { getProjectDetails } from '../../projectsData.js';
 import { getSkillDetails } from '../../skillsData.js';
+import i18n from '../../i18n.js';
 
 export const catCommand = {
-  description: 'ファイル内容を表示 (例: cat about.txt)',
+  description: 'terminal.commands.cat.description',
   execute: async (args) => {
     if (args.length === 0) {
-      return 'cat: ファイル名を指定してください\n使用例: cat about.txt, cat README.md';
+      return `cat: ${i18n.t('terminal.commands.cat.noFileSpecified')}\n${i18n.t('terminal.commands.cat.usage')}`;
     }
     
     const targetPath = normalizePath(args[0]);
@@ -24,21 +25,21 @@ export const catCommand = {
         const skill = skills[skillId];
         
         if (skill) {
-          return `スキル: ${skill.name}
-レベル: ${skill.level}
-頻度: ${skill.frequency}
+          return `${i18n.t('terminal.commands.cat.skill')}: ${skill.name}
+${i18n.t('terminal.commands.cat.level')}: ${skill.level}
+${i18n.t('terminal.commands.cat.frequency')}: ${skill.frequency}
 
-主な用途:
+${i18n.t('terminal.commands.cat.mainUsage')}:
 ${skill.usage}
 
-使用期間:
+${i18n.t('terminal.commands.cat.experience')}:
 ${skill.experience}
 
-コメント:
+${i18n.t('terminal.commands.cat.comment')}:
 ${skill.comment}
 
-リンク:
-${skill.links.official ? `  公式: ${skill.links.official}` : ''}
+${i18n.t('terminal.commands.cat.links')}:
+${skill.links.official ? `  ${i18n.t('terminal.commands.cat.official')}: ${skill.links.official}` : ''}
 ${skill.links.github ? `  GitHub: ${skill.links.github}` : ''}`;
         }
       }
@@ -50,19 +51,19 @@ ${skill.links.github ? `  GitHub: ${skill.links.github}` : ''}`;
         const project = projects[projectId];
         
         if (project) {
-          return `プロジェクト: ${project.title}
+          return `${i18n.t('terminal.commands.cat.project')}: ${project.title}
 
-説明:
+${i18n.t('terminal.commands.cat.projectDescription')}:
 ${project.description}
 
-技術スタック:
+${i18n.t('terminal.commands.cat.techStack')}:
 ${project.techStack ? project.techStack.join(', ') : 'N/A'}
 
 GitHub: ${project.github || 'N/A'}`;
         }
       }
       
-      return `cat: ${args[0]}: No such file or directory`;
+      return `cat: ${args[0]}: ${i18n.t('terminal.commands.cat.noSuchFileOrDirectory')}`;
     }
     
     if (fileSystem[targetPath].type === 'directory') {

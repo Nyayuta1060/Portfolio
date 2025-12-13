@@ -3,7 +3,7 @@
  */
 
 export const neofetchCommand = {
-  description: 'システム情報を表示',
+  description: 'terminal.commands.neofetch.description',
   execute: (args, { COMMANDS }) => {
     return `
       ___           visitor@portfolio

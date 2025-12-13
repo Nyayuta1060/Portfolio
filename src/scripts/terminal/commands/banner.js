@@ -3,7 +3,7 @@
  */
 
 export const bannerCommand = {
-  description: 'ウェルカムバナーを表示',
+  description: 'terminal.commands.banner.description',
   execute: () => {
     return `<span class="banner-text">
 ╔═══════════════════════════════════════╗
