@@ -222,46 +222,66 @@ export async function initializeGitHubActivity() {
   showLoadingState(activityContainer);
 
   let errorType = 'unknown';
+  let cachedUserData = null;
+  let cachedStats = null;
 
-  try {
-    // データを並行取得
-    const [userData, repos] = await Promise.all([
-      fetchUserData(),
-      fetchRepositories()
-    ]);
+  // データを読み込む関数
+  const loadData = async () => {
+    try {
+      // データを並行取得
+      const [userData, repos] = await Promise.all([
+        fetchUserData(),
+        fetchRepositories()
+      ]);
 
-    console.log('📊 GitHub Data Results:', { userData, reposCount: repos?.length });
+      console.log('📊 GitHub Data Results:', { userData, reposCount: repos?.length });
 
-    if (!userData) {
-      console.error('❌ User data is null');
+      if (!userData) {
+        console.error('❌ User data is null');
+        showErrorState(activityContainer, errorType);
+        return;
+      }
+
+      if (!repos || repos.length === 0) {
+        console.warn('⚠️ No repositories found, but continuing with user data');
+      }
+
+      // 統計情報を計算
+      const stats = calculateGitHubStats(repos);
+
+      // キャッシュに保存
+      cachedUserData = userData;
+      cachedStats = stats;
+
+      // UIを更新
+      renderGitHubActivity(activityContainer, userData, stats);
+      
+      console.log('✅ GitHub activity loaded successfully');
+    } catch (error) {
+      console.error('❌ Initialize GitHub Activity Error:', error);
+      
+      // エラータイプを判定
+      if (error.message && error.message.includes('rate limit')) {
+        errorType = 'rate-limit';
+      } else if (error.message && error.message.includes('Failed to fetch')) {
+        errorType = 'network';
+      }
+      
+      logError('Initialize GitHub Activity', error);
       showErrorState(activityContainer, errorType);
-      return;
     }
+  };
 
-    if (!repos || repos.length === 0) {
-      console.warn('⚠️ No repositories found, but continuing with user data');
+  // 初回読み込み
+  await loadData();
+
+  // 言語変更時に再レンダリング
+  window.addEventListener('languageChanged', () => {
+    console.log('🌐 GitHub Activity language changed, re-rendering...');
+    if (cachedUserData && cachedStats) {
+      renderGitHubActivity(activityContainer, cachedUserData, cachedStats);
     }
-
-    // 統計情報を計算
-    const stats = calculateGitHubStats(repos);
-
-    // UIを更新
-    renderGitHubActivity(activityContainer, userData, stats);
-    
-    console.log('✅ GitHub activity loaded successfully');
-  } catch (error) {
-    console.error('❌ Initialize GitHub Activity Error:', error);
-    
-    // エラータイプを判定
-    if (error.message && error.message.includes('rate limit')) {
-      errorType = 'rate-limit';
-    } else if (error.message && error.message.includes('Failed to fetch')) {
-      errorType = 'network';
-    }
-    
-    logError('Initialize GitHub Activity', error);
-    showErrorState(activityContainer, errorType);
-  }
+  });
 }
 
 /**
@@ -335,28 +355,28 @@ function renderGitHubActivity(container, userData, stats) {
         <i class="fas fa-book"></i>
         <div class="stat-info">
           <div class="stat-number">${userData.publicRepos}</div>
-          <div class="stat-label">Public Repos</div>
+          <div class="stat-label" data-i18n="github.stats.publicRepos">${i18n.t('github.stats.publicRepos')}</div>
         </div>
       </div>
       <div class="github-stat-item">
         <i class="fas fa-star"></i>
         <div class="stat-info">
           <div class="stat-number">${stats.totalStars}</div>
-          <div class="stat-label">Total Stars</div>
+          <div class="stat-label" data-i18n="github.stats.totalStars">${i18n.t('github.stats.totalStars')}</div>
         </div>
       </div>
       <div class="github-stat-item">
         <i class="fas fa-code-branch"></i>
         <div class="stat-info">
           <div class="stat-number">${stats.totalForks}</div>
-          <div class="stat-label">Total Forks</div>
+          <div class="stat-label" data-i18n="github.stats.totalForks">${i18n.t('github.stats.totalForks')}</div>
         </div>
       </div>
       <div class="github-stat-item">
         <i class="fas fa-users"></i>
         <div class="stat-info">
           <div class="stat-number">${userData.followers}</div>
-          <div class="stat-label">Followers</div>
+          <div class="stat-label" data-i18n="github.stats.followers">${i18n.t('github.stats.followers')}</div>
         </div>
       </div>
     </div>
@@ -368,7 +388,7 @@ function renderGitHubActivity(container, userData, stats) {
          rel="noopener noreferrer" 
          class="btn btn-primary">
         <i class="fab fa-github"></i>
-        GitHubで全てのプロジェクトを見る
+        <span data-i18n="github.viewAllProjects">${i18n.t('github.viewAllProjects')}</span>
       </a>
     </div>
   `;

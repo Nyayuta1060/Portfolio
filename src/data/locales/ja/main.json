@@ -125,6 +125,15 @@
     "openGithubRepo": "GitHubリポジトリを開く",
     "githubDataFetchFailed": "GitHubデータの取得に失敗しました"
   },
+  "github": {
+    "stats": {
+      "publicRepos": "公開リポジトリ",
+      "totalStars": "合計スター",
+      "totalForks": "合計フォーク",
+      "followers": "フォロワー"
+    },
+    "viewAllProjects": "GitHubで全てのプロジェクトを見る"
+  },
   "terminal": {
     "commands": {
       "help": {

@@ -125,6 +125,15 @@
     "openGithubRepo": "Open GitHub Repository",
     "githubDataFetchFailed": "Failed to fetch GitHub data"
   },
+  "github": {
+    "stats": {
+      "publicRepos": "Public Repos",
+      "totalStars": "Total Stars",
+      "totalForks": "Total Forks",
+      "followers": "Followers"
+    },
+    "viewAllProjects": "View all projects on GitHub"
+  },
   "terminal": {
     "commands": {
       "help": {
