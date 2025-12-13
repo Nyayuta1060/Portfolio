@@ -1,5 +1,6 @@
 // ========== GitHub API連携モジュール ==========
 import { logError } from './utils.js';
+import i18n from './i18n.js';
 
 /**
  * GitHub API設定
@@ -297,7 +298,7 @@ function showErrorState(container, errorType = 'unknown') {
       インターネット接続を確認してください。
     `;
   } else {
-    errorMessage = 'GitHubデータの取得に失敗しました';
+    errorMessage = i18n.t('common.githubDataFetchFailed');
     errorDetails = `
       ネットワーク接続を確認するか、<br>
       しばらく時間をおいてから再読み込みしてください。
@@ -314,7 +315,7 @@ function showErrorState(container, errorType = 'unknown') {
          rel="noopener noreferrer" 
          class="btn btn-secondary">
         <i class="fab fa-github"></i>
-        GitHubプロフィールを見る
+        <span data-i18n="common.viewGithubProfile">${i18n.t('common.viewGithubProfile')}</span>
       </a>
     </div>
   `;

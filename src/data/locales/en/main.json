@@ -119,6 +119,10 @@
   },
   "common": {
     "loading": "Loading...",
-    "error": "An error occurred"
+    "error": "An error occurred",
+    "obtained": "Obtained",
+    "viewGithubProfile": "View GitHub Profile",
+    "openGithubRepo": "Open GitHub Repository",
+    "githubDataFetchFailed": "Failed to fetch GitHub data"
   }
 }

@@ -4,6 +4,7 @@
 
 import { logError } from './utils.js';
 import { getProjectDetails } from './projectsData.js';
+import i18n from './i18n.js';
 
 /**
  * プロジェクト画像のHTML要素を生成
@@ -80,8 +81,8 @@ function createProjectLinks(links) {
     githubLink.className = 'project-link-btn';
     githubLink.target = '_blank';
     githubLink.rel = 'noopener noreferrer';
-    githubLink.setAttribute('aria-label', 'GitHubリポジトリを開く');
-    githubLink.innerHTML = '<i class="fab fa-github"></i>GitHub';
+    githubLink.setAttribute('aria-label', i18n.t('common.openGithubRepo'));
+    githubLink.innerHTML = `<i class="fab fa-github"></i><span data-i18n="projects.links.github">${i18n.t('projects.links.github')}</span>`;
     linksDiv.appendChild(githubLink);
   }
 

@@ -248,7 +248,7 @@ function createCertificationCard(cert) {
         <p class="certification-issuer">${cert.issuer}</p>
         <p class="certification-date">
           <i class="fas fa-calendar"></i>
-          ${cert.date} 取得
+          ${cert.date} <span data-i18n="common.obtained">${i18n.t('common.obtained')}</span>
         </p>
         ${cert.description ? `<p class="certification-description">${cert.description}</p>` : ''}
       </div>
