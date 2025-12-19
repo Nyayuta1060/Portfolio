@@ -41,9 +41,14 @@
     {
       "id": "entry-2025-09",
       "date": "2025.09",
-      "title": "Participated in National Institute of Technology Robot Contest 2025 Kinki Regional Competition",
+      "title": "Participated National Collage of Technology Robot Contest 2025 Kinki Regional Competition",
       "description": "Participated as Team B pit crew. Awarded Tanaka Kikinzoku Group Prize",
       "category": "competition"
+    },{
+      "id": "entry-2025-12",
+      "date": "2025.12",
+      "title": "Participated Creative Robot Contest for Decommissioning",
+      "description": null
     }
   ],
   "stats": {
