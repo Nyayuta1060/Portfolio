@@ -20,7 +20,7 @@
     {
       "id": "entry-2024-09",
       "date": "2024.09",
-      "category": "competition",
+      "category": "club",
       "title": "キャチロボバトルコンテストに出場",
       "description": null
     },
@@ -29,7 +29,7 @@
       "date": "2025.03",
       "title": "関西春ロボコンに出場",
       "description": null,
-      "category": "competition"
+      "category": "club"
     },
     {
       "id": "entry-2025-04",
@@ -43,13 +43,14 @@
       "date": "2025.09",
       "title": "高専ロボコン2025 近畿地区大会に出場",
       "description": "Bチームピットとして出場。田中貴金属グループ賞を受賞",
-      "category": "competition"
+      "category": "club"
     },
     {
       "id": "entry-2025-12",
       "date": "2025.12",
-      "title": "廃炉創造ロボコンに出場",
-      "description": null
+      "title": "廃炉創造ロボコンに出場。",
+      "description": "VR技術を活用し、三菱重工業賞を受賞",
+      "category":"club"
     }
   ],
   "stats": {
