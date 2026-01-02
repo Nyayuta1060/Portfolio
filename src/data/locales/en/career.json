@@ -20,7 +20,7 @@
     {
       "id": "entry-2024-09",
       "date": "2024.09",
-      "category": "competition",
+      "category": "club",
       "title": "Participated in Catch Robo Battle Contest",
       "description": null
     },
@@ -29,7 +29,7 @@
       "date": "2025.03",
       "title": "Participated in Kansai Spring Robocon",
       "description": null,
-      "category": "competition"
+      "category": "club"
     },
     {
       "id": "entry-2025-04",
@@ -41,14 +41,16 @@
     {
       "id": "entry-2025-09",
       "date": "2025.09",
-      "title": "Participated National Collage of Technology Robot Contest 2025 Kinki Regional Competition",
+      "title": "Participated in National College of Technology Robot Contest 2025 Kinki Regional Competition",
       "description": "Participated as Team B pit crew. Awarded Tanaka Kikinzoku Group Prize",
-      "category": "competition"
-    },{
+      "category": "club"
+    },
+    {
       "id": "entry-2025-12",
       "date": "2025.12",
-      "title": "Participated Creative Robot Contest for Decommissioning",
-      "description": null
+      "title": "Participated in Creative Robot Contest for Decommissioning",
+      "description": "Utilizing VR technology. Awarded Mitsubishi Heavy Industries Prize",
+      "category": "club"
     }
   ],
   "stats": {
