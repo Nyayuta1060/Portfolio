@@ -84,6 +84,8 @@
       "personal": "Personal Project",
       "projectTypes": {
         "web-app": "Web Application",
+        "desktop-app": "Desktop Application",
+        "mobile-app": "Mobile Application",
         "cli-tool": "CLI Tool",
         "library": "Library",
         "automation": "Automation",

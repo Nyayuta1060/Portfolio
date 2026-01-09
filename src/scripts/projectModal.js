@@ -32,6 +32,8 @@ const MODAL_LABELS = {
   },
   PROJECT_TYPE: {
     'web-app': 'Webアプリ',
+    'desktop-app': 'デスクトップアプリ',
+    'mobile-app': 'モバイルアプリ',
     'cli-tool': 'CLIツール',
     'library': 'ライブラリ',
     'automation': '自動化',
@@ -88,7 +90,7 @@ function setupProjectCardEvents() {
   const projectsGrid = document.querySelector('.projects-grid');
   if (!projectsGrid) return;
 
-  projectsGrid.addEventListener('click', async function(e) {
+  projectsGrid.addEventListener('click', async function (e) {
     // リンクボタンのクリックはモーダルを開かない
     if (e.target.closest('.project-link-btn') || e.target.closest('.project-links')) {
       return;
@@ -96,7 +98,7 @@ function setupProjectCardEvents() {
 
     const projectCard = e.target.closest('.project-card');
     if (!projectCard) return;
-    
+
     e.preventDefault();
     const projectId = projectCard.getAttribute('data-project');
     const projectDetails = await getProjectDetails();
@@ -289,7 +291,7 @@ async function openProjectModal(projectId) {
   const projectDetails = await getProjectDetails();
   const project = projectDetails[projectId];
   const modal = document.getElementById('project-modal');
-  
+
   if (!modal || !project) return;
 
   renderModalContent(project);
@@ -316,9 +318,9 @@ function renderModalContent(project) {
  */
 function renderHeader(project) {
   document.getElementById('project-modal-title').textContent = project.name;
-  document.getElementById('project-modal-type').textContent = 
+  document.getElementById('project-modal-type').textContent =
     i18n.t(`projects.modal.projectTypes.${project.type}`) || project.type;
-  
+
   const statusElement = document.getElementById('project-modal-status');
   statusElement.textContent = i18n.t(`projects.modal.status.${project.status}`) || project.status;
   statusElement.className = `project-modal-status status-${project.status}`;
@@ -336,8 +338,8 @@ function renderOverview(project) {
   infoItems.push(createInfoItem(i18n.t('projects.modal.period'), project.period));
 
   // 開発形態
-  const devType = project.developmentType === 'team' 
-    ? `${i18n.t('projects.modal.team')}${project.teamSize ? ` (${project.teamSize}人)` : ''}` 
+  const devType = project.developmentType === 'team'
+    ? `${i18n.t('projects.modal.team')}${project.teamSize ? ` (${project.teamSize}人)` : ''}`
     : i18n.t('projects.modal.personal');
   infoItems.push(createInfoItem(i18n.t('projects.modal.devType'), devType));
 
@@ -401,7 +403,7 @@ function renderHighlights(project) {
  */
 function renderGallery(project) {
   const galleryElement = document.getElementById('project-modal-gallery');
-  
+
   if (project.modal?.gallery && project.modal.gallery.length > 0) {
     setupGallery(project.modal.gallery);
     galleryElement.style.display = 'block';
@@ -470,7 +472,7 @@ function createLinkHTML(href, icon, label) {
 function setupGallery(gallery) {
   const viewer = document.getElementById('gallery-viewer');
   const thumbnails = document.getElementById('gallery-thumbnails');
-  
+
   // currentIndexを追跡するオブジェクト
   const galleryState = { currentIndex: 0 };
 
@@ -478,7 +480,7 @@ function setupGallery(gallery) {
     const item = gallery[index];
     if (!item) return;
 
-    viewer.innerHTML = item.type === 'image' 
+    viewer.innerHTML = item.type === 'image'
       ? buildGalleryImage(item)
       : buildGalleryVideo(item);
 
@@ -530,7 +532,7 @@ function renderGalleryThumbnails(container, gallery, showGalleryItem) {
 
   // サムネイルのクリックイベントを設定
   container.querySelectorAll('.gallery-thumbnail').forEach(thumb => {
-    thumb.addEventListener('click', function() {
+    thumb.addEventListener('click', function () {
       const index = parseInt(this.getAttribute('data-index'));
       showGalleryItem(index);
     });

@@ -84,6 +84,8 @@
       "personal": "個人開発",
       "projectTypes": {
         "web-app": "Webアプリ",
+        "desktop-app": "デスクトップアプリ",
+        "mobile-app": "モバイルアプリ",
         "cli-tool": "CLIツール",
         "library": "ライブラリ",
         "automation": "自動化",

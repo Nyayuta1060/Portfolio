@@ -9,7 +9,12 @@
     "role": "リードプログラマー",
     "developmentType": "team",
     "teamSize": 5,
-    "technologies": ["HTML", "CSS", "JavaScript", "Node.js"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js"
+    ],
     "image": {
       "type": "file",
       "src": "./src/assets/projects/nulltasker/NullTasker.png",
@@ -33,27 +38,32 @@
           "src": "./src/assets/projects/nulltasker/NullTasker.png",
           "alt": "NullTasker ロゴ",
           "caption": "NullTasker ロゴ"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/task.png",
           "alt": "タスク管理画面",
           "caption": "タスク管理画面"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/calender.png",
           "alt": "カレンダー画面",
           "caption": "カレンダー画面"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/smartphone.png",
           "alt": "スマートフォン表示",
           "caption": "スマートフォン表示"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/login.png",
           "alt": "ログイン画面",
           "caption": "ログイン画面"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/new-user.png",
           "alt": "新規登録画面",
@@ -72,7 +82,12 @@
     "role": null,
     "developmentType": "personal",
     "teamSize": null,
-    "technologies": ["HTML", "CSS", "JavaScript", "Github API"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Github API"
+    ],
     "image": {
       "type": "icon",
       "icon": "fas fa-globe"
@@ -88,6 +103,51 @@
       "モーダル機能"
     ]
   },
+  "horloq": {
+    "name": "Horloq",
+    "description": "拡張可能なデスクトップ据え置き時計アプリケーション",
+    "type": "desktop-app",
+    "status": "in-progress",
+    "featured": true,
+    "period": "2025年12月〜現在",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": [
+      "Python",
+      "CustomTkinter",
+      "PyYAML",
+      "Github Release",
+      "GitHub Actions"
+    ],
+    "image": {
+      "type": "file",
+      "src": "src/assets/projects/horloq/Horloq.png",
+      "alt": "Horloq ロゴ"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/Horloq",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "プラグインシステムによる拡張機能",
+      "デジタル/アナログ時計表示の切り替え",
+      "カスタマイズ可能なテーマシステム",
+      "クロスプラットフォーム対応"
+    ],
+    "modal": {
+      "detailedDescription": "Horloqは、Python + CustomTkinterで作られた拡張可能なデスクトップ据え置き時計アプリケーションです。プラグインシステムを備えており、ユーザーが自由に機能を追加・カスタマイズできる設計を採用しています。デジタル/アナログ時計表示、カスタマイズ可能なテーマ、常に最前面表示機能など、デスクトップ時計として必要な機能を備えています。公式プラグイン集（Horloq-Plugins）では、タイマー、ストップウォッチ、天気予報、ポモドーロタイマーなど、様々な追加機能を提供しています。",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/horloq/Horloq.png",
+          "alt": "Horloq ロゴ",
+          "caption": "Horloq ロゴ"
+        }
+      ]
+    }
+  },
   "pytranslater": {
     "name": "PyTranslater",
     "description": "Pythonで実装した翻訳ツール",
@@ -98,7 +158,9 @@
     "role": null,
     "developmentType": "personal",
     "teamSize": null,
-    "technologies": ["Python"],
+    "technologies": [
+      "Python"
+    ],
     "image": {
       "type": "icon",
       "icon": "fa-solid fa-language"
@@ -147,7 +209,10 @@
     "role": null,
     "developmentType": "personal",
     "teamSize": null,
-    "technologies": ["Python", "GitHub Actions"],
+    "technologies": [
+      "Python",
+      "GitHub Actions"
+    ],
     "image": {
       "type": "icon",
       "icon": "fa-solid fa-bullhorn"

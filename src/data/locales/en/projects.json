@@ -9,7 +9,12 @@
     "role": "Lead Programmer",
     "developmentType": "team",
     "teamSize": 5,
-    "technologies": ["HTML", "CSS", "JavaScript", "Node.js"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js"
+    ],
     "image": {
       "type": "file",
       "src": "./src/assets/projects/nulltasker/NullTasker.png",
@@ -33,27 +38,32 @@
           "src": "./src/assets/projects/nulltasker/NullTasker.png",
           "alt": "NullTasker Logo",
           "caption": "NullTasker Logo"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/task.png",
           "alt": "Task Management Screen",
           "caption": "Task Management Screen"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/calender.png",
           "alt": "Calendar Screen",
           "caption": "Calendar Screen"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/smartphone.png",
           "alt": "Smartphone Display",
           "caption": "Smartphone Display"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/login.png",
           "alt": "Login Screen",
           "caption": "Login Screen"
-        },{
+        },
+        {
           "type": "image",
           "src": "./src/assets/projects/nulltasker/new-user.png",
           "alt": "Registration Screen",
@@ -72,7 +82,12 @@
     "role": null,
     "developmentType": "personal",
     "teamSize": null,
-    "technologies": ["HTML", "CSS", "JavaScript", "Github API"],
+    "technologies": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Github API"
+    ],
     "image": {
       "type": "icon",
       "icon": "fas fa-globe"
@@ -88,6 +103,51 @@
       "Modal functionality"
     ]
   },
+  "horloq": {
+    "name": "Horloq",
+    "description": "Extensible desktop clock application",
+    "type": "desktop-app",
+    "status": "in-progress",
+    "featured": true,
+    "period": "December 2025 - Present",
+    "role": null,
+    "developmentType": "personal",
+    "teamSize": null,
+    "technologies": [
+      "Python",
+      "CustomTkinter",
+      "PyYAML",
+      "Github Release",
+      "GitHub Actions"
+    ],
+    "image": {
+      "type": "file",
+      "src": "src/assets/projects/horloq/Horloq.png",
+      "alt": "Horloq Logo"
+    },
+    "links": {
+      "github": "https://github.com/Nyayuta1060/Horloq",
+      "demo": null,
+      "article": null
+    },
+    "highlights": [
+      "Plugin system for extensibility",
+      "Digital/Analog clock display toggle",
+      "Customizable theme system",
+      "Cross-platform support"
+    ],
+    "modal": {
+      "detailedDescription": "Horloq is an extensible desktop clock application built with Python + CustomTkinter. It features a plugin system that allows users to freely add and customize functionality. The application includes essential features such as digital/analog clock display, customizable themes, and always-on-top functionality. The official plugin collection (Horloq-Plugins) provides various additional features including timer, stopwatch, weather forecast, pomodoro timer, and more.",
+      "gallery": [
+        {
+          "type": "image",
+          "src": "./src/assets/projects/horloq/Horloq.png",
+          "alt": "Horloq Logo",
+          "caption": "Horloq Logo"
+        }
+      ]
+    }
+  },
   "pytranslater": {
     "name": "PyTranslater",
     "description": "Translation tool implemented in Python",
@@ -98,7 +158,9 @@
     "role": null,
     "developmentType": "personal",
     "teamSize": null,
-    "technologies": ["Python"],
+    "technologies": [
+      "Python"
+    ],
     "image": {
       "type": "icon",
       "icon": "fa-solid fa-language"
@@ -147,7 +209,10 @@
     "role": null,
     "developmentType": "personal",
     "teamSize": null,
-    "technologies": ["Python", "GitHub Actions"],
+    "technologies": [
+      "Python",
+      "GitHub Actions"
+    ],
     "image": {
       "type": "icon",
       "icon": "fa-solid fa-bullhorn"

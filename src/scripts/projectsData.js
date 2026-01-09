@@ -14,6 +14,8 @@ export const PROJECT_STATUS = {
 
 export const PROJECT_TYPE = {
   WEB_APP: 'web-app',
+  DESKTOP_APP: 'desktop-app',
+  MOBILE_APP: 'mobile-app',
   CLI_TOOL: 'cli-tool',
   LIBRARY: 'library',
   AUTOMATION: 'automation',
@@ -86,8 +88,8 @@ export async function getProjectsByType(type) {
 export async function getProjectsByTechnology(technology) {
   const details = await getProjectDetails();
   return Object.entries(details)
-    .filter(([_, project]) => 
-      project.technologies.some(tech => 
+    .filter(([_, project]) =>
+      project.technologies.some(tech =>
         tech.toLowerCase() === technology.toLowerCase()
       )
     )
@@ -119,7 +121,7 @@ export async function getAllProjects() {
 
 export async function getSortedProjects(sortBy = 'period', order = 'desc') {
   const projects = await getAllProjects();
-  
+
   return projects.sort((a, b) => {
     if (order === 'asc') {
       return a[sortBy] > b[sortBy] ? 1 : -1;
