@@ -466,6 +466,10 @@
   background: linear-gradient(135deg, #00599c, #0066cc);
 }
 
+.skill-card[data-tech="rust"] .skill-image {
+  background: linear-gradient(135deg, #ce422b, #e8673f);
+}
+
 .skill-card[data-tech="pytorch"] .skill-image {
   background: linear-gradient(135deg, #ee4c2c, #ff6b45);
 }
@@ -553,6 +557,11 @@
 .skill-card:hover[data-tech="cpp"] {
   box-shadow: 0 15px 35px rgba(0, 89, 156, 0.3);
   border-color: #00599c;
+}
+
+.skill-card:hover[data-tech="rust"] {
+  box-shadow: 0 15px 35px rgba(206, 66, 43, 0.3);
+  border-color: #ce422b;
 }
 
 .skill-card:hover[data-tech="pytorch"] {

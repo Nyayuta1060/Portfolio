@@ -103,6 +103,19 @@
       "github": null
     }
   },
+  "rust": {
+    "name": "Rust",
+    "category": "backend",
+    "level": "Beginner",
+    "frequency": "1-2 times/week",
+    "usage": "Systems programming, CLI tool development",
+    "experience": "Since October 2025",
+    "comment": "A systems programming language that combines safety and performance. Currently learning.",
+    "links": {
+      "official": "https://www.rust-lang.org/",
+      "github": "https://github.com/rust-lang/rust"
+    }
+  },
   "pytorch": {
     "name": "PyTorch",
     "category": "ai-ml",

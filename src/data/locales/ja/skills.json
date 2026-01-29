@@ -103,6 +103,19 @@
       "github": null
     }
   },
+  "rust": {
+    "name": "Rust",
+    "category": "backend",
+    "level": "初級",
+    "frequency": "週1-2回",
+    "usage": "システムプログラミング、CLIツール開発",
+    "experience": "2025年10月〜",
+    "comment": "安全性とパフォーマンスを兼ね備えたシステムプログラミング言語。学習中です。",
+    "links": {
+      "official": "https://www.rust-lang.org/",
+      "github": "https://github.com/rust-lang/rust"
+    }
+  },
   "pytorch": {
     "name": "PyTorch",
     "category": "ai-ml",
