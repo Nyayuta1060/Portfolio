@@ -1,22 +1,22 @@
 // ========== メイン初期化ファイル ==========
 import { PERFORMANCE_CONFIG } from './config.js';
-import { 
-  debounce, 
-  throttle, 
-  initializeLazyImages, 
-  preloadCriticalResources, 
+import {
+  debounce,
+  throttle,
+  initializeLazyImages,
+  preloadCriticalResources,
   initializeAccessibility,
   addAnimationStyles,
-  logError 
+  logError
 } from './utils.js';
 import { initializeNavigation } from './navigation.js';
-import { 
-  initializeScrollEffects, 
-  initializeParticles, 
-  initializeLazyLoading 
+import {
+  initializeScrollEffects,
+  initializeParticles,
+  initializeLazyLoading
 } from './animations.js';
-import { 
-  initializeFormHandling, 
+import {
+  initializeFormHandling,
   initializeSkillsFilter,
   initializeSkillModal,
   initializeProjectModal
@@ -27,10 +27,14 @@ import { initializeData } from './init.js';
 import { initializeCareer, initializeCertifications } from './career.js';
 import { initializeTerminal } from './terminal.js';
 import { initializeBootSequence } from './boot.js';
+import { initializeTheme, initializeThemeSwitcher } from './theme.js';
 import i18n from './i18n.js';
 import { clearCareerCache } from './careerData.js';
 import { clearProjectCache } from './projectsData.js';
 import { clearSkillCache } from './skillsData.js';
+
+// テーマを最優先で反映（初回描画時のちらつきを軽減）
+initializeTheme();
 
 // ページ読み込み開始時に即座にトップにスクロール
 if ('scrollRestoration' in history) {
@@ -44,23 +48,23 @@ window.scrollTo(0, 0);
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     console.log('📦 Starting Portfolio initialization...');
-    
+
     // i18nを初期化
     console.log('🌐 Initializing i18n...');
     await i18n.initialize();
-    
+
     // ブートシーケンスを表示
     await initializeBootSequence();
-    
+
     // データを最初にロード
     await initializeData();
-    
+
     // その後アプリを初期化
     await initializeApp();
-    
+
     // UIを更新
     i18n.updateUI();
-    
+
     console.log('🚀 Portfolio初期化成功!');
   } catch (error) {
     console.error('❌ App Initialization failed:', error);
@@ -74,10 +78,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 async function initializeApp() {
   // コア機能を初期化
   await initializeCoreFeatures();
-  
+
   // ユーティリティ機能を初期化
   initializeUtilityFeatures();
-  
+
   // イベントリスナーを設定
   setupEventListeners();
 }
@@ -93,11 +97,13 @@ async function initializeCoreFeatures() {
     initializeNavigation();
     console.log('🔧 Initializing Language Switcher...');
     initializeLanguageSwitcher();
+    console.log('🔧 Initializing Theme Switcher...');
+    initializeThemeSwitcher();
     console.log('🔧 Initializing Scroll Effects...');
     initializeScrollEffects();
     console.log('🔧 Initializing Particles...');
     initializeParticles();
-    
+
     // モーダルとフィルターを先に初期化（イベントデリゲーション使用）
     console.log('🔧 Initializing Skill Modal...');
     initializeSkillModal();
@@ -105,7 +111,7 @@ async function initializeCoreFeatures() {
     initializeProjectModal();
     console.log('🔧 Initializing Skills Filter...');
     initializeSkillsFilter();
-    
+
     console.log('🔧 Initializing Form Handling...');
     initializeFormHandling();
     console.log('🔧 Initializing Lazy Loading...');
@@ -184,7 +190,7 @@ function handleScroll() {
  * スムーズスクロールのグローバル関数(後方互換性のため)
  * @param {string} sectionId - スクロール先のセクションID
  */
-window.scrollToSection = function(sectionId) {
+window.scrollToSection = function (sectionId) {
   const section = document.getElementById(sectionId);
   if (section) {
     const offsetTop = section.offsetTop - 80;
@@ -199,8 +205,8 @@ window.scrollToSection = function(sectionId) {
  * 言語切り替えを初期化
  */
 function initializeLanguageSwitcher() {
-  const langButtons = document.querySelectorAll('.lang-btn');
-  
+  const langButtons = document.querySelectorAll('.lang-btn[data-lang]');
+
   // 現在の言語に基づいてボタンのアクティブ状態を更新
   const updateActiveButton = () => {
     const currentLang = i18n.getCurrentLanguage();
@@ -212,10 +218,10 @@ function initializeLanguageSwitcher() {
       }
     });
   };
-  
+
   // 初期状態を設定
   updateActiveButton();
-  
+
   // 各ボタンにクリックイベントを追加
   langButtons.forEach(button => {
     button.addEventListener('click', async () => {
@@ -225,13 +231,13 @@ function initializeLanguageSwitcher() {
         clearCareerCache();
         clearProjectCache();
         clearSkillCache();
-        
+
         await i18n.switchLanguage(lang);
         updateActiveButton();
       }
     });
   });
-  
+
   // 言語変更イベントをリッスン
   window.addEventListener('languageChanged', updateActiveButton);
 }

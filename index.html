@@ -1,323 +1,350 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nyayuta's Portfolio - Exploring various fields of development including Web, AI/ML, and more.">
-    <meta name="keywords" content="Portfolio, Web Developer, AI, Machine Learning, Python, JavaScript, Nyayuta">
-    <meta name="author" content="Nyayuta">
-    <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon">
 
-    <!-- Open Graph / SNS共有用 -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Nyayuta | Portfolio">
-    <meta property="og:description" content="様々な分野の開発に挑戦するNyayutaのポートフォリオ。Web開発、AI/機械学習、自動化ツールなど多様なプロジェクトを紹介。">
-    <meta property="og:url" content="https://nyayuta1060.github.io/Portfolio/">
-    <meta property="og:site_name" content="Nyayuta's Portfolio">
-    <meta property="og:locale" content="ja_JP">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nyayuta | Portfolio">
-    <meta name="twitter:description" content="様々な分野の開発に挑戦するNyayutaのポートフォリオサイト">
-    
-    <title>Nyayuta | Portfolio</title>
-    
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <!-- CSS Files (in proper order) -->
-    <link rel="stylesheet" href="./src/styles/boot.css?v=2">
-    <link rel="stylesheet" href="./src/styles/base.css?v=2">
-    <link rel="stylesheet" href="./src/styles/components.css?v=2">
-    <link rel="stylesheet" href="./src/styles/layout.css?v=2">
-    <link rel="stylesheet" href="./src/styles/pages.css?v=2">
-    <link rel="stylesheet" href="./src/styles/responsive.css?v=2">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Nyayuta's Portfolio - Exploring various fields of development including Web, AI/ML, and more.">
+  <meta name="keywords" content="Portfolio, Web Developer, AI, Machine Learning, Python, JavaScript, Nyayuta">
+  <meta name="author" content="Nyayuta">
+  <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon">
 
-    <!-- External Resources -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  </head>
-  <body class="booting">
-    <!-- パーティクル背景 -->
-    <div id="particles-container"></div>
+  <!-- Open Graph / SNS共有用 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nyayuta | Portfolio">
+  <meta property="og:description" content="様々な分野の開発に挑戦するNyayutaのポートフォリオ。Web開発、AI/機械学習、自動化ツールなど多様なプロジェクトを紹介。">
+  <meta property="og:url" content="https://nyayuta1060.github.io/Portfolio/">
+  <meta property="og:site_name" content="Nyayuta's Portfolio">
+  <meta property="og:locale" content="ja_JP">
 
-    <!-- ナビゲーション -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="#home" class="nav-logo">
-          <div class="logo-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <span class="logo-text">
-            <span class="logo-name">Nyayuta</span>
-            <span class="logo-subtitle">Portfolio</span>
-          </span>
-        </a>
-        <ul class="nav-menu">
-          <li><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
-          <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
-          <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
-          <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
-          <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
-        </ul>
-        <div class="language-switcher">
-          <button class="lang-btn" data-lang="ja" title="日本語">
-            <span class="lang-text">JP</span>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nyayuta | Portfolio">
+  <meta name="twitter:description" content="様々な分野の開発に挑戦するNyayutaのポートフォリオサイト">
+  <script>
+    (function () {
+      try {
+        var THEME_KEY = 'portfolio-theme';
+        var savedTheme = localStorage.getItem(THEME_KEY);
+        var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolvedTheme = savedTheme || (isDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', resolvedTheme);
+      } catch (error) {
+        console.warn('Failed to bootstrap theme:', error);
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+
+  <title>Nyayuta | Portfolio</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <!-- CSS Files (in proper order) -->
+  <link rel="stylesheet" href="./src/styles/boot.css?v=2">
+  <link rel="stylesheet" href="./src/styles/base.css?v=2">
+  <link rel="stylesheet" href="./src/styles/components.css?v=2">
+  <link rel="stylesheet" href="./src/styles/layout.css?v=2">
+  <link rel="stylesheet" href="./src/styles/pages.css?v=2">
+  <link rel="stylesheet" href="./src/styles/responsive.css?v=2">
+
+  <!-- External Resources -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+
+<body class="booting">
+  <!-- パーティクル背景 -->
+  <div id="particles-container"></div>
+
+  <!-- ナビゲーション -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <div class="logo-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <span class="logo-text">
+          <span class="logo-name">Nyayuta</span>
+          <span class="logo-subtitle">Portfolio</span>
+        </span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+        <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="language-switcher">
+        <button class="lang-btn" data-lang="ja" title="日本語">
+          <span class="lang-text">JP</span>
+        </button>
+        <button class="lang-btn" data-lang="en" title="English">
+          <span class="lang-text">EN</span>
+        </button>
+        <button class="lang-btn theme-btn" data-theme-toggle aria-label="Switch theme" title="Theme switch">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ヒーローセクション -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="greeting" data-i18n="hero.greeting">Hello, I'm</span>
+          <span class="name">Nyayuta</span>
+        </h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle" data-i18n-html>
+          大阪公立大学工業高等専門学校<br>
+          知能情報コース/3年生
+        </p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="scrollToSection('projects')">
+            <i class="fas fa-folder-open"></i>
+            <span data-i18n="hero.viewProjects">View Projects</span>
           </button>
-          <button class="lang-btn" data-lang="en" title="English">
-            <span class="lang-text">EN</span>
+          <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+            <i class="fas fa-envelope"></i>
+            <span data-i18n="hero.getInTouch">Get In Touch</span>
           </button>
         </div>
-        <div class="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+
+        <!-- ヒーローセクション内のソーシャルリンク -->
+        <div class="hero-social">
+          <a href="https://github.com/Nyayuta1060" class="hero-social-link" target="_blank" rel="noopener noreferrer"
+            title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://twitter.com/Nyayuta0717" class="hero-social-link" target="_blank" rel="noopener noreferrer"
+            title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
         </div>
       </div>
-    </nav>
+      <div class="hero-visual">
+        <div class="code-animation">
+          <div class="terminal">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="btn-red"></span>
+                <span class="btn-yellow"></span>
+                <span class="btn-green"></span>
+              </div>
+              <span class="terminal-title">portfolio-terminal</span>
+            </div>
+            <div class="terminal-body">
+              <!-- インタラクティブターミナル: terminal.jsで動的に生成 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ヒーローセクション -->
-    <section id="home" class="hero">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1 class="hero-title">
-            <span class="greeting" data-i18n="hero.greeting">Hello, I'm</span>
-            <span class="name">Nyayuta</span>
-          </h1>
-          <p class="hero-subtitle" data-i18n="hero.subtitle" data-i18n-html>
-            大阪公立大学工業高等専門学校<br>
-            知能情報コース/2年生
+  <!-- Aboutセクション -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-number">01.</span>
+        <span data-i18n="about.title">About Me</span>
+      </h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p class="about-description" data-i18n="about.description1">
+            知能情報コースでAIや機械学習といった最新技術を学び、
+            実践的なスキルを身につけています。
           </p>
-          <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="scrollToSection('projects')">
-              <i class="fas fa-folder-open"></i>
-              <span data-i18n="hero.viewProjects">View Projects</span>
-            </button>
-            <button class="btn btn-secondary" onclick="scrollToSection('contact')">
-              <i class="fas fa-envelope"></i>
-              <span data-i18n="hero.getInTouch">Get In Touch</span>
-            </button>
-          </div>
+          <p class="about-description" data-i18n="about.description2">
+            ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。
+          </p>
 
-          <!-- ヒーローセクション内のソーシャルリンク -->
-          <div class="hero-social">
-            <a href="https://github.com/Nyayuta1060" class="hero-social-link" target="_blank" rel="noopener noreferrer" title="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://twitter.com/Nyayuta0717" class="hero-social-link" target="_blank" rel="noopener noreferrer" title="Twitter">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="code-animation">
-            <div class="terminal">
-              <div class="terminal-header">
-                <div class="terminal-buttons">
-                  <span class="btn-red"></span>
-                  <span class="btn-yellow"></span>
-                  <span class="btn-green"></span>
-                </div>
-                <span class="terminal-title">portfolio-terminal</span>
-              </div>
-              <div class="terminal-body">
-                <!-- インタラクティブターミナル: terminal.jsで動的に生成 -->
+          <!-- 経歴セクション -->
+          <div class="career-section">
+            <h3 class="career-title">
+              <i class="fas fa-graduation-cap"></i>
+              <span data-i18n="about.careerTitle">経歴</span>
+            </h3>
+            <div class="career-timeline">
+              <!-- career.jsで動的に生成 -->
+              <div class="career-loading" style="text-align: center; padding: 2rem; color: #999;">
+                <div class="loading-spinner"></div>
+                <p data-i18n="about.loadingCareer">経歴データを読み込み中...</p>
               </div>
             </div>
+          </div>
+
+          <!-- 資格セクション -->
+          <div class="certifications-section">
+            <h3 class="certifications-title">
+              <i class="fas fa-certificate"></i>
+              <span data-i18n="about.certificationsTitle">資格・認定</span>
+            </h3>
+            <div class="certifications-grid">
+              <!-- career.jsで動的に生成 -->
+              <div class="certifications-loading" style="text-align: center; padding: 2rem; color: #999;">
+                <div class="loading-spinner"></div>
+                <p data-i18n="about.loadingCertifications">資格データを読み込み中...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- GitHub Activity セクション -->
+          <div class="github-activity-section">
+            <h3 class="github-activity-title">
+              <i class="fab fa-github"></i>
+              <span data-i18n="about.githubActivityTitle">GitHub Activity</span>
+            </h3>
+            <div class="github-activity-content">
+              <!-- GitHub.jsで動的に生成 -->
+              <div class="github-loading">
+                <div class="loading-spinner"></div>
+                <p data-i18n="about.loadingGithub">GitHubデータを読み込み中...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-number">02.</span>
+        <span data-i18n="skills.title">Technical Skills</span>
+      </h2>
+      <div class="skills-content">
+        <p class="skills-description" data-i18n="skills.description">私が習得している技術スタック</p>
+
+        <!-- カテゴリフィルター -->
+        <div class="skills-filter">
+          <button class="filter-btn active" data-category="all">
+            <i class="fas fa-th"></i>
+            <span data-i18n="skills.all">All</span>
+          </button>
+          <button class="filter-btn" data-category="frontend">
+            <i class="fas fa-laptop-code"></i>
+            <span data-i18n="skills.frontend">Frontend</span>
+          </button>
+          <button class="filter-btn" data-category="backend">
+            <i class="fas fa-server"></i>
+            <span data-i18n="skills.backend">Backend</span>
+          </button>
+          <button class="filter-btn" data-category="ai-ml">
+            <i class="fas fa-brain"></i>
+            <span data-i18n="skills.aiml">AI/ML</span>
+          </button>
+          <button class="filter-btn" data-category="tools">
+            <i class="fas fa-tools"></i>
+            <span data-i18n="skills.tools">Tools</span>
+          </button>
+        </div>
+
+        <!-- スキルグリッド（JavaScriptで動的生成） -->
+        <div class="skills-grid-container">
+          <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p data-i18n="skills.loading">スキルデータを読み込み中...</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Aboutセクション -->
-    <section id="about" class="about">
-      <div class="container">
-        <h2 class="section-title">
-          <span class="title-number">01.</span>
-          <span data-i18n="about.title">About Me</span>
-        </h2>
-        <div class="about-content">
-          <div class="about-text">
-            <p class="about-description" data-i18n="about.description1">
-              知能情報コースでAIや機械学習といった最新技術を学び、
-              実践的なスキルを身につけています。
-            </p>
-            <p class="about-description" data-i18n="about.description2">
-              ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。
-            </p>
+  <!-- プロジェクトセクション -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="section-title">
+        <span class="title-number">03.</span>
+        <span data-i18n="projects.title">My Projects</span>
+      </h2>
+      <div class="projects-content">
+        <p class="projects-description" data-i18n="projects.description">私が取り組んできたプロジェクトの一覧</p>
 
-            <!-- 経歴セクション -->
-            <div class="career-section">
-              <h3 class="career-title">
-                <i class="fas fa-graduation-cap"></i>
-                <span data-i18n="about.careerTitle">経歴</span>
-              </h3>
-              <div class="career-timeline">
-                <!-- career.jsで動的に生成 -->
-                <div class="career-loading" style="text-align: center; padding: 2rem; color: #999;">
-                  <div class="loading-spinner"></div>
-                  <p data-i18n="about.loadingCareer">経歴データを読み込み中...</p>
-                </div>
+        <!-- プロジェクトグリッド（JavaScriptで動的生成） -->
+        <div class="projects-grid">
+          <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p data-i18n="projects.loading">プロジェクトデータを読み込み中...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- コンタクトセクション -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-content">
+        <div class="contact-info">
+          <h2 class="section-title">
+            <span class="title-number">04.</span>
+            <span data-i18n="contact.title">Contact</span>
+          </h2>
+          <p data-i18n="contact.description">
+            お気軽にご連絡ください。
+          </p>
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-method-header">
+                <i class="fas fa-envelope"></i>
+                <h4 data-i18n="contact.schoolEmail">学校用メール</h4>
+              </div>
+              <div class="contact-details" data-email-container="school-email">
+                <a href="#" data-email-id="school-email" class="email-address" aria-label="学校用メールアドレス">読み込み中...</a>
               </div>
             </div>
-
-            <!-- 資格セクション -->
-            <div class="certifications-section">
-              <h3 class="certifications-title">
-                <i class="fas fa-certificate"></i>
-                <span data-i18n="about.certificationsTitle">資格・認定</span>
-              </h3>
-              <div class="certifications-grid">
-                <!-- career.jsで動的に生成 -->
-                <div class="certifications-loading" style="text-align: center; padding: 2rem; color: #999;">
-                  <div class="loading-spinner"></div>
-                  <p data-i18n="about.loadingCertifications">資格データを読み込み中...</p>
-                </div>
+            <div class="contact-method">
+              <div class="contact-method-header">
+                <i class="fas fa-envelope-open"></i>
+                <h4 data-i18n="contact.personalEmail">個人用メール</h4>
               </div>
-            </div>
-
-            <!-- GitHub Activity セクション -->
-            <div class="github-activity-section">
-              <h3 class="github-activity-title">
-                <i class="fab fa-github"></i>
-                <span data-i18n="about.githubActivityTitle">GitHub Activity</span>
-              </h3>
-              <div class="github-activity-content">
-                <!-- GitHub.jsで動的に生成 -->
-                <div class="github-loading">
-                  <div class="loading-spinner"></div>
-                  <p data-i18n="about.loadingGithub">GitHubデータを読み込み中...</p>
-                </div>
+              <div class="contact-details" data-email-container="personal-email">
+                <a href="#" data-email-id="personal-email" class="email-address" aria-label="個人用メールアドレス">読み込み中...</a>
               </div>
             </div>
           </div>
-        </section>
 
-        <section id="skills" class="skills">
-          <div class="container">
-            <h2 class="section-title">
-              <span class="title-number">02.</span>
-              <span data-i18n="skills.title">Technical Skills</span>
-            </h2>
-            <div class="skills-content">
-              <p class="skills-description" data-i18n="skills.description">私が習得している技術スタック</p>
-
-              <!-- カテゴリフィルター -->
-              <div class="skills-filter">
-                <button class="filter-btn active" data-category="all">
-                  <i class="fas fa-th"></i>
-                  <span data-i18n="skills.all">All</span>
-                </button>
-                <button class="filter-btn" data-category="frontend">
-                  <i class="fas fa-laptop-code"></i>
-                  <span data-i18n="skills.frontend">Frontend</span>
-                </button>
-                <button class="filter-btn" data-category="backend">
-                  <i class="fas fa-server"></i>
-                  <span data-i18n="skills.backend">Backend</span>
-                </button>
-                <button class="filter-btn" data-category="ai-ml">
-                  <i class="fas fa-brain"></i>
-                  <span data-i18n="skills.aiml">AI/ML</span>
-                </button>
-                <button class="filter-btn" data-category="tools">
-                  <i class="fas fa-tools"></i>
-                  <span data-i18n="skills.tools">Tools</span>
-                </button>
-              </div>
-
-              <!-- スキルグリッド（JavaScriptで動的生成） -->
-              <div class="skills-grid-container">
-                <div class="loading-container">
-                  <div class="loading-spinner"></div>
-                  <p data-i18n="skills.loading">スキルデータを読み込み中...</p>
-                </div>
-              </div>
-            </div>
+          <div class="social-links">
+            <a href="https://github.com/Nyayuta1060" class="social-link" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i>
+              <span data-i18n="contact.github">GitHub</span>
+            </a>
+            <a href="https://twitter.com/Nyayuta0717" class="social-link" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-twitter"></i>
+              <span data-i18n="contact.twitter">Twitter</span>
+            </a>
           </div>
-        </section>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- プロジェクトセクション -->
-        <section id="projects" class="projects">
-          <div class="container">
-            <h2 class="section-title">
-              <span class="title-number">03.</span>
-              <span data-i18n="projects.title">My Projects</span>
-            </h2>
-            <div class="projects-content">
-              <p class="projects-description" data-i18n="projects.description">私が取り組んできたプロジェクトの一覧</p>
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p data-i18n="footer.copyright">&copy; 2025-2026 Nyayuta Portfolio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-              <!-- プロジェクトグリッド（JavaScriptで動的生成） -->
-              <div class="projects-grid">
-                <div class="loading-container">
-                  <div class="loading-spinner"></div>
-                  <p data-i18n="projects.loading">プロジェクトデータを読み込み中...</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <!-- JavaScript Files (ES6 Modules) -->
+  <script type="module" src="./src/scripts/app.js"></script>
+</body>
 
-        <!-- コンタクトセクション -->
-        <section id="contact" class="contact">
-          <div class="container">
-            <div class="contact-content">
-              <div class="contact-info">
-                <h2 class="section-title">
-                  <span class="title-number">04.</span>
-                  <span data-i18n="contact.title">Contact</span>
-                </h2>
-                <p data-i18n="contact.description">
-                  お気軽にご連絡ください。
-                </p>
-                <div class="contact-methods">
-                  <div class="contact-method">
-                    <div class="contact-method-header">
-                      <i class="fas fa-envelope"></i>
-                      <h4 data-i18n="contact.schoolEmail">学校用メール</h4>
-                    </div>
-                    <div class="contact-details" data-email-container="school-email">
-                      <a href="#" data-email-id="school-email" class="email-address" aria-label="学校用メールアドレス">読み込み中...</a>
-                    </div>
-                  </div>
-                  <div class="contact-method">
-                    <div class="contact-method-header">
-                      <i class="fas fa-envelope-open"></i>
-                      <h4 data-i18n="contact.personalEmail">個人用メール</h4>
-                    </div>
-                    <div class="contact-details" data-email-container="personal-email">
-                      <a href="#" data-email-id="personal-email" class="email-address" aria-label="個人用メールアドレス">読み込み中...</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="social-links">
-                  <a href="https://github.com/Nyayuta1060" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                    <span data-i18n="contact.github">GitHub</span>
-                  </a>
-                  <a href="https://twitter.com/Nyayuta0717" class="social-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-twitter"></i>
-                    <span data-i18n="contact.twitter">Twitter</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- フッター -->
-        <footer class="footer">
-          <div class="container">
-            <div class="footer-content">
-              <p data-i18n="footer.copyright">&copy; 2025-2026 Nyayuta Portfolio. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
-
-        <!-- JavaScript Files (ES6 Modules) -->
-        <script type="module" src="./src/scripts/app.js"></script>
-      </body>
-    </html>
+</html>
