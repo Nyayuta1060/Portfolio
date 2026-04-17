@@ -20,6 +20,20 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nyayuta | Portfolio">
     <meta name="twitter:description" content="様々な分野の開発に挑戦するNyayutaのポートフォリオサイト">
+    <script>
+      (function() {
+        try {
+          var THEME_KEY = 'portfolio-theme';
+          var savedTheme = localStorage.getItem(THEME_KEY);
+          var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolvedTheme = savedTheme || (isDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', resolvedTheme);
+        } catch (error) {
+          console.warn('Failed to bootstrap theme:', error);
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
     
     <title>Nyayuta | Portfolio</title>
     
@@ -68,6 +82,9 @@
           </button>
           <button class="lang-btn" data-lang="en" title="English">
             <span class="lang-text">EN</span>
+          </button>
+          <button class="lang-btn theme-btn" data-theme-toggle aria-label="Switch theme" title="Theme switch">
+            <i class="fas fa-moon" aria-hidden="true"></i>
           </button>
         </div>
         <div class="hamburger">

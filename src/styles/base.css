@@ -20,11 +20,14 @@
   --secondary-bg: #131318;
   --accent-bg: #1a1a24;
   --card-bg: rgba(19, 19, 24, 0.8);
+  --navbar-bg: rgba(10, 10, 15, 0.9);
+  --overlay-bg: rgba(10, 10, 15, 0.9);
   
   /* メインカラー */
   --primary-color: #64ffda;
   --secondary-color: #ff6b6b;
   --accent-color: #4ecdc4;
+  --primary-rgb: 100, 255, 218;
   
   /* テキストカラー */
   --text-primary: #ffffff;
@@ -42,6 +45,9 @@
   --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
   --gradient-accent: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
   --gradient-bg: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
+  --particle-glow-1: rgba(100, 255, 218, 0.1);
+  --particle-glow-2: rgba(255, 107, 107, 0.1);
+  --particle-glow-3: rgba(78, 205, 196, 0.1);
 
   /* === フォント === */
   --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -87,6 +93,29 @@
   --breakpoint-wide: 1440px;
 }
 
+[data-theme='light'] {
+  --primary-bg: #f6f8fb;
+  --secondary-bg: #ffffff;
+  --accent-bg: #eef2f8;
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --navbar-bg: rgba(246, 248, 251, 0.92);
+  --overlay-bg: rgba(246, 248, 251, 0.9);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: rgba(51, 65, 85, 0.18);
+
+  --box-shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.08);
+  --box-shadow-md: 0 4px 8px rgba(15, 23, 42, 0.12);
+  --box-shadow-lg: 0 8px 16px rgba(15, 23, 42, 0.18);
+
+  --gradient-bg: linear-gradient(135deg, #f6f8fb 0%, #e9eef8 100%);
+  --particle-glow-1: rgba(99, 102, 241, 0.08);
+  --particle-glow-2: rgba(34, 197, 94, 0.08);
+  --particle-glow-3: rgba(14, 165, 233, 0.08);
+}
+
 /**
  * HTML要素の基本設定
  */
@@ -106,6 +135,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /**
@@ -132,9 +162,9 @@ body {
   width: 100%;
   height: 100%;
   background:
-    radial-gradient(circle at 20% 50%, rgba(100, 255, 218, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, var(--particle-glow-1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--particle-glow-2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, var(--particle-glow-3) 0%, transparent 50%);
   animation: float 20s ease-in-out infinite;
 }
 
@@ -335,7 +365,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 15, 0.9);
+  background: var(--overlay-bg);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(10, 10, 15, 0.9);
+  background: var(--navbar-bg);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
@@ -202,14 +202,24 @@
 
 .lang-btn:hover {
   background: var(--primary-color);
-  color: var(--main-bg);
+  color: var(--primary-bg);
   transform: translateY(-2px);
 }
 
 .lang-btn.active {
   background: var(--primary-color);
-  color: var(--main-bg);
+  color: var(--primary-bg);
   box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+}
+
+.theme-btn {
+  min-width: 2.5rem;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+.theme-btn i {
+  font-size: 0.9rem;
 }
 
 .lang-text {

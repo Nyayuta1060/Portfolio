@@ -27,10 +27,14 @@ import { initializeData } from './init.js';
 import { initializeCareer, initializeCertifications } from './career.js';
 import { initializeTerminal } from './terminal.js';
 import { initializeBootSequence } from './boot.js';
+import { initializeTheme, initializeThemeSwitcher } from './theme.js';
 import i18n from './i18n.js';
 import { clearCareerCache } from './careerData.js';
 import { clearProjectCache } from './projectsData.js';
 import { clearSkillCache } from './skillsData.js';
+
+// テーマを最優先で反映（初回描画時のちらつきを軽減）
+initializeTheme();
 
 // ページ読み込み開始時に即座にトップにスクロール
 if ('scrollRestoration' in history) {
@@ -93,6 +97,8 @@ async function initializeCoreFeatures() {
     initializeNavigation();
     console.log('🔧 Initializing Language Switcher...');
     initializeLanguageSwitcher();
+    console.log('🔧 Initializing Theme Switcher...');
+    initializeThemeSwitcher();
     console.log('🔧 Initializing Scroll Effects...');
     initializeScrollEffects();
     console.log('🔧 Initializing Particles...');
@@ -199,7 +205,7 @@ window.scrollToSection = function(sectionId) {
  * 言語切り替えを初期化
  */
 function initializeLanguageSwitcher() {
-  const langButtons = document.querySelectorAll('.lang-btn');
+  const langButtons = document.querySelectorAll('.lang-btn[data-lang]');
   
   // 現在の言語に基づいてボタンのアクティブ状態を更新
   const updateActiveButton = () => {
