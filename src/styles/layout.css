@@ -54,12 +54,10 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   transition: left 0.6s ease;
 }
 
@@ -124,6 +122,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -131,10 +130,12 @@
 
 /* ロゴパルスエフェクト */
 @keyframes logoPulse {
+
   0%,
   100% {
     box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
   }
+
   50% {
     box-shadow: 0 6px 25px rgba(100, 255, 218, 0.6);
   }
@@ -334,6 +335,7 @@ section {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -344,6 +346,7 @@ section {
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
@@ -354,6 +357,7 @@ section {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -375,6 +379,7 @@ section {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -462,6 +467,7 @@ section {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -797,18 +803,23 @@ section {
 .orbit-item:nth-child(2) {
   animation-delay: 0s;
 }
+
 .orbit-item:nth-child(3) {
   animation-delay: -3.33s;
 }
+
 .orbit-item:nth-child(4) {
   animation-delay: -6.66s;
 }
+
 .orbit-item:nth-child(5) {
   animation-delay: -10s;
 }
+
 .orbit-item:nth-child(6) {
   animation-delay: -13.33s;
 }
+
 .orbit-item:nth-child(7) {
   animation-delay: -16.66s;
 }
@@ -1257,6 +1268,7 @@ section {
     opacity: 0;
     transform: scale(0.95) translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);

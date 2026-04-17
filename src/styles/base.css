@@ -22,18 +22,18 @@
   --card-bg: rgba(19, 19, 24, 0.8);
   --navbar-bg: rgba(10, 10, 15, 0.9);
   --overlay-bg: rgba(10, 10, 15, 0.9);
-  
+
   /* メインカラー */
   --primary-color: #64ffda;
   --secondary-color: #ff6b6b;
   --accent-color: #4ecdc4;
   --primary-rgb: 100, 255, 218;
-  
+
   /* テキストカラー */
   --text-primary: #ffffff;
   --text-secondary: #a8b2d1;
   --text-muted: #6b7688;
-  
+
   /* ボーダー・シャドウ */
   --border-color: rgba(100, 255, 218, 0.2);
   --box-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,7 @@
   --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --transition-fast: all 0.15s ease;
   --animation-delay-base: 200ms;
-  
+
   /* === レイアウト === */
   --container-max-width: 1200px;
   --nav-height: 80px;
@@ -78,14 +78,14 @@
   --border-radius-md: 15px;
   --border-radius-lg: 20px;
   --border-radius-full: 50px;
-  
+
   /* === Z-Index階層 === */
   --z-index-dropdown: 100;
   --z-index-sticky: 500;
   --z-index-navbar: 1000;
   --z-index-modal-overlay: 9999;
   --z-index-modal: 10000;
-  
+
   /* === ブレークポイント（参照用） === */
   --breakpoint-mobile: 480px;
   --breakpoint-tablet: 768px;
@@ -100,6 +100,11 @@
   --card-bg: rgba(255, 255, 255, 0.88);
   --navbar-bg: rgba(246, 248, 251, 0.92);
   --overlay-bg: rgba(246, 248, 251, 0.9);
+
+  --primary-color: #0f766e;
+  --secondary-color: #b91c1c;
+  --accent-color: #0e7490;
+  --primary-rgb: 15, 118, 110;
 
   --text-primary: #0f172a;
   --text-secondary: #334155;
@@ -174,14 +179,18 @@ body {
  * フロートアニメーション
  */
 @keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  33% { 
-    transform: translateY(-20px) rotate(1deg); 
+
+  33% {
+    transform: translateY(-20px) rotate(1deg);
   }
-  66% { 
-    transform: translateY(-10px) rotate(-1deg); 
+
+  66% {
+    transform: translateY(-10px) rotate(-1deg);
   }
 }
 
@@ -193,6 +202,7 @@ body {
     opacity: 0;
     transform: translateX(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -203,14 +213,21 @@ body {
  * スクロールバウンスアニメーション
  */
 @keyframes scrollBounce {
-  0%, 20%, 50%, 80%, 100% { 
-    transform: translateY(0) rotate(45deg); 
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) rotate(45deg);
   }
-  40% { 
-    transform: translateY(-10px) rotate(45deg); 
+
+  40% {
+    transform: translateY(-10px) rotate(45deg);
   }
-  60% { 
-    transform: translateY(-5px) rotate(45deg); 
+
+  60% {
+    transform: translateY(-5px) rotate(45deg);
   }
 }
 
@@ -218,11 +235,12 @@ body {
  * オービットアニメーション
  */
 @keyframes orbit {
-  from { 
-    transform: translate(-30px, -150px) rotate(0deg) translate(150px) rotate(0deg); 
+  from {
+    transform: translate(-30px, -150px) rotate(0deg) translate(150px) rotate(0deg);
   }
-  to { 
-    transform: translate(-30px, -150px) rotate(360deg) translate(150px) rotate(-360deg); 
+
+  to {
+    transform: translate(-30px, -150px) rotate(360deg) translate(150px) rotate(-360deg);
   }
 }
 
@@ -234,6 +252,7 @@ body {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -248,6 +267,7 @@ body {
     opacity: 0;
     transform: translateX(50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -262,6 +282,7 @@ body {
     opacity: 0;
     transform: translateY(-20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -276,6 +297,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -290,6 +312,7 @@ body {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -303,6 +326,7 @@ body {
   from {
     width: 0;
   }
+
   to {
     width: 100%;
   }
