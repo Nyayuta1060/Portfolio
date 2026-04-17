@@ -143,6 +143,18 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+body.theme-fade-out {
+  opacity: 0.82;
+  filter: blur(0.4px) saturate(0.96);
+  transition: opacity 0.12s ease, filter 0.12s ease;
+}
+
+body.theme-fade-in {
+  opacity: 1;
+  filter: none;
+  transition: opacity 0.22s ease, filter 0.22s ease;
+}
+
 /**
  * パーティクル背景コンテナ
  */

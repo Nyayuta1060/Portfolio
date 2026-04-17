@@ -4,6 +4,13 @@ const THEME_STORAGE_KEY = 'portfolio-theme';
 const THEME_DARK = 'dark';
 const THEME_LIGHT = 'light';
 const MEDIA_QUERY_DARK = '(prefers-color-scheme: dark)';
+const MEDIA_QUERY_REDUCED_MOTION = '(prefers-reduced-motion: reduce)';
+const THEME_FADE_OUT_CLASS = 'theme-fade-out';
+const THEME_FADE_IN_CLASS = 'theme-fade-in';
+const THEME_FADE_OUT_DURATION_MS = 120;
+const THEME_FADE_IN_DURATION_MS = 220;
+
+let isThemeTransitioning = false;
 
 /**
  * 保存済みテーマを取得
@@ -49,6 +56,50 @@ function getSystemTheme() {
 export function applyTheme(theme) {
   const nextTheme = theme === THEME_LIGHT ? THEME_LIGHT : THEME_DARK;
   document.documentElement.setAttribute('data-theme', nextTheme);
+}
+
+/**
+ * アニメーションを伴うテーマ切替を実行
+ * @param {string} theme
+ */
+async function applyThemeWithFade(theme) {
+  const body = document.body;
+  const prefersReducedMotion = window.matchMedia(MEDIA_QUERY_REDUCED_MOTION).matches;
+
+  if (!body || prefersReducedMotion) {
+    applyTheme(theme);
+    return;
+  }
+
+  if (isThemeTransitioning) {
+    return;
+  }
+
+  isThemeTransitioning = true;
+
+  body.classList.remove(THEME_FADE_IN_CLASS);
+  body.classList.add(THEME_FADE_OUT_CLASS);
+
+  await sleep(THEME_FADE_OUT_DURATION_MS);
+  applyTheme(theme);
+
+  body.classList.remove(THEME_FADE_OUT_CLASS);
+  body.classList.add(THEME_FADE_IN_CLASS);
+
+  await sleep(THEME_FADE_IN_DURATION_MS);
+  body.classList.remove(THEME_FADE_IN_CLASS);
+  isThemeTransitioning = false;
+}
+
+/**
+ * 簡易sleep
+ * @param {number} ms
+ * @returns {Promise<void>}
+ */
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 /**
@@ -107,24 +158,28 @@ export function initializeThemeSwitcher() {
 
   updateThemeToggleButton(themeButton, getCurrentTheme());
 
-  themeButton.addEventListener('click', () => {
+  themeButton.addEventListener('click', async () => {
+    if (isThemeTransitioning) {
+      return;
+    }
+
     const currentTheme = getCurrentTheme();
     const nextTheme = currentTheme === THEME_DARK ? THEME_LIGHT : THEME_DARK;
 
-    applyTheme(nextTheme);
+    await applyThemeWithFade(nextTheme);
     storeTheme(nextTheme);
     updateThemeToggleButton(themeButton, nextTheme);
   });
 
   const mediaQuery = window.matchMedia(MEDIA_QUERY_DARK);
-  mediaQuery.addEventListener('change', (event) => {
+  mediaQuery.addEventListener('change', async (event) => {
     const storedTheme = getStoredTheme();
     if (storedTheme) {
       return;
     }
 
     const nextTheme = event.matches ? THEME_DARK : THEME_LIGHT;
-    applyTheme(nextTheme);
+    await applyThemeWithFade(nextTheme);
     updateThemeToggleButton(themeButton, nextTheme);
   });
 }
