@@ -1213,6 +1213,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
+  min-height: 110px;
   background: var(--secondary-bg);
   border-radius: 15px;
   border: 1px solid var(--border-color);
@@ -1234,6 +1235,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  min-width: 0;
 }
 
 .github-stat-item .stat-number {
@@ -1245,8 +1247,12 @@
 
 .github-stat-item .stat-label {
   font-size: 0.85rem;
+  line-height: 1.2;
   color: var(--text-secondary);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* GitHubリポジトリセクション */
