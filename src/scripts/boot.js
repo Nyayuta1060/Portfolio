@@ -8,17 +8,17 @@
 function createBootScreen() {
   // boot-readyクラスを追加してメインコンテンツのレンダリングを許可（裏で）
   document.body.classList.add('boot-ready');
-  
+
   const bootScreen = document.createElement('div');
   bootScreen.id = 'boot-screen';
   bootScreen.className = 'boot-screen active';
-  
+
   const bootTerminal = document.createElement('div');
   bootTerminal.className = 'boot-terminal';
-  
+
   bootScreen.appendChild(bootTerminal);
   document.body.appendChild(bootScreen);
-  
+
   return bootTerminal;
 }
 
@@ -44,7 +44,7 @@ async function displayBootMessages(container) {
     { text: '║ Welcome to Nyayuta\'s Portfolio OS     ║', },
     { text: '║                                       ║', },
     { text: '║ 大阪公立大学工業高等専門学校              ║', },
-    { text: '║ 知能情報コース 2年生                     ║', },
+    { text: '║ 知能情報コース 3年生                     ║', },
     { text: '║                                       ║', },
     { text: '╚═══════════════════════════════════════╝', },
     { text: '', delay: 300 },
@@ -56,15 +56,15 @@ async function displayBootMessages(container) {
     line.className = 'boot-line';
     line.textContent = message.text;
     container.appendChild(line);
-    
+
     // 最下部にスクロール
     container.scrollTop = container.scrollHeight;
-    
+
     if (message.delay > 0) {
       await sleep(message.delay);
     }
   }
-  
+
   // 最後の行を点滅させる
   const lastLine = container.lastElementChild;
   if (lastLine) {
@@ -99,13 +99,13 @@ function sleep(ms) {
  */
 export async function initializeBootSequence() {
   console.log('🚀 Starting boot sequence...');
-  
+
   // ブートスクリーンを作成
   const bootTerminal = createBootScreen();
-  
+
   // ブートメッセージを表示
   await displayBootMessages(bootTerminal);
-  
+
   // キー入力またはクリックで続行
   return new Promise((resolve) => {
     const continueHandler = () => {
@@ -114,7 +114,7 @@ export async function initializeBootSequence() {
       removeBootScreen();
       setTimeout(resolve, 500);
     };
-    
+
     document.addEventListener('keydown', continueHandler);
     document.addEventListener('click', continueHandler);
   });
