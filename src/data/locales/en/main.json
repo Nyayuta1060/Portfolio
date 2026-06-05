@@ -100,6 +100,17 @@
         "archived": "Archived",
         "planning": "Planning"
       }
+    },
+    "controls": {
+      "searchPlaceholder": "Search by name or technology",
+      "type": "Type",
+      "status": "Status",
+      "allTypes": "All types",
+      "allStatuses": "All statuses",
+      "featuredOnly": "Featured only",
+      "resultSummary": "Showing {count} projects",
+      "noResults": "No projects match the filters",
+      "featured": "Featured"
     }
   },
   "contact": {
