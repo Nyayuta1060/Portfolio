@@ -72,7 +72,7 @@ export const fileSystem = {
     type: 'file',
     content: `Name: Nyayuta
 School: 大阪公立大学工業高等専門学校
-Course: 知能情報コース 2年生
+Course: 知能情報コース 3年生
 
 興味分野:
 - Web開発 (Frontend/Backend)
@@ -122,10 +122,10 @@ export function normalizePath(path) {
   if (!path.startsWith('/')) {
     path = currentDirectory + '/' + path;
   }
-  
+
   const parts = path.split('/').filter(p => p && p !== '.');
   const result = [];
-  
+
   for (const part of parts) {
     if (part === '..') {
       result.pop();
@@ -133,6 +133,6 @@ export function normalizePath(path) {
       result.push(part);
     }
   }
-  
+
   return '/' + result.join('/');
 }

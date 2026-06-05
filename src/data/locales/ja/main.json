@@ -100,6 +100,17 @@
         "archived": "アーカイブ",
         "planning": "計画中"
       }
+    },
+    "controls": {
+      "searchPlaceholder": "プロジェクト名・技術で検索",
+      "type": "種類",
+      "status": "状態",
+      "allTypes": "すべての種類",
+      "allStatuses": "すべての状態",
+      "featuredOnly": "Featuredのみ",
+      "resultSummary": "{count}件のプロジェクトを表示中",
+      "noResults": "条件に合うプロジェクトがありません",
+      "featured": "Featured"
     }
   },
   "contact": {

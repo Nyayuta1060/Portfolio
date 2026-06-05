@@ -276,6 +276,34 @@
         <p class="projects-description" data-i18n="projects.description">私が取り組んできたプロジェクトの一覧</p>
 
         <!-- プロジェクトグリッド（JavaScriptで動的生成） -->
+        <div class="project-controls" aria-label="Project filters">
+          <label class="project-search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <input
+              type="search"
+              id="project-search-input"
+              data-i18n-placeholder="projects.controls.searchPlaceholder"
+              placeholder="プロジェクトを検索"
+            >
+          </label>
+          <div class="project-filter-group">
+            <label for="project-type-filter" data-i18n="projects.controls.type">種類</label>
+            <select id="project-type-filter">
+              <option value="all" data-i18n="projects.controls.allTypes">すべて</option>
+            </select>
+          </div>
+          <div class="project-filter-group">
+            <label for="project-status-filter" data-i18n="projects.controls.status">状態</label>
+            <select id="project-status-filter">
+              <option value="all" data-i18n="projects.controls.allStatuses">すべて</option>
+            </select>
+          </div>
+          <button class="project-featured-toggle" type="button" data-project-featured-toggle>
+            <i class="fas fa-star" aria-hidden="true"></i>
+            <span data-i18n="projects.controls.featuredOnly">Featuredのみ</span>
+          </button>
+        </div>
+        <div class="project-results-summary" aria-live="polite"></div>
         <div class="projects-grid">
           <div class="loading-container">
             <div class="loading-spinner"></div>

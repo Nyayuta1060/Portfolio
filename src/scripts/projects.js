@@ -6,6 +6,37 @@ import { logError } from './utils.js';
 import { getProjectDetails } from './projectsData.js';
 import i18n from './i18n.js';
 
+const PROJECT_TYPE_ORDER = [
+  'web-app',
+  'desktop-app',
+  'mobile-app',
+  'cli-tool',
+  'library',
+  'automation',
+  'game',
+  'robot',
+  'ai-ml',
+  'other'
+];
+
+const PROJECT_STATUS_ORDER = [
+  'completed',
+  'in-progress',
+  'planning',
+  'archived'
+];
+
+const projectFilterState = {
+  search: '',
+  type: 'all',
+  status: 'all',
+  featuredOnly: false
+};
+
+let projectsListenerRegistered = false;
+let projectControlsRegistered = false;
+let latestProjectsData = {};
+
 /**
  * プロジェクト画像のHTML要素を生成
  * @param {Object} imageData - 画像データ
@@ -31,6 +62,31 @@ function createProjectImage(imageData) {
   }
 
   return imageDiv;
+}
+
+function getProjectTypeLabel(type) {
+  return i18n.t(`projects.modal.projectTypes.${type}`);
+}
+
+function getProjectStatusLabel(status) {
+  return i18n.t(`projects.modal.status.${status}`);
+}
+
+function createProjectMeta(projectData) {
+  const meta = document.createElement('div');
+  meta.className = 'project-card-meta';
+
+  const type = document.createElement('span');
+  type.className = 'project-meta-pill';
+  type.textContent = getProjectTypeLabel(projectData.type);
+
+  const status = document.createElement('span');
+  status.className = `project-meta-pill status-${projectData.status}`;
+  status.textContent = getProjectStatusLabel(projectData.status);
+
+  meta.appendChild(type);
+  meta.appendChild(status);
+  return meta;
 }
 
 /**
@@ -59,6 +115,7 @@ function createProjectInfo(projectData) {
     techTags.appendChild(tag);
   });
 
+  infoDiv.appendChild(createProjectMeta(projectData));
   infoDiv.appendChild(title);
   infoDiv.appendChild(description);
   infoDiv.appendChild(techTags);
@@ -82,7 +139,7 @@ function createProjectLinks(links) {
     githubLink.target = '_blank';
     githubLink.rel = 'noopener noreferrer';
     githubLink.setAttribute('aria-label', i18n.t('common.openGithubRepo'));
-    githubLink.innerHTML = `<i class="fab fa-github"></i><span data-i18n="projects.links.github">${i18n.t('projects.links.github')}</span>`;
+    githubLink.innerHTML = `<i class="fab fa-github"></i><span>${i18n.t('projects.links.github')}</span>`;
     linksDiv.appendChild(githubLink);
   }
 
@@ -92,8 +149,8 @@ function createProjectLinks(links) {
     demoLink.className = 'project-link-btn';
     demoLink.target = '_blank';
     demoLink.rel = 'noopener noreferrer';
-    demoLink.setAttribute('aria-label', 'デモを開く');
-    demoLink.innerHTML = '<i class="fas fa-external-link-alt"></i>Demo';
+    demoLink.setAttribute('aria-label', i18n.t('projects.links.demo'));
+    demoLink.innerHTML = `<i class="fas fa-external-link-alt"></i><span>${i18n.t('projects.links.demo')}</span>`;
     linksDiv.appendChild(demoLink);
   }
 
@@ -113,35 +170,28 @@ function createProjectCard(projectId, projectData) {
     card.classList.add('featured');
   }
   card.dataset.project = projectId;
+  card.dataset.type = projectData.type;
+  card.dataset.status = projectData.status;
 
-  // Featured バッジ
   if (projectData.featured) {
     const badge = document.createElement('div');
     badge.className = 'project-badge';
-    badge.textContent = 'Featured';
+    badge.textContent = i18n.t('projects.controls.featured');
     card.appendChild(badge);
   }
 
-  // プロジェクト画像
   card.appendChild(createProjectImage(projectData.image));
-
-  // プロジェクト情報
   card.appendChild(createProjectInfo(projectData));
-
-  // プロジェクトリンク
   card.appendChild(createProjectLinks(projectData.links));
 
   return card;
 }
 
-// 言語変更イベントリスナーが登録されているかのフラグ
-let projectsListenerRegistered = false;
-
 /**
  * プロジェクトセクションを初期化して表示
  */
 export async function initializeProjects() {
-  console.log('🎨 Initializing Projects Section...');
+  console.log('Initializing Projects Section...');
   const container = document.querySelector('.projects-grid');
   if (!container) {
     logError('Projects container not found');
@@ -149,25 +199,107 @@ export async function initializeProjects() {
   }
 
   try {
+    setupProjectControls(container);
     await loadAndRenderProjects(container);
-    console.log('✅ Projects section rendered successfully');
-    
-    // 言語変更イベントリスナーを一度だけ追加
+    console.log('Projects section rendered successfully');
+
     if (!projectsListenerRegistered) {
       window.addEventListener('languageChanged', async () => {
         try {
           await loadAndRenderProjects(container);
         } catch (error) {
-          console.error('❌ Error reloading projects:', error);
+          console.error('Error reloading projects:', error);
         }
       });
       projectsListenerRegistered = true;
     }
-
   } catch (error) {
     container.innerHTML = '<p class="error-message">プロジェクトデータの読み込みに失敗しました</p>';
     logError('Failed to initialize projects section', { error });
-    console.error('❌ Projects initialization error:', error);
+    console.error('Projects initialization error:', error);
+  }
+}
+
+function setupProjectControls(container) {
+  if (projectControlsRegistered) return;
+
+  const searchInput = document.getElementById('project-search-input');
+  const typeFilter = document.getElementById('project-type-filter');
+  const statusFilter = document.getElementById('project-status-filter');
+  const featuredToggle = document.querySelector('[data-project-featured-toggle]');
+
+  if (!searchInput || !typeFilter || !statusFilter || !featuredToggle) return;
+
+  searchInput.addEventListener('input', () => {
+    projectFilterState.search = searchInput.value.trim().toLowerCase();
+    renderProjectCards(container, latestProjectsData);
+  });
+
+  typeFilter.addEventListener('change', () => {
+    projectFilterState.type = typeFilter.value;
+    renderProjectCards(container, latestProjectsData);
+  });
+
+  statusFilter.addEventListener('change', () => {
+    projectFilterState.status = statusFilter.value;
+    renderProjectCards(container, latestProjectsData);
+  });
+
+  featuredToggle.addEventListener('click', () => {
+    projectFilterState.featuredOnly = !projectFilterState.featuredOnly;
+    featuredToggle.classList.toggle('active', projectFilterState.featuredOnly);
+    featuredToggle.setAttribute('aria-pressed', String(projectFilterState.featuredOnly));
+    renderProjectCards(container, latestProjectsData);
+  });
+
+  featuredToggle.setAttribute('aria-pressed', 'false');
+  projectControlsRegistered = true;
+}
+
+function updateProjectFilterOptions(projectsData) {
+  const typeFilter = document.getElementById('project-type-filter');
+  const statusFilter = document.getElementById('project-status-filter');
+  if (!typeFilter || !statusFilter) return;
+
+  const availableTypes = new Set(Object.values(projectsData).map(project => project.type));
+  const availableStatuses = new Set(Object.values(projectsData).map(project => project.status));
+
+  fillSelectOptions(
+    typeFilter,
+    PROJECT_TYPE_ORDER.filter(type => availableTypes.has(type)),
+    'projects.controls.allTypes',
+    getProjectTypeLabel,
+    projectFilterState.type
+  );
+
+  fillSelectOptions(
+    statusFilter,
+    PROJECT_STATUS_ORDER.filter(status => availableStatuses.has(status)),
+    'projects.controls.allStatuses',
+    getProjectStatusLabel,
+    projectFilterState.status
+  );
+}
+
+function fillSelectOptions(select, values, allLabelKey, labelGetter, selectedValue) {
+  select.innerHTML = '';
+
+  const allOption = document.createElement('option');
+  allOption.value = 'all';
+  allOption.textContent = i18n.t(allLabelKey);
+  select.appendChild(allOption);
+
+  values.forEach(value => {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = labelGetter(value);
+    select.appendChild(option);
+  });
+
+  select.value = values.includes(selectedValue) ? selectedValue : 'all';
+  if (select.value === 'all') {
+    if (select.id === 'project-type-filter') projectFilterState.type = 'all';
+    if (select.id === 'project-status-filter') projectFilterState.status = 'all';
   }
 }
 
@@ -178,31 +310,77 @@ export async function initializeProjects() {
 async function loadAndRenderProjects(container) {
   try {
     const projectsData = await getProjectDetails();
-    
+
     if (!projectsData || Object.keys(projectsData).length === 0) {
       container.innerHTML = '<p class="error-message">プロジェクトデータが見つかりません</p>';
       return;
     }
-    
-    // ローディング表示をクリア
-    container.innerHTML = '';
 
-    // プロジェクトカードを作成して追加
-    Object.entries(projectsData).forEach(([projectId, projectData]) => {
-      const card = createProjectCard(projectId, projectData);
-      
-      // アニメーション用のクラスを削除してから追加（再トリガー）
-      card.classList.remove('fade-in');
-      // 即座にfade-inクラスを追加して表示
-      requestAnimationFrame(() => {
-        card.classList.add('fade-in');
-      });
-      
-      container.appendChild(card);
-    });
+    latestProjectsData = projectsData;
+    updateProjectFilterOptions(projectsData);
+    renderProjectCards(container, projectsData);
   } catch (error) {
-    console.error('❌ Error in loadAndRenderProjects:', error);
-    container.innerHTML = '<p class="error-message">プロジェクトの読み込みに失敗しました: ' + error.message + '</p>';
+    console.error('Error in loadAndRenderProjects:', error);
+    container.innerHTML = '<p class="error-message">プロジェクトの読み込みに失敗しました: '
+      + error.message + '</p>';
     throw error;
   }
+}
+
+function renderProjectCards(container, projectsData) {
+  const filteredProjects = filterProjects(projectsData);
+  const summary = document.querySelector('.project-results-summary');
+
+  container.innerHTML = '';
+
+  if (summary) {
+    const key = filteredProjects.length === 0
+      ? 'projects.controls.noResults'
+      : 'projects.controls.resultSummary';
+    summary.textContent = i18n.t(key, { count: filteredProjects.length });
+  }
+
+  if (filteredProjects.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'error-message project-empty-message';
+    empty.textContent = i18n.t('projects.controls.noResults');
+    container.appendChild(empty);
+    return;
+  }
+
+  filteredProjects.forEach(([projectId, projectData]) => {
+    const card = createProjectCard(projectId, projectData);
+    card.classList.remove('fade-in');
+    requestAnimationFrame(() => {
+      card.classList.add('fade-in');
+    });
+    container.appendChild(card);
+  });
+}
+
+function filterProjects(projectsData) {
+  const entries = Object.entries(projectsData);
+
+  return entries.filter(([projectId, project]) => {
+    const searchableText = [
+      projectId,
+      project.name,
+      project.description,
+      project.type,
+      project.status,
+      project.period,
+      ...(project.technologies || []),
+      ...(project.highlights || [])
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    const matchesSearch = !projectFilterState.search
+      || searchableText.includes(projectFilterState.search);
+    const matchesType = projectFilterState.type === 'all'
+      || project.type === projectFilterState.type;
+    const matchesStatus = projectFilterState.status === 'all'
+      || project.status === projectFilterState.status;
+    const matchesFeatured = !projectFilterState.featuredOnly || project.featured;
+
+    return matchesSearch && matchesType && matchesStatus && matchesFeatured;
+  });
 }
