@@ -118,6 +118,10 @@ function createProjectInfo(projectData) {
   infoDiv.appendChild(createProjectMeta(projectData));
   infoDiv.appendChild(title);
   infoDiv.appendChild(description);
+  const contribution = document.createElement('p');
+  contribution.className = 'project-contribution';
+  contribution.textContent = [projectData.period, projectData.role || i18n.t(`projects.modal.${projectData.developmentType === 'team' ? 'team' : 'personal'}`)].join(' · ');
+  infoDiv.appendChild(contribution);
   infoDiv.appendChild(techTags);
 
   return infoDiv;
@@ -182,7 +186,15 @@ function createProjectCard(projectId, projectData) {
 
   card.appendChild(createProjectImage(projectData.image));
   card.appendChild(createProjectInfo(projectData));
-  card.appendChild(createProjectLinks(projectData.links));
+  const actions = createProjectLinks(projectData.links);
+  const details = document.createElement('button');
+  details.type = 'button';
+  details.className = 'project-detail-btn project-link-btn';
+  details.textContent = i18n.t('projects.viewDetails');
+  details.setAttribute('aria-label', `${projectData.name}: ${i18n.t('projects.viewDetails')}`);
+  details.setAttribute('aria-haspopup', 'dialog');
+  actions.prepend(details);
+  card.appendChild(actions);
 
   return card;
 }
@@ -309,7 +321,9 @@ function fillSelectOptions(select, values, allLabelKey, labelGetter, selectedVal
  */
 async function loadAndRenderProjects(container) {
   try {
-    const projectsData = await getProjectDetails();
+    const language = i18n.getCurrentLanguage();
+    const projectsData = await getProjectDetails(language);
+    if (language !== i18n.getCurrentLanguage()) return;
 
     if (!projectsData || Object.keys(projectsData).length === 0) {
       container.innerHTML = '<p class="error-message">プロジェクトデータが見つかりません</p>';
@@ -345,6 +359,21 @@ function renderProjectCards(container, projectsData) {
     empty.className = 'error-message project-empty-message';
     empty.textContent = i18n.t('projects.controls.noResults');
     container.appendChild(empty);
+    const reset = document.createElement('button');
+    reset.type = 'button';
+    reset.className = 'btn btn-secondary';
+    reset.textContent = i18n.t('projects.controls.reset');
+    reset.addEventListener('click', () => {
+      Object.assign(projectFilterState, { search: '', type: 'all', status: 'all', featuredOnly: false });
+      document.getElementById('project-search-input').value = '';
+      const toggle = document.querySelector('[data-project-featured-toggle]');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-pressed', 'false');
+      updateProjectFilterOptions(projectsData);
+      renderProjectCards(container, projectsData);
+      document.getElementById('project-search-input').focus();
+    });
+    container.appendChild(reset);
     return;
   }
 

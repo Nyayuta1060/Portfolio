@@ -48,7 +48,7 @@ async function displayBootMessages(container) {
     { text: '║                                       ║', },
     { text: '╚═══════════════════════════════════════╝', },
     { text: '', delay: 300 },
-    { text: 'Press any key to continue...', delay: 0 }
+    { text: 'Ready. Opening portfolio...', delay: 0 }
   ];
 
   for (const message of bootMessages) {
@@ -98,24 +98,24 @@ function sleep(ms) {
  * ブートシーケンスを初期化
  */
 export async function initializeBootSequence() {
-  console.log('🚀 Starting boot sequence...');
-
-  // ブートスクリーンを作成
+  document.body.classList.add('boot-ready');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.body.classList.remove('booting');
+    return;
+  }
   const bootTerminal = createBootScreen();
-
-  // ブートメッセージを表示
-  await displayBootMessages(bootTerminal);
-
-  // キー入力またはクリックで続行
-  return new Promise((resolve) => {
-    const continueHandler = () => {
-      document.removeEventListener('keydown', continueHandler);
-      document.removeEventListener('click', continueHandler);
+  await new Promise(resolve => {
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      document.removeEventListener('keydown', finish);
+      document.removeEventListener('click', finish);
       removeBootScreen();
-      setTimeout(resolve, 500);
+      resolve();
     };
-
-    document.addEventListener('keydown', continueHandler);
-    document.addEventListener('click', continueHandler);
+    document.addEventListener('keydown', finish);
+    document.addEventListener('click', finish);
+    displayBootMessages(bootTerminal).then(finish);
   });
 }

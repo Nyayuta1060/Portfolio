@@ -1,0 +1,12 @@
+{
+  "name": "nyayuta-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node tools/validate-data.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "nulltasker": {
     "name": "NullTasker",
-    "description": "学生向けのオープンソースタスク管理ツール",
+    "description": "学生のタスクを一覧・カレンダーで管理する Web アプリ。5人チームでリードプログラマーを担当。",
     "type": "web-app",
     "status": "completed",
     "featured": true,
@@ -26,12 +26,12 @@
       "article": null
     },
     "highlights": [
-      "学生の学習効率を向上させるタスク管理システム",
-      "チーム開発でのコラボレーション経験",
-      "レスポンシブデザインの実装"
+      "タスク一覧とカレンダーで予定を確認",
+      "スマートフォンでも使えるレスポンシブ UI",
+      "5人チームでリードプログラマーを担当"
     ],
     "modal": {
-      "detailedDescription": "学生の学習効率を向上させることを目的とした、オープンソースのタスク管理ツールです。チーム開発での経験を通じて、協力してプロジェクトを進める重要性を学びました。",
+      "detailedDescription": "学生の学習と予定管理を支援する、オープンソースのタスク管理ツールです。5人チームのリードプログラマーとして開発に参加しました。HTML・CSS・JavaScript・Node.js を使用し、タスク一覧、カレンダー、ログイン・新規登録の画面と、スマートフォン向けの表示を備えています。",
       "gallery": [
         {
           "type": "image",
@@ -74,7 +74,7 @@
   },
   "portfolio": {
     "name": "Portfolio Website",
-    "description": "HTML/CSS/JavaScriptで作成したポートフォリオサイト(本サイト)",
+    "description": "制作物・技術・活動を日英で紹介する静的サイト。検索、テーマ切り替え、操作できるターミナルを実装。",
     "type": "web-app",
     "status": "in-progress",
     "featured": false,
@@ -86,7 +86,7 @@
       "HTML",
       "CSS",
       "JavaScript",
-      "Github API"
+      "GitHub API"
     ],
     "image": {
       "type": "icon",
@@ -98,14 +98,17 @@
       "article": null
     },
     "highlights": [
-      "レスポンシブデザインの実装",
-      "パーティクルアニメーション",
-      "モーダル機能"
-    ]
+      "日本語・英語の切り替えと JSON による内容管理",
+      "種類・状態・技術で制作物を検索",
+      "ライト／ダークテーマとインタラクティブターミナル"
+    ],
+    "modal": {
+      "detailedDescription": "HTML・CSS・JavaScript の ES Modules で構築したポートフォリオです。制作物・スキル・経歴を言語別の JSON から読み込み、画面表示とデータを分離しています。GitHub API による活動表示や、コマンドを入力して情報をたどれるターミナルも実装しています。"
+    }
   },
   "horloq": {
     "name": "Horloq",
-    "description": "拡張可能なデスクトップ据え置き時計アプリケーション",
+    "description": "Python 製のデスクトップ時計。プラグインで機能を追加でき、デジタル・アナログ表示とテーマを切り替えられます。",
     "type": "desktop-app",
     "status": "in-progress",
     "featured": true,
@@ -117,7 +120,7 @@
       "Python",
       "CustomTkinter",
       "PyYAML",
-      "Github Release",
+      "GitHub Releases",
       "GitHub Actions"
     ],
     "image": {
@@ -150,7 +153,7 @@
   },
   "pytranslater": {
     "name": "PyTranslater",
-    "description": "Pythonで実装した翻訳ツール",
+    "description": "複数言語の翻訳を GUI から操作できる Python 製ツール。翻訳画面と設定画面を備えています。",
     "type": "ai-ml",
     "status": "completed",
     "featured": false,
@@ -201,7 +204,7 @@
   },
   "git-grassreporter": {
     "name": "Git-GrassReporter",
-    "description": "PythonとGitHub Actionsを用いたcontributionの継続を自動支援するツール",
+    "description": "GitHub のコントリビューション継続を支援する通知ツール。Python と GitHub Actions で処理し、Discord へ通知します。",
     "type": "automation",
     "status": "completed",
     "featured": false,

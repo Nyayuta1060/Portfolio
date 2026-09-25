@@ -82,6 +82,31 @@ function compareKeys(dataset, leftLanguage, rightLanguage) {
 	}
 }
 
+function translationKeys(value, prefix = '') {
+	return Object.entries(value || {}).flatMap(([key, child]) => {
+		const fullKey = prefix ? `${prefix}.${key}` : key;
+		return child && typeof child === 'object' ? translationKeys(child, fullKey) : [fullKey];
+	});
+}
+
+async function validateGallery(prefix, gallery) {
+	if (gallery === undefined) return;
+	if (!Array.isArray(gallery)) { reportError(`${prefix}: gallery must be an array`); return; }
+	for (const [index, item] of gallery.entries()) {
+		if (!item || !['image', 'video'].includes(item.type) || !item.src) {
+			reportError(`${prefix}: gallery[${index}] requires type and src`);
+			continue;
+		}
+		for (const source of [item.src, item.poster].filter(Boolean)) {
+			if (/^https?:\/\//.test(source)) {
+				if (!isHttpUrl(source)) reportError(`${prefix}: invalid gallery URL (${source})`);
+			} else if (!(await fileExists(source.replace(/^\.\//, '')))) {
+				reportError(`${prefix}: gallery file not found (${source})`);
+			}
+		}
+	}
+}
+
 async function validateProjects(language, projects) {
 	if (!projects || typeof projects !== 'object' || Array.isArray(projects)) {
 		reportError(`${language}/projects.json: root must be an object`);
@@ -90,6 +115,8 @@ async function validateProjects(language, projects) {
 
 	for (const [id, project] of Object.entries(projects)) {
 		const prefix = `${language}/projects.json:${id}`;
+		if (!project || typeof project !== 'object') { reportError(`${prefix}: must be an object`); continue; }
+		await validateGallery(prefix, project.modal?.gallery);
 		for (const field of ['name', 'description', 'type', 'status', 'period', 'technologies', 'image', 'links']) {
 			if (!(field in project)) reportError(`${prefix}: missing required field "${field}"`);
 		}
@@ -122,6 +149,7 @@ async function validateSkills(language, skills) {
 
 	for (const [id, skill] of Object.entries(skills)) {
 		const prefix = `${language}/skills.json:${id}`;
+		if (!skill || typeof skill !== 'object') { reportError(`${prefix}: must be an object`); continue; }
 		for (const field of ['name', 'category', 'level', 'frequency', 'usage', 'experience', 'links']) {
 			if (!(field in skill)) reportError(`${prefix}: missing required field "${field}"`);
 		}
@@ -141,8 +169,12 @@ function validateCareer(language, career) {
 		return;
 	}
 
+	const ids = new Set();
 	career.timeline.forEach((entry, index) => {
 		const prefix = `${language}/career.json:timeline[${index}]`;
+		if (!entry || typeof entry !== 'object') { reportError(`${prefix}: must be an object`); return; }
+		if (ids.has(entry.id)) reportError(`${prefix}: duplicate id ${entry.id}`);
+		ids.add(entry.id);
 		if (!entry.id) reportError(`${prefix}: missing id`);
 		if (!entry.date) reportError(`${prefix}: missing date`);
 		if (entry.isGroup) {
@@ -157,10 +189,11 @@ function validateCareer(language, career) {
 }
 
 for (const language of LANGUAGES) {
+	const main = await loadJson(`src/data/locales/${language}/main.json`);
 	const projects = await loadJson(`src/data/locales/${language}/projects.json`);
 	const skills = await loadJson(`src/data/locales/${language}/skills.json`);
 	const career = await loadJson(`src/data/locales/${language}/career.json`);
-	dataByLanguage[language] = { projects, skills, career };
+	dataByLanguage[language] = { projects, skills, career, translations: Object.fromEntries(translationKeys(main).map(key => [key, true])) };
 	await validateProjects(language, projects);
 	await validateSkills(language, skills);
 	validateCareer(language, career);
@@ -168,6 +201,13 @@ for (const language of LANGUAGES) {
 
 compareKeys('projects', 'ja', 'en');
 compareKeys('skills', 'ja', 'en');
+compareKeys('translations', 'ja', 'en');
+for (const dataset of ['timeline', 'certifications']) {
+	for (const language of LANGUAGES) {
+		dataByLanguage[language][dataset] = Object.fromEntries((dataByLanguage[language].career?.[dataset] || []).filter(Boolean).map(entry => [entry.id, true]));
+	}
+	compareKeys(dataset, 'ja', 'en');
+}
 
 if (warnings.length > 0) {
 	console.warn('Warnings:');

@@ -1881,3 +1881,11 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Project context and explicit keyboard-accessible actions. */
+.project-contribution { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+.project-detail-btn { font: inherit; cursor: pointer; }
+.project-links { flex-wrap: wrap; }
+:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 4px; }
+.skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 10001; padding: 0.75rem 1rem; background: var(--secondary-bg); color: var(--text-primary); }
+.skip-link:focus { top: 1rem; }

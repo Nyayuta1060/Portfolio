@@ -46,11 +46,8 @@ export {
 } from './careerData.js';
 
 // config.jsから設定をインポート（重複を避けるため）
-export { DATA_CONFIG, ANIMATION_CONFIG as ANIMATION_CONFIG_ORIGINAL, PERFORMANCE_CONFIG } from './config.js';
+export { ANIMATION_CONFIG as ANIMATION_CONFIG_ORIGINAL, PERFORMANCE_CONFIG } from './config.js';
 
-// DATA_SOURCESはDATA_CONFIGから作成（後方互換性のため）
-import { DATA_CONFIG } from './config.js';
-export const DATA_SOURCES = DATA_CONFIG.paths;
 
 // ANIMATION_CONFIGは互換性のために保持（config.jsの形式を平坦化）
 export const ANIMATION_CONFIG = {
