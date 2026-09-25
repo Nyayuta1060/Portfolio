@@ -2,7 +2,7 @@
 // スキルデータはsrc/data/locales/{language}/skills.jsonで管理されています
 // このファイルは定数とヘルパー関数を提供します
 
-import { loadJSON } from './dataLoader.js';
+import { createLocalizedLoader } from './dataLoader.js';
 import i18n from './i18n.js';
 
 export const SKILL_LEVELS = {
@@ -29,38 +29,16 @@ export const CATEGORIES = {
   TOOLS: 'tools'
 };
 
-let skillDataCache = {};
+const loader = createLocalizedLoader('skills');
 
-/**
- * スキルデータを読み込む
- * @param {string} language - 言語コード
- * @returns {Promise<Object>} スキルデータ
- */
-async function loadSkills(language) {
-  return await loadJSON(`./src/data/locales/${language}/skills.json`);
+export function initSkillData(language = null) {
+  return loader.load(language || i18n.getCurrentLanguage());
 }
 
-export async function initSkillData(language = null) {
-  const lang = language || i18n.getCurrentLanguage();
-  if (!skillDataCache[lang]) {
-    skillDataCache[lang] = await loadSkills(lang);
-  }
-  return skillDataCache[lang];
-}
+export const getSkillDetails = initSkillData;
 
-export async function getSkillDetails(language = null) {
-  const lang = language || i18n.getCurrentLanguage();
-  if (!skillDataCache[lang]) {
-    await initSkillData(lang);
-  }
-  return skillDataCache[lang];
-}
-
-/**
- * キャッシュをクリア
- */
 export function clearSkillCache() {
-  skillDataCache = {};
+  loader.clear();
 }
 
 export async function getSkillCategory(skillId) {
@@ -98,7 +76,3 @@ export async function getSkillCount() {
   const skills = await getSkillDetails();
   return Object.keys(skills).length;
 }
-
-// 後方互換性のためのエクスポート
-// 注意: これは非同期で初期化されるため、使用前にinitSkillData()を呼び出す必要があります
-export { skillDataCache as SKILL_DETAILS };

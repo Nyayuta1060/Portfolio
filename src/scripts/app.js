@@ -2,7 +2,6 @@
 import { PERFORMANCE_CONFIG } from './config.js';
 import {
   debounce,
-  throttle,
   initializeLazyImages,
   preloadCriticalResources,
   initializeAccessibility,
@@ -29,9 +28,6 @@ import { initializeTerminal } from './terminal.js';
 import { initializeBootSequence } from './boot.js';
 import { initializeTheme, initializeThemeSwitcher } from './theme.js';
 import i18n from './i18n.js';
-import { clearCareerCache } from './careerData.js';
-import { clearProjectCache } from './projectsData.js';
-import { clearSkillCache } from './skillsData.js';
 
 // テーマを最優先で反映（初回描画時のちらつきを軽減）
 initializeTheme();
@@ -54,13 +50,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     await i18n.initialize();
 
     // ブートシーケンスを表示
-    await initializeBootSequence();
+    const bootReady = initializeBootSequence();
 
     // データを最初にロード
     await initializeData();
 
     // その後アプリを初期化
     await initializeApp();
+    await bootReady;
 
     // UIを更新
     i18n.updateUI();
@@ -69,6 +66,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   } catch (error) {
     console.error('❌ App Initialization failed:', error);
     logError('App Initialization', error);
+  } finally {
+    document.body.classList.remove('booting');
+    document.body.classList.add('boot-ready');
+    document.getElementById('boot-screen')?.remove();
   }
 });
 
@@ -121,7 +122,7 @@ async function initializeCoreFeatures() {
     console.log('🔧 Initializing Certifications Section...');
     await initializeCertifications();
     console.log('🔧 Initializing GitHub Activity...');
-    await initializeGitHubActivity();
+    void initializeGitHubActivity();
     console.log('🔧 Initializing Contact Protection...');
     initializeContactProtection();
     console.log('✅ All core features initialized successfully');
@@ -146,7 +147,6 @@ function initializeUtilityFeatures() {
  */
 function setupEventListeners() {
   setupResizeHandler();
-  setupScrollHandler();
 }
 
 /**
@@ -156,15 +156,6 @@ function setupResizeHandler() {
   window.addEventListener('resize', debounce(() => {
     handleResize();
   }, PERFORMANCE_CONFIG.debounceDelay));
-}
-
-/**
- * スクロールハンドラーをセットアップ
- */
-function setupScrollHandler() {
-  window.addEventListener('scroll', throttle(() => {
-    handleScroll();
-  }, PERFORMANCE_CONFIG.throttleDelay));
 }
 
 /**
@@ -179,29 +170,6 @@ function handleResize() {
 }
 
 /**
- * スクロールを処理
- */
-function handleScroll() {
-  // 必要に応じて軽量な処理を追加
-  // 現在は主にnavigation.jsとanimations.jsで処理
-}
-
-/**
- * スムーズスクロールのグローバル関数(後方互換性のため)
- * @param {string} sectionId - スクロール先のセクションID
- */
-window.scrollToSection = function (sectionId) {
-  const section = document.getElementById(sectionId);
-  if (section) {
-    const offsetTop = section.offsetTop - 80;
-    window.scrollTo({
-      top: offsetTop,
-      behavior: 'smooth'
-    });
-  }
-};
-
-/**
  * 言語切り替えを初期化
  */
 function initializeLanguageSwitcher() {
@@ -213,8 +181,10 @@ function initializeLanguageSwitcher() {
     langButtons.forEach(btn => {
       if (btn.dataset.lang === currentLang) {
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
       } else {
         btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
       }
     });
   };
@@ -227,11 +197,6 @@ function initializeLanguageSwitcher() {
     button.addEventListener('click', async () => {
       const lang = button.dataset.lang;
       if (lang && lang !== i18n.getCurrentLanguage()) {
-        // キャッシュをクリア
-        clearCareerCache();
-        clearProjectCache();
-        clearSkillCache();
-
         await i18n.switchLanguage(lang);
         updateActiveButton();
       }

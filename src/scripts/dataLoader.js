@@ -1,51 +1,28 @@
-// ========== データローダー ==========
-// JSONファイルからデータを読み込むユーティリティ
-
-import { DATA_CONFIG } from './config.js';
-
-/**
- * JSONファイルを読み込む共通関数
- * @param {string} path - JSONファイルのパス
- * @returns {Promise<Object>} パースされたJSONオブジェクト
- */
+// JSON loading shared by projects, skills and career.
 export async function loadJSON(path) {
-  try {
-    const response = await fetch(path);
-    if (!response.ok) {
-      throw new Error(`Failed to load ${path}: ${response.status}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(`Error loading JSON from ${path}:`, error);
-    throw error;
-  }
+  const response = await fetch(path);
+  if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
+  return response.json();
 }
 
-/**
- * プロジェクトデータを読み込む
- * @returns {Promise<Object>} プロジェクトデータ
- */
-export async function loadProjects() {
-  return await loadJSON(DATA_CONFIG.paths.projects);
-}
-
-/**
- * スキルデータを読み込む
- * @returns {Promise<Object>} スキルデータ
- */
-export async function loadSkills() {
-  return await loadJSON(DATA_CONFIG.paths.skills);
-}
-
-/**
- * すべてのデータを一度に読み込む
- * @returns {Promise<Object>} { projects, skills }
- */
-export async function loadAllData() {
-  const [projects, skills] = await Promise.all([
-    loadProjects(),
-    loadSkills()
-  ]);
-  
-  return { projects, skills };
+// Cache in-flight requests as well as completed ones, separately for each language.
+// A failed request is evicted so the next attempt can recover.
+export function createLocalizedLoader(dataset, fetchJSON = loadJSON) {
+  const requests = new Map();
+  return {
+    load(language) {
+      if (!['ja', 'en'].includes(language)) return Promise.reject(new Error(`Unsupported language: ${language}`));
+      if (!requests.has(language)) {
+        const request = Promise.resolve()
+          .then(() => fetchJSON(`./src/data/locales/${language}/${dataset}.json`))
+          .catch(error => {
+            if (requests.get(language) === request) requests.delete(language);
+            throw error;
+          });
+        requests.set(language, request);
+      }
+      return requests.get(language);
+    },
+    clear() { requests.clear(); }
+  };
 }

@@ -2,7 +2,7 @@
 // プロジェクトデータはsrc/data/locales/{language}/projects.jsonで管理されています
 // このファイルは定数とヘルパー関数を提供します
 
-import { loadJSON } from './dataLoader.js';
+import { createLocalizedLoader } from './dataLoader.js';
 import i18n from './i18n.js';
 
 export const PROJECT_STATUS = {
@@ -25,38 +25,16 @@ export const PROJECT_TYPE = {
   OTHER: 'other'
 };
 
-let projectDataCache = {};
+const loader = createLocalizedLoader('projects');
 
-/**
- * プロジェクトデータを読み込む
- * @param {string} language - 言語コード
- * @returns {Promise<Object>} プロジェクトデータ
- */
-async function loadProjects(language) {
-  return await loadJSON(`./src/data/locales/${language}/projects.json`);
+export function initProjectData(language = null) {
+  return loader.load(language || i18n.getCurrentLanguage());
 }
 
-export async function initProjectData(language = null) {
-  const lang = language || i18n.getCurrentLanguage();
-  if (!projectDataCache[lang]) {
-    projectDataCache[lang] = await loadProjects(lang);
-  }
-  return projectDataCache[lang];
-}
+export const getProjectDetails = initProjectData;
 
-export async function getProjectDetails(language = null) {
-  const lang = language || i18n.getCurrentLanguage();
-  if (!projectDataCache[lang]) {
-    await initProjectData(lang);
-  }
-  return projectDataCache[lang];
-}
-
-/**
- * キャッシュをクリア
- */
 export function clearProjectCache() {
-  projectDataCache = {};
+  loader.clear();
 }
 
 export async function getProjectById(projectId) {
@@ -129,7 +107,3 @@ export async function getSortedProjects(sortBy = 'period', order = 'desc') {
     return a[sortBy] < b[sortBy] ? 1 : -1;
   });
 }
-
-// 後方互換性のためのエクスポート
-// 注意: これは非同期で初期化されるため、使用前にinitProjectData()を呼び出す必要があります
-export { projectDataCache as PROJECT_DETAILS };

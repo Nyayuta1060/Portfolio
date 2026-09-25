@@ -101,22 +101,6 @@ export const ANIMATION_CONFIG = {
 };
 
 /**
- * データ設定
- */
-export const DATA_CONFIG = {
-  // JSONファイルパス
-  paths: {
-    career: './src/data/career.json',
-    projects: './src/data/projects.json',
-    skills: './src/data/skills.json'
-  },
-  
-  // キャッシュ設定
-  enableCache: true,
-  cacheExpiration: 5 * 60 * 1000 // 5分
-};
-
-/**
  * エラートラッキング設定
  */
 export const ERROR_CONFIG = {
@@ -175,6 +159,5 @@ Object.freeze(APP_CONFIG);
 Object.freeze(PERFORMANCE_CONFIG);
 Object.freeze(UI_CONFIG);
 Object.freeze(ANIMATION_CONFIG);
-Object.freeze(DATA_CONFIG);
 Object.freeze(ERROR_CONFIG);
 Object.freeze(EXTERNAL_SERVICES);
