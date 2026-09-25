@@ -1,7 +1,7 @@
 {
   "nulltasker": {
     "name": "NullTasker",
-    "description": "Open-source task management tool for students",
+    "description": "A web app for managing student tasks in lists and a calendar. Built by a five-person team, with me as lead programmer.",
     "type": "web-app",
     "status": "completed",
     "featured": true,
@@ -26,12 +26,12 @@
       "article": null
     },
     "highlights": [
-      "Task management system to improve student learning efficiency",
-      "Team development collaboration experience",
-      "Responsive design implementation"
+      "Task lists and a calendar for planning",
+      "Responsive UI for smartphones",
+      "Lead programmer in a five-person team"
     ],
     "modal": {
-      "detailedDescription": "An open-source task management tool aimed at improving student learning efficiency. Through team development experience, I learned the importance of collaborating to advance projects.",
+      "detailedDescription": "An open-source task management tool for student study and planning. I worked as lead programmer in a five-person team. Built with HTML, CSS, JavaScript and Node.js, it includes task lists, a calendar, login and registration screens, and a smartphone layout.",
       "gallery": [
         {
           "type": "image",
@@ -74,7 +74,7 @@
   },
   "portfolio": {
     "name": "Portfolio Website",
-    "description": "Portfolio website created with HTML/CSS/JavaScript (this site)",
+    "description": "A bilingual static site presenting my projects, skills and activities, with search, themes and an interactive terminal.",
     "type": "web-app",
     "status": "in-progress",
     "featured": false,
@@ -86,7 +86,7 @@
       "HTML",
       "CSS",
       "JavaScript",
-      "Github API"
+      "GitHub API"
     ],
     "image": {
       "type": "icon",
@@ -98,14 +98,17 @@
       "article": null
     },
     "highlights": [
-      "Responsive design implementation",
-      "Particle animation",
-      "Modal functionality"
-    ]
+      "Japanese and English content managed with JSON",
+      "Project search with type and status filters",
+      "Light and dark themes with an interactive terminal"
+    ],
+    "modal": {
+      "detailedDescription": "A portfolio built with HTML, CSS and JavaScript ES modules. Projects, skills and career history are loaded from localized JSON files, keeping content separate from rendering. It includes GitHub API activity and a terminal for exploring information through commands."
+    }
   },
   "horloq": {
     "name": "Horloq",
-    "description": "Extensible desktop clock application",
+    "description": "A Python desktop clock with plugins, digital and analog displays, and customizable themes.",
     "type": "desktop-app",
     "status": "in-progress",
     "featured": true,
@@ -117,7 +120,7 @@
       "Python",
       "CustomTkinter",
       "PyYAML",
-      "Github Release",
+      "GitHub Releases",
       "GitHub Actions"
     ],
     "image": {
@@ -150,7 +153,7 @@
   },
   "pytranslater": {
     "name": "PyTranslater",
-    "description": "Translation tool implemented in Python",
+    "description": "A Python translation tool with a multilingual GUI, translation views and a settings screen.",
     "type": "ai-ml",
     "status": "completed",
     "featured": false,
@@ -201,7 +204,7 @@
   },
   "git-grassreporter": {
     "name": "Git-GrassReporter",
-    "description": "Tool to automatically support continuous contribution using Python and GitHub Actions",
+    "description": "A contribution reminder tool using Python and GitHub Actions to send notifications to Discord.",
     "type": "automation",
     "status": "completed",
     "featured": false,

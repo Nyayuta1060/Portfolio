@@ -4,18 +4,21 @@
     "about": "About",
     "skills": "Skills",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "ナビゲーションを開閉",
+    "skip": "本文へ移動"
   },
   "hero": {
     "greeting": "Hello, I'm",
     "subtitle": "大阪公立大学工業高等専門学校<br>知能情報コース/3年生",
     "viewProjects": "View Projects",
-    "getInTouch": "Get In Touch"
+    "getInTouch": "Get In Touch",
+    "intro": "Web・デスクトップアプリ・自動化ツールを開発し、ロボット制御にも取り組んでいます。"
   },
   "about": {
     "title": "About Me",
-    "description1": "知能情報コースでAIや機械学習といった最新技術を学び、実践的なスキルを身につけています。",
-    "description2": "ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。",
+    "description1": "大阪公立大学工業高等専門学校の知能情報コースで、AI・機械学習とプログラミングを学んでいます。個人開発では Python を使ったデスクトップアプリや自動化ツール、チーム開発では Web アプリの制作に取り組んでいます。",
+    "description2": "ろぼっと倶楽部の制御班として、ロボットの制御とプログラミングを担当。高専ロボコンや関西春ロボコンなどの大会に参加し、ソフトウェアを実機で動かす経験を積んでいます。",
     "careerTitle": "経歴",
     "certificationsTitle": "資格・認定",
     "githubActivityTitle": "GitHub Activity",
@@ -30,7 +33,7 @@
   },
   "skills": {
     "title": "Technical Skills",
-    "description": "私が習得している技術スタック",
+    "description": "制作・学習で使っている技術を、用途・使用頻度・経験とあわせて紹介します。",
     "all": "All",
     "frontend": "Frontend",
     "backend": "Backend",
@@ -48,7 +51,7 @@
   },
   "projects": {
     "title": "My Projects",
-    "description": "私が取り組んできたプロジェクトの一覧",
+    "description": "学生向けタスク管理からデスクトップ時計、自動化まで。各プロジェクトの担当・使用技術・画面を紹介します。",
     "loading": "プロジェクトデータを読み込み中...",
     "status": {
       "completed": "完了",
@@ -99,7 +102,8 @@
         "in-progress": "進行中",
         "archived": "アーカイブ",
         "planning": "計画中"
-      }
+      },
+      "teamMembers": "{count}人"
     },
     "controls": {
       "searchPlaceholder": "プロジェクト名・技術で検索",
@@ -107,15 +111,17 @@
       "status": "状態",
       "allTypes": "すべての種類",
       "allStatuses": "すべての状態",
-      "featuredOnly": "Featuredのみ",
+      "featuredOnly": "代表作のみ",
       "resultSummary": "{count}件のプロジェクトを表示中",
       "noResults": "条件に合うプロジェクトがありません",
-      "featured": "Featured"
+      "featured": "代表作",
+      "reset": "条件をリセット",
+      "searchLabel": "プロジェクトを検索"
     }
   },
   "contact": {
     "title": "Contact",
-    "description": "お気軽にご連絡ください。",
+    "description": "制作物へのご質問やフィードバック、開発・ロボット関連のご相談は、メールまたは SNS からお気軽にご連絡ください。",
     "schoolEmail": "学校用メール",
     "personalEmail": "個人用メール",
     "loading": "読み込み中...",
@@ -152,7 +158,7 @@
       "help": {
         "description": "利用可能なコマンド一覧を表示",
         "output": "利用可能なコマンド:",
-        "hint": "ヒント: Tab キーでオートコンプリート、↑↓ キーで履歴を参照できます"
+        "hint": "ヒント: Ctrl+Space でオートコンプリート、↑↓ キーで履歴を参照できます。Tab キーでターミナルから移動します。"
       },
       "ls": {
         "description": "ファイルとディレクトリを一覧表示",

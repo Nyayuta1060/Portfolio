@@ -4,18 +4,21 @@
     "about": "About",
     "skills": "Skills",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Toggle navigation",
+    "skip": "Skip to content"
   },
   "hero": {
     "greeting": "Hello, I'm",
     "subtitle": "Osaka Metropolitan University College of Technology<br>Intelligent Informatics Course / 3rd Year",
     "viewProjects": "View Projects",
-    "getInTouch": "Get In Touch"
+    "getInTouch": "Get In Touch",
+    "intro": "I build web apps, desktop tools and automations, and work on robot control."
   },
   "about": {
     "title": "About Me",
-    "description1": "I'm learning cutting-edge technologies such as AI and machine learning in the Intelligent Informatics Course, acquiring practical skills.",
-    "description2": "As a member of the Robot Club's control team, I work on robot control and programming for the National Institute of Technology Robot Contest.",
+    "description1": "I study AI, machine learning and programming in the Intelligent Informatics Course at Osaka Metropolitan University College of Technology. My work includes Python desktop apps, automation tools and team-built web applications.",
+    "description2": "In the robotics club’s control team, I work on robot control and programming. Competitions including KOSEN Robocon and Kansai Spring Robocon give me hands-on experience running software on physical robots.",
     "careerTitle": "Career",
     "certificationsTitle": "Certifications",
     "githubActivityTitle": "GitHub Activity",
@@ -30,7 +33,7 @@
   },
   "skills": {
     "title": "Technical Skills",
-    "description": "My technical stack",
+    "description": "Technologies I use in projects and study, with their applications, frequency of use and experience.",
     "all": "All",
     "frontend": "Frontend",
     "backend": "Backend",
@@ -48,7 +51,7 @@
   },
   "projects": {
     "title": "My Projects",
-    "description": "Projects I've worked on",
+    "description": "From student task management to desktop clocks and automation. Explore my role, technologies and screenshots for each project.",
     "loading": "Loading project data...",
     "status": {
       "completed": "Completed",
@@ -99,7 +102,8 @@
         "in-progress": "In Progress",
         "archived": "Archived",
         "planning": "Planning"
-      }
+      },
+      "teamMembers": "{count} people"
     },
     "controls": {
       "searchPlaceholder": "Search by name or technology",
@@ -110,12 +114,14 @@
       "featuredOnly": "Featured only",
       "resultSummary": "Showing {count} projects",
       "noResults": "No projects match the filters",
-      "featured": "Featured"
+      "featured": "Featured",
+      "reset": "Reset filters",
+      "searchLabel": "Search projects"
     }
   },
   "contact": {
     "title": "Contact",
-    "description": "Feel free to contact me.",
+    "description": "For questions, feedback on my projects or conversations about development and robotics, reach me by email or social media.",
     "schoolEmail": "School Email",
     "personalEmail": "Personal Email",
     "loading": "Loading...",
@@ -152,7 +158,7 @@
       "help": {
         "description": "Display available commands",
         "output": "Available commands:",
-        "hint": "Hint: Use Tab key for auto-completion, ↑↓ keys to browse history"
+        "hint": "Tip: Ctrl+Space autocompletes, ↑↓ browses history, and Tab moves focus out of the terminal."
       },
       "ls": {
         "description": "List files and directories",
