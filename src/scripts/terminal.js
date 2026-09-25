@@ -458,8 +458,16 @@ function displayPrompt(terminalBody) {
 function setupTerminalEventListeners(terminalBody) {
   let currentInput = '';
 
-  // キーボード入力をキャプチャ
-  document.addEventListener('keydown', async (e) => {
+  terminalBody.tabIndex = 0;
+  terminalBody.setAttribute('role', 'region');
+  terminalBody.setAttribute('aria-label', 'Interactive terminal');
+  terminalBody.addEventListener('click', event => {
+    if (!event.target.closest('a, button, input, textarea, select')) terminalBody.focus({ preventScroll: true });
+  });
+
+  // Keyboard input belongs to the terminal only while it has focus.
+  terminalBody.addEventListener('keydown', async (e) => {
+    if (e.target !== terminalBody) return;
     const inputLine = terminalBody.querySelector('.terminal-input-line');
     if (!inputLine) return;
 
@@ -555,8 +563,8 @@ function setupTerminalEventListeners(terminalBody) {
       return;
     }
 
-    // Tab キー (オートコンプリート)
-    if (e.key === 'Tab') {
+    // Ctrl+Space で補完。Tab / Shift+Tab は通常のフォーカス移動に使う。
+    if (e.code === 'Space' && e.ctrlKey) {
       e.preventDefault();
       const suggestions = await autocomplete(currentInput);
       if (suggestions.length === 1) {

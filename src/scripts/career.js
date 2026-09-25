@@ -244,7 +244,7 @@ function createCertificationCard(cert) {
       </div>
       <div class="certification-info">
         <h4 class="certification-name">${cert.name}</h4>
-        <p class="certification-name-en">${cert.nameEn}</p>
+        ${cert.nameEn ? `<p class="certification-name-en">${cert.nameEn}</p>` : ''}
         <p class="certification-issuer">${cert.issuer}</p>
         <p class="certification-date">
           <i class="fas fa-calendar"></i>

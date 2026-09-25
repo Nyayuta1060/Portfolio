@@ -367,11 +367,9 @@ section {
 .hero-subtitle {
   font-size: 1.3rem;
   color: var(--text-secondary);
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   line-height: 1.6;
-  animation: fadeInUp 0.8s ease-out forwards;
-  opacity: 0;
-  animation-delay: 0.5s;
+  opacity: 1;
 }
 
 @keyframes fadeInUp {
@@ -1234,6 +1232,7 @@ section {
 }
 
 .project-modal.active {
+  transition: opacity 0.3s ease;
   opacity: 1;
   visibility: visible;
 }
@@ -1309,7 +1308,7 @@ section {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
   z-index: 10;
 }
 
@@ -1667,4 +1666,13 @@ section {
 .video-thumbnail i {
   font-size: 2rem;
   color: var(--primary-color);
+}
+.hero-intro { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; max-width: 40rem; }
+.hamburger { background: transparent; border: 0; padding: 0.5rem; }
+.navbar.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }
+main > section { scroll-margin-top: 80px; }
+@media (max-width: 1024px) { .hero-intro { margin-inline: auto; } }
+@media (max-width: 768px) {
+  .nav-menu { visibility: hidden; }
+  .nav-menu.active { visibility: visible; }
 }

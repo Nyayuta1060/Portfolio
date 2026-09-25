@@ -1,54 +1,9 @@
 // ========== プロジェクトモーダル機能 ==========
-import { getElements, addEventListeners } from './utils.js';
+import { createIconLink } from './uiHelpers.js';
 import { getProjectDetails } from './projectsData.js';
 import i18n from './i18n.js';
 
 // ========== 定数定義 ==========
-
-/**
- * モーダルのラベルテキスト
- */
-const MODAL_LABELS = {
-  SECTIONS: {
-    OVERVIEW: 'プロジェクト概要',
-    TECH_STACK: '使用技術',
-    DETAILS: '詳細',
-    HIGHLIGHTS: '主な機能・特徴',
-    LINKS: 'リンク'
-  },
-  INFO: {
-    PERIOD: '開発期間',
-    DEV_TYPE: '開発形態',
-    ROLE: '役割'
-  },
-  LINKS: {
-    GITHUB: 'GitHub',
-    DEMO: 'デモサイト',
-    ARTICLE: '記事'
-  },
-  DEV_TYPE: {
-    TEAM: 'チーム開発',
-    PERSONAL: '個人開発'
-  },
-  PROJECT_TYPE: {
-    'web-app': 'Webアプリ',
-    'desktop-app': 'デスクトップアプリ',
-    'mobile-app': 'モバイルアプリ',
-    'cli-tool': 'CLIツール',
-    'library': 'ライブラリ',
-    'automation': '自動化',
-    'game': 'ゲーム',
-    'robot': 'ロボット',
-    'ai-ml': 'AI/ML',
-    'other': 'その他'
-  },
-  STATUS: {
-    'completed': '完成',
-    'in-progress': '進行中',
-    'archived': 'アーカイブ',
-    'planning': '計画中'
-  }
-};
 
 /**
  * モーダルのアイコン
@@ -92,7 +47,7 @@ function setupProjectCardEvents() {
 
   projectsGrid.addEventListener('click', async function (e) {
     // リンクボタンのクリックはモーダルを開かない
-    if (e.target.closest('.project-link-btn') || e.target.closest('.project-links')) {
+    if (e.target.closest('a')) {
       return;
     }
 
@@ -127,6 +82,16 @@ function setupModalCloseEvents() {
   }
 
   document.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab' && modal.classList.contains('active')) {
+      const focusable = [...modal.querySelectorAll('button, a[href], video[controls]')].filter(element => element.getClientRects().length);
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (e.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+        e.preventDefault(); last?.focus();
+      } else if (!e.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+        e.preventDefault(); first?.focus();
+      }
+    }
     if (e.key === 'Escape' && modal.classList.contains('active')) {
       closeProjectModal();
     }
@@ -149,7 +114,7 @@ function createProjectModalElement() {
  */
 function buildModalHTML() {
   return `
-    <div id="project-modal" class="project-modal">
+    <div id="project-modal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" aria-hidden="true">
       <div class="project-modal-overlay"></div>
       <div class="project-modal-content">
         ${buildModalHeader()}
@@ -165,7 +130,7 @@ function buildModalHTML() {
  */
 function buildModalHeader() {
   return `
-    <button class="project-modal-close" aria-label="閉じる">
+    <button class="project-modal-close" aria-label="閉じる" data-i18n-aria="projects.closeModal">
       <i class="${MODAL_ICONS.CLOSE}"></i>
     </button>
     <div class="project-modal-header">
@@ -339,7 +304,7 @@ function renderOverview(project) {
 
   // 開発形態
   const devType = project.developmentType === 'team'
-    ? `${i18n.t('projects.modal.team')}${project.teamSize ? ` (${project.teamSize}人)` : ''}`
+    ? `${i18n.t('projects.modal.team')}${project.teamSize ? ` (${i18n.t('projects.modal.teamMembers', { count: project.teamSize })})` : ''}`
     : i18n.t('projects.modal.personal');
   infoItems.push(createInfoItem(i18n.t('projects.modal.devType'), devType));
 
@@ -348,7 +313,7 @@ function renderOverview(project) {
     infoItems.push(createInfoItem(i18n.t('projects.modal.role'), project.role));
   }
 
-  infoGrid.innerHTML = infoItems.join('');
+  infoGrid.replaceChildren(...infoItems);
 }
 
 /**
@@ -358,12 +323,15 @@ function renderOverview(project) {
  * @returns {string} 情報アイテムHTML
  */
 function createInfoItem(label, value) {
-  return `
-    <div class="project-info-item">
-      <span class="info-label">${label}</span>
-      <span class="info-value">${value}</span>
-    </div>
-  `;
+  const item = document.createElement('div');
+  item.className = 'project-info-item';
+  for (const [className, text] of [['info-label', label], ['info-value', value]]) {
+    const span = document.createElement('span');
+    span.className = className;
+    span.textContent = text;
+    item.appendChild(span);
+  }
+  return item;
 }
 
 /**
@@ -371,10 +339,12 @@ function createInfoItem(label, value) {
  * @param {Object} project - プロジェクトデータ
  */
 function renderTechStack(project) {
-  const techContainer = document.getElementById('project-modal-tech');
-  techContainer.innerHTML = project.technologies
-    .map(tech => `<span class="tech-tag">${tech}</span>`)
-    .join('');
+  document.getElementById('project-modal-tech').replaceChildren(...project.technologies.map(tech => {
+    const tag = document.createElement('span');
+    tag.className = 'tech-tag';
+    tag.textContent = tech;
+    return tag;
+  }));
 }
 
 /**
@@ -391,10 +361,11 @@ function renderDescription(project) {
  * @param {Object} project - プロジェクトデータ
  */
 function renderHighlights(project) {
-  const highlightsContainer = document.getElementById('project-modal-highlights');
-  highlightsContainer.innerHTML = project.highlights
-    .map(highlight => `<li>${highlight}</li>`)
-    .join('');
+  document.getElementById('project-modal-highlights').replaceChildren(...(project.highlights || []).map(text => {
+    const item = document.createElement('li');
+    item.textContent = text;
+    return item;
+  }));
 }
 
 /**
@@ -417,50 +388,13 @@ function renderGallery(project) {
  * @param {Object} project - プロジェクトデータ
  */
 function renderLinks(project) {
-  const linksContainer = document.getElementById('project-modal-links');
-  const links = [];
-
-  if (project.links.github) {
-    links.push(createLinkHTML(
-      project.links.github,
-      MODAL_ICONS.GITHUB,
-      MODAL_LABELS.LINKS.GITHUB
-    ));
-  }
-
-  if (project.links.demo) {
-    links.push(createLinkHTML(
-      project.links.demo,
-      MODAL_ICONS.DEMO,
-      MODAL_LABELS.LINKS.DEMO
-    ));
-  }
-
-  if (project.links.article) {
-    links.push(createLinkHTML(
-      project.links.article,
-      MODAL_ICONS.ARTICLE,
-      MODAL_LABELS.LINKS.ARTICLE
-    ));
-  }
-
-  linksContainer.innerHTML = links.join('');
-}
-
-/**
- * リンクHTMLを作成
- * @param {string} href - リンクURL
- * @param {string} icon - アイコンクラス
- * @param {string} label - ラベルテキスト
- * @returns {string} リンクHTML
- */
-function createLinkHTML(href, icon, label) {
-  return `
-    <a href="${href}" class="project-modal-link" target="_blank" rel="noopener noreferrer">
-      <i class="${icon}"></i>
-      <span>${label}</span>
-    </a>
-  `;
+  const links = ['github', 'demo', 'article'].filter(kind => project.links[kind]).map(kind => createIconLink({
+    href: project.links[kind],
+    text: i18n.t(`projects.links.${kind}`),
+    icon: MODAL_ICONS[kind.toUpperCase()],
+    className: 'project-modal-link'
+  }));
+  document.getElementById('project-modal-links').replaceChildren(...links);
 }
 
 // ========== ギャラリー機能 ==========
@@ -614,9 +548,16 @@ function setupGalleryNavigation(gallery, galleryState, showGalleryItem) {
  * モーダルを表示
  * @param {HTMLElement} modal - モーダル要素
  */
+let previousFocus = null;
+
 function showModal(modal) {
+  previousFocus = document.activeElement;
+  modal.setAttribute('aria-hidden', 'false');
   modal.classList.add('active');
   document.body.classList.add('modal-open');
+  requestAnimationFrame(() => {
+    if (modal.classList.contains('active')) modal.querySelector('.project-modal-close').focus();
+  });
 }
 
 /**
@@ -627,6 +568,8 @@ function closeProjectModal() {
   if (!modal) return;
 
   modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  if (previousFocus?.isConnected) previousFocus.focus();
   document.body.classList.remove('modal-open');
 
   stopAllVideos(modal);

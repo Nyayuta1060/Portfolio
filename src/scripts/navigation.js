@@ -1,5 +1,5 @@
 // ========== ナビゲーション機能 ==========
-import { getElement, getElements, addEventListeners, toggleClass } from './utils.js';
+import { getElement, getElements, addEventListeners } from './utils.js';
 
 const NAV_CONFIG = {
   OFFSET: 80,
@@ -13,7 +13,7 @@ const SELECTORS = {
   NAV_LINKS: '.nav-link',
   NAV_LOGO: '.nav-logo',
   NAVBAR: '.navbar',
-  SECTIONS: 'section'
+  SECTIONS: 'main > section[id]'
 };
 
 const CLASS_NAMES = {
@@ -39,15 +39,28 @@ function setupMobileMenu() {
   
   if (!hamburger || !navMenu) return;
 
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && navMenu.classList.contains(CLASS_NAMES.ACTIVE)) {
+      setMobileMenu(false);
+      hamburger.focus();
+    }
+  });
+
   hamburger.addEventListener('click', () => {
-    toggleClass(hamburger, CLASS_NAMES.ACTIVE);
-    toggleClass(navMenu, CLASS_NAMES.ACTIVE);
+    setMobileMenu(!navMenu.classList.contains(CLASS_NAMES.ACTIVE));
   });
 }
 
 /**
  * ロゴクリックのセットアップ
  */
+function setMobileMenu(open) {
+  const hamburger = getElement(SELECTORS.HAMBURGER);
+  getElement(SELECTORS.NAV_MENU)?.classList.toggle(CLASS_NAMES.ACTIVE, open);
+  hamburger?.classList.toggle(CLASS_NAMES.ACTIVE, open);
+  hamburger?.setAttribute('aria-expanded', String(open));
+}
+
 function setupLogoClick() {
   const navLogo = getElement(SELECTORS.NAV_LOGO);
   
@@ -62,15 +75,14 @@ function setupLogoClick() {
     // トップへスムーズスクロール
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
     });
 
     // モバイルメニューを閉じる
     const navMenu = getElement(SELECTORS.NAV_MENU);
     const hamburger = getElement(SELECTORS.HAMBURGER);
     if (navMenu && navMenu.classList.contains(CLASS_NAMES.ACTIVE)) {
-      toggleClass(hamburger, CLASS_NAMES.ACTIVE);
-      toggleClass(navMenu, CLASS_NAMES.ACTIVE);
+      setMobileMenu(false);
     }
 
     // コンソールにメッセージ表示（イースターエッグ的な要素）
@@ -168,19 +180,18 @@ function createLogoParticles(logo) {
  * スムーズスクロールのセットアップ
  */
 function setupSmoothScroll() {
-  const navLinks = getElements(SELECTORS.NAV_LINKS);
+  const navLinks = getElements('.nav-link, .hero-buttons a');
   const navMenu = getElement(SELECTORS.NAV_MENU);
   const hamburger = getElement(SELECTORS.HAMBURGER);
 
   addEventListeners(navLinks, 'click', (e) => {
     e.preventDefault();
-    const targetId = e.target.getAttribute('href').substring(1);
+    const targetId = e.currentTarget.getAttribute('href').substring(1);
     scrollToSection(targetId);
 
     // モバイルメニューを閉じる
     if (navMenu && navMenu.classList.contains(CLASS_NAMES.ACTIVE)) {
-      toggleClass(hamburger, CLASS_NAMES.ACTIVE);
-      toggleClass(navMenu, CLASS_NAMES.ACTIVE);
+      setMobileMenu(false);
     }
   });
 }
@@ -202,11 +213,7 @@ function updateNavbarBackground() {
   const navbar = getElement(SELECTORS.NAVBAR);
   if (!navbar) return;
 
-  if (window.scrollY > NAV_CONFIG.SCROLL_THRESHOLD) {
-    navbar.style.background = 'rgba(10, 10, 15, 0.95)';
-  } else {
-    navbar.style.background = 'rgba(10, 10, 15, 0.9)';
-  }
+  navbar.classList.toggle('scrolled', window.scrollY > NAV_CONFIG.SCROLL_THRESHOLD);
 }
 
 /**
@@ -247,6 +254,6 @@ export function scrollToSection(sectionId) {
   const offsetTop = section.offsetTop - NAV_CONFIG.OFFSET;
   window.scrollTo({
     top: offsetTop,
-    behavior: 'smooth'
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
   });
 }

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Nyayuta's Portfolio - Exploring various fields of development including Web, AI/ML, and more.">
+    content="Nyayutaのポートフォリオ。Webアプリ、Pythonのデスクトップ・自動化ツール、ロボット制御の制作と活動を紹介します。">
   <meta name="keywords" content="Portfolio, Web Developer, AI, Machine Learning, Python, JavaScript, Nyayuta">
   <meta name="author" content="Nyayuta">
   <link rel="icon" href="./src/assets/favicon.ico" type="image/x-icon">
@@ -61,6 +61,8 @@
 </head>
 
 <body class="booting">
+  <a class="skip-link" href="#home" data-i18n="nav.skip">本文へ移動</a>
+  <noscript><style>body.booting { overflow: auto; } body.booting > *, body.booting section, body.booting footer { visibility: visible; opacity: 1; }</style><p>制作物・経歴の表示には JavaScript を有効にしてください。<a href="https://github.com/Nyayuta1060">GitHub で制作物を見る</a></p></noscript>
   <!-- パーティクル背景 -->
   <div id="particles-container"></div>
 
@@ -76,7 +78,7 @@
           <span class="logo-subtitle">Portfolio</span>
         </span>
       </a>
-      <ul class="nav-menu">
+      <ul id="nav-menu" class="nav-menu">
         <li><a href="#home" class="nav-link" data-i18n="nav.home">Home</a></li>
         <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
         <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Skills</a></li>
@@ -94,16 +96,17 @@
           <i class="fas fa-moon" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="hamburger">
+      <button class="hamburger" type="button" aria-controls="nav-menu" aria-expanded="false" aria-label="ナビゲーションを開閉" data-i18n-aria="nav.menu">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
-      </div>
+      </button>
     </div>
   </nav>
 
+  <main id="main-content">
   <!-- ヒーローセクション -->
-  <section id="home" class="hero">
+  <section id="home" class="hero" tabindex="-1">
     <div class="hero-content">
       <div class="hero-text">
         <h1 class="hero-title">
@@ -114,15 +117,16 @@
           大阪公立大学工業高等専門学校<br>
           知能情報コース/3年生
         </p>
+        <p class="hero-intro" data-i18n="hero.intro">Web・デスクトップアプリ・自動化ツールを開発し、ロボット制御にも取り組んでいます。</p>
         <div class="hero-buttons">
-          <button class="btn btn-primary" onclick="scrollToSection('projects')">
+          <a class="btn btn-primary" href="#projects">
             <i class="fas fa-folder-open"></i>
             <span data-i18n="hero.viewProjects">View Projects</span>
-          </button>
-          <button class="btn btn-secondary" onclick="scrollToSection('contact')">
+          </a>
+          <a class="btn btn-secondary" href="#contact">
             <i class="fas fa-envelope"></i>
             <span data-i18n="hero.getInTouch">Get In Touch</span>
-          </button>
+          </a>
         </div>
 
         <!-- ヒーローセクション内のソーシャルリンク -->
@@ -167,11 +171,10 @@
       <div class="about-content">
         <div class="about-text">
           <p class="about-description" data-i18n="about.description1">
-            知能情報コースでAIや機械学習といった最新技術を学び、
-            実践的なスキルを身につけています。
+            大阪公立大学工業高等専門学校の知能情報コースで、AI・機械学習とプログラミングを学んでいます。個人開発では Python を使ったデスクトップアプリや自動化ツール、チーム開発では Web アプリの制作に取り組んでいます。
           </p>
           <p class="about-description" data-i18n="about.description2">
-            ろぼっと倶楽部では制御班として、高専ロボコンに向け、ロボットの制御やプログラミングに取り組んでいます。
+            ろぼっと倶楽部の制御班として、ロボットの制御とプログラミングを担当。高専ロボコンや関西春ロボコンなどの大会に参加し、ソフトウェアを実機で動かす経験を積んでいます。
           </p>
 
           <!-- 経歴セクション -->
@@ -219,6 +222,8 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
   </section>
 
   <section id="skills" class="skills">
@@ -228,7 +233,7 @@
         <span data-i18n="skills.title">Technical Skills</span>
       </h2>
       <div class="skills-content">
-        <p class="skills-description" data-i18n="skills.description">私が習得している技術スタック</p>
+        <p class="skills-description" data-i18n="skills.description">制作・学習で使っている技術を、用途・使用頻度・経験とあわせて紹介します。</p>
 
         <!-- カテゴリフィルター -->
         <div class="skills-filter">
@@ -273,7 +278,7 @@
         <span data-i18n="projects.title">My Projects</span>
       </h2>
       <div class="projects-content">
-        <p class="projects-description" data-i18n="projects.description">私が取り組んできたプロジェクトの一覧</p>
+        <p class="projects-description" data-i18n="projects.description">学生向けタスク管理からデスクトップ時計、自動化まで。各プロジェクトの担当・使用技術・画面を紹介します。</p>
 
         <!-- プロジェクトグリッド（JavaScriptで動的生成） -->
         <div class="project-controls" aria-label="Project filters">
@@ -282,6 +287,8 @@
             <input
               type="search"
               id="project-search-input"
+              aria-label="プロジェクトを検索"
+              data-i18n-aria="projects.controls.searchLabel"
               data-i18n-placeholder="projects.controls.searchPlaceholder"
               placeholder="プロジェクトを検索"
             >
@@ -324,7 +331,7 @@
             <span data-i18n="contact.title">Contact</span>
           </h2>
           <p data-i18n="contact.description">
-            お気軽にご連絡ください。
+            制作物へのご質問やフィードバック、開発・ロボット関連のご相談は、メールまたは SNS からお気軽にご連絡ください。
           </p>
           <div class="contact-methods">
             <div class="contact-method">
@@ -361,6 +368,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- フッター -->
   <footer class="footer">
