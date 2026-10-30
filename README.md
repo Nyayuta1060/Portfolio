@@ -1,5 +1,6 @@
 # Nyayuta's Portfolio
 
+<<<<<<< HEAD
 Web・デスクトップアプリ・自動化ツールと、ロボット制御の活動を紹介する日英対応の静的サイトです。
 
 [公開サイト](https://nyayuta1060.github.io/Portfolio/)
@@ -40,3 +41,6 @@ npm test
 ```
 
 JSON、必須項目、カード・ギャラリー画像、URL、日英の翻訳キー・データ ID を確認します。`npm test` は Node.js 20 以降でデータ読み込みの回帰テストを実行します（依存パッケージ不要）。サイトはリポジトリのルートからそのまま配信できます。
+=======
+[こちら](https://nyayuta1060.github.io/Portfolio/)からアクセスしてください。
+>>>>>>> 6e42b29c9910ff6a73fa59b0a15bf41e81e9be2c
