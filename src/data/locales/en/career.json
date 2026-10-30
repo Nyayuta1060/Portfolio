@@ -42,7 +42,7 @@
       "id": "entry-2025-09",
       "date": "2025.09",
       "title": "Participated in National College of Technology Robot Contest 2025 Kinki Regional Competition",
-      "description": "Participated as Team B pit crew. Awarded Tanaka Kikinzoku Group Prize",
+      "description": "Participated as Team B pit crew and communications manager. Awarded Tanaka Kikinzoku Group Prize",
       "category": "club"
     },
     {
@@ -57,6 +57,13 @@
       "date": "2026.03",
       "title": "Participated in Kansai Spring Robocon 2026",
       "description": "Advanced to the finals.",
+      "category": "club"
+    },
+    {
+      "id": "entry-2026-10",
+      "date": "2026.10",
+      "title": "Participated in National College of Technology Robot Contest 2026 Kinki Regional Competition",
+      "description": "Participated as Team B pit crew and communications manager. Advanced to the final tournament and received the Design Award.",
       "category": "club"
     }
   ],
